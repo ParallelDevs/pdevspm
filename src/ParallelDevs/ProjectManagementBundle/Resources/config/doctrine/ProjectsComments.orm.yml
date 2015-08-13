@@ -1,0 +1,51 @@
+ParallelDevs\ProjectManagementBundle\Entity\ProjectsComments:
+    type: entity
+    table: projects_comments
+    indexes:
+        fk_projects_comments_projects:
+            columns:
+                - projects_id
+        fk_projects_comments_pople:
+            columns:
+                - created_by
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        description:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        createdAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_at
+    manyToOne:
+        projects:
+            targetEntity: Projects
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                projects_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        createdBy:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                created_by:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

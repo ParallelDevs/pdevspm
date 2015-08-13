@@ -1,0 +1,63 @@
+ParallelDevs\ProjectManagementBundle\Entity\DiscussionsComments:
+    type: entity
+    table: discussions_comments
+    indexes:
+        fk_discussions_comments_discussions:
+            columns:
+                - discussions_id
+        fk_discussions_comments_users:
+            columns:
+                - users_id
+        fk_discussions_status_id:
+            columns:
+                - discussions_status_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        description:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        createdAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_at
+    manyToOne:
+        discussions:
+            targetEntity: Discussions
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                discussions_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        users:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                users_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        discussionsStatus:
+            targetEntity: DiscussionsStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                discussions_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

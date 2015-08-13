@@ -1,0 +1,54 @@
+ParallelDevs\ProjectManagementBundle\Entity\Events:
+    type: entity
+    table: events
+    indexes:
+        fk_events_users:
+            columns:
+                - users_id
+    id:
+        eventId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: event_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        eventName:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: event_name
+        startDate:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: '0000-00-00 00:00:00'
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: '0000-00-00 00:00:00'
+            column: end_date
+        details:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+    manyToOne:
+        users:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                users_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

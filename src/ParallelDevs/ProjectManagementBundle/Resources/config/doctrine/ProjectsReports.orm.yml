@@ -1,0 +1,83 @@
+ParallelDevs\ProjectManagementBundle\Entity\ProjectsReports:
+    type: entity
+    table: projects_reports
+    indexes:
+        users_id:
+            columns:
+                - users_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: ''
+        displayOnHome:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: display_on_home
+        projectsId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: projects_id
+        projectsTypeId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: projects_type_id
+        projectsStatusId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: projects_status_id
+        inTeam:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: in_team
+        sortOrder:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sort_order
+        displayInMenu:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: display_in_menu
+        visibleOnHome:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: visible_on_home
+    manyToOne:
+        users:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                users_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

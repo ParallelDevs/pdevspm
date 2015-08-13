@@ -1,0 +1,71 @@
+ParallelDevs\ProjectManagementBundle\Entity\Users:
+    type: entity
+    table: users
+    indexes:
+        fk_pople_people_group:
+            columns:
+                - users_group_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: ''
+        photo:
+            type: string
+            nullable: true
+            length: 64
+            fixed: false
+            comment: ''
+        email:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: ''
+        culture:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+            comment: ''
+        password:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+            comment: ''
+            default: ''
+        active:
+            type: boolean
+            nullable: true
+            comment: ''
+        skin:
+            type: string
+            nullable: true
+            length: 64
+            fixed: false
+            comment: ''
+    manyToOne:
+        usersGroup:
+            targetEntity: UsersGroups
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                users_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

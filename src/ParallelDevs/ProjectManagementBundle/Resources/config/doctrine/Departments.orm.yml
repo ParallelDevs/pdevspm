@@ -1,0 +1,45 @@
+ParallelDevs\ProjectManagementBundle\Entity\Departments:
+    type: entity
+    table: departments
+    indexes:
+        fk_departments_users:
+            columns:
+                - users_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+            comment: ''
+            default: ''
+        sortOrder:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sort_order
+        active:
+            type: boolean
+            nullable: true
+            comment: ''
+    manyToOne:
+        users:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                users_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

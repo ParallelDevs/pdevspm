@@ -1,0 +1,92 @@
+ParallelDevs\ProjectManagementBundle\Entity\TasksComments:
+    type: entity
+    table: tasks_comments
+    indexes:
+        fk_tasks_comments_pople:
+            columns:
+                - created_by
+        fk_tasks_comments_tasks:
+            columns:
+                - tasks_id
+        fk_tasks_comments_status:
+            columns:
+                - tasks_status_id
+        fk_tasks_comments_priority:
+            columns:
+                - tasks_priority_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dueDate:
+            type: date
+            nullable: true
+            comment: ''
+            column: due_date
+        workedHours:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            comment: ''
+            column: worked_hours
+        description:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        createdAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_at
+        progress:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+    manyToOne:
+        tasks:
+            targetEntity: Tasks
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tasks_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        createdBy:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                created_by:
+                    referencedColumnName: id
+            orphanRemoval: false
+        tasksStatus:
+            targetEntity: TasksStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tasks_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        tasksPriority:
+            targetEntity: TasksPriority
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tasks_priority_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
