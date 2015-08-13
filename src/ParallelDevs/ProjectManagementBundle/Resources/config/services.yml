@@ -1,4 +1,4 @@
 services:
 #    parallel_devs_project_management.example:
-#        class: ParallelDevs\Bundle\ProjectManagementBundle\Example
+#        class: ParallelDevs\ProjectManagementBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]

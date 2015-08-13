@@ -1,6 +1,6 @@
 <?php
 
-namespace ParallelDevs\Bundle\ProjectManagementBundle;
+namespace ParallelDevs\ProjectManagementBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

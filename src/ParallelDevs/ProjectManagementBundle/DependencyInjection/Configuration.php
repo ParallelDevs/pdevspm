@@ -1,6 +1,6 @@
 <?php
 
-namespace ParallelDevs\Bundle\ProjectManagementBundle\DependencyInjection;
+namespace ParallelDevs\ProjectManagementBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

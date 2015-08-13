@@ -1,6 +1,6 @@
 <?php
 
-namespace ParallelDevs\Bundle\ProjectManagementBundle\Controller;
+namespace ParallelDevs\ProjectManagementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

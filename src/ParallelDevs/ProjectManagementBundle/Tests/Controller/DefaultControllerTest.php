@@ -1,6 +1,6 @@
 <?php
 
-namespace ParallelDevs\Bundle\ProjectManagementBundle\Tests\Controller;
+namespace ParallelDevs\ProjectManagementBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
