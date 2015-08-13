@@ -1,0 +1,3 @@
+parallel_devs_project_management_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ParallelDevsProjectManagementBundle:Default:index }
