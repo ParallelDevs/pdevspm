@@ -56,4 +56,106 @@ class ProjectsComments
     private $createdBy;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return ProjectsComments
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return ProjectsComments
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set projects
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Projects $projects
+     * @return ProjectsComments
+     */
+    public function setProjects(\ParallelDevs\ProjectManagementBundle\Entity\Projects $projects = null)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Projects 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Users $createdBy
+     * @return ProjectsComments
+     */
+    public function setCreatedBy(\ParallelDevs\ProjectManagementBundle\Entity\Users $createdBy = null)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Users 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
 }

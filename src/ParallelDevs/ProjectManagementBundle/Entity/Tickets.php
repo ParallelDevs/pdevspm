@@ -93,4 +93,198 @@ class Tickets
     private $departments;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Tickets
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Tickets
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Tickets
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set ticketsStatus
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\TicketsStatus $ticketsStatus
+     * @return Tickets
+     */
+    public function setTicketsStatus(\ParallelDevs\ProjectManagementBundle\Entity\TicketsStatus $ticketsStatus = null)
+    {
+        $this->ticketsStatus = $ticketsStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketsStatus
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\TicketsStatus 
+     */
+    public function getTicketsStatus()
+    {
+        return $this->ticketsStatus;
+    }
+
+    /**
+     * Set ticketsTypes
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\TicketsTypes $ticketsTypes
+     * @return Tickets
+     */
+    public function setTicketsTypes(\ParallelDevs\ProjectManagementBundle\Entity\TicketsTypes $ticketsTypes = null)
+    {
+        $this->ticketsTypes = $ticketsTypes;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketsTypes
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\TicketsTypes 
+     */
+    public function getTicketsTypes()
+    {
+        return $this->ticketsTypes;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Users $users
+     * @return Tickets
+     */
+    public function setUsers(\ParallelDevs\ProjectManagementBundle\Entity\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set projects
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Projects $projects
+     * @return Tickets
+     */
+    public function setProjects(\ParallelDevs\ProjectManagementBundle\Entity\Projects $projects = null)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Projects 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Set departments
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Departments $departments
+     * @return Tickets
+     */
+    public function setDepartments(\ParallelDevs\ProjectManagementBundle\Entity\Departments $departments = null)
+    {
+        $this->departments = $departments;
+
+        return $this;
+    }
+
+    /**
+     * Get departments
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Departments 
+     */
+    public function getDepartments()
+    {
+        return $this->departments;
+    }
 }

@@ -57,4 +57,129 @@ class TasksStatus
     private $active;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return TasksStatus
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set group
+     *
+     * @param string $group
+     * @return TasksStatus
+     */
+    public function setGroup($group)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return string 
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Set sortOrder
+     *
+     * @param integer $sortOrder
+     * @return TasksStatus
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get sortOrder
+     *
+     * @return integer 
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * Set defaultValue
+     *
+     * @param boolean $defaultValue
+     * @return TasksStatus
+     */
+    public function setDefaultValue($defaultValue)
+    {
+        $this->defaultValue = $defaultValue;
+
+        return $this;
+    }
+
+    /**
+     * Get defaultValue
+     *
+     * @return boolean 
+     */
+    public function getDefaultValue()
+    {
+        return $this->defaultValue;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return TasksStatus
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
 }

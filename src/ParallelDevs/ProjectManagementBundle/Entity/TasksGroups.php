@@ -39,4 +39,60 @@ class TasksGroups
     private $projects;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return TasksGroups
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set projects
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Projects $projects
+     * @return TasksGroups
+     */
+    public function setProjects(\ParallelDevs\ProjectManagementBundle\Entity\Projects $projects = null)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Projects 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
 }

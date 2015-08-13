@@ -87,4 +87,198 @@ class Projects
     private $createdBy;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Projects
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Projects
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set team
+     *
+     * @param string $team
+     * @return Projects
+     */
+    public function setTeam($team)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return string 
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Projects
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set orderTasksBy
+     *
+     * @param string $orderTasksBy
+     * @return Projects
+     */
+    public function setOrderTasksBy($orderTasksBy)
+    {
+        $this->orderTasksBy = $orderTasksBy;
+
+        return $this;
+    }
+
+    /**
+     * Get orderTasksBy
+     *
+     * @return string 
+     */
+    public function getOrderTasksBy()
+    {
+        return $this->orderTasksBy;
+    }
+
+    /**
+     * Set projectsStatus
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\ProjectsStatus $projectsStatus
+     * @return Projects
+     */
+    public function setProjectsStatus(\ParallelDevs\ProjectManagementBundle\Entity\ProjectsStatus $projectsStatus = null)
+    {
+        $this->projectsStatus = $projectsStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get projectsStatus
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\ProjectsStatus 
+     */
+    public function getProjectsStatus()
+    {
+        return $this->projectsStatus;
+    }
+
+    /**
+     * Set projectsTypes
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\ProjectsTypes $projectsTypes
+     * @return Projects
+     */
+    public function setProjectsTypes(\ParallelDevs\ProjectManagementBundle\Entity\ProjectsTypes $projectsTypes = null)
+    {
+        $this->projectsTypes = $projectsTypes;
+
+        return $this;
+    }
+
+    /**
+     * Get projectsTypes
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\ProjectsTypes 
+     */
+    public function getProjectsTypes()
+    {
+        return $this->projectsTypes;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Users $createdBy
+     * @return Projects
+     */
+    public function setCreatedBy(\ParallelDevs\ProjectManagementBundle\Entity\Users $createdBy = null)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Users 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
 }

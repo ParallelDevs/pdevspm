@@ -73,4 +73,152 @@ class Discussions
     private $discussionsStatus;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Discussions
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Discussions
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set assignedTo
+     *
+     * @param string $assignedTo
+     * @return Discussions
+     */
+    public function setAssignedTo($assignedTo)
+    {
+        $this->assignedTo = $assignedTo;
+
+        return $this;
+    }
+
+    /**
+     * Get assignedTo
+     *
+     * @return string 
+     */
+    public function getAssignedTo()
+    {
+        return $this->assignedTo;
+    }
+
+    /**
+     * Set projects
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Projects $projects
+     * @return Discussions
+     */
+    public function setProjects(\ParallelDevs\ProjectManagementBundle\Entity\Projects $projects = null)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Projects 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Users $users
+     * @return Discussions
+     */
+    public function setUsers(\ParallelDevs\ProjectManagementBundle\Entity\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set discussionsStatus
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\DiscussionsStatus $discussionsStatus
+     * @return Discussions
+     */
+    public function setDiscussionsStatus(\ParallelDevs\ProjectManagementBundle\Entity\DiscussionsStatus $discussionsStatus = null)
+    {
+        $this->discussionsStatus = $discussionsStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get discussionsStatus
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\DiscussionsStatus 
+     */
+    public function getDiscussionsStatus()
+    {
+        return $this->discussionsStatus;
+    }
 }

@@ -81,4 +81,198 @@ class DiscussionsReports
     private $users;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return DiscussionsReports
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set displayOnHome
+     *
+     * @param boolean $displayOnHome
+     * @return DiscussionsReports
+     */
+    public function setDisplayOnHome($displayOnHome)
+    {
+        $this->displayOnHome = $displayOnHome;
+
+        return $this;
+    }
+
+    /**
+     * Get displayOnHome
+     *
+     * @return boolean 
+     */
+    public function getDisplayOnHome()
+    {
+        return $this->displayOnHome;
+    }
+
+    /**
+     * Set projectsId
+     *
+     * @param string $projectsId
+     * @return DiscussionsReports
+     */
+    public function setProjectsId($projectsId)
+    {
+        $this->projectsId = $projectsId;
+
+        return $this;
+    }
+
+    /**
+     * Get projectsId
+     *
+     * @return string 
+     */
+    public function getProjectsId()
+    {
+        return $this->projectsId;
+    }
+
+    /**
+     * Set projectsTypeId
+     *
+     * @param string $projectsTypeId
+     * @return DiscussionsReports
+     */
+    public function setProjectsTypeId($projectsTypeId)
+    {
+        $this->projectsTypeId = $projectsTypeId;
+
+        return $this;
+    }
+
+    /**
+     * Get projectsTypeId
+     *
+     * @return string 
+     */
+    public function getProjectsTypeId()
+    {
+        return $this->projectsTypeId;
+    }
+
+    /**
+     * Set projectsStatusId
+     *
+     * @param string $projectsStatusId
+     * @return DiscussionsReports
+     */
+    public function setProjectsStatusId($projectsStatusId)
+    {
+        $this->projectsStatusId = $projectsStatusId;
+
+        return $this;
+    }
+
+    /**
+     * Get projectsStatusId
+     *
+     * @return string 
+     */
+    public function getProjectsStatusId()
+    {
+        return $this->projectsStatusId;
+    }
+
+    /**
+     * Set discussionsStatusId
+     *
+     * @param string $discussionsStatusId
+     * @return DiscussionsReports
+     */
+    public function setDiscussionsStatusId($discussionsStatusId)
+    {
+        $this->discussionsStatusId = $discussionsStatusId;
+
+        return $this;
+    }
+
+    /**
+     * Get discussionsStatusId
+     *
+     * @return string 
+     */
+    public function getDiscussionsStatusId()
+    {
+        return $this->discussionsStatusId;
+    }
+
+    /**
+     * Set sortOrder
+     *
+     * @param integer $sortOrder
+     * @return DiscussionsReports
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get sortOrder
+     *
+     * @return integer 
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Users $users
+     * @return DiscussionsReports
+     */
+    public function setUsers(\ParallelDevs\ProjectManagementBundle\Entity\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }

@@ -92,4 +92,244 @@ class UsersGroups
     private $allowManageDiscussionsViewonly;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return UsersGroups
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set allowViewAll
+     *
+     * @param boolean $allowViewAll
+     * @return UsersGroups
+     */
+    public function setAllowViewAll($allowViewAll)
+    {
+        $this->allowViewAll = $allowViewAll;
+
+        return $this;
+    }
+
+    /**
+     * Get allowViewAll
+     *
+     * @return boolean 
+     */
+    public function getAllowViewAll()
+    {
+        return $this->allowViewAll;
+    }
+
+    /**
+     * Set allowManageProjects
+     *
+     * @param boolean $allowManageProjects
+     * @return UsersGroups
+     */
+    public function setAllowManageProjects($allowManageProjects)
+    {
+        $this->allowManageProjects = $allowManageProjects;
+
+        return $this;
+    }
+
+    /**
+     * Get allowManageProjects
+     *
+     * @return boolean 
+     */
+    public function getAllowManageProjects()
+    {
+        return $this->allowManageProjects;
+    }
+
+    /**
+     * Set allowManageTasks
+     *
+     * @param boolean $allowManageTasks
+     * @return UsersGroups
+     */
+    public function setAllowManageTasks($allowManageTasks)
+    {
+        $this->allowManageTasks = $allowManageTasks;
+
+        return $this;
+    }
+
+    /**
+     * Get allowManageTasks
+     *
+     * @return boolean 
+     */
+    public function getAllowManageTasks()
+    {
+        return $this->allowManageTasks;
+    }
+
+    /**
+     * Set allowManageTickets
+     *
+     * @param boolean $allowManageTickets
+     * @return UsersGroups
+     */
+    public function setAllowManageTickets($allowManageTickets)
+    {
+        $this->allowManageTickets = $allowManageTickets;
+
+        return $this;
+    }
+
+    /**
+     * Get allowManageTickets
+     *
+     * @return boolean 
+     */
+    public function getAllowManageTickets()
+    {
+        return $this->allowManageTickets;
+    }
+
+    /**
+     * Set allowManageUsers
+     *
+     * @param boolean $allowManageUsers
+     * @return UsersGroups
+     */
+    public function setAllowManageUsers($allowManageUsers)
+    {
+        $this->allowManageUsers = $allowManageUsers;
+
+        return $this;
+    }
+
+    /**
+     * Get allowManageUsers
+     *
+     * @return boolean 
+     */
+    public function getAllowManageUsers()
+    {
+        return $this->allowManageUsers;
+    }
+
+    /**
+     * Set allowManageConfiguration
+     *
+     * @param boolean $allowManageConfiguration
+     * @return UsersGroups
+     */
+    public function setAllowManageConfiguration($allowManageConfiguration)
+    {
+        $this->allowManageConfiguration = $allowManageConfiguration;
+
+        return $this;
+    }
+
+    /**
+     * Get allowManageConfiguration
+     *
+     * @return boolean 
+     */
+    public function getAllowManageConfiguration()
+    {
+        return $this->allowManageConfiguration;
+    }
+
+    /**
+     * Set allowManageTasksViewonly
+     *
+     * @param boolean $allowManageTasksViewonly
+     * @return UsersGroups
+     */
+    public function setAllowManageTasksViewonly($allowManageTasksViewonly)
+    {
+        $this->allowManageTasksViewonly = $allowManageTasksViewonly;
+
+        return $this;
+    }
+
+    /**
+     * Get allowManageTasksViewonly
+     *
+     * @return boolean 
+     */
+    public function getAllowManageTasksViewonly()
+    {
+        return $this->allowManageTasksViewonly;
+    }
+
+    /**
+     * Set allowManageDiscussions
+     *
+     * @param boolean $allowManageDiscussions
+     * @return UsersGroups
+     */
+    public function setAllowManageDiscussions($allowManageDiscussions)
+    {
+        $this->allowManageDiscussions = $allowManageDiscussions;
+
+        return $this;
+    }
+
+    /**
+     * Get allowManageDiscussions
+     *
+     * @return boolean 
+     */
+    public function getAllowManageDiscussions()
+    {
+        return $this->allowManageDiscussions;
+    }
+
+    /**
+     * Set allowManageDiscussionsViewonly
+     *
+     * @param boolean $allowManageDiscussionsViewonly
+     * @return UsersGroups
+     */
+    public function setAllowManageDiscussionsViewonly($allowManageDiscussionsViewonly)
+    {
+        $this->allowManageDiscussionsViewonly = $allowManageDiscussionsViewonly;
+
+        return $this;
+    }
+
+    /**
+     * Get allowManageDiscussionsViewonly
+     *
+     * @return boolean 
+     */
+    public function getAllowManageDiscussionsViewonly()
+    {
+        return $this->allowManageDiscussionsViewonly;
+    }
 }

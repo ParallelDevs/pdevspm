@@ -95,4 +95,244 @@ class ProjectsReports
     private $users;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return ProjectsReports
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set displayOnHome
+     *
+     * @param boolean $displayOnHome
+     * @return ProjectsReports
+     */
+    public function setDisplayOnHome($displayOnHome)
+    {
+        $this->displayOnHome = $displayOnHome;
+
+        return $this;
+    }
+
+    /**
+     * Get displayOnHome
+     *
+     * @return boolean 
+     */
+    public function getDisplayOnHome()
+    {
+        return $this->displayOnHome;
+    }
+
+    /**
+     * Set projectsId
+     *
+     * @param string $projectsId
+     * @return ProjectsReports
+     */
+    public function setProjectsId($projectsId)
+    {
+        $this->projectsId = $projectsId;
+
+        return $this;
+    }
+
+    /**
+     * Get projectsId
+     *
+     * @return string 
+     */
+    public function getProjectsId()
+    {
+        return $this->projectsId;
+    }
+
+    /**
+     * Set projectsTypeId
+     *
+     * @param string $projectsTypeId
+     * @return ProjectsReports
+     */
+    public function setProjectsTypeId($projectsTypeId)
+    {
+        $this->projectsTypeId = $projectsTypeId;
+
+        return $this;
+    }
+
+    /**
+     * Get projectsTypeId
+     *
+     * @return string 
+     */
+    public function getProjectsTypeId()
+    {
+        return $this->projectsTypeId;
+    }
+
+    /**
+     * Set projectsStatusId
+     *
+     * @param string $projectsStatusId
+     * @return ProjectsReports
+     */
+    public function setProjectsStatusId($projectsStatusId)
+    {
+        $this->projectsStatusId = $projectsStatusId;
+
+        return $this;
+    }
+
+    /**
+     * Get projectsStatusId
+     *
+     * @return string 
+     */
+    public function getProjectsStatusId()
+    {
+        return $this->projectsStatusId;
+    }
+
+    /**
+     * Set inTeam
+     *
+     * @param integer $inTeam
+     * @return ProjectsReports
+     */
+    public function setInTeam($inTeam)
+    {
+        $this->inTeam = $inTeam;
+
+        return $this;
+    }
+
+    /**
+     * Get inTeam
+     *
+     * @return integer 
+     */
+    public function getInTeam()
+    {
+        return $this->inTeam;
+    }
+
+    /**
+     * Set sortOrder
+     *
+     * @param integer $sortOrder
+     * @return ProjectsReports
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get sortOrder
+     *
+     * @return integer 
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * Set displayInMenu
+     *
+     * @param boolean $displayInMenu
+     * @return ProjectsReports
+     */
+    public function setDisplayInMenu($displayInMenu)
+    {
+        $this->displayInMenu = $displayInMenu;
+
+        return $this;
+    }
+
+    /**
+     * Get displayInMenu
+     *
+     * @return boolean 
+     */
+    public function getDisplayInMenu()
+    {
+        return $this->displayInMenu;
+    }
+
+    /**
+     * Set visibleOnHome
+     *
+     * @param boolean $visibleOnHome
+     * @return ProjectsReports
+     */
+    public function setVisibleOnHome($visibleOnHome)
+    {
+        $this->visibleOnHome = $visibleOnHome;
+
+        return $this;
+    }
+
+    /**
+     * Get visibleOnHome
+     *
+     * @return boolean 
+     */
+    public function getVisibleOnHome()
+    {
+        return $this->visibleOnHome;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \ParallelDevs\ProjectManagementBundle\Entity\Users $users
+     * @return ProjectsReports
+     */
+    public function setUsers(\ParallelDevs\ProjectManagementBundle\Entity\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \ParallelDevs\ProjectManagementBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }
