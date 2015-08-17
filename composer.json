@@ -4,7 +4,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "PDevsPM": "src/",
+            "": "src/",
             "SymfonyStandard\\": "app/SymfonyStandard/"
         }
     },
