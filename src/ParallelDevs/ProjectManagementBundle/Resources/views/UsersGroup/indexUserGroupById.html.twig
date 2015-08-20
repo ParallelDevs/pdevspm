@@ -1,0 +1,25 @@
+
+<h1>Listado de UsersGroups</h1>
+
+<table>
+        
+        <tr>
+            <th>Id</th> 
+            <th>Name</th>      
+                       
+        </tr>
+        
+{% if userGroup %} 
+    
+        <tr>
+            <td>{{ userGroup.id }}</td>
+            <td>{{ userGroup.name }}</td>
+                                 
+        </tr>        
+        
+    
+    
+{% endif %}
+
+</table>
+    

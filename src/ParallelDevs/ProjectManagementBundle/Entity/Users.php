@@ -1,5 +1,5 @@
 <?php
-
+    
 namespace ParallelDevs\ProjectManagementBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -80,7 +80,18 @@ class Users
      */
     private $usersGroup;
 
-
+    
+    /**
+     * Set id
+     * 
+     * @param integer $id
+     * @return UsersGroups
+     */
+    public function setId($id) {
+        $this->id = $id;
+        
+        return $this;
+    }
 
     /**
      * Get id
@@ -261,7 +272,11 @@ class Users
      */
     public function setUsersGroup(\ParallelDevs\ProjectManagementBundle\Entity\UsersGroups $usersGroup = null)
     {
+        
+        
         $this->usersGroup = $usersGroup;
+        
+        
 
         return $this;
     }

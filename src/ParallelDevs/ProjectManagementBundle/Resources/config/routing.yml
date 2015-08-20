@@ -1,3 +1,24 @@
-parallel_devs_project_management_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ParallelDevsProjectManagementBundle:Default:index }
+  
+parallel_devs_project_management_list_all_users:
+    path:     /users
+    defaults: { _controller: ParallelDevsProjectManagementBundle:Users:getAllUsers }
+    
+parallel_devs_project_management_create_new_users:
+    path:     /users/create/view
+    defaults: { _controller: ParallelDevsProjectManagementBundle:Users:createNewUser }
+
+parallel_devs_project_management_add_new_users:
+    path:     /users/add/newuser
+    defaults: { _controller: ParallelDevsProjectManagementBundle:Users:processUserForm }
+    
+#+++++++++++++++++++++++++++++RUTA PARA LOS USERSGROUPS#+++++++++++++++++++++++++++++
+
+parallel_devs_project_management_get_id_usersGroup:
+    path:     /usergroups/{id}
+    defaults: { _controller: ParallelDevsProjectManagementBundle:UsersGroup:getUserGroupId }
+
+    
+    
+
+
+

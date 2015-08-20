@@ -6,7 +6,8 @@
         <tr>
             <th>Id</th> 
             <th>Name</th>      
-            <th>Email</th>           
+            <th>Email</th> 
+            
         </tr>
         
 {% for Users in users %} 
@@ -14,7 +15,8 @@
         <tr>
             <td>{{ Users.id }}</td>
             <a href="#"><td>{{ Users.name }}</td></a>
-            <td>{{ Users.email }}</td>                        
+            <td>{{ Users.email }}</td>    
+            
         </tr>        
             
 {% endfor %}

@@ -94,6 +94,19 @@ class UsersGroups
 
 
     /**
+     * Set id
+     * 
+     * @param integer $id
+     * @return UsersGroups
+     */
+    public function setId($id) {
+        $this->id = $id;
+        
+        return $this;
+    }
+
+
+    /**
      * Get id
      *
      * @return integer 

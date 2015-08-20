@@ -8,22 +8,18 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class UserType extends AbstractType
-{
-    
+{    
     public function buildForm(FormBuilderInterface $builder, array $options) 
-    {
-        
+    {        
         $builder
-           ->add('name', 'text', ['label' => 'Name'])
-           ->add('photo')
+                
+           ->add('name', 'text', ['label' => 'Full Name'])
+           ->add('photo', 'file', ['label' => 'Choose your photo'])
            ->add('email', 'email', ['label' => 'Email'])
-           ->add('culture')
            ->add('password', 'password', ['label' => 'Password'])
-           ->add('active')
-           ->add('skin')
-           //->add('usersGroup')
-       ;
-        
+           ->add('usersGroup', 'entity', ['class' => 'ParallelDevs\ProjectManagementBundle\Entity\UsersGroups', 'property' => 'name'])
+           ->add('save', 'submit', ['label' => 'Save'])
+           ;
     }
     
     public function getName()
@@ -38,10 +34,5 @@ class UserType extends AbstractType
        ]);
         
     }//End Function setDefaultOptions
-    
-    
-    
-    
-    
     
 }//End Class
