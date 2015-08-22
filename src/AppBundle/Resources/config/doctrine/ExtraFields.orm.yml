@@ -1,0 +1,51 @@
+AppBundle\Entity\ExtraFields:
+    type: entity
+    table: extra_fields
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: ''
+        bindType:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+            comment: ''
+            default: ''
+            column: bind_type
+        type:
+            type: string
+            nullable: true
+            length: 64
+            fixed: false
+            comment: ''
+        sortOrder:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: sort_order
+        active:
+            type: boolean
+            nullable: true
+            comment: ''
+        displayInList:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: display_in_list
+    lifecycleCallbacks: {  }

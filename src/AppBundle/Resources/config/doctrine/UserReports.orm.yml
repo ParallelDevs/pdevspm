@@ -1,0 +1,125 @@
+AppBundle\Entity\UserReports:
+    type: entity
+    table: user_reports
+    indexes:
+        fk_user_reports_users:
+            columns:
+                - users_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: ''
+        displayOnHome:
+            type: boolean
+            nullable: true
+            comment: ''
+            column: display_on_home
+        projectsId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: projects_id
+        projectsTypeId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: projects_type_id
+        projectsStatusId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: projects_status_id
+        assignedTo:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: assigned_to
+        tasksStatusId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: tasks_status_id
+        tasksTypeId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: tasks_type_id
+        tasksLabelId:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: tasks_label_id
+        dueDateFrom:
+            type: date
+            nullable: true
+            comment: ''
+            column: due_date_from
+        dueDateTo:
+            type: date
+            nullable: true
+            comment: ''
+            column: due_date_to
+        createdFrom:
+            type: date
+            nullable: true
+            comment: ''
+            column: created_from
+        createdTo:
+            type: date
+            nullable: true
+            comment: ''
+            column: created_to
+        closedFrom:
+            type: date
+            nullable: true
+            comment: ''
+            column: closed_from
+        closedTo:
+            type: date
+            nullable: true
+            comment: ''
+            column: closed_to
+        sortOrder:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sort_order
+    manyToOne:
+        users:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                users_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

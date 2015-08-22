@@ -1,0 +1,73 @@
+AppBundle\Entity\Discussions:
+    type: entity
+    table: discussions
+    indexes:
+        fk_discussions_projects:
+            columns:
+                - projects_id
+        fk_discussions_users:
+            columns:
+                - users_id
+        fk_discussions_discussions_status:
+            columns:
+                - discussions_status_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: ''
+        description:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        assignedTo:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: ''
+            column: assigned_to
+    manyToOne:
+        projects:
+            targetEntity: Projects
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                projects_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        users:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                users_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        discussionsStatus:
+            targetEntity: DiscussionsStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                discussions_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

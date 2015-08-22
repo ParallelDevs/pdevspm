@@ -1,0 +1,52 @@
+AppBundle\Entity\ProjectsPhases:
+    type: entity
+    table: projects_phases
+    indexes:
+        fk_projects_phases_projects:
+            columns:
+                - projects_id
+        fk_projects_phases_phases_status:
+            columns:
+                - phases_status_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: ''
+        dueDate:
+            type: date
+            nullable: true
+            comment: ''
+            column: due_date
+    manyToOne:
+        projects:
+            targetEntity: Projects
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                projects_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        phasesStatus:
+            targetEntity: PhasesStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                phases_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

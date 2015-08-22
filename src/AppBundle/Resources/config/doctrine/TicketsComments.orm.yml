@@ -1,0 +1,63 @@
+AppBundle\Entity\TicketsComments:
+    type: entity
+    table: tickets_comments
+    indexes:
+        fk_tickets_comments_tickets:
+            columns:
+                - tickets_id
+        fk_tickets_comments_users:
+            columns:
+                - users_id
+        k_tickets_comments_status:
+            columns:
+                - tickets_status_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        description:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        createdAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_at
+    manyToOne:
+        tickets:
+            targetEntity: Tickets
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tickets_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        users:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                users_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ticketsStatus:
+            targetEntity: TicketsStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tickets_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
