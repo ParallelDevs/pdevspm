@@ -5,10 +5,3 @@ parallel_devs_project_management:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
-
-security_login:
-    path:     /login
-    defaults: { _controller: ParallelDevsProjectManagementBundle:Security:login }
-
-security_login_check:
-    path: /login_check
