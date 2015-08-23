@@ -5,5 +5,5 @@ parameters:
 
 services:
     app.form_login_authenticator:
-        class: ParallelDevsProject\ManagementBundle\Security\FormLoginAuthenticator
+        class: AppBundle\Security\FormLoginAuthenticator
         arguments: ["@service_container"]

@@ -6,11 +6,14 @@ security:
     encoders:
         # Our user class and the algorithm we'll use to encode passwords
         # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
-        ParallelDevs\ProjectManagementBundle\Entity\User: bcrypt
+        AppBundle\Entity\User: bcrypt
 
     providers:
+        # Simple example of loading users via Doctrine
+        # To load users from somewhere else: http://symfony.com/doc/current/cookbook/security/custom_provider.html
         database_users:
-            entity: { class: ParallelDevsProjectManagementBundle:User, property: username }
+            entity: { class: AppBundle:User, property: username }
+
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs

@@ -66,4 +66,129 @@ class TicketsComments
     private $ticketsStatus;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return TicketsComments
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return TicketsComments
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set tickets
+     *
+     * @param \AppBundle\Entity\Tickets $tickets
+     * @return TicketsComments
+     */
+    public function setTickets(\AppBundle\Entity\Tickets $tickets = null)
+    {
+        $this->tickets = $tickets;
+
+        return $this;
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \AppBundle\Entity\Tickets 
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\Users $users
+     * @return TicketsComments
+     */
+    public function setUsers(\AppBundle\Entity\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set ticketsStatus
+     *
+     * @param \AppBundle\Entity\TicketsStatus $ticketsStatus
+     * @return TicketsComments
+     */
+    public function setTicketsStatus(\AppBundle\Entity\TicketsStatus $ticketsStatus = null)
+    {
+        $this->ticketsStatus = $ticketsStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketsStatus
+     *
+     * @return \AppBundle\Entity\TicketsStatus 
+     */
+    public function getTicketsStatus()
+    {
+        return $this->ticketsStatus;
+    }
 }

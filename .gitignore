@@ -48,3 +48,4 @@
 /composer.phar
 /vendor/
 /web/bundles/
+/src/*/Entity/*.php~

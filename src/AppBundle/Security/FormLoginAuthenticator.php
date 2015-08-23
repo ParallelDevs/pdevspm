@@ -1,19 +1,17 @@
 <?php
 
-namespace ParallelDevs\ProjectManagementBundle\Security;
+namespace AppBundle\Security;
 
 use KnpU\Guard\Authenticator\AbstractFormLoginAuthenticator;
-use KnpU\Guard\Exception\CustomAuthenticationException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
 {
-
     private $container;
 
     public function __construct(ContainerInterface $container)

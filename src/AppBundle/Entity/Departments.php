@@ -53,4 +53,106 @@ class Departments
     private $users;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Departments
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set sortOrder
+     *
+     * @param integer $sortOrder
+     * @return Departments
+     */
+    public function setSortOrder($sortOrder)
+    {
+        $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get sortOrder
+     *
+     * @return integer 
+     */
+    public function getSortOrder()
+    {
+        return $this->sortOrder;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Departments
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\Users $users
+     * @return Departments
+     */
+    public function setUsers(\AppBundle\Entity\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }
