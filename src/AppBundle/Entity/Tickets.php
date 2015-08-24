@@ -93,4 +93,198 @@ class Tickets
     private $departments;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Tickets
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Tickets
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Tickets
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set ticketsStatus
+     *
+     * @param \AppBundle\Entity\TicketsStatus $ticketsStatus
+     * @return Tickets
+     */
+    public function setTicketsStatus(\AppBundle\Entity\TicketsStatus $ticketsStatus = null)
+    {
+        $this->ticketsStatus = $ticketsStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketsStatus
+     *
+     * @return \AppBundle\Entity\TicketsStatus 
+     */
+    public function getTicketsStatus()
+    {
+        return $this->ticketsStatus;
+    }
+
+    /**
+     * Set ticketsTypes
+     *
+     * @param \AppBundle\Entity\TicketsTypes $ticketsTypes
+     * @return Tickets
+     */
+    public function setTicketsTypes(\AppBundle\Entity\TicketsTypes $ticketsTypes = null)
+    {
+        $this->ticketsTypes = $ticketsTypes;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketsTypes
+     *
+     * @return \AppBundle\Entity\TicketsTypes 
+     */
+    public function getTicketsTypes()
+    {
+        return $this->ticketsTypes;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\Users $users
+     * @return Tickets
+     */
+    public function setUsers(\AppBundle\Entity\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set projects
+     *
+     * @param \AppBundle\Entity\Projects $projects
+     * @return Tickets
+     */
+    public function setProjects(\AppBundle\Entity\Projects $projects = null)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \AppBundle\Entity\Projects 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Set departments
+     *
+     * @param \AppBundle\Entity\Departments $departments
+     * @return Tickets
+     */
+    public function setDepartments(\AppBundle\Entity\Departments $departments = null)
+    {
+        $this->departments = $departments;
+
+        return $this;
+    }
+
+    /**
+     * Get departments
+     *
+     * @return \AppBundle\Entity\Departments 
+     */
+    public function getDepartments()
+    {
+        return $this->departments;
+    }
 }

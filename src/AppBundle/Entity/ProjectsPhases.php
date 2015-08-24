@@ -56,4 +56,106 @@ class ProjectsPhases
     private $phasesStatus;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return ProjectsPhases
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set dueDate
+     *
+     * @param \DateTime $dueDate
+     * @return ProjectsPhases
+     */
+    public function setDueDate($dueDate)
+    {
+        $this->dueDate = $dueDate;
+
+        return $this;
+    }
+
+    /**
+     * Get dueDate
+     *
+     * @return \DateTime 
+     */
+    public function getDueDate()
+    {
+        return $this->dueDate;
+    }
+
+    /**
+     * Set projects
+     *
+     * @param \AppBundle\Entity\Projects $projects
+     * @return ProjectsPhases
+     */
+    public function setProjects(\AppBundle\Entity\Projects $projects = null)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \AppBundle\Entity\Projects 
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * Set phasesStatus
+     *
+     * @param \AppBundle\Entity\PhasesStatus $phasesStatus
+     * @return ProjectsPhases
+     */
+    public function setPhasesStatus(\AppBundle\Entity\PhasesStatus $phasesStatus = null)
+    {
+        $this->phasesStatus = $phasesStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get phasesStatus
+     *
+     * @return \AppBundle\Entity\PhasesStatus 
+     */
+    public function getPhasesStatus()
+    {
+        return $this->phasesStatus;
+    }
 }

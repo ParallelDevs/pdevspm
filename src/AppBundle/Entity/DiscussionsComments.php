@@ -66,4 +66,129 @@ class DiscussionsComments
     private $discussionsStatus;
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return DiscussionsComments
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return DiscussionsComments
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set discussions
+     *
+     * @param \AppBundle\Entity\Discussions $discussions
+     * @return DiscussionsComments
+     */
+    public function setDiscussions(\AppBundle\Entity\Discussions $discussions = null)
+    {
+        $this->discussions = $discussions;
+
+        return $this;
+    }
+
+    /**
+     * Get discussions
+     *
+     * @return \AppBundle\Entity\Discussions 
+     */
+    public function getDiscussions()
+    {
+        return $this->discussions;
+    }
+
+    /**
+     * Set users
+     *
+     * @param \AppBundle\Entity\Users $users
+     * @return DiscussionsComments
+     */
+    public function setUsers(\AppBundle\Entity\Users $users = null)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \AppBundle\Entity\Users 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set discussionsStatus
+     *
+     * @param \AppBundle\Entity\DiscussionsStatus $discussionsStatus
+     * @return DiscussionsComments
+     */
+    public function setDiscussionsStatus(\AppBundle\Entity\DiscussionsStatus $discussionsStatus = null)
+    {
+        $this->discussionsStatus = $discussionsStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get discussionsStatus
+     *
+     * @return \AppBundle\Entity\DiscussionsStatus 
+     */
+    public function getDiscussionsStatus()
+    {
+        return $this->discussionsStatus;
+    }
 }
