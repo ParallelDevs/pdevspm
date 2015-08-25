@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1>Detalles Usuario</h1>
+<table>
+    <tbody>        
+        <tr>
+            <td>Group: </td> 
+        {% if user %}
+            <td>{{ dump(user.UsersGroup.name)}}</td> 
+        {% endif %}
+        </tr>
+    
+        <tr>          
+            <td>Email: </td>
+        {% if user %}
+            <td>{{ user.email }}</td>      
+        {% endif %}
+        </tr> 
+        
+        <tr>          
+            <td>Photo: </td>
+        {% if user %}
+            <td>{{ user.photo }}</td>      
+        {% endif %}
+        </tr>
+    <tbody>
+</table>
+{% endblock %}
