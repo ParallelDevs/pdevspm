@@ -21,9 +21,8 @@ class ProjectsController extends Controller
     /**
      * Lists all Projects entities.
      *
-     * @Route("/list/all", name="projects_list")
+     * @Route("/list", name="projects_list")
      * @Method("GET")
-     * @Template()
      */
     public function indexAction()
     {
@@ -31,16 +30,13 @@ class ProjectsController extends Controller
 
         $entities = $em->getRepository('AppBundle:Projects')->findAll();
 
-        return array(
-            'entities' => $entities,
-        );
+        return $this->render('projects/show.html.twig', ['entities' => $entities->createView()]);
     }
     /**
      * Creates a new Projects entity.
      *
-     * @Route("/", name="projects_create")
-     * @Method("POST")
-     * @Template("AppBundle:Projects:new.html.twig")
+     * @Route("/create", name="projects_create")
+     * @Method("POST") 
      */
     public function createAction(Request $request)
     {
@@ -56,10 +52,12 @@ class ProjectsController extends Controller
             return $this->redirect($this->generateUrl('projects_show', array('id' => $entity->getId())));
         }
 
-        return array(
+        return $this->render('projects/show.html.twig', ['entity' => $entity->createView(), 'form'   => $form->createView(),]);
+        
+        /*return array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        );*/
     }
 
     /**
@@ -86,17 +84,13 @@ class ProjectsController extends Controller
      *
      * @Route("/new", name="projects_new")
      * @Method("GET")
-     * @Template()
      */
     public function newAction()
     {
         $entity = new Projects();
         $form   = $this->createCreateForm($entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+        
+        return $this->render('projects/new.html.twig', ['entity' => $entity->createView(), 'form'   => $form->createView(),]);
     }
 
     /**
@@ -104,7 +98,6 @@ class ProjectsController extends Controller
      *
      * @Route("/{id}", name="projects_show")
      * @Method("GET")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -117,11 +110,8 @@ class ProjectsController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
+        
+        return $this->render('projects/show.html.twig', ['entity' => $entity->createView(), 'delete_form'   => $deleteForm->createView(),]);
     }
 
     /**
@@ -129,7 +119,6 @@ class ProjectsController extends Controller
      *
      * @Route("/{id}/edit", name="projects_edit")
      * @Method("GET")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -143,12 +132,10 @@ class ProjectsController extends Controller
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
+            
+        return $this->render('projects/new.html.twig', ['entity' => $entity->createView(), 
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+            'delete_form'   => $deleteForm->createView(),]);
     }
 
     /**
@@ -174,7 +161,6 @@ class ProjectsController extends Controller
      *
      * @Route("/{id}", name="projects_update")
      * @Method("PUT")
-     * @Template("AppBundle:Projects:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -196,11 +182,9 @@ class ProjectsController extends Controller
             return $this->redirect($this->generateUrl('projects_edit', array('id' => $id)));
         }
 
-        return array(
-            'entity'      => $entity,
+        return $this->render('projects/new.html.twig', ['entity' => $entity->createView(), 
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+            'delete_form'   => $deleteForm->createView(),]);
     }
     /**
      * Deletes a Projects entity.
