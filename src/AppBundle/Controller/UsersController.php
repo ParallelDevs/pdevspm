@@ -34,10 +34,10 @@ class UsersController extends Controller
     public function createNewUserAction(){  
         
         $user = new Users();
-        
+
         /*Its created the form view of Users with path containing the view*/
         $form = $this->createForm(new UserType(), $user, ['method' => 'POST', 'action' => $this->generateUrl('create_new_users')]);
-        
+
         return $this->render('users/createNewUser.html.twig', ['form' => $form->createView()]);      
         
     }//End Function
@@ -74,7 +74,7 @@ class UsersController extends Controller
                 //Save the information from Fields.
                 
                 //Process the upload file in the form.
-                $users->upload();
+                //$users->upload();
                 
                 $em->persist($users);
                 
@@ -106,45 +106,56 @@ class UsersController extends Controller
             
             $em->remove($user);
             $em->flush();       
+            
         return $this->redirect($this->generateUrl('list_all_users'));
     }//End Function
     
     /**
-     * @Route("/users/{id}/edit", name="edit_users")        
+     * This function renderize the form with the data into the fields before update information. 
+    * @Route("/users/{id}/edit", name="edit_users")        
+    */
+    public function editUserAction($id){        
+                
+        $em = $this->getDoctrine()->getManager(); 
+        $user = $em->getRepository('AppBundle:Users')->find($id);
+        /*Its created the form view of Users with path containing the view*/
+        $form = $this->createForm(new UserType(), $user);
+        return $this->render('users/editUser.html.twig', ['form' => $form->createView(),'id_user'=>$user->getId()]);       
+           
+    }//End Function
+    
+    /**
+     * This function update the new information.  
+     * @Route("/users/{id}/update", name="add_edit_user")        
      */
-    public function editUserAction($id){
-        
+    public function processEditUserAction($id, Request $request){        
         
         $em = $this->getDoctrine()->getManager(); 
         $user = $em->getRepository('AppBundle:Users')->find($id);
         
-        //This section are in process. This code its for test. Ignore. 
-       /* echo '<pre>';
+        $repository = $this->getDoctrine()
+        ->getRepository('AppBundle:Users');
         
-        print_r($user);
-        
-        echo '</pre>';*/
-        
-         if (!$user) {
-                throw $this->createNotFoundException('Dont find User, any matches for this ID');
-            }//End IF
-        
-        $form = $this->createForm(new UserType(), $user, ['method' => 'POST', 'action' => $this->generateUrl('create_new_users')]);
-        
-        return $this->render('users/createNewUser.html.twig', ['form' => $form->createView()]);      
-        /**$form->handleRequest($request);
-        
-        if($form->isValid()){
+        if($user) {
             
-            echo 'Ingresa al IF DE VALIDAR EL FORM';
+            $idUserGroup = $request->request->get('user')['usersGroup'];             
+            $user->setActive($request->request->get('user')['active']);
+            $user->setName($request->request->get('user')['name']);
+            $user->setPassword($request->request->get('user')['password']);
+            $user->setEmail($request->request->get('user')['email']);
+            $usersGroupId = $this->getDoctrine()
+                    ->getRepository('AppBundle:UsersGroups') 
+                    ->find($idUserGroup);
+            $user->setUsersGroup($usersGroupId);
+            $user->setPhoto($request->request->get('user')['photo']);
+            
             $em->persist($user);
-            $em->flush();
-            
-            echo 'Ya paso el FLUSH';
-            
-            return new Response('Your changes was aceptted. Check your new information');
-            
-        }//End IF*/ 
-           
+            $em->flush(); 
+        }
+ 
+        $users = $repository->findAll();
+        return $this->redirect($this->generateUrl('list_all_users'));           
+        
     }//End Function
+    
 }//End class UserController
