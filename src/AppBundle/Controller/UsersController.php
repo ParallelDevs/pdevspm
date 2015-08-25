@@ -69,7 +69,7 @@ class UsersController extends Controller
                 $users->setEmail($request->request->get('user')['email']);
                 $users->setCulture('en');
                 $users->setPassword($request->request->get('user')['password']);
-                $users->setActive(false);                                
+                $users->setActive(false); 
                 $users->setSkin(true);
                 //Save the information from Fields.
                 
