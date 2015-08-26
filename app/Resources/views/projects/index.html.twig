@@ -2,6 +2,14 @@
 
 {% block body -%}
     <h1>Projects list</h1>
+    
+    <ul>
+        <li>
+            <a href="{{ path('projects_create') }}">
+                Add new Project
+            </a>
+        </li>
+    </ul>
 
     <table class="records_list">
         <thead>
@@ -16,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for entity in entity %}
             <tr>
                 <td><a href="{{ path('projects_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
@@ -27,10 +35,13 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('projects_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('projects_show', { 'id': entity.id }) }}">show Details</a>
                     </li>
                     <li>
                         <a href="{{ path('projects_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('projects_list', { 'id': entity.id }) }}">Delete</a>
                     </li>
                 </ul>
                 </td>
@@ -39,11 +50,5 @@
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('projects_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+        
     {% endblock %}

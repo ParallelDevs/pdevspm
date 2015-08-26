@@ -1,10 +1,11 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>Projects</h1>
+{% block body %}
+    <h1>Projects Details</h1>
 
-    <table class="record_properties">
+    <table>
         <tbody>
+                     
             <tr>
                 <th>Id</th>
                 <td>{{ entity.id }}</td>
@@ -18,31 +19,25 @@
                 <td>{{ entity.description }}</td>
             </tr>
             <tr>
-                <th>Team</th>
-                <td>{{ entity.team }}</td>
+                <th>Team</th>           
+                <td>{{ entity.team }}</td>            
             </tr>
             <tr>
-                <th>Createdat</th>
-                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+             <th>Createdate</th>            
+                <td>{{ entity.createdAt|date('Y-m-d') }}</td>            
             </tr>
             <tr>
-                <th>Ordertasksby</th>
-                <td>{{ entity.orderTasksBy }}</td>
-            </tr>
+            <th>Ordertasksby</th>            
+                <td>{{ entity.orderTasksBy }}</td>           
+            </tr>        
         </tbody>
     </table>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('projects') }}">
+        <a href="{{ path('projects_index') }}">
             Back to the list
         </a>
     </li>
-    <li>
-        <a href="{{ path('projects_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}

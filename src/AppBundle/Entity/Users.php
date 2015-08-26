@@ -32,7 +32,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="string", unique=true)
      */
-    private $username;
+    //private $username;
 
     /**
      * @var string
@@ -66,7 +66,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="json_array")
      */
-    private $roles = array();
+    //  private $roles = array();
 
     /**
      * @var boolean

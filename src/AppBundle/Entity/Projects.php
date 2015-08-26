@@ -54,7 +54,7 @@ class Projects
      *
      * @ORM\Column(name="order_tasks_by", type="string", length=64, nullable=true)
      */
-    private $orderTasksBy;
+    private $orderTasksBy;  
 
     /**
      * @var \AppBundle\Entity\ProjectsStatus

@@ -5,6 +5,8 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
+use AppBundle\Entity\ProjectsStatus;
 
 class ProjectsType extends AbstractType
 {
@@ -15,14 +17,16 @@ class ProjectsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('team')
-            ->add('createdAt')
-            ->add('orderTasksBy')
-            ->add('projectsStatus')
-            ->add('projectsTypes')
-            ->add('createdBy')
+            ->add('name', 'text', ['label' => 'name'])
+            ->add('description', 'textarea', ['label' => 'Description'])
+            ->add('team', 'text', ['label' => 'Team'])
+            ->add('createdAt', 'date', ['label' => 'createAt'])
+            ->add('orderTasksBy', 'text', ['label' => 'OrderTasksBy'])
+            ->add('projectsStatus', 'entity', ['class' => 'AppBundle\Entity\ProjectsStatus', 'property' => 'name'])
+            ->add('projectsTypes', 'entity', ['class' => 'AppBundle\Entity\ProjectsTypes' , 'property' => 'name'])
+            ->add('createdBy', 'entity', ['class' => 'AppBundle\Entity\Users' , 'property' => 'name'])
+            ->add('save', 'submit', ['label' => 'Save'])
+            ->add('close', 'submit', ['label' => 'Close'])
         ;
     }
     
@@ -41,6 +45,6 @@ class ProjectsType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_projects';
+        return 'projects';
     }
 }

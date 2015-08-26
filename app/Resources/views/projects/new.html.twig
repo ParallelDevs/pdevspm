@@ -3,11 +3,28 @@
 {% block body -%}
     <h1>Projects creation</h1>
 
-    {{ form(form) }}
+
+    
+<form class="form-signin" name='register_form' id='register_form' method='post' action='{{path('projects_process')}}'>
+    
+   <label>Type: </label>{{ form_widget(form.projectsTypes) }}<br> 
+   
+   <label>Status: </label>{{ form_widget(form.projectsStatus) }}<br>
+
+   <label>Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Name'}}) }}<br>
+   
+   <label>Review Brief: </label>{{ form_widget(form.createdAt) }}<br>   
+      
+   <label>Description: </label>{{ form_widget(form.description) }}<br> 
+   
+   <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+   <button class="btn btn-lg btn-primary btn-block" type="reset">Close</button>
+   
+</form>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('projects') }}">
+        <a href="{{ path('projects_list') }}">
             Back to the list
         </a>
     </li>

@@ -3,12 +3,17 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Validator\Constraints\DateTime;
 use AppBundle\Entity\Projects;
-use AppBundle\Form\ProjectsType;
+use AppBundle\Form\Type\ProjectsType;
+use AppBundle\Entity\Users;
+use AppBundle\Entity\ProjectsTypes;
+use AppBundle\Entity\ProjectsStatus;
 
 /**
  * Projects controller.
@@ -17,49 +22,114 @@ use AppBundle\Form\ProjectsType;
  */
 class ProjectsController extends Controller
 {
-
+    /**
+     * Lists all Projects entities.
+     *
+     * @Route("/index", name="projects_index")
+     * @Method("GET")
+     */
+    public function mainIndexProjectsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $entities = $em->getRepository('AppBundle:Projects')->findAll();
+        
+        return $this->render('projects/index.html.twig', ['entity' => $entities]);
+    }
     /**
      * Lists all Projects entities.
      *
      * @Route("/list", name="projects_list")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexListAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        
         $entities = $em->getRepository('AppBundle:Projects')->findAll();
-
-        return $this->render('projects/show.html.twig', ['entities' => $entities->createView()]);
+        
+        return $this->render('projects/show.html.twig', ['entity' => $entities]);
     }
     /**
      * Creates a new Projects entity.
      *
-     * @Route("/create", name="projects_create")
-     * @Method("POST") 
+        * @Route("/create", name="projects_create")
      */
-    public function createAction(Request $request)
+    public function createAction()
     {
         $entity = new Projects();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('projects_show', array('id' => $entity->getId())));
-        }
-
-        return $this->render('projects/show.html.twig', ['entity' => $entity->createView(), 'form'   => $form->createView(),]);
         
-        /*return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );*/
+        $form = $this->createForm(new ProjectsType(), $entity, ['method' => 'POST', 'action' => $this->generateUrl('projects_create')]);
+                
+        return $this->render('projects/new.html.twig', ['form' => $form->createView()]);    
+                
     }
+    /**
+     * Process the Form of Projects
+     *
+     * @Route("/create/process", name="projects_process")
+     * @Method("POST") 
+     */
+    public function processCreateAction(Request $request) {
+        
+        if ($request->getMethod() == 'POST') {
+            
+            $em = $this->getDoctrine()->getManager();
+            
+            //Set the objects.
+            $projects = new Projects();
+            $users = new Users();
+            $projectsTypes = new ProjectsTypes();
+            $projectsStatus = new ProjectsStatus();
+                        
+            //$idUserCreatedBy = $request->request->get('user')['id'];
+            
+            //Get the data from Field ProjectType
+            $idProjectType = $request->request->get('projects')['projectsTypes'];
+            
+            //Get the data from Field ProjectStatus
+            $idProjectsStatus = $request->request->get('projects')['projectsStatus'];
+          
+            /*$idUserItem = $this->getDoctrine()
+                    ->getRepository('AppBundle:Users') 
+                    ->find($idUserCreatedBy);*/
+                                   
+            $idProjectsTypeItem = $this->getDoctrine()
+                    ->getRepository('AppBundle:ProjectsTypes') 
+                    ->find($idProjectType);
+            
+            $idProjectStatusItem = $this->getDoctrine()
+                    ->getRepository('AppBundle:ProjectsStatus') 
+                    ->find($idProjectsStatus);
+           
+            $projects->setName($request->request->get('projects')['name']);
+            $projects->setDescription($request->request->get('projects')['description']);
+            $projects->setTeam('textoPlano');
+                     
+            $projects->setCreatedAt(new \DateTime($request->request->get('createdAt')));
+                                   
+            $projects->setOrderTasksBy('TEXTO_PLANO');
+            $projects->setProjectsStatus($idProjectStatusItem);          
+            $projects->setProjectsTypes($idProjectsTypeItem);
+            
+            $em->persist($projects);
+            
+            $em->flush();
+            
+            $url = $this->generateUrl('projects_process');        
+                
+            //    return $this->redirect($url);  
+            
+        }//End IF
+        
+        $repository = $this->getDoctrine()
+                    ->getRepository('AppBundle:Projects');
+        
+        $projects = $repository->findAll();
 
+         return $this->render('projects/show.html.twig', ['entity' => $projects]);
+            
+    }//End Function      
     /**
      * Creates a form to create a Projects entity.
      *
@@ -67,8 +137,10 @@ class ProjectsController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Projects $entity)
+    /*private function createCreateForm(Projects $entity)
     {
+        $entity = new Projects();
+        
         $form = $this->createForm(new ProjectsType(), $entity, array(
             'action' => $this->generateUrl('projects_create'),
             'method' => 'POST',
@@ -77,7 +149,7 @@ class ProjectsController extends Controller
         $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
-    }
+    }*/
 
     /**
      * Displays a form to create a new Projects entity.
@@ -88,30 +160,40 @@ class ProjectsController extends Controller
     public function newAction()
     {
         $entity = new Projects();
+        
         $form   = $this->createCreateForm($entity);
         
-        return $this->render('projects/new.html.twig', ['entity' => $entity->createView(), 'form'   => $form->createView(),]);
+        return $this->render('projects/new.html.twig' , ['form' => $form]);
     }
 
     /**
      * Finds and displays a Projects entity.
      *
-     * @Route("/{id}", name="projects_show")
+        * @Route("/{id}", name="projects_show")
      * @Method("GET")
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
+        
+        $repository = $this->getDoctrine()
+        ->getRepository('AppBundle:Projects');
+        
+        $projects = $repository->find($id);
+        //$entity = $em->getRepository('AppBundle:Projects')->find($id);
 
-        $entity = $em->getRepository('AppBundle:Projects')->find($id);
-
-        if (!$entity) {
+        if (!$projects) {
             throw $this->createNotFoundException('Unable to find Projects entity.');
         }
-
-        $deleteForm = $this->createDeleteForm($id);
         
-        return $this->render('projects/show.html.twig', ['entity' => $entity->createView(), 'delete_form'   => $deleteForm->createView(),]);
+        //$deleteForm = $this->createDeleteForm($id);
+        
+                
+        return $this->render('projects/show.html.twig', ['entity' => $projects]);
+        
+        /*$projects = $repository->findAll();
+
+         return $this->render('projects/show.html.twig', ['entity' => $projects]);*/
     }
 
     /**
@@ -192,24 +274,19 @@ class ProjectsController extends Controller
      * @Route("/{id}", name="projects_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getEntityManager();
+        $project = $em->getRepository('AppBundle:Projects')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Projects')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Projects entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('projects'));
+        if (!$project) {
+                throw $this->createNotFoundException('Dont find Project, any matches for this ID');
+            }//End IF
+            
+            $em->remove($project);
+            $em->flush();   
+            
+        return $this->redirect($this->generateUrl('projects_index'));
     }
 
     /**

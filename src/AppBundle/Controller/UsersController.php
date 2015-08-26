@@ -74,7 +74,7 @@ class UsersController extends Controller
                 //Save the information from Fields.
                 
                 //Process the upload file in the form.
-                $users->upload();
+                //$users->upload();
                 
                 $em->persist($users);
                 

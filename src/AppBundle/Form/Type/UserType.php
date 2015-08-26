@@ -13,7 +13,7 @@ class UserType extends AbstractType
         $builder 
            ->add('active', 'checkbox', ['label' => 'Active ?'])     
            ->add('name', 'text', ['label' => 'Full Name'])
-           ->add('photo', 'file', ['label' => 'Choose your photo'])
+           ->add('photo', 'text', ['label' => 'Choose your photo'])
            ->add('email', 'email', ['label' => 'Email'])
            ->add('password', 'password', ['label' => 'Password'])
            ->add('usersGroup', 'entity', ['class' => 'AppBundle\Entity\UsersGroups', 'property' => 'name'])
