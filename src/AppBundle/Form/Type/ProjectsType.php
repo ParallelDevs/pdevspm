@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 use AppBundle\Entity\ProjectsStatus;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 class ProjectsType extends AbstractType
 {
@@ -19,7 +20,9 @@ class ProjectsType extends AbstractType
         $builder
             ->add('name', 'text', ['label' => 'name'])
             ->add('description', 'textarea', ['label' => 'Description'])
-            ->add('team', 'text', ['label' => 'Team'])
+            ->add('team', 'entity', ['class' => 'AppBundle\Entity\Users', 'property' => 'name'])
+                
+//->add('team' , 'choice', array('choice' => new ChoiceList(array('label' => 'Users_Projects', 'class' => 'AppBundle\Entity\Users'))))                        
             ->add('createdAt', 'date', ['label' => 'createAt'])
             ->add('orderTasksBy', 'text', ['label' => 'OrderTasksBy'])
             ->add('projectsStatus', 'entity', ['class' => 'AppBundle\Entity\ProjectsStatus', 'property' => 'name'])
@@ -30,6 +33,7 @@ class ProjectsType extends AbstractType
         ;
     }
     
+     
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -45,6 +49,6 @@ class ProjectsType extends AbstractType
      */
     public function getName()
     {
-        return 'projects';
+            return 'projects';
     }
 }

@@ -1,16 +1,29 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Projects edit</h1>
+    <h1>Projects Edit Information</h1>
+<form class="form-signin" name='register_form' id='register_form' method='post' action='{{path('add_edit_project' , {'id': id_project})}}'>
+    
+   <label>Type: </label>{{ form_widget(form.projectsTypes) }}<br> 
+   
+   <label>Status: </label>{{ form_widget(form.projectsStatus) }}<br>
 
-    {{ form(edit_form) }}
+   <label>Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Name'}}) }}<br>
+   
+   <label>Created At: </label>{{ form_widget(form.createdAt) }}<br>   
+      
+   <label>Description: </label>{{ form_widget(form.description) }}<br> 
+   
+   <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+   <button class="btn btn-lg btn-primary btn-block" type="reset">Close</button>
+   
+</form>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('projects') }}">
-            Back to the list
+        <a href="{{ path('projects_index') }}">
+            Back to the list of Projects. 
         </a>
     </li>
-    <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}

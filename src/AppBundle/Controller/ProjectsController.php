@@ -58,10 +58,16 @@ class ProjectsController extends Controller
     public function createAction()
     {
         $entity = new Projects();
+        //$user = new Users();
+        
+        $repository = $this->getDoctrine()
+        ->getRepository('AppBundle:Users');
+        
+        $user = $repository->findAll();
         
         $form = $this->createForm(new ProjectsType(), $entity, ['method' => 'POST', 'action' => $this->generateUrl('projects_create')]);
                 
-        return $this->render('projects/new.html.twig', ['form' => $form->createView()]);    
+        return $this->render('projects/new.html.twig', ['form' => $form->createView(), 'users' => $user]);    
                 
     }
     /**
@@ -76,23 +82,36 @@ class ProjectsController extends Controller
             
             $em = $this->getDoctrine()->getManager();
             
+            
+            
             //Set the objects.
             $projects = new Projects();
-            $users = new Users();
+            /*$users = new Users();
             $projectsTypes = new ProjectsTypes();
-            $projectsStatus = new ProjectsStatus();
-                        
-            //$idUserCreatedBy = $request->request->get('user')['id'];
+            $projectsStatus = new ProjectsStatus();*/
             
+            echo "<pre>";
+            print_r($request->request->get('projects'));
+            echo "</pre>";
+            
+                      
+            
+            //$users = $em->getRepository('AppBundle:Users')->findAll();
+            
+            //$idUserCreatedBy = $request->request->get('user')['id'];
+                                   
             //Get the data from Field ProjectType
             $idProjectType = $request->request->get('projects')['projectsTypes'];
             
             //Get the data from Field ProjectStatus
             $idProjectsStatus = $request->request->get('projects')['projectsStatus'];
           
+            
+            //$idUserTeam = $request->request->get('user')['id'];
+
             /*$idUserItem = $this->getDoctrine()
                     ->getRepository('AppBundle:Users') 
-                    ->find($idUserCreatedBy);*/
+                    ->find($idUserTeam);*/
                                    
             $idProjectsTypeItem = $this->getDoctrine()
                     ->getRepository('AppBundle:ProjectsTypes') 
@@ -103,8 +122,11 @@ class ProjectsController extends Controller
                     ->find($idProjectsStatus);
            
             $projects->setName($request->request->get('projects')['name']);
+            
+            //$projects->setCreatedBy($idUserItem);
+            
             $projects->setDescription($request->request->get('projects')['description']);
-            $projects->setTeam('textoPlano');
+           // $projects->setTeam($idUserItem);
                      
             $projects->setCreatedAt(new \DateTime($request->request->get('createdAt')));
                                    
@@ -127,7 +149,7 @@ class ProjectsController extends Controller
         
         $projects = $repository->findAll();
 
-         return $this->render('projects/show.html.twig', ['entity' => $projects]);
+    return $this->render('projects/show.html.twig', ['entity' => $projects]);
             
     }//End Function      
     /**
@@ -169,56 +191,110 @@ class ProjectsController extends Controller
     /**
      * Finds and displays a Projects entity.
      *
-        * @Route("/{id}", name="projects_show")
+     * @Route("/{id}", name="projects_show")
      * @Method("GET")
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        
         $repository = $this->getDoctrine()
-        ->getRepository('AppBundle:Projects');
+                    ->getRepository('AppBundle:Projects');
         
         $projects = $repository->find($id);
+                       
         //$entity = $em->getRepository('AppBundle:Projects')->find($id);
 
         if (!$projects) {
             throw $this->createNotFoundException('Unable to find Projects entity.');
-        }
-        
-        //$deleteForm = $this->createDeleteForm($id);
-        
+        }                   
                 
         return $this->render('projects/show.html.twig', ['entity' => $projects]);
-        
-        /*$projects = $repository->findAll();
-
-         return $this->render('projects/show.html.twig', ['entity' => $projects]);*/
+                
     }
 
     /**
      * Displays a form to edit an existing Projects entity.
      *
      * @Route("/{id}/edit", name="projects_edit")
-     * @Method("GET")
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('AppBundle:Projects')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Projects entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-            
-        return $this->render('projects/new.html.twig', ['entity' => $entity->createView(), 
-            'edit_form'   => $editForm->createView(),
-            'delete_form'   => $deleteForm->createView(),]);
+        $em = $this->getDoctrine()->getManager(); 
+        $projects = $em->getRepository('AppBundle:Projects')->find($id);
+        /*Its created the form view of Users with path containing the view*/
+        $form = $this->createForm(new ProjectsType(), $projects);
+        
+        return $this->render('projects/edit.html.twig', ['form' => $form->createView(),'id_project'=>$projects->getId()]); 
     }
+    
+    /**
+     * This function update the new information.  
+     * @Route("/{id}/update/project", name="add_edit_project")        
+     */
+    public function processEditProjectAction($id, Request $request){        
+        
+        $em = $this->getDoctrine()->getManager(); 
+        $projects = $em->getRepository('AppBundle:Projects')->find($id);
+        
+        $repository = $this->getDoctrine()
+        ->getRepository('AppBundle:Projects');
+        
+        if($projects) {
+            
+            //Get the data from Field ProjectType
+            $idProjectType = $request->request->get('projects')['projectsTypes'];
+            
+            //Get the data from Field ProjectStatus
+            $idProjectsStatus = $request->request->get('projects')['projectsStatus'];
+          
+            /*$idUserItem = $this->getDoctrine()
+                    ->getRepository('AppBundle:Users') 
+                    ->find($idUserCreatedBy);*/
+                                   
+            $idProjectsTypeItem = $this->getDoctrine()
+                    ->getRepository('AppBundle:ProjectsTypes') 
+                    ->find($idProjectType);
+            
+            $idProjectStatusItem = $this->getDoctrine()
+                    ->getRepository('AppBundle:ProjectsStatus') 
+                    ->find($idProjectsStatus);
+           
+            $projects->setName($request->request->get('projects')['name']);
+            $projects->setDescription($request->request->get('projects')['description']);
+            $projects->setTeam('textoPlano');
+                     
+            $projects->setCreatedAt(new \DateTime($request->request->get('createdAt')));
+                                   
+            $projects->setOrderTasksBy('TEXTO_PLANO');
+            $projects->setProjectsStatus($idProjectStatusItem);          
+            $projects->setProjectsTypes($idProjectsTypeItem);
+            
+            $em->persist($projects);
+            
+            $em->flush();
+                       
+        }
+ 
+        $projects = $repository->findAll();
+        
+        return $this->redirect($this->generateUrl('projects_index'));          
+        
+    }//End Functionu
+    
+    /**
+     * Displays all list of users exist in the entity Users
+     *
+     * @Route("/all/users", name="projects_users_list")
+     */
+    public function renderListUsers(){
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $users = $em->getRepository('AppBundle:Users')->findAll();
+        
+        return $this->render('projects/listUsers.html.twig', ['users' => $users]);        
+    }
+    
 
     /**
     * Creates a form to edit a Projects entity.
@@ -271,8 +347,7 @@ class ProjectsController extends Controller
     /**
      * Deletes a Projects entity.
      *
-     * @Route("/{id}", name="projects_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="projects_delete")
      */
     public function deleteAction($id)
     {
@@ -304,5 +379,6 @@ class ProjectsController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
-    }
+    }//End Function createDeleteForm
+    
 }

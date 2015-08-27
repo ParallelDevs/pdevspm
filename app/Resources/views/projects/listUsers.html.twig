@@ -1,0 +1,14 @@
+
+
+    <h1>Projects Team Selection</h1>
+    <br><label>Select Team: </label><br/>
+    <label>
+    {% for Users in users %}
+        
+        <input name="select" type = "checkbox">
+            {{ Users.name }}<br/>
+                   
+   {% endfor %}
+   </label>
+
+
