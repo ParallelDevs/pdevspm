@@ -11,14 +11,12 @@
         
 {% for Users in users %}     
         <tr>
-            <td><a href="{{ path('delete_users', { 'id': Users.id } )}}">Delete</td>
+            <td><a href="{{ path('delete_users', { 'id': Users.id } )}}">Delete</a>
+            <a href="{{ path('edit_users', { 'id': Users.id } )}}">Edit</a></td>
             <td>{{ Users.id }}</td>
             <td>{{ Users.name }}</td>
-            <td>{{ Users.email }}</td>    
-            
-        </tr>        
-            
+            <td>{{ Users.email }}</td>             
+        </tr>            
 {% endfor %}
-
 </table>  
 {% endblock %}

@@ -11,9 +11,9 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) 
     {        
         $builder 
-           ->add('active', 'checkbox', ['label' => 'Active ?'])     
+           ->add('active', 'checkbox', ['label' => 'Active', 'required' => false]) 
            ->add('name', 'text', ['label' => 'Full Name'])
-           ->add('photo', 'file', ['label' => 'Choose your photo'])
+           ->add('photo', 'text', ['label' => 'Choose your photo'])
            ->add('email', 'email', ['label' => 'Email'])
            ->add('password', 'password', ['label' => 'Password'])
            ->add('usersGroup', 'entity', ['class' => 'AppBundle\Entity\UsersGroups', 'property' => 'name'])

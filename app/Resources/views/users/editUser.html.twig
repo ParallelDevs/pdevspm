@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    
-<form method='post' action='{{path('add_new_users')}}'>
+        
+<form class="form-signin" name='register_form' id='register_form' method='post' action="{{path('add_edit_user' , {'id': id_user})}}">
    
    <label>Active ? </label>{{ form_widget(form.active) }}<br> 
    
-   <label>Full Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Full Name', 'required': false}}) }}<br>
+   <label>Full Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Full Name'}}) }}<br>
 
    <label>Password: </label>{{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder':'Password'}}) }}<br>
    
