@@ -17,12 +17,11 @@ class ProjectsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
             ->add('name', 'text', ['label' => 'name'])
             ->add('description', 'textarea', ['label' => 'Description'])
-            ->add('team', 'entity', ['class' => 'AppBundle\Entity\Users', 'property' => 'name'])
-                
-//->add('team' , 'choice', array('choice' => new ChoiceList(array('label' => 'Users_Projects', 'class' => 'AppBundle\Entity\Users'))))                        
+            ->add('team', 'entity', array('class' => 'AppBundle\Entity\Users' , 'property' => 'name', 'multiple' => true, 'required' => true, 'expanded' => true))
             ->add('createdAt', 'date', ['label' => 'createAt'])
             ->add('orderTasksBy', 'text', ['label' => 'OrderTasksBy'])
             ->add('projectsStatus', 'entity', ['class' => 'AppBundle\Entity\ProjectsStatus', 'property' => 'name'])

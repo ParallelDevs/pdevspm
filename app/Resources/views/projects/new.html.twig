@@ -16,18 +16,9 @@
    <label>Status: </label>{{ form_widget(form.projectsStatus) }}<br>
 
    <label>Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Name'}}) }}<br>
-   
-   <br><label>Select Team: </label><br/>
-   
-    {% for Users in users %}        
-        <input name="select" type = "checkbox"/>
-            {{ Users.name }}
-        <br/>
-                   
-   {% endfor %}
-   
-   <!--<label>Created At: </label>{#{{ form_widget(form.createdAt) }}#}<br>-->   
-      
+    
+   <label>Select Team: </label>{{ form_widget(form.team)}}<br>   
+ 
    <label>Description: </label>{{ form_widget(form.description) }}<br> 
    
    <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>

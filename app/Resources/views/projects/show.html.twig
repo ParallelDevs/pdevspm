@@ -5,7 +5,7 @@
 
     <table>
         <tbody>
-                    
+           {% for entity in entity %}         
             <tr>
                 <th>Id</th>
                 <td>{{ entity.id }}</td>
@@ -30,7 +30,7 @@
             <th>Ordertasksby</th>            
                 <td>{{ entity.orderTasksBy }}</td>           
             </tr>
-         
+           {% endfor %}
         </tbody>
     </table>
 

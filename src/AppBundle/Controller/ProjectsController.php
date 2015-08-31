@@ -25,7 +25,7 @@ class ProjectsController extends Controller
     /**
      * Lists all Projects entities.
      *
-     * @Route("/index", name="projects_index")
+     * @Route("/showList", name="projects_index")
      * @Method("GET")
      */
     public function mainIndexProjectsAction()
@@ -80,99 +80,63 @@ class ProjectsController extends Controller
         
         if ($request->getMethod() == 'POST') {
             
-            $em = $this->getDoctrine()->getManager();
-            
-            
-            
-            //Set the objects.
+            $em = $this->getDoctrine()->getManager();           
+                //Set the objects.
             $projects = new Projects();
-            /*$users = new Users();
-            $projectsTypes = new ProjectsTypes();
-            $projectsStatus = new ProjectsStatus();*/
-            
-            echo "<pre>";
-            print_r($request->request->get('projects'));
-            echo "</pre>";
-            
-                      
-            
-            //$users = $em->getRepository('AppBundle:Users')->findAll();
-            
-            //$idUserCreatedBy = $request->request->get('user')['id'];
-                                   
-            //Get the data from Field ProjectType
-            $idProjectType = $request->request->get('projects')['projectsTypes'];
-            
-            //Get the data from Field ProjectStatus
-            $idProjectsStatus = $request->request->get('projects')['projectsStatus'];
-          
-            
-            //$idUserTeam = $request->request->get('user')['id'];
-
-            /*$idUserItem = $this->getDoctrine()
-                    ->getRepository('AppBundle:Users') 
-                    ->find($idUserTeam);*/
-                                   
-            $idProjectsTypeItem = $this->getDoctrine()
-                    ->getRepository('AppBundle:ProjectsTypes') 
-                    ->find($idProjectType);
-            
-            $idProjectStatusItem = $this->getDoctrine()
-                    ->getRepository('AppBundle:ProjectsStatus') 
-                    ->find($idProjectsStatus);
-           
-            $projects->setName($request->request->get('projects')['name']);
-            
-            //$projects->setCreatedBy($idUserItem);
-            
-            $projects->setDescription($request->request->get('projects')['description']);
-           // $projects->setTeam($idUserItem);
-                     
-            $projects->setCreatedAt(new \DateTime($request->request->get('createdAt')));
-                                   
-            $projects->setOrderTasksBy('TEXTO_PLANO');
-            $projects->setProjectsStatus($idProjectStatusItem);          
-            $projects->setProjectsTypes($idProjectsTypeItem);
-            
-            $em->persist($projects);
-            
-            $em->flush();
-            
-            $url = $this->generateUrl('projects_process');        
+                //Get the data from Field ProjectType
+               $idProjectType = $request->request->get('projects')
+                       ['projectsTypes'];            
+                //Get the data from Field ProjectStatus
+               $idProjectsStatus = $request->request->get('projects')
+                       ['projectsStatus'];          
+                //++++++++++++++Getting the users id from Checkbox++++++++++++++
+               $optionsSelected = $request->request->get('projects')['team'];           
+               $this->convertArrayIdUsers($request, $optionsSelected);            
+               $options2 = implode("," , $optionsSelected); 
+               $projects->setTeam($options2);
+                //++++++++++++++Getting the users id from Checkbox++++++++++++++            
+                $idProjectsTypeItem = $this->getDoctrine()
+                        ->getRepository('AppBundle:ProjectsTypes') 
+                        ->find($idProjectType);            
+                $idProjectStatusItem = $this->getDoctrine()
+                        ->getRepository('AppBundle:ProjectsStatus') 
+                        ->find($idProjectsStatus);           
+                $projects->setName($request->request->get('projects')['name']);                        
+                $projects->setDescription($request->request->get('projects')
+                        ['description']);
+                $projects->setCreatedAt(new \DateTime($request->request->
+                        get('createdAt')));
+                $projects->setOrderTasksBy('TEXTO_PLANO');
+                $projects->setProjectsStatus($idProjectStatusItem);          
+                $projects->setProjectsTypes($idProjectsTypeItem);            
+                $em->persist($projects);            
+                $em->flush();            
+                $url = $this->generateUrl('projects_process');
                 
-            //    return $this->redirect($url);  
-            
         }//End IF
         
-        $repository = $this->getDoctrine()
-                    ->getRepository('AppBundle:Projects');
-        
-        $projects = $repository->findAll();
-
-    return $this->render('projects/show.html.twig', ['entity' => $projects]);
+                $repository = $this->getDoctrine()
+                            ->getRepository('AppBundle:Projects');
+                $projects = $repository->findAll();    
+                return $this->render('projects/show.html.twig', 
+                ['entity' => $projects]);
             
-    }//End Function      
+    }//End Function
+    
     /**
-     * Creates a form to create a Projects entity.
+     * Convert the Array collection to String values separates with comma. 
      *
-     * @param Projects $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
      */
-    /*private function createCreateForm(Projects $entity)
-    {
-        $entity = new Projects();
+    public function convertArrayIdUsers(Request $request, Array $optionsSelected) {
         
-        $form = $this->createForm(new ProjectsType(), $entity, array(
-            'action' => $this->generateUrl('projects_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }*/
-
+            foreach ($optionsSelected as $value) {
+                
+              if(is_object($value)){                  
+                $coma = ',';                
+                $optionsSelected .= $coma.$value;                  
+              }//End IF
+            }//End Foreach 
+    }//End Function    
     /**
      * Displays a form to create a new Projects entity.
      *
@@ -186,8 +150,7 @@ class ProjectsController extends Controller
         $form   = $this->createCreateForm($entity);
         
         return $this->render('projects/new.html.twig' , ['form' => $form]);
-    }
-
+    }//End Function newAction()
     /**
      * Finds and displays a Projects entity.
      *
@@ -224,6 +187,8 @@ class ProjectsController extends Controller
         /*Its created the form view of Users with path containing the view*/
         $form = $this->createForm(new ProjectsType(), $projects);
         
+        $info = $form->getData();
+        
         return $this->render('projects/edit.html.twig', ['form' => $form->createView(),'id_project'=>$projects->getId()]); 
     }
     
@@ -246,22 +211,20 @@ class ProjectsController extends Controller
             
             //Get the data from Field ProjectStatus
             $idProjectsStatus = $request->request->get('projects')['projectsStatus'];
-          
-            /*$idUserItem = $this->getDoctrine()
-                    ->getRepository('AppBundle:Users') 
-                    ->find($idUserCreatedBy);*/
-                                   
+            
+            $optionsSelected = $request->request->get('projects')['team'];
+            
+            $this->transformEdit($optionsSelected);
+                      
             $idProjectsTypeItem = $this->getDoctrine()
                     ->getRepository('AppBundle:ProjectsTypes') 
                     ->find($idProjectType);
-            
             $idProjectStatusItem = $this->getDoctrine()
                     ->getRepository('AppBundle:ProjectsStatus') 
                     ->find($idProjectsStatus);
-           
             $projects->setName($request->request->get('projects')['name']);
             $projects->setDescription($request->request->get('projects')['description']);
-            $projects->setTeam('textoPlano');
+            //$projects->setTeam('textoPlano');
                      
             $projects->setCreatedAt(new \DateTime($request->request->get('createdAt')));
                                    
@@ -279,7 +242,36 @@ class ProjectsController extends Controller
         
         return $this->redirect($this->generateUrl('projects_index'));          
         
-    }//End Functionu
+    }//End Function
+    
+    /**
+     * Transforms a string to an ArrayCollection
+     *
+     * @param string $value
+     *
+     * @return ArrayCollection
+     */
+    public function transformEdit(Request $request, string $value)
+    {
+        $users = new ArrayCollection();
+        $projects = new Projects();
+ 
+        if ( null === $value ) return $users;
+ 
+        $data = preg_split( ',', $value, -1, PREG_SPLIT_NO_EMPTY );
+        
+        foreach ( $data as $ids ) {
+            if ( null === ( $User = $this->om->getRepository('AppBundle:Users')->find($ids) ) ) {
+                $User = new Users();
+                $projects->setName($request->request->get('projects')['team']);
+                $this->om->persist($User);
+            }
+            $users->add($User);
+        }
+        $this->om->flush();
+ 
+        return $users;
+    }//End Function. 
     
     /**
      * Displays all list of users exist in the entity Users
