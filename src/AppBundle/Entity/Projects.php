@@ -152,9 +152,8 @@ class Projects
      */
     public function setTeam($team)
     {
-        $this->team = $team;
-
-        return $this;
+       $this->team = $team;
+       return $this;
     }
 
     /**

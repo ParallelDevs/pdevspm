@@ -15,10 +15,13 @@
    
    <label>Status: </label>{{ form_widget(form.projectsStatus) }}<br>
 
-   <label>Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Name'}}) }}<br>
-    
-   <label>Select Team: </label>{{ form_widget(form.team)}}<br>   
- 
+   <label>Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Name'}}) }}<br>    
+   {% for u in users %}
+       <div id="projects_team">
+           <input type="checkbox" id="projects_team_{{u.id}}" name="projects[team][]" value="{{u.id}}"> <label for="projects_team_{{u.id}}">{{u.name}}</label>
+       </div>       
+   {% endfor %}
+   
    <label>Description: </label>{{ form_widget(form.description) }}<br> 
    
    <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>

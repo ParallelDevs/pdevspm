@@ -2,10 +2,11 @@
 
 {% block body %}
     <h1>Projects Details</h1>
-
-    <table>
+            
+     {% for entity in entity %}
+               
+        <table>
         <tbody>
-           {% for entity in entity %}         
             <tr>
                 <th>Id</th>
                 <td>{{ entity.id }}</td>
@@ -29,10 +30,10 @@
             <tr>
             <th>Ordertasksby</th>            
                 <td>{{ entity.orderTasksBy }}</td>           
-            </tr>
-           {% endfor %}
+            </tr>           
         </tbody>
     </table>
+            {% endfor %}
 
         <ul class="record_actions">
     <li>
