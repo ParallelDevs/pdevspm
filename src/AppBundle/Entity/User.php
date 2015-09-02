@@ -21,6 +21,13 @@ class User extends BaseUser
   /**
    * @var string
    *
+   * @ORM\Column(name="name", type="string", length=255, nullable=false)
+   */
+  private $name;
+
+  /**
+   * @var string
+   *
    * @ORM\Column(name="photo", type="string", length=64, nullable=true)
    */
   private $photo;
@@ -30,26 +37,49 @@ class User extends BaseUser
     parent::__construct();
   }
 
-    /**
-     * Set photo
-     *
-     * @param string $photo
-     * @return User
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
+  /**
+   * Set name
+   *
+   * @param string $name
+   * @return Users
+   */
+  public function setName($name)
+  {
+    $this->name = $name;
 
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get photo
-     *
-     * @return string 
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
+  /**
+   * Get name
+   *
+   * @return string
+   */
+  public function getName()
+  {
+    return $this->name;
+  }
+
+  /**
+   * Set photo
+   *
+   * @param string $photo
+   * @return User
+   */
+  public function setPhoto($photo)
+  {
+    $this->photo = $photo;
+
+    return $this;
+  }
+
+  /**
+   * Get photo
+   *
+   * @return string
+   */
+  public function getPhoto()
+  {
+    return $this->photo;
+  }
 }
