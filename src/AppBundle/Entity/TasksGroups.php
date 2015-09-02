@@ -37,9 +37,7 @@ class TasksGroups
      * })
      */
     private $projects;
-
-
-
+    
     /**
      * Get id
      *
