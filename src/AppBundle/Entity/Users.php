@@ -66,7 +66,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="json_array")
      */
-   // private $roles = array();
+    private $roles = array();
 
     /**
      * @var boolean
@@ -230,7 +230,7 @@ class Users implements UserInterface
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
 
         return $this;
     }
