@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
+
 {% block body %}
-    <h1>Projects Details</h1>            
-     {% for entity in entity %}               
+    <h1>Projects Details</h1>
         <table>
         <tbody>
             <tr>
@@ -20,7 +20,6 @@
                 <th>Team</th>           
                 <td>{{ entity.team }}</td>            
             </tr>
-           
             <tr>
              <th>Createdate</th>            
                 <td>{{ entity.createdAt|date('Y-m-d') }}</td>            
@@ -31,11 +30,10 @@
             </tr>           
         </tbody>
     </table>
-            {% endfor %}
-        <ul class="record_actions">
+      <ul class="record_actions">
     <li>
         <a href="{{ path('projects_index') }}">
-            Back to the list
+            Back to the Projects List
         </a>
     </li>
 </ul>

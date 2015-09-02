@@ -17,8 +17,7 @@ class ProjectsType extends AbstractType
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-       
+    {       
         $builder
             ->add('name', 'text', ['label' => 'name'])
             ->add('description', 'textarea', ['label' => 'Description'])
@@ -30,9 +29,7 @@ class ProjectsType extends AbstractType
             ->add('save', 'submit', ['label' => 'Save'])
             ->add('close', 'submit', ['label' => 'Close'])
         ;
-    }
-    
-     
+    }    
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -42,7 +39,6 @@ class ProjectsType extends AbstractType
             'data_class' => 'AppBundle\Entity\Projects'
         ));
     }
-
     /**
      * @return string
      */

@@ -1,35 +1,21 @@
 {% extends '::base.html.twig' %}
-
 {% block body -%}
     <h1>Projects creation</h1>
-
-<li>
-        <a href="{{ path('projects_users_list') }}">
-            Select the Team
-        </a>
-</li>
-    
-<form class="form-signin" name='register_form' id='register_form' method='post' action='{{path('projects_process')}}'>
-    
-   <label>Type: </label>{{ form_widget(form.projectsTypes) }}<br> 
-   
+<form class="form-signin" name='register_form' id='register_form' method='post' action='{{path('projects_process')}}'>    
+   <label>Type: </label>{{ form_widget(form.projectsTypes) }}<br>    
    <label>Status: </label>{{ form_widget(form.projectsStatus) }}<br>
-
-   <label>Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Name'}}) }}<br>    
+   <label>Name: </label>{{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Name'}}) }}<br>   
    {% for u in users %}
        <div id="projects_team">
            <input type="checkbox" id="projects_team_{{u.id}}" name="projects[team][]" value="{{u.id}}"> <label for="projects_team_{{u.id}}">{{u.name}}</label>
        </div>       
-   {% endfor %}
-   
-   <label>Description: </label>{{ form_widget(form.description) }}<br> 
-   
+   {% endfor %}   
+   <label>Description: </label>{{ form_widget(form.description) }}<br>  
+   <label>Created By: </label>{{ form_widget(form.createdBy) }}<br> 
    <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
-   <button class="btn btn-lg btn-primary btn-block" type="reset">Close</button>
-   
+   <button class="btn btn-lg btn-primary btn-block" type="reset">Close</button>   
 </form>
-
-        <ul class="record_actions">
+<ul class="record_actions">
     <li>
         <a href="{{ path('projects_list') }}">
             Back to the list
