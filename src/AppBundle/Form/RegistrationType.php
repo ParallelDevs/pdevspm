@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class RegistrationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,6 +15,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name')
             ->add('photo')
         ;
     }
@@ -34,6 +35,11 @@ class UserType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_user';
+        return 'app_user_registration';
+    }
+
+    public function getParent()
+    {
+        return 'fos_user_registration';
     }
 }
