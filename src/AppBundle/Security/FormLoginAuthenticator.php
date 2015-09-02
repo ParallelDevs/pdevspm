@@ -3,6 +3,7 @@
 namespace AppBundle\Security;
 
 use KnpU\Guard\Authenticator\AbstractFormLoginAuthenticator;
+use KnpU\Guard\Exception\CustomAuthenticationException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -39,7 +40,19 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
     {
         $username = $credentials['username'];
 
-        return $userProvider->loadUserByUsername($username);
+        // a silly example of failing with a custom message
+        if ($username == 'rails_troll') {
+            throw CustomAuthenticationException::createWithSafeMessage(
+              'Get outta here rails_troll - we don\'t like you!'
+            );
+        }
+
+        $userRepo = $this->container
+          ->get('doctrine')
+          ->getManager()
+          ->getRepository('AppBundle:Users');
+
+        return $userRepo->findByUsernameOrEmail($username);
     }
 
     public function checkCredentials($credentials, UserInterface $user)
