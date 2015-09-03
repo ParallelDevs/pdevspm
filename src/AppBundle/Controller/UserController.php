@@ -50,6 +50,11 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Upload Photo
+            $entity->setFile($form->getData()->getPhoto());
+            $entity->upload();
+
             $em->persist($entity);
             $em->flush();
 
