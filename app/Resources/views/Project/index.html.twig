@@ -1,13 +1,16 @@
-{% extends '::base.html.twig' %}
-{% block body -%}
-    <h1>Projects list</h1>    
+{% extends '::layout.html.twig' %}
+
+{% block content%}
+    <h1>Projects list</h1>
+    
     <ul>
         <li>
-            <a href="{{ path('projects_create') }}">
-                Add new Project
+            <a href="{{ path('projects_new') }}">
+                Create a new Project
             </a>
         </li>
     </ul>
+
     <table class="records_list">
         <thead>
             <tr>
@@ -18,13 +21,12 @@
                 <th>Createdat</th>
                 <th>Ordertasksby</th>
                 <th>Actions</th>
-                <th>Created By</th>
             </tr>
         </thead>
         <tbody>
-        {% for entity in entity %}
+        {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('projects_show_specific', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('projects_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.description }}</td>
                 <td>{{ entity.team }}</td>
@@ -33,12 +35,12 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('projects_show_specific', { 'id': entity.id }) }}">show Details</a>
+                        <a href="{{ path('projects_show', { 'id': entity.id }) }}">Show</a>
                     </li>
                     <li>
-                        <a href="{{ path('projects_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('projects_edit', { 'id': entity.id }) }}">Edit</a>
                     </li>
-                    <li>
+                     <li>
                         <a href="{{ path('projects_delete', { 'id': entity.id }) }}">Delete</a>
                     </li>
                 </ul>
@@ -47,4 +49,5 @@
         {% endfor %}
         </tbody>
     </table>        
-    {% endblock %}
+ {% endblock %}
+ 

@@ -1,7 +1,9 @@
-{% extends '::base.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block body %}
-    <h1>Projects Details</h1>
+{% block content%}
+ <h1>Projects Details</h1>            
+ 
+
         <table>
         <tbody>
             <tr>
@@ -20,6 +22,7 @@
                 <th>Team</th>           
                 <td>{{ entity.team }}</td>            
             </tr>
+           
             <tr>
              <th>Createdate</th>            
                 <td>{{ entity.createdAt|date('Y-m-d') }}</td>            
@@ -30,11 +33,12 @@
             </tr>           
         </tbody>
     </table>
-      <ul class="record_actions">
+<li>{{ form(delete_form) }}</li>           
+        <ul class="record_actions">
     <li>
-        <a href="{{ path('projects_index') }}">
-            Back to the Projects List
+        <a href="{{ path('projects') }}">
+            Back to the list
         </a>
     </li>
-</ul>
+</ul>   
 {% endblock %}
