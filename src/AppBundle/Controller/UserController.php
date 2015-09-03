@@ -23,7 +23,6 @@ class UserController extends Controller
      *
      * @Route("/", name="admin_user")
      * @Method("GET")
-     * @Template()
      */
     public function indexAction()
     {
@@ -31,16 +30,14 @@ class UserController extends Controller
 
         $entities = $em->getRepository('AppBundle:User')->findAll();
 
-        return array(
-            'entities' => $entities,
-        );
+        return $this->render('user/index.html.twig', ['entities' => $entities]);
     }
+
     /**
      * Creates a new User entity.
      *
      * @Route("/", name="admin_user_create")
      * @Method("POST")
-     * @Template("AppBundle:User:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -52,19 +49,20 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             // Upload Photo
-            $entity->setFile($form->getData()->getPhoto());
             $entity->upload();
 
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_user_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_user_show', [
+                'id' => $entity->getId()
+            ]));
         }
 
-        return array(
+        return $this->render('user/new.html.twig',[
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ]);
     }
 
     /**
@@ -76,12 +74,12 @@ class UserController extends Controller
      */
     private function createCreateForm(User $entity)
     {
-        $form = $this->createForm(new RegistrationType(), $entity, array(
+        $form = $this->createForm(new RegistrationType(), $entity, [
             'action' => $this->generateUrl('admin_user_create'),
             'method' => 'POST',
-        ));
+        ]);
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', ['label' => 'Create']);
 
         return $form;
     }
@@ -91,17 +89,16 @@ class UserController extends Controller
      *
      * @Route("/new", name="admin_user_new")
      * @Method("GET")
-     * @Template()
      */
     public function newAction()
     {
         $entity = new User();
         $form   = $this->createCreateForm($entity);
 
-        return array(
+        return $this->render('user/new.html.twig', [
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ]);
     }
 
     /**
@@ -109,7 +106,6 @@ class UserController extends Controller
      *
      * @Route("/{id}", name="admin_user_show")
      * @Method("GET")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -123,10 +119,10 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
+        return $this->render('user/new.html.twig', [
+          'entity' => $entity,
+          'form'   => $deleteForm->createView(),
+        ]);
     }
 
     /**
@@ -134,7 +130,6 @@ class UserController extends Controller
      *
      * @Route("/{id}/edit", name="admin_user_edit")
      * @Method("GET")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -149,11 +144,11 @@ class UserController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('user/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ]);
     }
 
     /**
@@ -165,12 +160,12 @@ class UserController extends Controller
     */
     private function createEditForm(User $entity)
     {
-        $form = $this->createForm(new RegistrationType(), $entity, array(
-            'action' => $this->generateUrl('admin_user_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new RegistrationType(), $entity, [
+            'action' => $this->generateUrl('admin_user_update', ['id' => $entity->getId()]),
             'method' => 'PUT',
-        ));
+        ]);
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', ['label' => 'Update']);
 
         return $form;
     }
@@ -179,7 +174,6 @@ class UserController extends Controller
      *
      * @Route("/{id}", name="admin_user_update")
      * @Method("PUT")
-     * @Template("AppBundle:User:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -196,16 +190,20 @@ class UserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            // Upload Photo
+            $entity->upload();
+
+            $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_user_show', ['id' => $id]));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+        return $this->render('user/edit.html.twig', [
+          'entity'      => $entity,
+          'edit_form'   => $editForm->createView(),
+          'delete_form' => $deleteForm->createView(),
+        ]);
     }
     /**
      * Deletes a User entity.
@@ -243,9 +241,9 @@ class UserController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_user_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_user_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', ['label' => 'Delete'])
             ->getForm()
         ;
     }
