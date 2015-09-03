@@ -20,7 +20,6 @@
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
-        "knpuniversity/guard-bundle": "~0.1@dev",
         "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
