@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Users
  *
  * @ORM\Table(name="users", indexes={@ORM\Index(name="fk_pople_people_group", columns={"users_group_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
 class Users implements UserInterface
 {
@@ -66,7 +66,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="json_array")
      */
-   // private $roles = array();
+    private $roles = array();
 
     /**
      * @var boolean
@@ -230,7 +230,7 @@ class Users implements UserInterface
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
 
         return $this;
     }
