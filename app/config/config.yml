@@ -30,6 +30,7 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    translator: ~
 
 # Twig Configuration
 twig:
@@ -78,3 +79,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User

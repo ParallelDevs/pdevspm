@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Users
@@ -11,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="users", indexes={@ORM\Index(name="fk_pople_people_group", columns={"users_group_id"})})
  * @ORM\Entity
  */
-class Users implements UserInterface
+class Users
 {
     /**
      * @var integer
@@ -91,6 +90,9 @@ class Users implements UserInterface
      * })
      */
     private $usersGroup;
+    
+    
+    //private $file;
 
 
 
@@ -133,7 +135,7 @@ class Users implements UserInterface
      * @param string $username
      * @return Users
      */
-    public function setUserName($username)
+   public function setUserName($username)
     {
         $this->username = $username;
 
@@ -227,7 +229,7 @@ class Users implements UserInterface
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
 
         return $this;
     }
@@ -361,4 +363,78 @@ class Users implements UserInterface
         // if you had a plainPassword property, you'd nullify it here
         // $this->plainPassword = null;
     }
-}
+    
+    /*
+    public function getAbsolutePath()
+    {
+        return null === $this->photo
+            ? null
+            : $this->getUploadRootDir().'/'.$this->photo;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->photo
+            ? null
+            : $this->getUploadDir().'/'.$this->photo;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/users_files';
+    }*/
+       
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    /*public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }*/
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    /*public function getFile()
+    {
+        return $this->file;
+    }*/
+    
+    /*public function upload()
+    {
+    // the file property can be empty if the field is not required
+    if (null === $this->getFile()) {
+        return;
+    }*/
+
+    // use the original file name here but you should
+    // sanitize it at least to avoid any security issues
+
+    // move takes the target directory and then the
+    // target filename to move to
+    /*$this->getFile()->move(
+        $this->getUploadRootDir(),
+        $this->getFile()->getClientOriginalName()
+    );*/
+
+    // set the path property to the filename where you've saved the file
+   // $this->path = $this->getFile()->getClientOriginalName();
+
+    // clean up the file property as you won't need it anymore
+    //$this->file = null;
+    //}
+    
+}//End Class Users
