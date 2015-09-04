@@ -77,9 +77,9 @@ class Projects
     private $projectsTypes;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      * })
@@ -262,10 +262,10 @@ class Projects
     /**
      * Set createdBy
      *
-     * @param \AppBundle\Entity\Users $createdBy
+     * @param \AppBundle\Entity\User $createdBy
      * @return Projects
      */
-    public function setCreatedBy(\AppBundle\Entity\Users $createdBy = null)
+    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
         $this->createdBy = $createdBy;
 
@@ -275,7 +275,7 @@ class Projects
     /**
      * Get createdBy
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User
      */
     public function getCreatedBy()
     {
