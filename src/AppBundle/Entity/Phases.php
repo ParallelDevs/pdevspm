@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Phases
  *
- * @ORM\Table(name="phases")
+ * @ORM\Table(name="phase")
  * @ORM\Entity
  */
-class Phases
+class Phase
 {
     /**
      * @var integer
@@ -51,7 +51,7 @@ class Phases
      * Set name
      *
      * @param string $name
-     * @return Phases
+     * @return Phase
      */
     public function setName($name)
     {
@@ -74,7 +74,7 @@ class Phases
      * Set defaultValues
      *
      * @param string $defaultValues
-     * @return Phases
+     * @return Phase
      */
     public function setDefaultValues($defaultValues)
     {

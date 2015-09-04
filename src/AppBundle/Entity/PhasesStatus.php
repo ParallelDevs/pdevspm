@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PhasesStatus
+ * PhaseStatus
  *
- * @ORM\Table(name="phases_status")
+ * @ORM\Table(name="phase_status")
  * @ORM\Entity
  */
-class PhasesStatus
+class PhaseStatus
 {
     /**
      * @var integer
@@ -65,7 +65,7 @@ class PhasesStatus
      * Set name
      *
      * @param string $name
-     * @return PhasesStatus
+     * @return PhaseStatus
      */
     public function setName($name)
     {
@@ -88,7 +88,7 @@ class PhasesStatus
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return PhasesStatus
+     * @return PhaseStatus
      */
     public function setSortOrder($sortOrder)
     {
@@ -111,7 +111,7 @@ class PhasesStatus
      * Set defaultValue
      *
      * @param boolean $defaultValue
-     * @return PhasesStatus
+     * @return PhaseStatus
      */
     public function setDefaultValue($defaultValue)
     {
@@ -134,7 +134,7 @@ class PhasesStatus
      * Set active
      *
      * @param boolean $active
-     * @return PhasesStatus
+     * @return PhaseStatus
      */
     public function setActive($active)
     {
