@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProjectsPhases
+ * ProjectPhase
  *
- * @ORM\Table(name="projects_phases", indexes={@ORM\Index(name="fk_projects_phases_projects", columns={"projects_id"}), @ORM\Index(name="fk_projects_phases_phases_status", columns={"phases_status_id"})})
+ * @ORM\Table(name="project_phase", indexes={@ORM\Index(name="fk_project_phase_project", columns={"project_id"}), @ORM\Index(name="fk_project_phases_phase_status", columns={"phase_status_id"})})
  * @ORM\Entity
  */
-class ProjectsPhases
+class ProjectPhase
 {
     /**
      * @var integer
@@ -36,14 +36,14 @@ class ProjectsPhases
     private $dueDate;
 
     /**
-     * @var \AppBundle\Entity\Projects
+     * @var \AppBundle\Entity\Project
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projects_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      * })
      */
-    private $projects;
+    private $project;
 
     /**
      * @var \AppBundle\Entity\PhasesStatus
@@ -71,7 +71,7 @@ class ProjectsPhases
      * Set name
      *
      * @param string $name
-     * @return ProjectsPhases
+     * @return ProjectPhase
      */
     public function setName($name)
     {
@@ -94,7 +94,7 @@ class ProjectsPhases
      * Set dueDate
      *
      * @param \DateTime $dueDate
-     * @return ProjectsPhases
+     * @return ProjectPhase
      */
     public function setDueDate($dueDate)
     {
@@ -114,33 +114,33 @@ class ProjectsPhases
     }
 
     /**
-     * Set projects
+     * Set project
      *
-     * @param \AppBundle\Entity\Projects $projects
-     * @return ProjectsPhases
+     * @param \AppBundle\Entity\Project $project
+     * @return ProjectPhase
      */
-    public function setProjects(\AppBundle\Entity\Projects $projects = null)
+    public function setProject(\AppBundle\Entity\Project $project = null)
     {
-        $this->projects = $projects;
+        $this->project = $project;
 
         return $this;
     }
 
     /**
-     * Get projects
+     * Get project
      *
-     * @return \AppBundle\Entity\Projects 
+     * @return \AppBundle\Entity\Project
      */
-    public function getProjects()
+    public function getProject()
     {
-        return $this->projects;
+        return $this->project;
     }
 
     /**
      * Set phasesStatus
      *
      * @param \AppBundle\Entity\PhasesStatus $phasesStatus
-     * @return ProjectsPhases
+     * @return ProjectPhase
      */
     public function setPhasesStatus(\AppBundle\Entity\PhasesStatus $phasesStatus = null)
     {

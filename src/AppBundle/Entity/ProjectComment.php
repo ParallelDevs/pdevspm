@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProjectsComments
+ * ProjectComment
  *
- * @ORM\Table(name="projects_comments", indexes={@ORM\Index(name="fk_projects_comments_projects", columns={"projects_id"}), @ORM\Index(name="fk_projects_comments_pople", columns={"created_by"})})
+ * @ORM\Table(name="project_comment", indexes={@ORM\Index(name="fk_project_comment_project", columns={"project_id"}), @ORM\Index(name="fk_project_comments_user", columns={"created_by"})})
  * @ORM\Entity
  */
-class ProjectsComments
+class ProjectComment
 {
     /**
      * @var integer
@@ -36,19 +36,19 @@ class ProjectsComments
     private $createdAt;
 
     /**
-     * @var \AppBundle\Entity\Projects
+     * @var \AppBundle\Entity\Project
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projects_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      * })
      */
-    private $projects;
+    private $project;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      * })
@@ -71,7 +71,7 @@ class ProjectsComments
      * Set description
      *
      * @param string $description
-     * @return ProjectsComments
+     * @return ProjectComment
      */
     public function setDescription($description)
     {
@@ -94,7 +94,7 @@ class ProjectsComments
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return ProjectsComments
+     * @return ProjectComment
      */
     public function setCreatedAt($createdAt)
     {
@@ -114,35 +114,35 @@ class ProjectsComments
     }
 
     /**
-     * Set projects
+     * Set project
      *
-     * @param \AppBundle\Entity\Projects $projects
-     * @return ProjectsComments
+     * @param \AppBundle\Entity\Project $project
+     * @return ProjectComment
      */
-    public function setProjects(\AppBundle\Entity\Projects $projects = null)
+    public function setProject(\AppBundle\Entity\Project $project = null)
     {
-        $this->projects = $projects;
+        $this->$project = $project;
 
         return $this;
     }
 
     /**
-     * Get projects
+     * Get project
      *
-     * @return \AppBundle\Entity\Projects 
+     * @return \AppBundle\Entity\Project
      */
-    public function getProjects()
+    public function getProject()
     {
-        return $this->projects;
+        return $this->project;
     }
 
     /**
      * Set createdBy
      *
-     * @param \AppBundle\Entity\Users $createdBy
-     * @return ProjectsComments
+     * @param \AppBundle\Entity\User $createdBy
+     * @return ProjectComment
      */
-    public function setCreatedBy(\AppBundle\Entity\Users $createdBy = null)
+    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
         $this->createdBy = $createdBy;
 
@@ -152,7 +152,7 @@ class ProjectsComments
     /**
      * Get createdBy
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User
      */
     public function getCreatedBy()
     {

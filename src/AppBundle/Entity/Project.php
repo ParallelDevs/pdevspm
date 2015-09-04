@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Projects
+ * Project
  *
- * @ORM\Table(name="projects", indexes={@ORM\Index(name="fk_projects_projects_status", columns={"projects_status_id"}), @ORM\Index(name="fk_projects_project_types", columns={"projects_types_id"}), @ORM\Index(name="fk_projects_pople", columns={"created_by"})})
+ * @ORM\Table(name="project", indexes={@ORM\Index(name="fk_project_project_status", columns={"project_status_id"}), @ORM\Index(name="fk_project_project_types", columns={"projects_type_id"}), @ORM\Index(name="fk_project_user", columns={"created_by"})})
  * @ORM\Entity
  */
-class Projects
+class Project
 {
     /**
      * @var integer
@@ -57,24 +57,24 @@ class Projects
     private $orderTasksBy;
 
     /**
-     * @var \AppBundle\Entity\ProjectsStatus
+     * @var \AppBundle\Entity\ProjectStatus
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectsStatus")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectStatus")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projects_status_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="project_status_id", referencedColumnName="id")
      * })
      */
-    private $projectsStatus;
+    private $projectStatus;
 
     /**
-     * @var \AppBundle\Entity\ProjectsTypes
+     * @var \AppBundle\Entity\ProjectType
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectsTypes")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projects_types_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="project_type_id", referencedColumnName="id")
      * })
      */
-    private $projectsTypes;
+    private $projectType;
 
     /**
      * @var \AppBundle\Entity\User
@@ -102,7 +102,7 @@ class Projects
      * Set name
      *
      * @param string $name
-     * @return Projects
+     * @return Project
      */
     public function setName($name)
     {
@@ -125,7 +125,7 @@ class Projects
      * Set description
      *
      * @param string $description
-     * @return Projects
+     * @return Project
      */
     public function setDescription($description)
     {
@@ -148,7 +148,7 @@ class Projects
      * Set team
      *
      * @param string $team
-     * @return Projects
+     * @return Project
      */
     public function setTeam($team)
     {
@@ -171,7 +171,7 @@ class Projects
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Projects
+     * @return Project
      */
     public function setCreatedAt($createdAt)
     {
@@ -194,7 +194,7 @@ class Projects
      * Set orderTasksBy
      *
      * @param string $orderTasksBy
-     * @return Projects
+     * @return Project
      */
     public function setOrderTasksBy($orderTasksBy)
     {
@@ -214,37 +214,37 @@ class Projects
     }
 
     /**
-     * Set projectsStatus
+     * Set projectStatus
      *
-     * @param \AppBundle\Entity\ProjectsStatus $projectsStatus
-     * @return Projects
+     * @param \AppBundle\Entity\ProjectStatus $projectStatus
+     * @return Project
      */
-    public function setProjectsStatus(\AppBundle\Entity\ProjectsStatus $projectsStatus = null)
+    public function setProjectStatus(\AppBundle\Entity\ProjectStatus $projectStatus = null)
     {
-        $this->projectsStatus = $projectsStatus;
+        $this->projectStatus = $projectStatus;
 
         return $this;
     }
 
     /**
-     * Get projectsStatus
+     * Get projectStatus
      *
-     * @return \AppBundle\Entity\ProjectsStatus 
+     * @return \AppBundle\Entity\ProjectStatus
      */
-    public function getProjectsStatus()
+    public function getProjectStatus()
     {
-        return $this->projectsStatus;
+        return $this->projectStatus;
     }
 
     /**
      * Set projectsTypes
      *
-     * @param \AppBundle\Entity\ProjectsTypes $projectsTypes
-     * @return Projects
+     * @param \AppBundle\Entity\ProjectType $projectsTypes
+     * @return Project
      */
-    public function setProjectsTypes(\AppBundle\Entity\ProjectsTypes $projectsTypes = null)
+    public function setProjectType(\AppBundle\Entity\ProjectType $projectType = null)
     {
-        $this->projectsTypes = $projectsTypes;
+        $this->projectType = $projectType;
 
         return $this;
     }
@@ -252,18 +252,18 @@ class Projects
     /**
      * Get projectsTypes
      *
-     * @return \AppBundle\Entity\ProjectsTypes 
+     * @return \AppBundle\Entity\ProjectType
      */
-    public function getProjectsTypes()
+    public function getProjectType()
     {
-        return $this->projectsTypes;
+        return $this->projectType;
     }
 
     /**
      * Set createdBy
      *
      * @param \AppBundle\Entity\User $createdBy
-     * @return Projects
+     * @return Project
      */
     public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
