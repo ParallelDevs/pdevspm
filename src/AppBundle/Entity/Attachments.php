@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Attachments
+ * Attachment
  *
- * @ORM\Table(name="attachments", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
+ * @ORM\Table(name="attachment", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
  * @ORM\Entity
  */
-class Attachments
+class Attachment
 {
     /**
      * @var integer
@@ -65,7 +65,7 @@ class Attachments
      * Set bindType
      *
      * @param string $bindType
-     * @return Attachments
+     * @return Attachment
      */
     public function setBindType($bindType)
     {
@@ -88,7 +88,7 @@ class Attachments
      * Set bindId
      *
      * @param integer $bindId
-     * @return Attachments
+     * @return Attachment
      */
     public function setBindId($bindId)
     {
@@ -111,7 +111,7 @@ class Attachments
      * Set file
      *
      * @param string $file
-     * @return Attachments
+     * @return Attachment
      */
     public function setFile($file)
     {
@@ -134,7 +134,7 @@ class Attachments
      * Set info
      *
      * @param string $info
-     * @return Attachments
+     * @return Attachment
      */
     public function setInfo($info)
     {
