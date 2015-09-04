@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Departments
+ * Department
  *
- * @ORM\Table(name="departments", indexes={@ORM\Index(name="fk_departments_users", columns={"users_id"})})
+ * @ORM\Table(name="department", indexes={@ORM\Index(name="fk_department_user", columns={"user_id"})})
  * @ORM\Entity
  */
-class Departments
+class Department
 {
     /**
      * @var integer
@@ -43,14 +43,14 @@ class Departments
     private $active;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $users;
+    private $user;
 
 
 
@@ -68,7 +68,7 @@ class Departments
      * Set name
      *
      * @param string $name
-     * @return Departments
+     * @return Department
      */
     public function setName($name)
     {
@@ -91,7 +91,7 @@ class Departments
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return Departments
+     * @return Department
      */
     public function setSortOrder($sortOrder)
     {
@@ -114,7 +114,7 @@ class Departments
      * Set active
      *
      * @param boolean $active
-     * @return Departments
+     * @return Department
      */
     public function setActive($active)
     {
@@ -134,25 +134,25 @@ class Departments
     }
 
     /**
-     * Set users
+     * Set user
      *
-     * @param \AppBundle\Entity\Users $users
-     * @return Departments
+     * @param \AppBundle\Entity\User $user
+     * @return Department
      */
-    public function setUsers(\AppBundle\Entity\Users $users = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get users
+     * Get user
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User 
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
     }
 }
