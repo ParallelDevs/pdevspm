@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DiscussionsReports
+ * DiscussionReport
  *
- * @ORM\Table(name="discussions_reports", indexes={@ORM\Index(name="users_id", columns={"users_id"})})
+ * @ORM\Table(name="discussion_report", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
  * @ORM\Entity
  */
-class DiscussionsReports
+class DiscussionReport
 {
     /**
      * @var integer
@@ -59,9 +59,9 @@ class DiscussionsReports
     /**
      * @var string
      *
-     * @ORM\Column(name="discussions_status_id", type="text", nullable=true)
+     * @ORM\Column(name="discussion_status_id", type="text", nullable=true)
      */
-    private $discussionsStatusId;
+    private $discussionStatusId;
 
     /**
      * @var integer
@@ -71,14 +71,14 @@ class DiscussionsReports
     private $sortOrder;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $users;
+    private $user;
 
 
 
@@ -96,7 +96,7 @@ class DiscussionsReports
      * Set name
      *
      * @param string $name
-     * @return DiscussionsReports
+     * @return DiscussionReport
      */
     public function setName($name)
     {
@@ -119,7 +119,7 @@ class DiscussionsReports
      * Set displayOnHome
      *
      * @param boolean $displayOnHome
-     * @return DiscussionsReports
+     * @return DiscussionReport
      */
     public function setDisplayOnHome($displayOnHome)
     {
@@ -142,7 +142,7 @@ class DiscussionsReports
      * Set projectsId
      *
      * @param string $projectsId
-     * @return DiscussionsReports
+     * @return DiscussionReport
      */
     public function setProjectsId($projectsId)
     {
@@ -165,7 +165,7 @@ class DiscussionsReports
      * Set projectsTypeId
      *
      * @param string $projectsTypeId
-     * @return DiscussionsReports
+     * @return DiscussionReport
      */
     public function setProjectsTypeId($projectsTypeId)
     {
@@ -188,7 +188,7 @@ class DiscussionsReports
      * Set projectsStatusId
      *
      * @param string $projectsStatusId
-     * @return DiscussionsReports
+     * @return DiscussionReport
      */
     public function setProjectsStatusId($projectsStatusId)
     {
@@ -208,33 +208,33 @@ class DiscussionsReports
     }
 
     /**
-     * Set discussionsStatusId
+     * Set discussionStatusId
      *
-     * @param string $discussionsStatusId
-     * @return DiscussionsReports
+     * @param string $discussionStatusId
+     * @return DiscussionReport
      */
-    public function setDiscussionsStatusId($discussionsStatusId)
+    public function setDiscussionStatusId($discussionStatusId)
     {
-        $this->discussionsStatusId = $discussionsStatusId;
+        $this->discussionStatusId = $discussionStatusId;
 
         return $this;
     }
 
     /**
-     * Get discussionsStatusId
+     * Get discussionStatusId
      *
      * @return string 
      */
-    public function getDiscussionsStatusId()
+    public function getDiscussionStatusId()
     {
-        return $this->discussionsStatusId;
+        return $this->discussionStatusId;
     }
 
     /**
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return DiscussionsReports
+     * @return DiscussionReport
      */
     public function setSortOrder($sortOrder)
     {
@@ -254,25 +254,25 @@ class DiscussionsReports
     }
 
     /**
-     * Set users
+     * Set user
      *
-     * @param \AppBundle\Entity\Users $users
-     * @return DiscussionsReports
+     * @param \AppBundle\Entity\User $user
+     * @return DiscussionReport
      */
-    public function setUsers(\AppBundle\Entity\Users $users = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get users
+     * Get user
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User 
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
     }
 }

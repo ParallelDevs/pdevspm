@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Discussions
+ * Discussion
  *
- * @ORM\Table(name="discussions", indexes={@ORM\Index(name="fk_discussions_projects", columns={"projects_id"}), @ORM\Index(name="fk_discussions_users", columns={"users_id"}), @ORM\Index(name="fk_discussions_discussions_status", columns={"discussions_status_id"})})
+ * @ORM\Table(name="discussion", indexes={@ORM\Index(name="fk_discussion_project", columns={"project_id"}), @ORM\Index(name="fk_discussion_user", columns={"user_id"}), @ORM\Index(name="fk_discussion_discussion_status", columns={"discussion_status_id"})})
  * @ORM\Entity
  */
-class Discussions
+class Discussion
 {
     /**
      * @var integer
@@ -43,34 +43,34 @@ class Discussions
     private $assignedTo;
 
     /**
-     * @var \AppBundle\Entity\Projects
+     * @var \AppBundle\Entity\Project
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projects_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      * })
      */
-    private $projects;
+    private $project;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $users;
+    private $user;
 
     /**
-     * @var \AppBundle\Entity\DiscussionsStatus
+     * @var \AppBundle\Entity\DiscussionStatus
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\DiscussionsStatus")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\DiscussionStatus")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="discussions_status_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="discussion_status_id", referencedColumnName="id")
      * })
      */
-    private $discussionsStatus;
+    private $discussionStatus;
 
 
 
@@ -88,7 +88,7 @@ class Discussions
      * Set name
      *
      * @param string $name
-     * @return Discussions
+     * @return Discussion
      */
     public function setName($name)
     {
@@ -111,7 +111,7 @@ class Discussions
      * Set description
      *
      * @param string $description
-     * @return Discussions
+     * @return Discussion
      */
     public function setDescription($description)
     {
@@ -134,7 +134,7 @@ class Discussions
      * Set assignedTo
      *
      * @param string $assignedTo
-     * @return Discussions
+     * @return Discussion
      */
     public function setAssignedTo($assignedTo)
     {
@@ -154,71 +154,71 @@ class Discussions
     }
 
     /**
-     * Set projects
+     * Set project
      *
-     * @param \AppBundle\Entity\Projects $projects
-     * @return Discussions
+     * @param \AppBundle\Entity\Project $project
+     * @return Discussion
      */
-    public function setProjects(\AppBundle\Entity\Projects $projects = null)
+    public function setProject(\AppBundle\Entity\Project $project = null)
     {
-        $this->projects = $projects;
+        $this->project = $project;
 
         return $this;
     }
 
     /**
-     * Get projects
+     * Get project
      *
-     * @return \AppBundle\Entity\Projects 
+     * @return \AppBundle\Entity\Project
      */
-    public function getProjects()
+    public function getProject()
     {
-        return $this->projects;
+        return $this->project;
     }
 
     /**
-     * Set users
+     * Set user
      *
-     * @param \AppBundle\Entity\Users $users
-     * @return Discussions
+     * @param \AppBundle\Entity\User $user
+     * @return Discussion
      */
-    public function setUsers(\AppBundle\Entity\Users $users = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get users
+     * Get user
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User 
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
     }
 
     /**
-     * Set discussionsStatus
+     * Set discussionStatus
      *
-     * @param \AppBundle\Entity\DiscussionsStatus $discussionsStatus
-     * @return Discussions
+     * @param \AppBundle\Entity\DiscussionStatus $discussionStatus
+     * @return Discussion
      */
-    public function setDiscussionsStatus(\AppBundle\Entity\DiscussionsStatus $discussionsStatus = null)
+    public function setDiscussionStatus(\AppBundle\Entity\DiscussionStatus $discussionStatus = null)
     {
-        $this->discussionsStatus = $discussionsStatus;
+        $this->discussionStatus = $discussionStatus;
 
         return $this;
     }
 
     /**
-     * Get discussionsStatus
+     * Get discussionStatus
      *
-     * @return \AppBundle\Entity\DiscussionsStatus 
+     * @return \AppBundle\Entity\DiscussionStatus
      */
-    public function getDiscussionsStatus()
+    public function getDiscussionStatus()
     {
-        return $this->discussionsStatus;
+        return $this->discussionStatus;
     }
 }
