@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ExtraFieldsList
+ * ExtraFieldList
  *
- * @ORM\Table(name="extra_fields_list", indexes={@ORM\Index(name="fk_extra_fields_list_extra_fields", columns={"extra_fields_id"})})
+ * @ORM\Table(name="extra_field_list", indexes={@ORM\Index(name="fk_extra_field_list_extra_field", columns={"extra_field_id"})})
  * @ORM\Entity
  */
-class ExtraFieldsList
+class ExtraFieldList
 {
     /**
      * @var integer
@@ -36,14 +36,14 @@ class ExtraFieldsList
     private $value;
 
     /**
-     * @var \AppBundle\Entity\ExtraFields
+     * @var \AppBundle\Entity\ExtraField
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ExtraFields")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ExtraField")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="extra_fields_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="extra_field_id", referencedColumnName="id")
      * })
      */
-    private $extraFields;
+    private $extraField;
 
 
 
@@ -61,7 +61,7 @@ class ExtraFieldsList
      * Set bindId
      *
      * @param integer $bindId
-     * @return ExtraFieldsList
+     * @return ExtraFieldList
      */
     public function setBindId($bindId)
     {
@@ -84,7 +84,7 @@ class ExtraFieldsList
      * Set value
      *
      * @param string $value
-     * @return ExtraFieldsList
+     * @return ExtraFieldList
      */
     public function setValue($value)
     {
@@ -104,25 +104,25 @@ class ExtraFieldsList
     }
 
     /**
-     * Set extraFields
+     * Set extraField
      *
-     * @param \AppBundle\Entity\ExtraFields $extraFields
-     * @return ExtraFieldsList
+     * @param \AppBundle\Entity\ExtraField $extraField
+     * @return ExtraFieldList
      */
-    public function setExtraFields(\AppBundle\Entity\ExtraFields $extraFields = null)
+    public function setExtraField(\AppBundle\Entity\ExtraField $extraField = null)
     {
-        $this->extraFields = $extraFields;
+        $this->extraField = $extraField;
 
         return $this;
     }
 
     /**
-     * Get extraFields
+     * Get extraField
      *
-     * @return \AppBundle\Entity\ExtraFields 
+     * @return \AppBundle\Entity\ExtraField
      */
-    public function getExtraFields()
+    public function getExtraField()
     {
-        return $this->extraFields;
+        return $this->extraField;
     }
 }

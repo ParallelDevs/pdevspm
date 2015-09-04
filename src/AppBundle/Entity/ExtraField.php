@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ExtraFields
+ * ExtraField
  *
- * @ORM\Table(name="extra_fields")
+ * @ORM\Table(name="extra_field")
  * @ORM\Entity
  */
-class ExtraFields
+class ExtraField
 {
     /**
      * @var integer
@@ -79,7 +79,7 @@ class ExtraFields
      * Set name
      *
      * @param string $name
-     * @return ExtraFields
+     * @return ExtraField
      */
     public function setName($name)
     {
@@ -102,7 +102,7 @@ class ExtraFields
      * Set bindType
      *
      * @param string $bindType
-     * @return ExtraFields
+     * @return ExtraField
      */
     public function setBindType($bindType)
     {
@@ -125,7 +125,7 @@ class ExtraFields
      * Set type
      *
      * @param string $type
-     * @return ExtraFields
+     * @return ExtraField
      */
     public function setType($type)
     {
@@ -148,7 +148,7 @@ class ExtraFields
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return ExtraFields
+     * @return ExtraField
      */
     public function setSortOrder($sortOrder)
     {
@@ -171,7 +171,7 @@ class ExtraFields
      * Set active
      *
      * @param boolean $active
-     * @return ExtraFields
+     * @return ExtraField
      */
     public function setActive($active)
     {
@@ -194,7 +194,7 @@ class ExtraFields
      * Set displayInList
      *
      * @param boolean $displayInList
-     * @return ExtraFields
+     * @return ExtraField
      */
     public function setDisplayInList($displayInList)
     {
