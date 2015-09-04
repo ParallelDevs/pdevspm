@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Events
+ * Event
  *
- * @ORM\Table(name="events", indexes={@ORM\Index(name="fk_events_users", columns={"users_id"})})
+ * @ORM\Table(name="event", indexes={@ORM\Index(name="fk_event_user", columns={"user_id"})})
  * @ORM\Entity
  */
-class Events
+class Event
 {
     /**
      * @var integer
@@ -50,14 +50,14 @@ class Events
     private $details;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $users;
+    private $user;
 
 
 
@@ -75,7 +75,7 @@ class Events
      * Set eventName
      *
      * @param string $eventName
-     * @return Events
+     * @return Event
      */
     public function setEventName($eventName)
     {
@@ -98,7 +98,7 @@ class Events
      * Set startDate
      *
      * @param \DateTime $startDate
-     * @return Events
+     * @return Event
      */
     public function setStartDate($startDate)
     {
@@ -121,7 +121,7 @@ class Events
      * Set endDate
      *
      * @param \DateTime $endDate
-     * @return Events
+     * @return Event
      */
     public function setEndDate($endDate)
     {
@@ -144,7 +144,7 @@ class Events
      * Set details
      *
      * @param string $details
-     * @return Events
+     * @return Event
      */
     public function setDetails($details)
     {
@@ -164,25 +164,25 @@ class Events
     }
 
     /**
-     * Set users
+     * Set user
      *
-     * @param \AppBundle\Entity\Users $users
-     * @return Events
+     * @param \AppBundle\Entity\User $user
+     * @return Event
      */
-    public function setUsers(\AppBundle\Entity\Users $users = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get users
+     * Get user
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
     }
 }
