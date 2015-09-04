@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProjectsReports
+ * ProjectsReport
  *
- * @ORM\Table(name="projects_reports", indexes={@ORM\Index(name="users_id", columns={"users_id"})})
+ * @ORM\Table(name="project_report", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
  * @ORM\Entity
  */
-class ProjectsReports
+class ProjectReport
 {
     /**
      * @var integer
@@ -38,23 +38,23 @@ class ProjectsReports
     /**
      * @var string
      *
-     * @ORM\Column(name="projects_id", type="text", nullable=true)
+     * @ORM\Column(name="project_id", type="text", nullable=true)
      */
-    private $projectsId;
+    private $projectId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="projects_type_id", type="text", nullable=true)
+     * @ORM\Column(name="project_type_id", type="text", nullable=true)
      */
-    private $projectsTypeId;
+    private $projectTypeId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="projects_status_id", type="text", nullable=true)
+     * @ORM\Column(name="project_status_id", type="text", nullable=true)
      */
-    private $projectsStatusId;
+    private $projectStatusId;
 
     /**
      * @var integer
@@ -85,14 +85,14 @@ class ProjectsReports
     private $visibleOnHome;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $users;
+    private $user;
 
 
 
@@ -110,7 +110,7 @@ class ProjectsReports
      * Set name
      *
      * @param string $name
-     * @return ProjectsReports
+     * @return ProjectReport
      */
     public function setName($name)
     {
@@ -133,7 +133,7 @@ class ProjectsReports
      * Set displayOnHome
      *
      * @param boolean $displayOnHome
-     * @return ProjectsReports
+     * @return ProjectReport
      */
     public function setDisplayOnHome($displayOnHome)
     {
@@ -153,79 +153,79 @@ class ProjectsReports
     }
 
     /**
-     * Set projectsId
+     * Set projectId
      *
-     * @param string $projectsId
-     * @return ProjectsReports
+     * @param string $projectId
+     * @return ProjectReport
      */
-    public function setProjectsId($projectsId)
+    public function setProjectId($projectId)
     {
-        $this->projectsId = $projectsId;
+        $this->projectId = $projectId;
 
         return $this;
     }
 
     /**
-     * Get projectsId
+     * Get projectId
      *
      * @return string 
      */
-    public function getProjectsId()
+    public function getProjectId()
     {
-        return $this->projectsId;
+        return $this->projectId;
     }
 
     /**
-     * Set projectsTypeId
+     * Set projectTypeId
      *
-     * @param string $projectsTypeId
-     * @return ProjectsReports
+     * @param string $projectTypeId
+     * @return ProjectReport
      */
-    public function setProjectsTypeId($projectsTypeId)
+    public function setProjectTypeId($projectTypeId)
     {
-        $this->projectsTypeId = $projectsTypeId;
+        $this->projectTypeId = $projectTypeId;
 
         return $this;
     }
 
     /**
-     * Get projectsTypeId
+     * Get projectTypeId
      *
      * @return string 
      */
-    public function getProjectsTypeId()
+    public function getProjectTypeId()
     {
-        return $this->projectsTypeId;
+        return $this->projectTypeId;
     }
 
     /**
-     * Set projectsStatusId
+     * Set projectStatusId
      *
-     * @param string $projectsStatusId
-     * @return ProjectsReports
+     * @param string $projectStatusId
+     * @return ProjectReport
      */
-    public function setProjectsStatusId($projectsStatusId)
+    public function setProjectStatusId($projectStatusId)
     {
-        $this->projectsStatusId = $projectsStatusId;
+        $this->projectStatusId = $projectStatusId;
 
         return $this;
     }
 
     /**
-     * Get projectsStatusId
+     * Get projectStatusId
      *
      * @return string 
      */
-    public function getProjectsStatusId()
+    public function getProjectStatusId()
     {
-        return $this->projectsStatusId;
+        return $this->projectStatusId;
     }
 
     /**
      * Set inTeam
      *
      * @param integer $inTeam
-     * @return ProjectsReports
+     * @return ProjectReport
      */
     public function setInTeam($inTeam)
     {
@@ -248,7 +248,7 @@ class ProjectsReports
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return ProjectsReports
+     * @return ProjectReport
      */
     public function setSortOrder($sortOrder)
     {
@@ -271,7 +271,7 @@ class ProjectsReports
      * Set displayInMenu
      *
      * @param boolean $displayInMenu
-     * @return ProjectsReports
+     * @return ProjectReport
      */
     public function setDisplayInMenu($displayInMenu)
     {
@@ -294,7 +294,7 @@ class ProjectsReports
      * Set visibleOnHome
      *
      * @param boolean $visibleOnHome
-     * @return ProjectsReports
+     * @return ProjectReport
      */
     public function setVisibleOnHome($visibleOnHome)
     {
@@ -314,25 +314,25 @@ class ProjectsReports
     }
 
     /**
-     * Set users
+     * Set user
      *
-     * @param \AppBundle\Entity\Users $users
-     * @return ProjectsReports
+     * @param \AppBundle\Entity\User $user
+     * @return ProjectReport
      */
-    public function setUsers(\AppBundle\Entity\Users $users = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get users
+     * Get user
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
     }
 }
