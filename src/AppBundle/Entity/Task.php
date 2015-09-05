@@ -172,9 +172,9 @@ class Task
     private $projectPhase;
 
     /**
-     * @var \AppBundle\Entity\Versions
+     * @var \AppBundle\Entity\Version
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Versions")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Version")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="versions_id", referencedColumnName="id")
      * })
@@ -620,10 +620,10 @@ class Task
     /**
      * Set versions
      *
-     * @param \AppBundle\Entity\Versions $versions
+     * @param \AppBundle\Entity\Version $versions
      * @return Task
      */
-    public function setVersions(\AppBundle\Entity\Versions $versions = null)
+    public function setVersion(\AppBundle\Entity\Version $versions = null)
     {
         $this->versions = $versions;
 
@@ -633,9 +633,9 @@ class Task
     /**
      * Get versions
      *
-     * @return \AppBundle\Entity\Versions 
+     * @return \AppBundle\Entity\Version 
      */
-    public function getVersions()
+    public function getVersion()
     {
         return $this->versions;
     }

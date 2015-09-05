@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Version
  *
- * @ORM\Table(name="version", indexes={@ORM\Index(name="fk_version_version_status", columns={"version_status_id"}), @ORM\Index(name="fk_version_projects", columns={"projects_id"})})
+ * @ORM\Table(name="version", indexes={@ORM\Index(name="fk_version_version_status", columns={"version_status_id"}), @ORM\Index(name="fk_version_project", columns={"project_id"})})
  * @ORM\Entity
  */
 class Version
@@ -43,14 +43,14 @@ class Version
     private $dueDate;
 
     /**
-     * @var \AppBundle\Entity\Projects
+     * @var \AppBundle\Entity\Project
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projects_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      * })
      */
-    private $projects;
+    private $project;
 
     /**
      * @var \AppBundle\Entity\VersionStatus
@@ -144,26 +144,26 @@ class Version
     }
 
     /**
-     * Set projects
+     * Set project
      *
-     * @param \AppBundle\Entity\Projects $projects
+     * @param \AppBundle\Entity\Project $project
      * @return Version
      */
-    public function setProjects(\AppBundle\Entity\Projects $projects = null)
+    public function setProject(\AppBundle\Entity\Project $project = null)
     {
-        $this->projects = $projects;
+        $this->project = $project;
 
         return $this;
     }
 
     /**
-     * Get projects
+     * Get project
      *
-     * @return \AppBundle\Entity\Projects 
+     * @return \AppBundle\Entity\Project 
      */
-    public function getProjects()
+    public function getProject()
     {
-        return $this->projects;
+        return $this->project;
     }
 
     /**

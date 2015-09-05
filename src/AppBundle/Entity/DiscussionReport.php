@@ -144,7 +144,7 @@ class DiscussionReport
      * @param string $projectsId
      * @return DiscussionReport
      */
-    public function setProjectsId($projectsId)
+    public function setProjectId($projectsId)
     {
         $this->projectsId = $projectsId;
 
@@ -156,7 +156,7 @@ class DiscussionReport
      *
      * @return string 
      */
-    public function getProjectsId()
+    public function getProjectId()
     {
         return $this->projectsId;
     }
@@ -167,7 +167,7 @@ class DiscussionReport
      * @param string $projectsTypeId
      * @return DiscussionReport
      */
-    public function setProjectsTypeId($projectsTypeId)
+    public function setProjectTypeId($projectsTypeId)
     {
         $this->projectsTypeId = $projectsTypeId;
 
@@ -179,7 +179,7 @@ class DiscussionReport
      *
      * @return string 
      */
-    public function getProjectsTypeId()
+    public function getProjectTypeId()
     {
         return $this->projectsTypeId;
     }
@@ -190,7 +190,7 @@ class DiscussionReport
      * @param string $projectsStatusId
      * @return DiscussionReport
      */
-    public function setProjectsStatusId($projectsStatusId)
+    public function setProjectStatusId($projectsStatusId)
     {
         $this->projectsStatusId = $projectsStatusId;
 
@@ -202,7 +202,7 @@ class DiscussionReport
      *
      * @return string 
      */
-    public function getProjectsStatusId()
+    public function getProjectStatusId()
     {
         return $this->projectsStatusId;
     }

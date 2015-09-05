@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * VersionsStatus
+ * VersionStatus
  *
- * @ORM\Table(name="versions_status")
+ * @ORM\Table(name="version_status")
  * @ORM\Entity
  */
-class VersionsStatus
+class VersionStatus
 {
     /**
      * @var integer
@@ -65,7 +65,7 @@ class VersionsStatus
      * Set name
      *
      * @param string $name
-     * @return VersionsStatus
+     * @return VersionStatus
      */
     public function setName($name)
     {
@@ -88,7 +88,7 @@ class VersionsStatus
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return VersionsStatus
+     * @return VersionStatus
      */
     public function setSortOrder($sortOrder)
     {
@@ -111,7 +111,7 @@ class VersionsStatus
      * Set defaultValue
      *
      * @param boolean $defaultValue
-     * @return VersionsStatus
+     * @return VersionStatus
      */
     public function setDefaultValue($defaultValue)
     {
@@ -134,7 +134,7 @@ class VersionsStatus
      * Set active
      *
      * @param boolean $active
-     * @return VersionsStatus
+     * @return VersionStatus
      */
     public function setActive($active)
     {
