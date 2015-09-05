@@ -3,15 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Users
  *
  * @ORM\Table(name="users", indexes={@ORM\Index(name="fk_pople_people_group", columns={"users_group_id"})})
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity
  */
-class Users implements UserInterface
+class Users
 {
     /**
      * @var integer
@@ -66,7 +65,7 @@ class Users implements UserInterface
     /**
      * @ORM\Column(type="json_array")
      */
-    private $roles = array();
+    //  private $roles = array();
 
     /**
      * @var boolean

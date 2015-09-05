@@ -54,7 +54,7 @@ class Projects
      *
      * @ORM\Column(name="order_tasks_by", type="string", length=64, nullable=true)
      */
-    private $orderTasksBy;
+    private $orderTasksBy;  
 
     /**
      * @var \AppBundle\Entity\ProjectsStatus
@@ -85,10 +85,7 @@ class Projects
      * })
      */
     private $createdBy;
-
-
-
-    /**
+        /**
      * Get id
      *
      * @return integer 
@@ -152,9 +149,8 @@ class Projects
      */
     public function setTeam($team)
     {
-        $this->team = $team;
-
-        return $this;
+       $this->team = $team;
+       return $this;
     }
 
     /**
