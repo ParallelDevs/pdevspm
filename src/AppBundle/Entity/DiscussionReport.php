@@ -38,23 +38,23 @@ class DiscussionReport
     /**
      * @var string
      *
-     * @ORM\Column(name="projects_id", type="text", nullable=true)
+     * @ORM\Column(name="project_id", type="text", nullable=true)
      */
-    private $projectsId;
+    private $projectId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="projects_type_id", type="text", nullable=true)
+     * @ORM\Column(name="project_type_id", type="text", nullable=true)
      */
-    private $projectsTypeId;
+    private $projectTypeId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="projects_status_id", type="text", nullable=true)
+     * @ORM\Column(name="project_status_id", type="text", nullable=true)
      */
-    private $projectsStatusId;
+    private $projectStatusId;
 
     /**
      * @var string
@@ -139,72 +139,72 @@ class DiscussionReport
     }
 
     /**
-     * Set projectsId
+     * Set projectId
      *
-     * @param string $projectsId
+     * @param string $projectId
      * @return DiscussionReport
      */
-    public function setProjectId($projectsId)
+    public function setProjectId($projectId)
     {
-        $this->projectsId = $projectsId;
+        $this->projectId = $projectId;
 
         return $this;
     }
 
     /**
-     * Get projectsId
+     * Get projectId
      *
      * @return string 
      */
     public function getProjectId()
     {
-        return $this->projectsId;
+        return $this->projectId;
     }
 
     /**
-     * Set projectsTypeId
+     * Set projectTypeId
      *
-     * @param string $projectsTypeId
+     * @param string $projectTypeId
      * @return DiscussionReport
      */
-    public function setProjectTypeId($projectsTypeId)
+    public function setProjectTypeId($projectTypeId)
     {
-        $this->projectsTypeId = $projectsTypeId;
+        $this->projectTypeId = $projectTypeId;
 
         return $this;
     }
 
     /**
-     * Get projectsTypeId
+     * Get projectTypeId
      *
      * @return string 
      */
     public function getProjectTypeId()
     {
-        return $this->projectsTypeId;
+        return $this->projectTypeId;
     }
 
     /**
-     * Set projectsStatusId
+     * Set projectStatusId
      *
-     * @param string $projectsStatusId
+     * @param string $projectStatusId
      * @return DiscussionReport
      */
-    public function setProjectStatusId($projectsStatusId)
+    public function setProjectStatusId($projectStatusId)
     {
-        $this->projectsStatusId = $projectsStatusId;
+        $this->projectStatusId = $projectStatusId;
 
         return $this;
     }
 
     /**
-     * Get projectsStatusId
+     * Get projectStatusId
      *
      * @return string 
      */
     public function getProjectStatusId()
     {
-        return $this->projectsStatusId;
+        return $this->projectStatusId;
     }
 
     /**

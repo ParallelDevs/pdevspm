@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TaskLabel
  *
- * @ORM\Table(name="task_labels")
+ * @ORM\Table(name="task_label")
  * @ORM\Entity
  */
 class TaskLabel

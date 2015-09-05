@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Project
  *
- * @ORM\Table(name="project", indexes={@ORM\Index(name="fk_project_project_status", columns={"project_status_id"}), @ORM\Index(name="fk_project_project_types", columns={"projects_type_id"}), @ORM\Index(name="fk_project_user", columns={"created_by"})})
+ * @ORM\Table(name="project", indexes={@ORM\Index(name="fk_project_project_status", columns={"project_status_id"}), @ORM\Index(name="fk_project_project_type", columns={"project_type_id"}), @ORM\Index(name="fk_project_user", columns={"created_by"})})
  * @ORM\Entity
  */
 class Project
@@ -52,9 +52,9 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="order_tasks_by", type="string", length=64, nullable=true)
+     * @ORM\Column(name="order_task_by", type="string", length=64, nullable=true)
      */
-    private $orderTasksBy;
+    private $orderTaskBy;
 
     /**
      * @var \AppBundle\Entity\ProjectStatus
@@ -191,26 +191,26 @@ class Project
     }
 
     /**
-     * Set orderTasksBy
+     * Set orderTaskBy
      *
-     * @param string $orderTasksBy
+     * @param string $orderTaskBy
      * @return Project
      */
-    public function setOrderTasksBy($orderTasksBy)
+    public function setOrderTaskBy($orderTaskBy)
     {
-        $this->orderTasksBy = $orderTasksBy;
+        $this->orderTaskBy = $orderTaskBy;
 
         return $this;
     }
 
     /**
-     * Get orderTasksBy
+     * Get orderTaskBy
      *
      * @return string 
      */
-    public function getOrderTasksBy()
+    public function getOrderTaskBy()
     {
-        return $this->orderTasksBy;
+        return $this->orderTaskBy;
     }
 
     /**
@@ -237,9 +237,9 @@ class Project
     }
 
     /**
-     * Set projectsTypes
+     * Set projectType
      *
-     * @param \AppBundle\Entity\ProjectType $projectsTypes
+     * @param \AppBundle\Entity\ProjectType $projectType
      * @return Project
      */
     public function setProjectType(\AppBundle\Entity\ProjectType $projectType = null)
@@ -250,7 +250,7 @@ class Project
     }
 
     /**
-     * Get projectsTypes
+     * Get projectType
      *
      * @return \AppBundle\Entity\ProjectType
      */
