@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserReports
+ * UserReport
  *
- * @ORM\Table(name="user_reports", indexes={@ORM\Index(name="fk_user_reports_users", columns={"users_id"})})
+ * @ORM\Table(name="user_report", indexes={@ORM\Index(name="fk_user_report_user", columns={"user_id"})})
  * @ORM\Entity
  */
-class UserReports
+class UserReport
 {
     /**
      * @var integer
@@ -134,14 +134,14 @@ class UserReports
     private $sortOrder;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $users;
+    private $user;
 
 
 
@@ -159,7 +159,7 @@ class UserReports
      * Set name
      *
      * @param string $name
-     * @return UserReports
+     * @return UserReport
      */
     public function setName($name)
     {
@@ -182,7 +182,7 @@ class UserReports
      * Set displayOnHome
      *
      * @param boolean $displayOnHome
-     * @return UserReports
+     * @return UserReport
      */
     public function setDisplayOnHome($displayOnHome)
     {
@@ -205,7 +205,7 @@ class UserReports
      * Set projectsId
      *
      * @param string $projectsId
-     * @return UserReports
+     * @return UserReport
      */
     public function setProjectsId($projectsId)
     {
@@ -228,7 +228,7 @@ class UserReports
      * Set projectsTypeId
      *
      * @param string $projectsTypeId
-     * @return UserReports
+     * @return UserReport
      */
     public function setProjectsTypeId($projectsTypeId)
     {
@@ -251,7 +251,7 @@ class UserReports
      * Set projectsStatusId
      *
      * @param string $projectsStatusId
-     * @return UserReports
+     * @return UserReport
      */
     public function setProjectsStatusId($projectsStatusId)
     {
@@ -274,7 +274,7 @@ class UserReports
      * Set assignedTo
      *
      * @param string $assignedTo
-     * @return UserReports
+     * @return UserReport
      */
     public function setAssignedTo($assignedTo)
     {
@@ -297,7 +297,7 @@ class UserReports
      * Set tasksStatusId
      *
      * @param string $tasksStatusId
-     * @return UserReports
+     * @return UserReport
      */
     public function setTasksStatusId($tasksStatusId)
     {
@@ -320,7 +320,7 @@ class UserReports
      * Set tasksTypeId
      *
      * @param string $tasksTypeId
-     * @return UserReports
+     * @return UserReport
      */
     public function setTasksTypeId($tasksTypeId)
     {
@@ -343,7 +343,7 @@ class UserReports
      * Set tasksLabelId
      *
      * @param string $tasksLabelId
-     * @return UserReports
+     * @return UserReport
      */
     public function setTasksLabelId($tasksLabelId)
     {
@@ -366,7 +366,7 @@ class UserReports
      * Set dueDateFrom
      *
      * @param \DateTime $dueDateFrom
-     * @return UserReports
+     * @return UserReport
      */
     public function setDueDateFrom($dueDateFrom)
     {
@@ -389,7 +389,7 @@ class UserReports
      * Set dueDateTo
      *
      * @param \DateTime $dueDateTo
-     * @return UserReports
+     * @return UserReport
      */
     public function setDueDateTo($dueDateTo)
     {
@@ -412,7 +412,7 @@ class UserReports
      * Set createdFrom
      *
      * @param \DateTime $createdFrom
-     * @return UserReports
+     * @return UserReport
      */
     public function setCreatedFrom($createdFrom)
     {
@@ -435,7 +435,7 @@ class UserReports
      * Set createdTo
      *
      * @param \DateTime $createdTo
-     * @return UserReports
+     * @return UserReport
      */
     public function setCreatedTo($createdTo)
     {
@@ -458,7 +458,7 @@ class UserReports
      * Set closedFrom
      *
      * @param \DateTime $closedFrom
-     * @return UserReports
+     * @return UserReport
      */
     public function setClosedFrom($closedFrom)
     {
@@ -481,7 +481,7 @@ class UserReports
      * Set closedTo
      *
      * @param \DateTime $closedTo
-     * @return UserReports
+     * @return UserReport
      */
     public function setClosedTo($closedTo)
     {
@@ -504,7 +504,7 @@ class UserReports
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return UserReports
+     * @return UserReport
      */
     public function setSortOrder($sortOrder)
     {
@@ -524,25 +524,25 @@ class UserReports
     }
 
     /**
-     * Set users
+     * Set user
      *
-     * @param \AppBundle\Entity\Users $users
-     * @return UserReports
+     * @param \AppBundle\Entity\User $user
+     * @return UserReport
      */
-    public function setUsers(\AppBundle\Entity\Users $users = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get users
+     * Get user
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User 
      */
-    public function getUsers()
+    public function getUser()
     {
-        return $this->users;
+        return $this->user;
     }
 }

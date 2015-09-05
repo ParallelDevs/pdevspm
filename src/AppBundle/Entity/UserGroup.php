@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UsersGroups
+ * UserGroup
  *
- * @ORM\Table(name="users_groups")
+ * @ORM\Table(name="user_group")
  * @ORM\Entity
  */
-class UsersGroups
+class UserGroup
 {
     /**
      * @var integer
@@ -59,9 +59,9 @@ class UsersGroups
     /**
      * @var boolean
      *
-     * @ORM\Column(name="allow_manage_users", type="boolean", nullable=true)
+     * @ORM\Column(name="allow_manage_user", type="boolean", nullable=true)
      */
-    private $allowManageUsers;
+    private $allowManageUser;
 
     /**
      * @var boolean
@@ -107,7 +107,7 @@ class UsersGroups
      * Set name
      *
      * @param string $name
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setName($name)
     {
@@ -130,7 +130,7 @@ class UsersGroups
      * Set allowViewAll
      *
      * @param boolean $allowViewAll
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setAllowViewAll($allowViewAll)
     {
@@ -153,7 +153,7 @@ class UsersGroups
      * Set allowManageProjects
      *
      * @param boolean $allowManageProjects
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setAllowManageProjects($allowManageProjects)
     {
@@ -176,7 +176,7 @@ class UsersGroups
      * Set allowManageTasks
      *
      * @param boolean $allowManageTasks
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setAllowManageTasks($allowManageTasks)
     {
@@ -199,7 +199,7 @@ class UsersGroups
      * Set allowManageTickets
      *
      * @param boolean $allowManageTickets
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setAllowManageTickets($allowManageTickets)
     {
@@ -219,33 +219,33 @@ class UsersGroups
     }
 
     /**
-     * Set allowManageUsers
+     * Set allowManageUser
      *
-     * @param boolean $allowManageUsers
-     * @return UsersGroups
+     * @param boolean $allowManageUser
+     * @return UserGroup
      */
-    public function setAllowManageUsers($allowManageUsers)
+    public function setAllowManageUser($allowManageUser)
     {
-        $this->allowManageUsers = $allowManageUsers;
+        $this->allowManageUser = $allowManageUser;
 
         return $this;
     }
 
     /**
-     * Get allowManageUsers
+     * Get allowManageUser
      *
      * @return boolean 
      */
-    public function getAllowManageUsers()
+    public function getAllowManageUser()
     {
-        return $this->allowManageUsers;
+        return $this->allowManageUser;
     }
 
     /**
      * Set allowManageConfiguration
      *
      * @param boolean $allowManageConfiguration
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setAllowManageConfiguration($allowManageConfiguration)
     {
@@ -268,7 +268,7 @@ class UsersGroups
      * Set allowManageTasksViewonly
      *
      * @param boolean $allowManageTasksViewonly
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setAllowManageTasksViewonly($allowManageTasksViewonly)
     {
@@ -291,7 +291,7 @@ class UsersGroups
      * Set allowManageDiscussions
      *
      * @param boolean $allowManageDiscussions
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setAllowManageDiscussions($allowManageDiscussions)
     {
@@ -314,7 +314,7 @@ class UsersGroups
      * Set allowManageDiscussionsViewonly
      *
      * @param boolean $allowManageDiscussionsViewonly
-     * @return UsersGroups
+     * @return UserGroup
      */
     public function setAllowManageDiscussionsViewonly($allowManageDiscussionsViewonly)
     {
