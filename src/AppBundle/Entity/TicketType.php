@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TicketsTypes
+ * TicketType
  *
- * @ORM\Table(name="tickets_types")
+ * @ORM\Table(name="ticket_type")
  * @ORM\Entity
  */
-class TicketsTypes
+class TicketType
 {
     /**
      * @var integer
@@ -58,7 +58,7 @@ class TicketsTypes
      * Set name
      *
      * @param string $name
-     * @return TicketsTypes
+     * @return TicketType
      */
     public function setName($name)
     {
@@ -81,7 +81,7 @@ class TicketsTypes
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return TicketsTypes
+     * @return TicketType
      */
     public function setSortOrder($sortOrder)
     {
@@ -104,7 +104,7 @@ class TicketsTypes
      * Set active
      *
      * @param string $active
-     * @return TicketsTypes
+     * @return TicketType
      */
     public function setActive($active)
     {
