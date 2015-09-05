@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Versions
+ * Version
  *
- * @ORM\Table(name="versions", indexes={@ORM\Index(name="fk_versions_versions_status", columns={"versions_status_id"}), @ORM\Index(name="fk_versions_projects", columns={"projects_id"})})
+ * @ORM\Table(name="version", indexes={@ORM\Index(name="fk_version_version_status", columns={"version_status_id"}), @ORM\Index(name="fk_version_projects", columns={"projects_id"})})
  * @ORM\Entity
  */
-class Versions
+class Version
 {
     /**
      * @var integer
@@ -53,14 +53,14 @@ class Versions
     private $projects;
 
     /**
-     * @var \AppBundle\Entity\VersionsStatus
+     * @var \AppBundle\Entity\VersionStatus
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VersionsStatus")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\VersionStatus")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="versions_status_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="version_status_id", referencedColumnName="id")
      * })
      */
-    private $versionsStatus;
+    private $versionStatus;
 
 
 
@@ -78,7 +78,7 @@ class Versions
      * Set name
      *
      * @param string $name
-     * @return Versions
+     * @return Version
      */
     public function setName($name)
     {
@@ -101,7 +101,7 @@ class Versions
      * Set description
      *
      * @param string $description
-     * @return Versions
+     * @return Version
      */
     public function setDescription($description)
     {
@@ -124,7 +124,7 @@ class Versions
      * Set dueDate
      *
      * @param \DateTime $dueDate
-     * @return Versions
+     * @return Version
      */
     public function setDueDate($dueDate)
     {
@@ -147,7 +147,7 @@ class Versions
      * Set projects
      *
      * @param \AppBundle\Entity\Projects $projects
-     * @return Versions
+     * @return Version
      */
     public function setProjects(\AppBundle\Entity\Projects $projects = null)
     {
@@ -167,25 +167,25 @@ class Versions
     }
 
     /**
-     * Set versionsStatus
+     * Set versionStatus
      *
-     * @param \AppBundle\Entity\VersionsStatus $versionsStatus
-     * @return Versions
+     * @param \AppBundle\Entity\VersionStatus $versionStatus
+     * @return Version
      */
-    public function setVersionsStatus(\AppBundle\Entity\VersionsStatus $versionsStatus = null)
+    public function setVersionStatus(\AppBundle\Entity\VersionStatus $versionStatus = null)
     {
-        $this->versionsStatus = $versionsStatus;
+        $this->versionStatus = $versionStatus;
 
         return $this;
     }
 
     /**
-     * Get versionsStatus
+     * Get versionStatus
      *
-     * @return \AppBundle\Entity\VersionsStatus 
+     * @return \AppBundle\Entity\VersionStatus 
      */
-    public function getVersionsStatus()
+    public function getVersionStatus()
     {
-        return $this->versionsStatus;
+        return $this->versionStatus;
     }
 }
