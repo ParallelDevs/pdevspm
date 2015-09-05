@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TasksLabels
+ * TaskPriority
  *
- * @ORM\Table(name="tasks_labels")
+ * @ORM\Table(name="task_priority")
  * @ORM\Entity
  */
-class TasksLabels
+class TaskPriority
 {
     /**
      * @var integer
@@ -27,6 +27,13 @@ class TasksLabels
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icon", type="string", length=64, nullable=true)
+     */
+    private $icon;
 
     /**
      * @var integer
@@ -65,7 +72,7 @@ class TasksLabels
      * Set name
      *
      * @param string $name
-     * @return TasksLabels
+     * @return TaskPriority
      */
     public function setName($name)
     {
@@ -85,10 +92,33 @@ class TasksLabels
     }
 
     /**
+     * Set icon
+     *
+     * @param string $icon
+     * @return TaskPriority
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return string 
+     */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    /**
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return TasksLabels
+     * @return TaskPriority
      */
     public function setSortOrder($sortOrder)
     {
@@ -111,7 +141,7 @@ class TasksLabels
      * Set defaultValue
      *
      * @param boolean $defaultValue
-     * @return TasksLabels
+     * @return TaskPriority
      */
     public function setDefaultValue($defaultValue)
     {
@@ -134,7 +164,7 @@ class TasksLabels
      * Set active
      *
      * @param boolean $active
-     * @return TasksLabels
+     * @return TaskPriority
      */
     public function setActive($active)
     {

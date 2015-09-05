@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TasksComments
+ * TaskComment
  *
- * @ORM\Table(name="tasks_comments", indexes={@ORM\Index(name="fk_tasks_comments_pople", columns={"created_by"}), @ORM\Index(name="fk_tasks_comments_tasks", columns={"tasks_id"}), @ORM\Index(name="fk_tasks_comments_status", columns={"tasks_status_id"}), @ORM\Index(name="fk_tasks_comments_priority", columns={"tasks_priority_id"})})
+ * @ORM\Table(name="task_comment", indexes={@ORM\Index(name="fk_task_comment_user", columns={"created_by"}), @ORM\Index(name="fk_task_comment_task", columns={"task_id"}), @ORM\Index(name="fk_task_comment_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_comment_priority", columns={"task_priority_id"})})
  * @ORM\Entity
  */
-class TasksComments
+class TaskComment
 {
     /**
      * @var integer
@@ -57,19 +57,19 @@ class TasksComments
     private $progress;
 
     /**
-     * @var \AppBundle\Entity\Tasks
+     * @var \AppBundle\Entity\Task
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tasks")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Task")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tasks_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_id", referencedColumnName="id")
      * })
      */
-    private $tasks;
+    private $task;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      * })
@@ -77,24 +77,24 @@ class TasksComments
     private $createdBy;
 
     /**
-     * @var \AppBundle\Entity\TasksStatus
+     * @var \AppBundle\Entity\TaskStatus
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TasksStatus")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskStatus")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tasks_status_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_status_id", referencedColumnName="id")
      * })
      */
-    private $tasksStatus;
+    private $taskStatus;
 
     /**
-     * @var \AppBundle\Entity\TasksPriority
+     * @var \AppBundle\Entity\TaskPriority
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TasksPriority")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskPriority")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tasks_priority_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_priority_id", referencedColumnName="id")
      * })
      */
-    private $tasksPriority;
+    private $taskPriority;
 
 
 
@@ -112,7 +112,7 @@ class TasksComments
      * Set dueDate
      *
      * @param \DateTime $dueDate
-     * @return TasksComments
+     * @return TaskComment
      */
     public function setDueDate($dueDate)
     {
@@ -135,7 +135,7 @@ class TasksComments
      * Set workedHours
      *
      * @param float $workedHours
-     * @return TasksComments
+     * @return TaskComment
      */
     public function setWorkedHours($workedHours)
     {
@@ -158,7 +158,7 @@ class TasksComments
      * Set description
      *
      * @param string $description
-     * @return TasksComments
+     * @return TaskComment
      */
     public function setDescription($description)
     {
@@ -181,7 +181,7 @@ class TasksComments
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return TasksComments
+     * @return TaskComment
      */
     public function setCreatedAt($createdAt)
     {
@@ -204,7 +204,7 @@ class TasksComments
      * Set progress
      *
      * @param integer $progress
-     * @return TasksComments
+     * @return TaskComment
      */
     public function setProgress($progress)
     {
@@ -224,35 +224,35 @@ class TasksComments
     }
 
     /**
-     * Set tasks
+     * Set task
      *
-     * @param \AppBundle\Entity\Tasks $tasks
-     * @return TasksComments
+     * @param \AppBundle\Entity\Task $task
+     * @return TaskComment
      */
-    public function setTasks(\AppBundle\Entity\Tasks $tasks = null)
+    public function setTask(\AppBundle\Entity\Task $task = null)
     {
-        $this->tasks = $tasks;
+        $this->task = $task;
 
         return $this;
     }
 
     /**
-     * Get tasks
+     * Get task
      *
-     * @return \AppBundle\Entity\Tasks 
+     * @return \AppBundle\Entity\Task
      */
-    public function getTasks()
+    public function getTask()
     {
-        return $this->tasks;
+        return $this->task;
     }
 
     /**
      * Set createdBy
      *
-     * @param \AppBundle\Entity\Users $createdBy
-     * @return TasksComments
+     * @param \AppBundle\Entity\User $createdBy
+     * @return TaskComment
      */
-    public function setCreatedBy(\AppBundle\Entity\Users $createdBy = null)
+    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
         $this->createdBy = $createdBy;
 
@@ -262,7 +262,7 @@ class TasksComments
     /**
      * Get createdBy
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User
      */
     public function getCreatedBy()
     {
@@ -270,48 +270,48 @@ class TasksComments
     }
 
     /**
-     * Set tasksStatus
+     * Set taskStatus
      *
-     * @param \AppBundle\Entity\TasksStatus $tasksStatus
-     * @return TasksComments
+     * @param \AppBundle\Entity\TaskStatus $taskStatus
+     * @return TaskComment
      */
-    public function setTasksStatus(\AppBundle\Entity\TasksStatus $tasksStatus = null)
+    public function setTaskStatus(\AppBundle\Entity\TaskStatus $taskStatus = null)
     {
-        $this->tasksStatus = $tasksStatus;
+        $this->taskStatus = $taskStatus;
 
         return $this;
     }
 
     /**
-     * Get tasksStatus
+     * Get taskStatus
      *
-     * @return \AppBundle\Entity\TasksStatus 
+     * @return \AppBundle\Entity\TaskStatus
      */
-    public function getTasksStatus()
+    public function getTaskStatus()
     {
-        return $this->tasksStatus;
+        return $this->taskStatus;
     }
 
     /**
-     * Set tasksPriority
+     * Set taskPriority
      *
-     * @param \AppBundle\Entity\TasksPriority $tasksPriority
-     * @return TasksComments
+     * @param \AppBundle\Entity\TaskPriority $taskPriority
+     * @return TaskComment
      */
-    public function setTasksPriority(\AppBundle\Entity\TasksPriority $tasksPriority = null)
+    public function setTaskPriority(\AppBundle\Entity\TaskPriority $taskPriority = null)
     {
-        $this->tasksPriority = $tasksPriority;
+        $this->taskPriority = $taskPriority;
 
         return $this;
     }
 
     /**
-     * Get tasksPriority
+     * Get taskPriority
      *
-     * @return \AppBundle\Entity\TasksPriority 
+     * @return \AppBundle\Entity\TaskPriority
      */
-    public function getTasksPriority()
+    public function getTaskPriority()
     {
-        return $this->tasksPriority;
+        return $this->taskPriority;
     }
 }

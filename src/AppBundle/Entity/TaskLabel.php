@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TasksTypes
+ * TaskLabel
  *
- * @ORM\Table(name="tasks_types")
+ * @ORM\Table(name="task_labels")
  * @ORM\Entity
  */
-class TasksTypes
+class TaskLabel
 {
     /**
      * @var integer
@@ -65,7 +65,7 @@ class TasksTypes
      * Set name
      *
      * @param string $name
-     * @return TasksTypes
+     * @return TaskLabel
      */
     public function setName($name)
     {
@@ -88,7 +88,7 @@ class TasksTypes
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return TasksTypes
+     * @return TaskLabel
      */
     public function setSortOrder($sortOrder)
     {
@@ -111,7 +111,7 @@ class TasksTypes
      * Set defaultValue
      *
      * @param boolean $defaultValue
-     * @return TasksTypes
+     * @return TaskLabel
      */
     public function setDefaultValue($defaultValue)
     {
@@ -134,7 +134,7 @@ class TasksTypes
      * Set active
      *
      * @param boolean $active
-     * @return TasksTypes
+     * @return TaskLabel
      */
     public function setActive($active)
     {

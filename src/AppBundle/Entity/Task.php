@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Task
  *
- * @ORM\Table(name="task", indexes={@ORM\Index(name="fk_task_project", columns={"project_id"}), @ORM\Index(name="fk_task_task_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_task_type", columns={"task_type_id"}), @ORM\Index(name="fk_task_task_label", columns={"task_label_id"}), @ORM\Index(name="fk_task_project_phase", columns={"project_phase_id"}), @ORM\Index(name="fk_task_pople", columns={"created_by"}), @ORM\Index(name="fk_task_task_groups", columns={"task_groups_id"}), @ORM\Index(name="fk_task_versions", columns={"versions_id"}), @ORM\Index(name="fk_task_task_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_tickets", columns={"tickets_id"})})
+ * @ORM\Table(name="task", indexes={@ORM\Index(name="fk_task_project", columns={"project_id"}), @ORM\Index(name="fk_task_task_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_task_type", columns={"task_type_id"}), @ORM\Index(name="fk_task_task_label", columns={"task_label_id"}), @ORM\Index(name="fk_task_project_phase", columns={"project_phase_id"}), @ORM\Index(name="fk_task_pople", columns={"created_by"}), @ORM\Index(name="fk_task_task_group", columns={"task_group_id"}), @ORM\Index(name="fk_task_versions", columns={"versions_id"}), @ORM\Index(name="fk_task_task_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_tickets", columns={"tickets_id"})})
  * @ORM\Entity
  */
 class Task
@@ -132,9 +132,9 @@ class Task
     private $taskPriority;
 
     /**
-     * @var \AppBundle\Entity\TaskTypes
+     * @var \AppBundle\Entity\TaskType
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskTypes")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="task_type_id", referencedColumnName="id")
      * })
@@ -142,9 +142,9 @@ class Task
     private $taskType;
 
     /**
-     * @var \AppBundle\Entity\TaskLabels
+     * @var \AppBundle\Entity\TaskLabel
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskLabels")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskLabel")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="task_label_id", referencedColumnName="id")
      * })
@@ -152,14 +152,14 @@ class Task
     private $taskLabel;
 
     /**
-     * @var \AppBundle\Entity\TaskGroups
+     * @var \AppBundle\Entity\TaskGroup
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskGroups")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskGroup")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="task_groups_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_group_id", referencedColumnName="id")
      * })
      */
-    private $taskGroups;
+    private $taskGroup;
 
     /**
      * @var \AppBundle\Entity\ProjectPhase
@@ -528,10 +528,10 @@ class Task
     /**
      * Set taskType
      *
-     * @param \AppBundle\Entity\TaskTypes $taskType
+     * @param \AppBundle\Entity\TaskType $taskType
      * @return Task
      */
-    public function setTaskType(\AppBundle\Entity\TaskTypes $taskType = null)
+    public function setTaskType(\AppBundle\Entity\TaskType $taskType = null)
     {
         $this->taskType = $taskType;
 
@@ -541,7 +541,7 @@ class Task
     /**
      * Get taskType
      *
-     * @return \AppBundle\Entity\TaskTypes
+     * @return \AppBundle\Entity\TaskType
      */
     public function getTaskType()
     {
@@ -551,10 +551,10 @@ class Task
     /**
      * Set taskLabel
      *
-     * @param \AppBundle\Entity\TaskLabels $taskLabel
+     * @param \AppBundle\Entity\TaskLabel $taskLabel
      * @return Task
      */
-    public function setTaskLabel(\AppBundle\Entity\TaskLabels $taskLabel = null)
+    public function setTaskLabel(\AppBundle\Entity\TaskLabel $taskLabel = null)
     {
         $this->taskLabel = $taskLabel;
 
@@ -564,7 +564,7 @@ class Task
     /**
      * Get taskLabel
      *
-     * @return \AppBundle\Entity\TaskLabels
+     * @return \AppBundle\Entity\TaskLabel
      */
     public function getTaskLabel()
     {
@@ -572,26 +572,26 @@ class Task
     }
 
     /**
-     * Set taskGroups
+     * Set taskGroup
      *
-     * @param \AppBundle\Entity\TaskGroups $taskGroups
+     * @param \AppBundle\Entity\TaskGroup $taskGroup
      * @return Task
      */
-    public function setTaskGroups(\AppBundle\Entity\TaskGroups $taskGroups = null)
+    public function setTaskGroup(\AppBundle\Entity\TaskGroup $taskGroup = null)
     {
-        $this->taskGroups = $taskGroups;
+        $this->taskGroup = $taskGroup;
 
         return $this;
     }
 
     /**
-     * Get taskGroups
+     * Get taskGroup
      *
-     * @return \AppBundle\Entity\TaskGroups
+     * @return \AppBundle\Entity\TaskGroup
      */
-    public function getTaskGroups()
+    public function getTaskGroup()
     {
-        return $this->taskGroups;
+        return $this->taskGroup;
     }
 
     /**

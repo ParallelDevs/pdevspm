@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TasksStatus
+ * TaskStatus
  *
- * @ORM\Table(name="tasks_status")
+ * @ORM\Table(name="task_status")
  * @ORM\Entity
  */
-class TasksStatus
+class TaskStatus
 {
     /**
      * @var integer
@@ -72,7 +72,7 @@ class TasksStatus
      * Set name
      *
      * @param string $name
-     * @return TasksStatus
+     * @return TaskStatus
      */
     public function setName($name)
     {
@@ -95,7 +95,7 @@ class TasksStatus
      * Set group
      *
      * @param string $group
-     * @return TasksStatus
+     * @return TaskStatus
      */
     public function setGroup($group)
     {
@@ -118,7 +118,7 @@ class TasksStatus
      * Set sortOrder
      *
      * @param integer $sortOrder
-     * @return TasksStatus
+     * @return TaskStatus
      */
     public function setSortOrder($sortOrder)
     {
@@ -141,7 +141,7 @@ class TasksStatus
      * Set defaultValue
      *
      * @param boolean $defaultValue
-     * @return TasksStatus
+     * @return TaskStatus
      */
     public function setDefaultValue($defaultValue)
     {
@@ -164,7 +164,7 @@ class TasksStatus
      * Set active
      *
      * @param boolean $active
-     * @return TasksStatus
+     * @return TaskStatus
      */
     public function setActive($active)
     {
