@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ProjectPhase
  *
- * @ORM\Table(name="project_phase", indexes={@ORM\Index(name="fk_project_phase_project", columns={"project_id"}), @ORM\Index(name="fk_project_phases_phase_status", columns={"phase_status_id"})})
+ * @ORM\Table(name="project_phase", indexes={@ORM\Index(name="fk_project_phase_project", columns={"project_id"}), @ORM\Index(name="fk_project_phase_phase_status", columns={"phase_status_id"})})
  * @ORM\Entity
  */
 class ProjectPhase
@@ -46,14 +46,14 @@ class ProjectPhase
     private $project;
 
     /**
-     * @var \AppBundle\Entity\PhasesStatus
+     * @var \AppBundle\Entity\PhaseStatus
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PhasesStatus")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PhaseStatus")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="phases_status_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="phase_status_id", referencedColumnName="id")
      * })
      */
-    private $phasesStatus;
+    private $phaseStatus;
 
 
 
@@ -137,25 +137,25 @@ class ProjectPhase
     }
 
     /**
-     * Set phasesStatus
+     * Set phaseStatus
      *
-     * @param \AppBundle\Entity\PhasesStatus $phasesStatus
+     * @param \AppBundle\Entity\PhaseStatus $phaseStatus
      * @return ProjectPhase
      */
-    public function setPhasesStatus(\AppBundle\Entity\PhasesStatus $phasesStatus = null)
+    public function setPhaseStatus(\AppBundle\Entity\PhaseStatus $phaseStatus = null)
     {
-        $this->phasesStatus = $phasesStatus;
+        $this->phaseStatus = $phaseStatus;
 
         return $this;
     }
 
     /**
-     * Get phasesStatus
+     * Get phaseStatus
      *
-     * @return \AppBundle\Entity\PhasesStatus 
+     * @return \AppBundle\Entity\PhaseStatus
      */
-    public function getPhasesStatus()
+    public function getPhaseStatus()
     {
-        return $this->phasesStatus;
+        return $this->phaseStatus;
     }
 }
