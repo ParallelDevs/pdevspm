@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tasks
+ * Task
  *
- * @ORM\Table(name="tasks", indexes={@ORM\Index(name="fk_tasks_projects", columns={"projects_id"}), @ORM\Index(name="fk_tasks_task_status", columns={"tasks_status_id"}), @ORM\Index(name="fk_tasks_task_type", columns={"tasks_type_id"}), @ORM\Index(name="fk_tasks_task_label", columns={"tasks_label_id"}), @ORM\Index(name="fk_tasks_projects_phases", columns={"projects_phases_id"}), @ORM\Index(name="fk_tasks_pople", columns={"created_by"}), @ORM\Index(name="fk_tasks_tasks_groups", columns={"tasks_groups_id"}), @ORM\Index(name="fk_tasks_versions", columns={"versions_id"}), @ORM\Index(name="fk_tasks_tasks_priority", columns={"tasks_priority_id"}), @ORM\Index(name="fk_tasks_tickets", columns={"tickets_id"})})
+ * @ORM\Table(name="task", indexes={@ORM\Index(name="fk_task_project", columns={"project_id"}), @ORM\Index(name="fk_task_task_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_task_type", columns={"task_type_id"}), @ORM\Index(name="fk_task_task_label", columns={"task_label_id"}), @ORM\Index(name="fk_task_project_phase", columns={"project_phase_id"}), @ORM\Index(name="fk_task_pople", columns={"created_by"}), @ORM\Index(name="fk_task_task_groups", columns={"task_groups_id"}), @ORM\Index(name="fk_task_versions", columns={"versions_id"}), @ORM\Index(name="fk_task_task_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_tickets", columns={"tickets_id"})})
  * @ORM\Entity
  */
-class Tasks
+class Task
 {
     /**
      * @var integer
@@ -92,14 +92,14 @@ class Tasks
     private $progress;
 
     /**
-     * @var \AppBundle\Entity\Projects
+     * @var \AppBundle\Entity\Project
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projects_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      * })
      */
-    private $projects;
+    private $project;
 
     /**
      * @var \AppBundle\Entity\Tickets
@@ -112,64 +112,64 @@ class Tasks
     private $tickets;
 
     /**
-     * @var \AppBundle\Entity\TasksStatus
+     * @var \AppBundle\Entity\TaskStatus
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TasksStatus")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskStatus")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tasks_status_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_status_id", referencedColumnName="id")
      * })
      */
-    private $tasksStatus;
+    private $taskStatus;
 
     /**
-     * @var \AppBundle\Entity\TasksPriority
+     * @var \AppBundle\Entity\TaskPriority
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TasksPriority")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskPriority")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tasks_priority_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_priority_id", referencedColumnName="id")
      * })
      */
-    private $tasksPriority;
+    private $taskPriority;
 
     /**
-     * @var \AppBundle\Entity\TasksTypes
+     * @var \AppBundle\Entity\TaskTypes
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TasksTypes")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskTypes")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tasks_type_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_type_id", referencedColumnName="id")
      * })
      */
-    private $tasksType;
+    private $taskType;
 
     /**
-     * @var \AppBundle\Entity\TasksLabels
+     * @var \AppBundle\Entity\TaskLabels
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TasksLabels")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskLabels")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tasks_label_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_label_id", referencedColumnName="id")
      * })
      */
-    private $tasksLabel;
+    private $taskLabel;
 
     /**
-     * @var \AppBundle\Entity\TasksGroups
+     * @var \AppBundle\Entity\TaskGroups
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TasksGroups")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskGroups")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tasks_groups_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="task_groups_id", referencedColumnName="id")
      * })
      */
-    private $tasksGroups;
+    private $taskGroups;
 
     /**
-     * @var \AppBundle\Entity\ProjectsPhases
+     * @var \AppBundle\Entity\ProjectPhase
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectsPhases")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectPhase")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="projects_phases_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="project_phase_id", referencedColumnName="id")
      * })
      */
-    private $projectsPhases;
+    private $projectPhase;
 
     /**
      * @var \AppBundle\Entity\Versions
@@ -182,9 +182,9 @@ class Tasks
     private $versions;
 
     /**
-     * @var \AppBundle\Entity\Users
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Users")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      * })
@@ -207,7 +207,7 @@ class Tasks
      * Set name
      *
      * @param string $name
-     * @return Tasks
+     * @return Task
      */
     public function setName($name)
     {
@@ -230,7 +230,7 @@ class Tasks
      * Set description
      *
      * @param string $description
-     * @return Tasks
+     * @return Task
      */
     public function setDescription($description)
     {
@@ -253,7 +253,7 @@ class Tasks
      * Set assignedTo
      *
      * @param string $assignedTo
-     * @return Tasks
+     * @return Task
      */
     public function setAssignedTo($assignedTo)
     {
@@ -276,7 +276,7 @@ class Tasks
      * Set estimatedTime
      *
      * @param float $estimatedTime
-     * @return Tasks
+     * @return Task
      */
     public function setEstimatedTime($estimatedTime)
     {
@@ -299,7 +299,7 @@ class Tasks
      * Set dueDate
      *
      * @param \DateTime $dueDate
-     * @return Tasks
+     * @return Task
      */
     public function setDueDate($dueDate)
     {
@@ -322,7 +322,7 @@ class Tasks
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Tasks
+     * @return Task
      */
     public function setCreatedAt($createdAt)
     {
@@ -345,7 +345,7 @@ class Tasks
      * Set closedDate
      *
      * @param \DateTime $closedDate
-     * @return Tasks
+     * @return Task
      */
     public function setClosedDate($closedDate)
     {
@@ -368,7 +368,7 @@ class Tasks
      * Set discussionId
      *
      * @param integer $discussionId
-     * @return Tasks
+     * @return Task
      */
     public function setDiscussionId($discussionId)
     {
@@ -391,7 +391,7 @@ class Tasks
      * Set startDate
      *
      * @param \DateTime $startDate
-     * @return Tasks
+     * @return Task
      */
     public function setStartDate($startDate)
     {
@@ -414,7 +414,7 @@ class Tasks
      * Set progress
      *
      * @param integer $progress
-     * @return Tasks
+     * @return Task
      */
     public function setProgress($progress)
     {
@@ -434,33 +434,33 @@ class Tasks
     }
 
     /**
-     * Set projects
+     * Set project
      *
-     * @param \AppBundle\Entity\Projects $projects
-     * @return Tasks
+     * @param \AppBundle\Entity\Project $project
+     * @return Task
      */
-    public function setProjects(\AppBundle\Entity\Projects $projects = null)
+    public function setProject(\AppBundle\Entity\Project $project = null)
     {
-        $this->projects = $projects;
+        $this->project = $project;
 
         return $this;
     }
 
     /**
-     * Get projects
+     * Get project
      *
-     * @return \AppBundle\Entity\Projects 
+     * @return \AppBundle\Entity\Project
      */
-    public function getProjects()
+    public function getProject()
     {
-        return $this->projects;
+        return $this->project;
     }
 
     /**
      * Set tickets
      *
      * @param \AppBundle\Entity\Tickets $tickets
-     * @return Tasks
+     * @return Task
      */
     public function setTickets(\AppBundle\Entity\Tickets $tickets = null)
     {
@@ -480,148 +480,148 @@ class Tasks
     }
 
     /**
-     * Set tasksStatus
+     * Set taskStatus
      *
-     * @param \AppBundle\Entity\TasksStatus $tasksStatus
-     * @return Tasks
+     * @param \AppBundle\Entity\TaskStatus $taskStatus
+     * @return Task
      */
-    public function setTasksStatus(\AppBundle\Entity\TasksStatus $tasksStatus = null)
+    public function setTaskStatus(\AppBundle\Entity\TaskStatus $taskStatus = null)
     {
-        $this->tasksStatus = $tasksStatus;
+        $this->taskStatus = $taskStatus;
 
         return $this;
     }
 
     /**
-     * Get tasksStatus
+     * Get taskStatus
      *
-     * @return \AppBundle\Entity\TasksStatus 
+     * @return \AppBundle\Entity\TaskStatus
      */
-    public function getTasksStatus()
+    public function getTaskStatus()
     {
-        return $this->tasksStatus;
+        return $this->taskStatus;
     }
 
     /**
-     * Set tasksPriority
+     * Set taskPriority
      *
-     * @param \AppBundle\Entity\TasksPriority $tasksPriority
-     * @return Tasks
+     * @param \AppBundle\Entity\TaskPriority $taskPriority
+     * @return Task
      */
-    public function setTasksPriority(\AppBundle\Entity\TasksPriority $tasksPriority = null)
+    public function setTaskPriority(\AppBundle\Entity\TaskPriority $taskPriority = null)
     {
-        $this->tasksPriority = $tasksPriority;
+        $this->taskPriority = $taskPriority;
 
         return $this;
     }
 
     /**
-     * Get tasksPriority
+     * Get taskPriority
      *
-     * @return \AppBundle\Entity\TasksPriority 
+     * @return \AppBundle\Entity\TaskPriority
      */
-    public function getTasksPriority()
+    public function getTaskPriority()
     {
-        return $this->tasksPriority;
+        return $this->taskPriority;
     }
 
     /**
-     * Set tasksType
+     * Set taskType
      *
-     * @param \AppBundle\Entity\TasksTypes $tasksType
-     * @return Tasks
+     * @param \AppBundle\Entity\TaskTypes $taskType
+     * @return Task
      */
-    public function setTasksType(\AppBundle\Entity\TasksTypes $tasksType = null)
+    public function setTaskType(\AppBundle\Entity\TaskTypes $taskType = null)
     {
-        $this->tasksType = $tasksType;
+        $this->taskType = $taskType;
 
         return $this;
     }
 
     /**
-     * Get tasksType
+     * Get taskType
      *
-     * @return \AppBundle\Entity\TasksTypes 
+     * @return \AppBundle\Entity\TaskTypes
      */
-    public function getTasksType()
+    public function getTaskType()
     {
-        return $this->tasksType;
+        return $this->taskType;
     }
 
     /**
-     * Set tasksLabel
+     * Set taskLabel
      *
-     * @param \AppBundle\Entity\TasksLabels $tasksLabel
-     * @return Tasks
+     * @param \AppBundle\Entity\TaskLabels $taskLabel
+     * @return Task
      */
-    public function setTasksLabel(\AppBundle\Entity\TasksLabels $tasksLabel = null)
+    public function setTaskLabel(\AppBundle\Entity\TaskLabels $taskLabel = null)
     {
-        $this->tasksLabel = $tasksLabel;
+        $this->taskLabel = $taskLabel;
 
         return $this;
     }
 
     /**
-     * Get tasksLabel
+     * Get taskLabel
      *
-     * @return \AppBundle\Entity\TasksLabels 
+     * @return \AppBundle\Entity\TaskLabels
      */
-    public function getTasksLabel()
+    public function getTaskLabel()
     {
-        return $this->tasksLabel;
+        return $this->taskLabel;
     }
 
     /**
-     * Set tasksGroups
+     * Set taskGroups
      *
-     * @param \AppBundle\Entity\TasksGroups $tasksGroups
-     * @return Tasks
+     * @param \AppBundle\Entity\TaskGroups $taskGroups
+     * @return Task
      */
-    public function setTasksGroups(\AppBundle\Entity\TasksGroups $tasksGroups = null)
+    public function setTaskGroups(\AppBundle\Entity\TaskGroups $taskGroups = null)
     {
-        $this->tasksGroups = $tasksGroups;
+        $this->taskGroups = $taskGroups;
 
         return $this;
     }
 
     /**
-     * Get tasksGroups
+     * Get taskGroups
      *
-     * @return \AppBundle\Entity\TasksGroups 
+     * @return \AppBundle\Entity\TaskGroups
      */
-    public function getTasksGroups()
+    public function getTaskGroups()
     {
-        return $this->tasksGroups;
+        return $this->taskGroups;
     }
 
     /**
-     * Set projectsPhases
+     * Set projectPhase
      *
-     * @param \AppBundle\Entity\ProjectsPhases $projectsPhases
-     * @return Tasks
+     * @param \AppBundle\Entity\ProjectPhase $projectPhase
+     * @return Task
      */
-    public function setProjectsPhases(\AppBundle\Entity\ProjectsPhases $projectsPhases = null)
+    public function setProjectPhase(\AppBundle\Entity\ProjectPhase $projectPhase = null)
     {
-        $this->projectsPhases = $projectsPhases;
+        $this->projectPhase = $projectPhase;
 
         return $this;
     }
 
     /**
-     * Get projectsPhases
+     * Get projectPhase
      *
-     * @return \AppBundle\Entity\ProjectsPhases 
+     * @return \AppBundle\Entity\ProjectPhase
      */
-    public function getProjectsPhases()
+    public function getProjectPhase()
     {
-        return $this->projectsPhases;
+        return $this->projectPhase;
     }
 
     /**
      * Set versions
      *
      * @param \AppBundle\Entity\Versions $versions
-     * @return Tasks
+     * @return Task
      */
     public function setVersions(\AppBundle\Entity\Versions $versions = null)
     {
@@ -643,10 +643,10 @@ class Tasks
     /**
      * Set createdBy
      *
-     * @param \AppBundle\Entity\Users $createdBy
-     * @return Tasks
+     * @param \AppBundle\Entity\User $createdBy
+     * @return Task
      */
-    public function setCreatedBy(\AppBundle\Entity\Users $createdBy = null)
+    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
         $this->createdBy = $createdBy;
 
@@ -656,7 +656,7 @@ class Tasks
     /**
      * Get createdBy
      *
-     * @return \AppBundle\Entity\Users 
+     * @return \AppBundle\Entity\User
      */
     public function getCreatedBy()
     {
