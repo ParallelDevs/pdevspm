@@ -41,8 +41,8 @@ class Project
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinTable(name="project_team",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id", unique=true)}
+     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)}
      *      )
      */
     private $team;
