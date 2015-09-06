@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {# Main Header #}
+    <header class="main-header">
+        {% block main_header %}
+            {#{% include 'layout/header.html.twig' %}#}
+        {% endblock %}
+    </header>
+
+    {# Left side column. contains the logo and sidebar #}
+    <aside class="main-sidebar">
+        {% block main_sidebar %}
+            {#{% include 'layout/sidebar.html.twig' %}#}
+        {% endblock %}
+    </aside>
+
+    {# Content Wrapper. Contains page content #}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1> {% block page_title %}{% endblock %}</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                <li class="active">Here</li>
+            </ol>
+        </section>
+        <section class="content">
+            {% block content %}{% endblock %}
+        </section>
+
+    </div>
+
+    {# Main Footer #}
+    <footer class="main-footer">
+        {% block main_footer %}
+            {#{% include 'layout/footer.html.twig' %}#}
+        {% endblock %}
+    </footer>
+
+
+    {# Control Sidebar #}
+    <aside class="control-sidebar control-sidebar-dark">
+        {% block control_siderbar %}
+            {#{% include 'layout/controlSidebar.html.twig' %}#}
+        {% endblock %}
+    </aside>
+    {# Add the sidebar's background. This div must be placed immediately after the control sidebar #}
+    <div class="control-sidebar-bg"></div>
+
+{% endblock %}
+
