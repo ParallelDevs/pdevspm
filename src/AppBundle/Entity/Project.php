@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Project
@@ -38,7 +39,11 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="team", type="text", nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinTable(name="project_team",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id", unique=true)}
+     *      )
      */
     private $team;
 
@@ -86,7 +91,10 @@ class Project
      */
     private $createdBy;
 
-
+    public function __construct()
+    {
+        $this->team = new ArrayCollection();
+    }
 
     /**
      * Get id
