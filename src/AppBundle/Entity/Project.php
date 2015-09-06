@@ -37,7 +37,7 @@ class Project
     private $description;
 
     /**
-     * @var string
+     * @var \AppBundle\Entity\User
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinTable(name="project_team",
@@ -155,10 +155,10 @@ class Project
     /**
      * Set team
      *
-     * @param string $team
+     * @param \Doctrine\Common\Collections\ArrayCollection $team
      * @return Project
      */
-    public function setTeam($team)
+    public function setTeam(\Doctrine\Common\Collections\ArrayCollection $team)
     {
         $this->team = $team;
 
@@ -168,7 +168,7 @@ class Project
     /**
      * Get team
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getTeam()
     {

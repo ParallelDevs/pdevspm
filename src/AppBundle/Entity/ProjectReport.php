@@ -3,11 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * ProjectsReport
  *
- * @ORM\Table(name="project_report", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
+ * @ORM\Table(name="project_report", indexes={@ORM\Index(name="fk_project_report_created_by", columns={"created_by"}), @ORM\Index(name="fk_project_report_user", columns={"user_id"})})
  * @ORM\Entity
  */
 class ProjectReport
@@ -36,32 +37,47 @@ class ProjectReport
     private $displayOnHome;
 
     /**
-     * @var string
+     * @var \AppBundle\Entity\Project
      *
-     * @ORM\Column(name="project_id", type="text", nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project")
+     * @ORM\JoinTable(name="project_report_project",
+     *      joinColumns={@ORM\JoinColumn(name="project_report_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id", unique=true)}
+     *      )
      */
-    private $projectId;
+    private $projects;
 
     /**
-     * @var string
+     * @var \AppBundle\Entity\ProjectType
      *
-     * @ORM\Column(name="project_type_id", type="text", nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ProjectType")
+     * @ORM\JoinTable(name="project_report_project_type",
+     *      joinColumns={@ORM\JoinColumn(name="project_report_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="project_type_id", referencedColumnName="id", unique=true)}
+     *      )
      */
-    private $projectTypeId;
+    private $projectTypes;
 
     /**
-     * @var string
+     * @var \AppBundle\Entity\ProjectStatus
      *
-     * @ORM\Column(name="project_status_id", type="text", nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ProjectStatus")
+     * @ORM\JoinTable(name="project_report_project_status",
+     *      joinColumns={@ORM\JoinColumn(name="project_report_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="project_status_id", referencedColumnName="id", unique=true)}
+     *      )
      */
-    private $projectStatusId;
+    private $projectStatus;
 
     /**
-     * @var integer
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\Column(name="in_team", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
      */
-    private $inTeam;
+    private $user;
 
     /**
      * @var integer
@@ -89,12 +105,18 @@ class ProjectReport
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      * })
      */
-    private $user;
+    private $createdBy;
 
 
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+        $this->projectTypes = new ArrayCollection();
+        $this->projectStatus = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -153,95 +175,95 @@ class ProjectReport
     }
 
     /**
-     * Set projectId
+     * Set projects
      *
-     * @param string $projectId
+     * @param string $projects
      * @return ProjectReport
      */
-    public function setProjectId($projectId)
+    public function setProjects($projects)
     {
-        $this->projectId = $projectId;
+        $this->projects = $projects;
 
         return $this;
     }
 
     /**
-     * Get projectId
+     * Get projects
      *
      * @return string 
      */
-    public function getProjectId()
+    public function getProjects()
     {
-        return $this->projectId;
+        return $this->projects;
     }
 
     /**
-     * Set projectTypeId
+     * Set projectTypes
      *
-     * @param string $projectTypeId
+     * @param string $projectTypes
      * @return ProjectReport
      */
-    public function setProjectTypeId($projectTypeId)
+    public function setProjectTypes($projectTypes)
     {
-        $this->projectTypeId = $projectTypeId;
+        $this->projectTypes = $projectTypes;
 
         return $this;
     }
 
     /**
-     * Get projectTypeId
+     * Get projectTypes
      *
      * @return string 
      */
-    public function getProjectTypeId()
+    public function getProjectTypes()
     {
-        return $this->projectTypeId;
+        return $this->projectTypes;
     }
 
     /**
-     * Set projectStatusId
+     * Set projectStatus
      *
-     * @param string $projectStatusId
+     * @param string $projectStatus
      * @return ProjectReport
      */
-    public function setProjectStatusId($projectStatusId)
+    public function setProjectStatus($projectStatus)
     {
-        $this->projectStatusId = $projectStatusId;
+        $this->projectStatus = $projectStatus;
 
         return $this;
     }
 
     /**
-     * Get projectStatusId
+     * Get projectStatus
      *
      * @return string 
      */
-    public function getProjectStatusId()
+    public function getProjectStatus()
     {
-        return $this->projectStatusId;
+        return $this->projectStatus;
     }
 
     /**
-     * Set inTeam
+     * Set user
      *
-     * @param integer $inTeam
+     * @param \AppBundle\Entity\User $user
      * @return ProjectReport
      */
-    public function setInTeam($inTeam)
+    public function setUser(\AppBundle\Entity\User $user)
     {
-        $this->inTeam = $inTeam;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get inTeam
+     * Get user
      *
-     * @return integer 
+     * @return \AppBundle\Entity\User
      */
-    public function getInTeam()
+    public function getUser()
     {
-        return $this->inTeam;
+        return $this->user;
     }
 
     /**
@@ -314,25 +336,25 @@ class ProjectReport
     }
 
     /**
-     * Set user
+     * Set createdBy
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \AppBundle\Entity\User $createdBy
      * @return ProjectReport
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
     {
-        $this->user = $user;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get createdBy
      *
      * @return \AppBundle\Entity\User
      */
-    public function getUser()
+    public function getCreatedBy()
     {
-        return $this->user;
+        return $this->createdBy;
     }
 }
