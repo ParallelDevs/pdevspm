@@ -1,9 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block  content %}
-    <h1>Project</h1>
+{% block page_title -%} Project Details{% endblock %}
 
-    <table class="record_properties">
+{% block  content %}
+   
+   <table class="table table-hover">
         <tbody>
             
             <tr>
@@ -26,17 +27,17 @@
                 <th>Ordertaskby</th>
                 <td>{{ entity.orderTaskBy }}</td>
             </tr>
+                        
         </tbody>        
     </table>
         <ul class="record_actions">
     <li>
         <a href="{{ path('project') }}">
-            Back to the list
+            Back to the lists
         </a>
     </li>
     <li>
-        <a href="{{ path('project_edit', { 'id': entity.id }) }}">
-            Edit
+        <a class="fa fa-edit" href="{{ path('project_edit', { 'id': entity.id }) }}">
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

@@ -26,9 +26,10 @@
             </ol>
         </section>
         <section class="content">
-            {% block content %}{% endblock %}
+            <div class="row">
+                {% block content %}{% endblock %}    
+            </div>                      
         </section>
-
     </div>
 
     {# Main Footer #}
@@ -37,7 +38,6 @@
             {#{% include 'layout/footer.html.twig' %}#}
         {% endblock %}
     </footer>
-
 
     {# Control Sidebar #}
     <aside class="control-sidebar control-sidebar-dark">
