@@ -19,7 +19,12 @@ class ProjectType extends AbstractType
             ->add('description')
             ->add('createdAt')
             ->add('orderTaskBy')
-            ->add('team')
+            ->add('team', 'entity', [
+                'class' => 'AppBundle\Entity\User', 
+                'property' => 'username',
+                'multiple' => true,
+                'expanded' => true
+                ])
             ->add('projectStatus', 'entity', ['class' => 'AppBundle\Entity\ProjectStatus', 'property' => 'name'])
             ->add('projectType', 'entity', ['class' => 'AppBundle\Entity\ProjectType', 'property' => 'name'])
             ->add('createdBy')
