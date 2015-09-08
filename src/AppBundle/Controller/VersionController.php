@@ -8,11 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Version;
 use AppBundle\Form\VersionType;
-use AppBundle\Entity\Project;
+
 /**
  * Version controller.
  *
- * @Route("/version")
+ * @Route("/project")
  */
 class VersionController extends Controller
 {
@@ -20,15 +20,15 @@ class VersionController extends Controller
     /**
      * Lists all Version entities.
      *
-     * @Route("/", name="version")
+     * @Route("/{project_id}/version", name="version")
      * @Method("GET")
      * 
      */
-    public function indexAction()
+    public function indexAction($project_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Version')->findAll();
+        $entities = $em->getRepository('AppBundle:Version')->findByProject($project_id);
 
         return $this->render('Version/index.html.twig', ['entities' => $entities]);
         
@@ -56,7 +56,7 @@ class VersionController extends Controller
         
         return $this->render('Version/new.html.twig',[
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form'   => $form->createView(),    
         ]);
     }
 
@@ -82,7 +82,7 @@ class VersionController extends Controller
     /**
      * Displays a form to create a new Version entity.
      *
-     * @Route("/new", name="version_new")
+     * @Route("/version/new", name="version_new")
      * @Method("GET")
      * 
      */
@@ -95,38 +95,39 @@ class VersionController extends Controller
             'entity' => $entity,
             'form'   => $form->createView(),
         ]); 
+        
     }
 
     /**
-     * Finds and displays a Version entity.
+     * Finds and displays a Version entity. Show the projects relational with the id. 
      *
-     * @Route("/{id}/project", name="version_show")
+     * @Route("/{project_id}/version/{version_id}", name="version_show")
      * @Method("GET")
      * 
      */
-    public function showAction($id)
+    public function showAction($project_id, $version_id)
     {
-        $repository = $this->getDoctrine()
-                    ->getRepository('AppBundle:Version'); 
         
-        $entity = $repository->find($id);
-        
+        $entity = $this->getDoctrine()->getRepository('AppBundle:Version')
+                        ->findBy(['project' => $project_id,
+                            'id' => $version_id                                
+                            ]);
+                        
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Version entity.');
         }
         
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($project_id);
 
         return $this->render('Version/show.html.twig', 
-                 ['entity' => $entity, 
-                  'id'=>$entity->getId(), 
+                 ['entity' => $entity,
                   'delete_form' => $deleteForm->createView()]);
     }
 
     /**
      * Displays a form to edit an existing Version entity.
      *
-     * @Route("/{id}/edit", name="version_edit")
+     * @Route("/{id}/version/edit", name="version_edit")
      * @Method("GET")
      * 
      */

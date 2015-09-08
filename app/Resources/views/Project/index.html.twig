@@ -3,15 +3,7 @@
 {% block page_title -%} Project List {% endblock %}
 
 {% block content %}
-    
-    <ul>
-        <li>
-            <a class="btn btn-block btn-primary btn-xs">
-                Show Version
-            </a>
-        </li>
-    </ul>
-    
+        
     <table class="table table-hover">
         <thead>
             <tr>
@@ -26,8 +18,8 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
+                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.description }}</td>
                 <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.orderTaskBy }}</td>
@@ -44,7 +36,7 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table>        
         <ul>
         <li>
             <a class="btn btn-block btn-primary btn-xs" href="{{ path('project_new') }}">

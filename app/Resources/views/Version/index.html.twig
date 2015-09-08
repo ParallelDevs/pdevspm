@@ -16,19 +16,20 @@
             </tr>
         </thead>
         <tbody>
+                        
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('version_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('version_show', { 'project_id': entity.id }, {'id': entity.project.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.description }}</td>
                 <td>{% if entity.dueDate %}{{ entity.dueDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('version_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('version_show', { 'project_id': entity.project.id , 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('version_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('version_edit', { 'project_id': entity.project.id  }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
