@@ -1,0 +1,17 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title -%} Version Edit {% endblock %}
+
+{% block content %}
+    
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('version') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

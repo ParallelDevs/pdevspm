@@ -1,7 +1,17 @@
 {% extends '::layout.html.twig' %}
 
+{% block page_title -%} Project List {% endblock %}
+
 {% block content %}
-    <h1>Project list</h1>
+    
+    <ul>
+        <li>
+            <a class="btn btn-block btn-primary btn-xs">
+                Show Version
+            </a>
+        </li>
+    </ul>
+    
     <table class="table table-hover">
         <thead>
             <tr>
