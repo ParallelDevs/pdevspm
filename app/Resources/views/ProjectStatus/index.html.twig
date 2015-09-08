@@ -1,0 +1,47 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    <h1>ProjectStatus list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Sortorder</th>
+                <th>Defaultvalue</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('projectstatus_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.sortOrder }}</td>
+                <td>{{ entity.defaultValue }}</td>
+                <td>{{ entity.active }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('projectstatus_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('projectstatus_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('projectstatus_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

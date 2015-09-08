@@ -35,14 +35,14 @@ class Project
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
-
+    
     /**
      * @var \AppBundle\Entity\User
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinTable(name="project_team",
      *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      *      )
      */
     private $team;
