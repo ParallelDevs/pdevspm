@@ -23,11 +23,11 @@
         </tbody>
     </table>
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('version' , { 'project_id': entity.project.id }) }}">
-            Back to the list
-        </a>
-    </li>
+            <li>
+                <a href="{{ path('version_show' , { 'project_id': entity.project.id }) }}">
+                    Back to the list Of Version
+                </a>
+            </li>
     
     <li>{{ form(delete_form) }}</li>
 </ul>

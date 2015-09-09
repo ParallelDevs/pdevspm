@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Project;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -22,7 +23,7 @@ class VersionController extends Controller
      *
      * @Route("/{project_id}/version", name="version")
      * @Method("GET")
-     * 
+     *
      */
     public function indexAction($project_id)
     {
@@ -33,12 +34,13 @@ class VersionController extends Controller
         return $this->render('Version/index.html.twig', ['entities' => $entities]);
         
     }
+
     /**
      * Creates a new Version entity.
      *
      * @Route("/", name="version_create")
      * @Method("POST")
-     * 
+     *
      */
     public function createAction(Request $request)
     {
@@ -48,15 +50,16 @@ class VersionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($entity);
             $em->flush();
-            
+
             return $this->redirect($this->generateUrl('version_show', ['id' => $entity->getId()]));
         }
-        
+
         return $this->render('Version/new.html.twig',[
             'entity' => $entity,
-            'form'   => $form->createView(),    
+            'form'   => $form->createView(),
         ]);
     }
 
@@ -82,28 +85,35 @@ class VersionController extends Controller
     /**
      * Displays a form to create a new Version entity.
      *
-     * @Route("/version/new", name="version_new")
+     * @Route("/{project_id}/version/new", name="version_new")
      * @Method("GET")
      * 
      */
-    public function newAction()
+    public function newAction($project_id)
     {
         $entity = new Version();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $project= $em->getRepository('AppBundle:Project')->find($project_id);
+        $entity->setProject($project);
+
         $form   = $this->createCreateForm($entity);
 
         return $this->render('Version/new.html.twig', [
             'entity' => $entity,
             'form'   => $form->createView(),
-        ]); 
+
+        ]);
         
     }
 
     /**
-     * Finds and displays a Version entity. Show the projects relational with the id. 
+     * Finds and displays a Version entity. Show the projects relational with the id.
      *
      * @Route("/{project_id}/version/{version_id}", name="version_show")
      * @Method("GET")
-     * 
+     *
      */
     public function showAction($project_id, $version_id)
     {
