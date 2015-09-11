@@ -19,16 +19,22 @@
                 <th>Description</th>
                 <td>{{ entity.description }}</td>
             </tr>
+            <tr>
+                <td colspan="2">
+                    <ul class="record_actions">
+                        <li>
+                            <a href="{{ path('version_show' , { 'project_id': entity.project.id , 'version_id': entity.id }) }}">
+                            Back to the list Of Version
+                            </a>
+                        </li>
+
+                        <li>{{ form(delete_form) }}</li>
+                    </ul>
+
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('version_show' , { 'project_id': entity.project.id }) }}">
-                    Back to the list Of Version
-                </a>
-            </li>
-    
-    <li>{{ form(delete_form) }}</li>
-</ul>
+
 {% endblock %}

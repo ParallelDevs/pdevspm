@@ -38,23 +38,36 @@ class VersionController extends Controller
     /**
      * Creates a new Version entity.
      *
-     * @Route("/", name="version_create")
+     * @Route("/{project_id}/version", name="version_create")
      * @Method("POST")
      *
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $project_id)
     {
+
         $entity = new Version();
-        $form = $this->createCreateForm($entity);
+
+
+        $form = $this->createCreateForm($entity, $project_id);
+
+
         $form->handleRequest($request);
+        echo'<pre>';
+        print_r($request);
+        echo'</pre>';
+        exit();
+
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+
+
+
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('version_show', ['id' => $entity->getId()]));
+            return $this->redirect($this->generateUrl('version_show', ['version_id' => $entity->getId(), 'project_id' => $project_id]));
         }
 
         return $this->render('Version/new.html.twig',[
@@ -70,10 +83,12 @@ class VersionController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Version $entity)
+    private function createCreateForm(Version $entity, $project_id)
     {
+
+
         $form = $this->createForm(new VersionType(), $entity, array(
-            'action' => $this->generateUrl('version_create'),
+            'action' => $this->generateUrl('version_create', ['project_id' => $project_id]),
             'method' => 'POST',
         ));
 
@@ -98,7 +113,7 @@ class VersionController extends Controller
         $project= $em->getRepository('AppBundle:Project')->find($project_id);
         $entity->setProject($project);
 
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity, $project_id);
 
         return $this->render('Version/new.html.twig', [
             'entity' => $entity,
