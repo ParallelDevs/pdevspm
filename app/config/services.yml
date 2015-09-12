@@ -3,6 +3,7 @@
 parameters:
     knp_menu.renderer.twig.options:
         currentClass: active
+        ancestorClass: active
 
 services:
     app.form_login_authenticator:

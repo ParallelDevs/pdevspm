@@ -4,7 +4,6 @@ namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\DependencyInjection\ContainerAware;
 
 class MenuBuilder
 {
@@ -24,37 +23,44 @@ class MenuBuilder
         $menu = $this->factory->createItem('root', ['childrenAttributes' => ['class' => 'sidebar-menu']]);
 
         $menu->addChild('Project', [
-          'route' => 'project',
-          'label' => '<i class="fa fa-sitemap"></i><span>Projects</span>',
-          'extras' => ['safe_label' => true]
+            'route' => 'project',
+            'label' => '<i class="fa fa-sitemap"></i><span>Projects</span>',
+            'extras' => ['safe_label' => true]
         ]);
 
         $menu->addChild('User', [
-          'route' => 'admin_user',
-          'label' => '<i class="fa fa-users"></i><span>User</span>',
-          'extras' => ['safe_label' => true]
+            'route' => 'admin_user',
+            'label' => '<i class="fa fa-users"></i><span>User</span>',
+            'extras' => ['safe_label' => true]
         ]);
 
         $menu->addChild('Configuration', [
-          'uri' => '#',
-          'label' => '<i class="fa fa-cogs"></i><span>Configuration</span><i class="fa fa-angle-left pull-right"></i>',
-          'attributes' => ['class' => 'treeview'],
-          'childrenAttributes' => ['class' => 'treeview-menu'],
-          'extras' => ['safe_label' => true]
+            'uri' => '#',
+            'label' => '<i class="fa fa-cogs"></i><span>Configuration</span><i class="fa fa-angle-left pull-right"></i>',
+            'attributes' => ['class' => 'treeview'],
+            'childrenAttributes' => ['class' => 'treeview-menu'],
+            'extras' => ['safe_label' => true]
         ]);
 
-        $menu['Configuration']->addChild('ProjectStatus', [
+        $menu['Configuration']->addChild('Project', [
+            'uri' => '#',
+            'label' => '<span>Project</span><i class="fa fa-angle-left pull-right"></i>',
+            'attributes' => ['class' => 'treeview'],
+            'childrenAttributes' => ['class' => 'treeview-menu'],
+            'extras' => ['safe_label' => true]
+        ]);
+
+        $menu['Configuration']['Project']->addChild('ProjectStatus', [
           'route' => 'config_project_status',
-          'label' => '<i class="fa fa-cogs"></i><span>Project Status</span>',
+          'label' => '<span>Project Status</span>',
           'extras' => ['safe_label' => true]
         ]);
 
-        $menu['Configuration']->addChild('ProjectType', [
+        $menu['Configuration']['Project']->addChild('ProjectType', [
           'route' => 'config_project_type',
-          'label' => '<i class="fa fa-cogs"></i><span>Project Type</span>',
+          'label' => '<span>Project Type</span>',
           'extras' => ['safe_label' => true]
         ]);
-
 
         return $menu;
     }
