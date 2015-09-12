@@ -1,47 +1,52 @@
 {% extends '::layout.html.twig' %}
 
+{% block page_title -%}Project Status list{% endblock %}
+
 {% block content %}
-    <h1>ProjectStatus list</h1>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Sortorder</th>
-                <th>Defaultvalue</th>
-                <th>Active</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('config_project_status_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.sortOrder }}</td>
-                <td>{{ entity.defaultValue }}</td>
-                <td>{{ entity.active }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('config_project_status_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('config_project_status_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('config_project_status_new') }}">
-                Create a new entry
+    <div class="col-md-3">
+        <div class="box">
+            <a class="btn btn-block btn-primary btn-lg" href="{{ path('config_project_status_new') }}">
+                Create a new Project Status
             </a>
-        </li>
-    </ul>
-    {% endblock %}
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Sort order</th>
+                    <th>Default value</th>
+                    <th>Active</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('config_project_status_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.sortOrder }}</td>
+                        <td>{{ entity.defaultValue }}</td>
+                        <td>{{ entity.active }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('config_project_status_show', { 'id': entity.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('config_project_status_edit', { 'id': entity.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

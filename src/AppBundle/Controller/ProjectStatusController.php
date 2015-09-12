@@ -73,8 +73,6 @@ class ProjectStatusController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
         return $form;
     }
 
@@ -163,8 +161,6 @@ class ProjectStatusController extends Controller
             'action' => $this->generateUrl('config_project_status_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
