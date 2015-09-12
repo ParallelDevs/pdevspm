@@ -12,7 +12,7 @@
     {# Left side column. contains the logo and sidebar #}
     <aside class="main-sidebar">
         {% block main_sidebar %}
-            {#{% include 'layout/sidebar.html.twig' %}#}
+            {% include 'layout/sidebar.html.twig' %}
         {% endblock %}
     </aside>
 
@@ -27,7 +27,7 @@
         </section>
         <section class="content">
             <div class="row">
-                {% block content %}{% endblock %}    
+                {% block content %}{% endblock %}
             </div>                      
         </section>
     </div>
