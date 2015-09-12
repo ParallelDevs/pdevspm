@@ -12,7 +12,7 @@ use AppBundle\Form\ProjectTypeType;
 /**
  * ProjectType controller.
  *
- * @Route("/project-type")
+ * @Route("/app/config/project/type")
  */
 class ProjectTypeController extends Controller
 {
@@ -20,7 +20,7 @@ class ProjectTypeController extends Controller
     /**
      * Lists all ProjectType entities.
      *
-     * @Route("/", name="projecttype")
+     * @Route("/", name="config_project_type")
      * @Method("GET")
      * 
      */
@@ -35,7 +35,7 @@ class ProjectTypeController extends Controller
     /**
      * Creates a new ProjectType entity.
      *
-     * @Route("/", name="projecttype_create")
+     * @Route("/", name="config_project_type_create")
      * @Method("POST")
      * 
      */
@@ -50,7 +50,7 @@ class ProjectTypeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('projecttype_show', ['id' => $entity->getId()]));
+            return $this->redirect($this->generateUrl('config_project_type_show', ['id' => $entity->getId()]));
         }
 
          return $this->render('ProjectType/new.html.twig',[
@@ -69,7 +69,7 @@ class ProjectTypeController extends Controller
     private function createCreateForm(ProjectType $entity)
     {
         $form = $this->createForm(new ProjectTypeType(), $entity, array(
-            'action' => $this->generateUrl('projecttype_create'),
+            'action' => $this->generateUrl('config_project_type_create'),
             'method' => 'POST',
         ));
 
@@ -81,7 +81,7 @@ class ProjectTypeController extends Controller
     /**
      * Displays a form to create a new ProjectType entity.
      *
-     * @Route("/new", name="projecttype_new")
+     * @Route("/new", name="config_project_type_new")
      * @Method("GET")
      * 
      */
@@ -99,7 +99,7 @@ class ProjectTypeController extends Controller
     /**
      * Finds and displays a ProjectType entity.
      *
-     * @Route("/{id}", name="projecttype_show")
+     * @Route("/{id}", name="config_project_type_show")
      * @Method("GET")
      * 
      */
@@ -125,7 +125,7 @@ class ProjectTypeController extends Controller
     /**
      * Displays a form to edit an existing ProjectType entity.
      *
-     * @Route("/{id}/edit", name="projecttype_edit")
+     * @Route("/{id}/edit", name="config_project_type_edit")
      * @Method("GET")
      * 
      */
@@ -159,7 +159,7 @@ class ProjectTypeController extends Controller
     private function createEditForm(ProjectType $entity)
     {
         $form = $this->createForm(new ProjectTypeType(), $entity, array(
-            'action' => $this->generateUrl('projecttype_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('config_project_type_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -170,7 +170,7 @@ class ProjectTypeController extends Controller
     /**
      * Edits an existing ProjectType entity.
      *
-     * @Route("/{id}", name="projecttype_update")
+     * @Route("/{id}", name="config_project_type_update")
      * @Method("PUT")
      * 
      */
@@ -191,7 +191,7 @@ class ProjectTypeController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('projecttype_edit', ['id' => $id]));
+            return $this->redirect($this->generateUrl('config_project_type_edit', ['id' => $id]));
         }
 
         return array(
@@ -203,7 +203,7 @@ class ProjectTypeController extends Controller
     /**
      * Deletes a ProjectType entity.
      *
-     * @Route("/{id}", name="projecttype_delete")
+     * @Route("/{id}", name="config_project_type_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -223,7 +223,7 @@ class ProjectTypeController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('projecttype'));
+        return $this->redirect($this->generateUrl('config_project_type'));
     }
 
     /**
@@ -236,7 +236,7 @@ class ProjectTypeController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('projecttype_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('config_project_type_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
