@@ -13,7 +13,7 @@ use AppBundle\Form\RegistrationType;
 /**
  * User controller.
  *
- * @Route("/admin/user")
+ * @Route("/app/user")
  */
 class UserController extends Controller
 {
