@@ -16,7 +16,6 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('photo')
             ->add('file', 'file')
         ;
     }
