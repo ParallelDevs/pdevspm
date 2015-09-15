@@ -35,7 +35,7 @@ class User extends BaseUser
   private $photo;
 
   /**
-   * @Assert\File(maxSize="6000000")
+   * @Assert\File(maxSize="2M")
    */
   private $file;
 
@@ -48,7 +48,7 @@ class User extends BaseUser
    * Set name
    *
    * @param string $name
-   * @return Users
+   * @return User
    */
   public function setName($name)
   {

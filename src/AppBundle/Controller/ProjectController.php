@@ -8,11 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Project controller.
  *
- * @Route("/project")
+ * @Route("/app/project")
  */
 class ProjectController extends Controller
 {
@@ -46,6 +47,10 @@ class ProjectController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            // Assign Current user
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $entity->setCreatedBy($user);
+            $entity->setCreatedAt(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -72,8 +77,6 @@ class ProjectController extends Controller
             'action' => $this->generateUrl('project_create'),
             'method' => 'POST',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -168,8 +171,6 @@ class ProjectController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
         return $form;
     }
     /**
@@ -241,9 +242,9 @@ class ProjectController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('project_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('project_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', ['label' => 'Delete'])
             ->getForm()
         ;
     }
