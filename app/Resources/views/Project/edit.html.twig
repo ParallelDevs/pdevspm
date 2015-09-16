@@ -1,8 +1,17 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%} Project Edit {% endblock %}
+    {% block edit %}
+        {{ form(edit_form) }}
+    {% endblock%}
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('project') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
 
-{% block content %}
     <div class="col-md-12">
         <div class="box box-primary">
             {{ form_start(edit_form, {'attr': {'role' : 'form'}}) }}
@@ -65,4 +74,5 @@
     <ul class="record_actions">
         <li>{{ form(delete_form) }}</li>
     </ul>
+
 {% endblock %}

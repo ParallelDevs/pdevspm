@@ -1,0 +1,16 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title -%} Version Status Creation {% endblock %}
+
+{% block content %}
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('versionstatus') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
