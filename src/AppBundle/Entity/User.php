@@ -41,9 +41,9 @@ class User extends BaseUser
     /**
      * @Assert\Image(
      *     maxSize = "2M",
-     *     minWidth = 50,
+     *     minWidth = 100,
      *     maxWidth = 600,
-     *     minHeight = 50,
+     *     minHeight = 100,
      *     maxHeight = 600,
      *     allowLandscape = false,
      *     allowPortrait = false
