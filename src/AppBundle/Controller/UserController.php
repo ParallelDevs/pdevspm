@@ -79,8 +79,6 @@ class UserController extends Controller
             'method' => 'POST',
         ]);
 
-        $form->add('submit', 'submit', ['label' => 'Create']);
-
         return $form;
     }
 
@@ -119,9 +117,9 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('user/new.html.twig', [
+        return $this->render('user/show.html.twig', [
           'entity' => $entity,
-          'form'   => $deleteForm->createView(),
+          'delete_form'   => $deleteForm->createView(),
         ]);
     }
 
@@ -164,8 +162,6 @@ class UserController extends Controller
             'action' => $this->generateUrl('admin_user_update', ['id' => $entity->getId()]),
             'method' => 'PUT',
         ]);
-
-        $form->add('submit', 'submit', ['label' => 'Update']);
 
         return $form;
     }
