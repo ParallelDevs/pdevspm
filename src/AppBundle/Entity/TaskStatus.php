@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TaskStatus
  *
- * @ORM\Table(name="task_status")
+ * @ORM\Table(name="task_status", indexes={@ORM\Index(name="fk_task_status_group", columns={"task_group_id"})})
  * @ORM\Entity
  */
 class TaskStatus
@@ -29,9 +29,12 @@ class TaskStatus
     private $name;
 
     /**
-     * @var string
+     * @var \AppBundle\Entity\TaskGroup
      *
-     * @ORM\Column(name="group", type="string", length=64, nullable=false)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskGroup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="task_group_id", referencedColumnName="id")
+     * })
      */
     private $group;
 
@@ -94,10 +97,10 @@ class TaskStatus
     /**
      * Set group
      *
-     * @param string $group
-     * @return TaskStatus
+     * @param \AppBundle\Entity\TaskGroup $group
+     * @return TaskGroup
      */
-    public function setGroup($group)
+    public function setGroup(\AppBundle\Entity\TaskGroup $group = null)
     {
         $this->group = $group;
 
@@ -107,7 +110,7 @@ class TaskStatus
     /**
      * Get group
      *
-     * @return string 
+     * @return \AppBundle\Entity\TaskGroup
      */
     public function getGroup()
     {

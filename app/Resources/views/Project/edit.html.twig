@@ -3,6 +3,8 @@
     {% block edit %}
         {{ form(edit_form) }}
     {% endblock%}
+
+{% block content %}
 <ul class="record_actions">
     <li>
         <a href="{{ path('project') }}">
