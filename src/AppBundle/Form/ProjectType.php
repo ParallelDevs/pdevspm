@@ -46,6 +46,6 @@ class ProjectType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_project';
+        return 'project';
     }
 }

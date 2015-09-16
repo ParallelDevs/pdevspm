@@ -47,22 +47,16 @@ class VersionController extends Controller
 
         $entity = new Version();
 
-
         $form = $this->createCreateForm($entity, $project_id);
 
-
         $form->handleRequest($request);
-        echo'<pre>';
-        print_r($request);
-        echo'</pre>';
-        exit();
 
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-
-
+            $project= $em->getRepository('AppBundle:Project')->find($project_id);
+            $entity->setProject($project);
 
             $em->persist($entity);
             $em->flush();

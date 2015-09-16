@@ -19,7 +19,7 @@ class VersionType extends AbstractType
             ->add('description')
             ->add('dueDate')
             //->add('project', 'entity', ['class' => 'AppBundle\Entity\Project', 'property' => 'name'])
-            ->add('project', 'hidden', ['property_path' => 'project.id'])
+            //->add('project', 'hidden', ['property_path' => 'project.id'])
             ->add('versionStatus', 'entity', ['class' => 'AppBundle\Entity\VersionStatus', 'property' => 'name'])
         ;
     }
