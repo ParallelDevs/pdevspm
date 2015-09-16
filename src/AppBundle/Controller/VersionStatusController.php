@@ -12,7 +12,7 @@ use AppBundle\Form\VersionStatusType;
 /**
  * VersionStatus controller.
  *
- * @Route("/versionstatus")
+ * @Route("/app/config/project/versionstatus")
  */
 class VersionStatusController extends Controller
 {

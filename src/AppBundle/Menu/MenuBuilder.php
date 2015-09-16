@@ -62,6 +62,12 @@ class MenuBuilder
           'extras' => ['safe_label' => true]
         ]);
 
+        $menu['Configuration']['Project']->addChild('VersionStatus', [
+            'route' => 'versionstatus',
+            'label' => '<span>Version Status</span>',
+            'extras' => ['safe_label' => true]
+        ]);
+
         return $menu;
     }
 
