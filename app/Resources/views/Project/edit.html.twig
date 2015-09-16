@@ -1,8 +1,5 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%} Project Edit {% endblock %}
-
-{% block content %}
     {% block edit %}
         {{ form(edit_form) }}
     {% endblock%}
@@ -14,4 +11,68 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            {{ form_start(edit_form, {'attr': {'role' : 'form'}}) }}
+            <div class="box-header">
+                <h3 class="box-title">Project Edit</h3>
+                <div class="box-tools">
+
+                    <a href="{{ path('project') }}">
+                        Back to the list
+                    </a>
+                </div>
+            </div>
+            <div class="box-body">
+                {{ form_errors(edit_form) }}
+
+                <div class="form-group">
+                    {{ form_label(edit_form.name) }}
+                    {{ form_errors(edit_form.name) }}
+                    {{ form_widget(edit_form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter the Project name'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.description) }}
+                    {{ form_errors(edit_form.description) }}
+                    {{ form_widget(edit_form.description, {'attr': {'class': 'form-control textarea', 'placeholder': 'The Project description'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.team) }}
+                    {{ form_errors(edit_form.team) }}
+                    {% for form_team in edit_form.team %}
+                        <div class="checkbox">
+                            {{ form_widget(form_team) }}
+                            {{ form_label(form_team) }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.projectStatus) }}
+                    {{ form_errors(edit_form.projectStatus) }}
+                    {{ form_widget(edit_form.projectStatus, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.projectType) }}
+                    {{ form_errors(edit_form.projectType) }}
+                    {{ form_widget(edit_form.projectType, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            {{ form_end(edit_form) }}
+
+        </div>
+
+    </div>
+    <ul class="record_actions">
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+
 {% endblock %}

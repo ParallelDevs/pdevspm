@@ -16,9 +16,9 @@ class ProjectStatusType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('sortOrder')
             ->add('defaultValue')
             ->add('active')
+            ->add('sortOrder')
         ;
     }
     

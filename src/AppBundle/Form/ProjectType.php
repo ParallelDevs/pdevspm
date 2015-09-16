@@ -17,17 +17,14 @@ class ProjectType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            //->add('createdAt')
-            ->add('orderTaskBy')
             ->add('team', 'entity', [
-                'class' => 'AppBundle\Entity\User', 
+                'class' => 'AppBundle\Entity\User',
                 'property' => 'username',
                 'multiple' => true,
                 'expanded' => true
                 ])
             ->add('projectStatus', 'entity', ['class' => 'AppBundle\Entity\ProjectStatus', 'property' => 'name'])
             ->add('projectType', 'entity', ['class' => 'AppBundle\Entity\ProjectType', 'property' => 'name'])
-            ->add('createdBy', 'hidden')
         ;
     }
     
