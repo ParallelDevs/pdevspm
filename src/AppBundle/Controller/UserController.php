@@ -79,8 +79,6 @@ class UserController extends Controller
             'method' => 'POST',
         ]);
 
-        $form->add('submit', 'submit', ['label' => 'Create']);
-
         return $form;
     }
 
@@ -164,8 +162,6 @@ class UserController extends Controller
             'action' => $this->generateUrl('admin_user_update', ['id' => $entity->getId()]),
             'method' => 'PUT',
         ]);
-
-        $form->add('submit', 'submit', ['label' => 'Update']);
 
         return $form;
     }
