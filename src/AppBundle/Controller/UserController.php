@@ -117,9 +117,9 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('user/new.html.twig', [
+        return $this->render('user/show.html.twig', [
           'entity' => $entity,
-          'form'   => $deleteForm->createView(),
+          'delete_form'   => $deleteForm->createView(),
         ]);
     }
 

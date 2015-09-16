@@ -37,6 +37,18 @@ class User extends BaseUser
     /**
      * @Assert\File(maxSize="2M")
      */
+
+    /**
+     * @Assert\Image(
+     *     maxSize = "2M",
+     *     minWidth = 50,
+     *     maxWidth = 600,
+     *     minHeight = 50,
+     *     maxHeight = 600,
+     *     allowLandscape = false,
+     *     allowPortrait = false
+     * )
+     */
     private $file;
 
     public function __construct()
