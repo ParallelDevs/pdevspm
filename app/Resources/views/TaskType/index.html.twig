@@ -1,47 +1,65 @@
-{% extends '::base.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block body -%}
-    <h1>TaskType list</h1>
+{% block page_title -%}Task Types List{% endblock %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Sortorder</th>
-                <th>Defaultvalue</th>
-                <th>Active</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('tasktype_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.sortOrder }}</td>
-                <td>{{ entity.defaultValue }}</td>
-                <td>{{ entity.active }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('tasktype_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('tasktype_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block content %}
 
-        <ul>
-        <li>
-            <a href="{{ path('tasktype_new') }}">
-                Create a new entry
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <i class="fa fa-filter"></i>
+                <h3 class="box-title">Filters</h3>
+            </div>
+            <div class="box-body pad table-responsive">
+                Here will go the filters
+            </div><!-- /.box -->
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="box">
+            <a class="btn btn-block btn-primary btn-lg" href="{{ path('config_task_type_new') }}">
+                Create a Task Type
             </a>
-        </li>
-    </ul>
-    {% endblock %}
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Sortorder</th>
+                        <th>Defaultvalue</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('config_task_type_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.sortOrder }}</td>
+                        <td>{{ entity.defaultValue }}</td>
+                        <td>{{ entity.active }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('config_task_type_show', { 'id': entity.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('config_task_type_edit', { 'id': entity.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

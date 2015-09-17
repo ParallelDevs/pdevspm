@@ -1,9 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%} Create New Task Status {% endblock %}
+{% block page_title -%} Create New Task Priority {% endblock %}
 
 {% block content %}
-    <div> class="col-md-12">
+
+    <div class="col-md-12">
         <div class="box box-primary">
             {{ form_start(form, {'attr': {'role' : 'form'}}) }}
             <div class="box-header">
@@ -24,11 +25,11 @@
                     {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter the name'}}) }}
                 </div>
 
-                <div class="form-group">
-                    {{ form_label(form.group) }}
-                    {{ form_errors(form.group) }}
-                    {{ form_widget(form.group) }}
-                </div>
+                {#<div class="form-group">#}
+                    {#{{ form_label(form.icon) }}#}
+                    {#{{ form_errors(form.icon) }}#}
+                    {#{{ form_widget(form.icon) }}#}
+                {#</div>#}
 
                 <div class="form-group">
                     {{ form_label(form.sortOrder) }}
@@ -37,9 +38,9 @@
                 </div>
 
                 <div class="form-group">
-                        {{ form_label(form.defaultValue) }}
-                        {{ form_errors(form.defaultValue) }}
-                        {{ form_widget(form.defaultValue) }}
+                    {{ form_label(form.defaultValue) }}
+                    {{ form_errors(form.defaultValue) }}
+                    {{ form_widget(form.defaultValue) }}
                 </div>
 
                 <div class="form-group">
@@ -54,17 +55,7 @@
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
         </div>
     </div>
 
-    {{ form_end(form) }}
-
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('config_task_status') }}">
-                Back to the list
-            </a>
-        </li>
-    </ul>
 {% endblock %}

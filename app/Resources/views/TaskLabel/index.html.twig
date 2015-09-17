@@ -18,8 +18,8 @@
 
     <div class="col-md-2">
         <div class="box">
-            <a class="btn btn-block btn-primary btn-lg" href="{{ path('config_task_status_new') }}">
-                Create a Tasks Status
+            <a class="btn btn-block btn-primary btn-lg" href="{{ path('config_task_label_new') }}">
+                Create a Task Label
             </a>
         </div>
     </div>
@@ -31,7 +31,6 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Group</th>
                         <th>Sortorder</th>
                         <th>Defaultvalue</th>
                         <th>Active</th>
@@ -41,21 +40,20 @@
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td><a href="{{ path('config_task_status_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td><a href="{{ path('config_task_label_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                         <td>{{ entity.name }}</td>
-                        <td>{{ entity.group.name }}</td>
                         <td>{{ entity.sortOrder }}</td>
                         <td>{{ entity.defaultValue }}</td>
                         <td>{{ entity.active }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a class="fa fa-list" href="{{ path('config_task_status_show', { 'id': entity.id }) }}"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-edit" href="{{ path('config_task_status_edit', { 'id': entity.id }) }}"></a>
-                                </li>
-                            </ul>
+                        <ul>
+                            <li>
+                                <a href="{{ path('config_task_label_show', { 'id': entity.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('config_task_label_edit', { 'id': entity.id }) }}">edit</a>
+                            </li>
+                        </ul>
                         </td>
                     </tr>
                 {% endfor %}
@@ -64,4 +62,4 @@
         </div>
     </div>
 
-    {% endblock %}
+{% endblock %}

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TaskTypeType extends AbstractType
+class TaskPriorityType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,6 +16,7 @@ class TaskTypeType extends AbstractType
     {
         $builder
             ->add('name')
+            //->add('icon')
             ->add('sortOrder')
             ->add('defaultValue')
             ->add('active')
@@ -28,7 +29,7 @@ class TaskTypeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\TaskType'
+            'data_class' => 'AppBundle\Entity\TaskPriority'
         ));
     }
 
@@ -37,6 +38,6 @@ class TaskTypeType extends AbstractType
      */
     public function getName()
     {
-        return 'TaskType';
+        return 'task_priority';
     }
 }
