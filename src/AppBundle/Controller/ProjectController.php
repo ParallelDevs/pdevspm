@@ -112,21 +112,20 @@ class ProjectController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();        
-        
+
         $repository = $this->getDoctrine()
-                    ->getRepository('AppBundle:Project');        
-        $entity = $repository->find($id);  
+                    ->getRepository('AppBundle:Project');
+        $entity = $repository->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Projects entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        
-        return $this->render('Project/show.html.twig', 
-                 ['entity' => $entity, 
-                  'id'=>$entity->getId(), 
+
+        return $this->render('Project/show.html.twig',
+                 ['entity' => $entity,
+                  'id'=>$entity->getId(),
                   'delete_form' => $deleteForm->createView()]);
     }
 

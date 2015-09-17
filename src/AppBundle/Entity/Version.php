@@ -161,7 +161,7 @@ class Version
      *
      * @return \AppBundle\Entity\Project 
      */
-    public function getProject()
+        public function getProject()
     {
         return $this->project;
     }
