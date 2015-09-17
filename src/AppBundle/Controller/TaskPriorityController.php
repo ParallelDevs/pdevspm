@@ -48,7 +48,7 @@ class TaskPriorityController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('config_task_priority_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('config_task_priority_show', ['id' => $entity->getId()]));
         }
 
         return $this->render('TaskPriority/new.html.twig', [
@@ -197,7 +197,7 @@ class TaskPriorityController extends Controller
     /**
      * Deletes a TaskPriority entity.
      *
-     * @Route("/{id}", name="config_task_priority_delete")
+     * @Route("/{id}/delete", name="config_task_priority_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)

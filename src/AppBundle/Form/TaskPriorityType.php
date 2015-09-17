@@ -16,7 +16,7 @@ class TaskPriorityType extends AbstractType
     {
         $builder
             ->add('name')
-            //->add('icon')
+            ->add('icon')
             ->add('sortOrder')
             ->add('defaultValue')
             ->add('active')
