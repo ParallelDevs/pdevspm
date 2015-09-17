@@ -111,13 +111,12 @@ class VersionController extends Controller
      *
      * @Route("/{project_id}/version/{version_id}", name="version_show")
      * @Method("GET")
-     *
      */
     public function showAction($project_id, $version_id)
     {
         $entity = $this->getDoctrine()->getRepository('AppBundle:Version')
                         ->findBy(['project' => $project_id,
-                            'id' => $version_id                                
+                            'id' => $version_id
                             ]);
                         
         if (!$entity) {
@@ -126,9 +125,10 @@ class VersionController extends Controller
         
         $deleteForm = $this->createDeleteForm($project_id);
 
-        return $this->render('Version/show.html.twig', 
-                 ['entity' => $entity,
-                  'delete_form' => $deleteForm->createView()]);
+        return $this->render('Version/show.html.twig', [
+            'entity' => $entity,
+            'delete_form' => $deleteForm->createView()
+        ]);
     }
 
     /**
