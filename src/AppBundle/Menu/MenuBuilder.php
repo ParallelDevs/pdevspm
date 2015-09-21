@@ -82,6 +82,12 @@ class MenuBuilder
             'extras' => ['safe_label' => true]
         ]);
 
+        $menu['Configuration']['Ticket']->addChild('TicketType', [
+            'route' => 'config_ticket_status',
+            'label' => '<span>Ticket Status</span>',
+            'extras' => ['safe_label' => true]
+        ]);
+
         return $menu;
     }
 
