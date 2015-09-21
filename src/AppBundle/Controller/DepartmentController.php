@@ -45,6 +45,11 @@ class DepartmentController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            //Assigned the current user in the Field Of User.
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $entity->setUser($user);
+
             $em->persist($entity);
             $em->flush();
 

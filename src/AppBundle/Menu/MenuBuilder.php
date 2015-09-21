@@ -78,7 +78,7 @@ class MenuBuilder
 
         $menu['Configuration']['Ticket']->addChild('Department', [
             'route' => 'config_department',
-            'label' => '<span>Department</span>',
+            'label' => '<span>Departments</span>',
             'extras' => ['safe_label' => true]
         ]);
 

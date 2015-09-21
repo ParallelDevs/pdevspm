@@ -18,7 +18,7 @@ class DepartmentType extends AbstractType
             ->add('name')
             ->add('sortOrder')
             ->add('active')
-            ->add('user')
+            //->add('user')
         ;
     }
     
