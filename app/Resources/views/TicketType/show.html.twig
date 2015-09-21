@@ -1,9 +1,10 @@
-{% extends '::base.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block body -%}
-    <h1>TicketType</h1>
+{% block page_title -%} Ticket Type Details{% endblock %}
 
-    <table class="record_properties">
+{% block  content %}
+
+    <table class="table table-hover">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -24,17 +25,17 @@
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('tickettype') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('tickettype_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('config_ticket_type') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('config_ticket_type_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
 {% endblock %}

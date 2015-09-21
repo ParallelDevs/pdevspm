@@ -1,15 +1,50 @@
-{% extends '::base.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block body -%}
-    <h1>TicketType creation</h1>
+{% block page_title -%} Create New Ticket Type{% endblock %}
 
-    {{ form(form) }}
+{% block content -%}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('tickettype') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <div class="col-md-12">
+        <div class="box box-primary">
+            {{ form_start(form, {'attr': {'role' : 'form'}}) }}
+            <div class="box-header">
+                <h3 class="box-title">Create New Ticket Type</h3>
+                <div class="box-tools">
+                    <a href="{{ path('config_ticket_type') }}">
+                        Back to the list
+                    </a>
+                </div>
+            </div>
+
+            <div class="box-body">
+                {{ form_errors(form) }}
+
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter the Ticket Type name'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.sortOrder) }}
+                    {{ form_errors(form.sortOrder) }}
+                    {{ form_widget(form.sortOrder) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.active) }}
+                    {{ form_errors(form.active) }}
+                    {{ form_widget(form.active) }}
+                </div>
+
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
 {% endblock %}

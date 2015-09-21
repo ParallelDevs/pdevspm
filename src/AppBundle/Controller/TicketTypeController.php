@@ -6,14 +6,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\TicketType;
 use AppBundle\Form\TicketTypeType;
 
 /**
  * TicketType controller.
  *
- * @Route("/tickettype")
+ * @Route("/app/config/ticket/type")
  */
 class TicketTypeController extends Controller
 {
@@ -21,9 +20,8 @@ class TicketTypeController extends Controller
     /**
      * Lists all TicketType entities.
      *
-     * @Route("/", name="tickettype")
+     * @Route("/", name="config_ticket_type")
      * @Method("GET")
-     * @Template()
      */
     public function indexAction()
     {
@@ -31,16 +29,13 @@ class TicketTypeController extends Controller
 
         $entities = $em->getRepository('AppBundle:TicketType')->findAll();
 
-        return array(
-            'entities' => $entities,
-        );
+        return $this->render('TicketType/index.html.twig', ['entities' => $entities]);
     }
     /**
      * Creates a new TicketType entity.
      *
-     * @Route("/", name="tickettype_create")
+     * @Route("/", name="config_ticket_type_create")
      * @Method("POST")
-     * @Template("AppBundle:TicketType:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -53,13 +48,13 @@ class TicketTypeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('tickettype_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('config_ticket_type_show', array('id' => $entity->getId())));
         }
 
-        return array(
+        return $this->render('TicketType/new.html.twig',[
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ]);
     }
 
     /**
@@ -72,7 +67,7 @@ class TicketTypeController extends Controller
     private function createCreateForm(TicketType $entity)
     {
         $form = $this->createForm(new TicketTypeType(), $entity, array(
-            'action' => $this->generateUrl('tickettype_create'),
+            'action' => $this->generateUrl('config_ticket_type_create'),
             'method' => 'POST',
         ));
 
@@ -84,27 +79,25 @@ class TicketTypeController extends Controller
     /**
      * Displays a form to create a new TicketType entity.
      *
-     * @Route("/new", name="tickettype_new")
+     * @Route("/new", name="config_ticket_type_new")
      * @Method("GET")
-     * @Template()
      */
     public function newAction()
     {
         $entity = new TicketType();
         $form   = $this->createCreateForm($entity);
 
-        return array(
+        return $this->render('TicketType/new.html.twig', [
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ]);
     }
 
     /**
      * Finds and displays a TicketType entity.
      *
-     * @Route("/{id}", name="tickettype_show")
+     * @Route("/{id}", name="config_ticket_type_show")
      * @Method("GET")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -118,18 +111,17 @@ class TicketTypeController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
+        return $this->render('TicketType/show.html.twig', [
+                'entity' => $entity,
+                'delete_form' => $deleteForm->createView()
+        ]);
     }
 
     /**
      * Displays a form to edit an existing TicketType entity.
      *
-     * @Route("/{id}/edit", name="tickettype_edit")
+     * @Route("/{id}/edit", name="config_ticket_type_edit")
      * @Method("GET")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -144,11 +136,11 @@ class TicketTypeController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('TicketType/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ]);
     }
 
     /**
@@ -161,7 +153,7 @@ class TicketTypeController extends Controller
     private function createEditForm(TicketType $entity)
     {
         $form = $this->createForm(new TicketTypeType(), $entity, array(
-            'action' => $this->generateUrl('tickettype_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('config_ticket_type_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,9 +164,8 @@ class TicketTypeController extends Controller
     /**
      * Edits an existing TicketType entity.
      *
-     * @Route("/{id}", name="tickettype_update")
+     * @Route("/{id}", name="config_ticket_type_update")
      * @Method("PUT")
-     * @Template("AppBundle:TicketType:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -193,19 +184,19 @@ class TicketTypeController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('tickettype_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('config_ticket_type_edit', array('id' => $id)));
         }
 
-        return array(
+        return $this->render('TicketType/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ]);
     }
     /**
      * Deletes a TicketType entity.
      *
-     * @Route("/{id}", name="tickettype_delete")
+     * @Route("/{id}", name="config_ticket_type_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -225,7 +216,7 @@ class TicketTypeController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('tickettype'));
+        return $this->redirect($this->generateUrl('config_ticket_type'));
     }
 
     /**
@@ -238,7 +229,7 @@ class TicketTypeController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('tickettype_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('config_ticket_type_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
