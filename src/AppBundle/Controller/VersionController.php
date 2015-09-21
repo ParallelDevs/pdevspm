@@ -38,7 +38,6 @@ class VersionController extends Controller
      *
      * @Route("/{project_id}/version", name="version_create")
      * @Method("POST")
-     *
      */
     public function createAction(Request $request, $project_id)
     {

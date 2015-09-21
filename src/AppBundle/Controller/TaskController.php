@@ -20,7 +20,7 @@ class TaskController extends Controller
     /**
      * Lists all Task entities.
      *
-     * @Route("/", name="task")
+     * @Route("/tasks", name="task")
      * @Method("GET")
      */
     public function indexAction()
@@ -149,12 +149,12 @@ class TaskController extends Controller
     }
 
     /**
-    * Creates a form to edit a Task entity.
-    *
-    * @param Task $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Task entity.
+     *
+     * @param Task $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Task $entity)
     {
         $form = $this->createForm(new TaskType(), $entity, array(
@@ -238,6 +238,6 @@ class TaskController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
-        ;
+            ;
     }
 }

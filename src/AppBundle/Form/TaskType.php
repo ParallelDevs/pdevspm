@@ -39,7 +39,7 @@ class TaskType extends AbstractType
             //NOTE: In this moment this entity CRUD is in the process. Ignore this comments. If they work.
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -55,6 +55,7 @@ class TaskType extends AbstractType
      */
     public function getName()
     {
-        return 'Task';
+        return 'task';
     }
 }
+
