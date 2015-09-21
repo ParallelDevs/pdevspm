@@ -1,0 +1,77 @@
+{% extends '::layout.html.twig' %}
+
+{% block edit %}
+    {{ form(edit_form) }}
+{% endblock%}
+
+{% block content %}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('config_ticket_status') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            {{ form_start(edit_form, {'attr': {'role' : 'form'}}) }}
+
+            <div class="box-header">
+                <h3 class="box-title">Ticket Status Edit</h3>
+                <div class="box-tools">
+
+                    <a href="{{ path('config_ticket_status') }}">
+                        Back to the list
+                    </a>
+                </div>
+            </div>
+
+            <div class="box-body">
+                {{ form_errors(edit_form) }}
+
+                <div class="form-group">
+                    {{ form_label(edit_form.group) }}
+                    {{ form_errors(edit_form.group) }}
+                    {{ form_widget(edit_form.group) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.name) }}
+                    {{ form_errors(edit_form.name) }}
+                    {{ form_widget(edit_form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter the Ticket Status name'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.defaultValue) }}
+                    {{ form_errors(edit_form.defaultValue) }}
+                    {{ form_widget(edit_form.defaultValue) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.sortOrder) }}
+                    {{ form_errors(edit_form.sortOrder) }}
+                    {{ form_widget(edit_form.sortOrder) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.active) }}
+                    {{ form_errors(edit_form.active) }}
+                    {{ form_widget(edit_form.active) }}
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            {#{{ form_end(edit_form) }}#}
+        </div>
+    </div>
+
+    <ul class="record_actions">
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+
+{% endblock%}

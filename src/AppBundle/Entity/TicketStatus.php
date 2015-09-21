@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TicketStatus
  *
- * @ORM\Table(name="ticket_status")
+ * @ORM\Table(name="ticket_status", indexes={@ORM\Index(name="fk_ticket_status_group", columns={"group_id"})})
  * @ORM\Entity
  */
 class TicketStatus
@@ -29,9 +29,12 @@ class TicketStatus
     private $name;
 
     /**
-     * @var string
+     * @var \AppBundle\Entity\TaskGroup
      *
-     * @ORM\Column(name="group", type="string", length=64, nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskGroup")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     * })
      */
     private $group;
 
@@ -43,16 +46,16 @@ class TicketStatus
     private $sortOrder;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="default_value", type="integer", nullable=true)
+     * @ORM\Column(name="default_value", type="boolean", nullable=true)
      */
     private $defaultValue;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="active", type="string", length=1, nullable=true)
+     * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active;
 

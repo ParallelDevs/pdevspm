@@ -16,7 +16,7 @@ class TicketStatusType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('group')
+            ->add('group', 'entity', ['class' => 'AppBundle\Entity\TaskGroup', 'property' => 'name'])
             ->add('sortOrder')
             ->add('defaultValue')
             ->add('active')
@@ -38,6 +38,6 @@ class TicketStatusType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_ticketstatus';
+        return 'ticket_status';
     }
 }
