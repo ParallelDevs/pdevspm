@@ -1,14 +1,10 @@
-{% extends '::layout.html.twig' %}
-
-{% block edit %}
-    {{ form(edit_form) }}
-{% endblock%}
+    {% extends '::layout.html.twig' %}
 
 {% block content %}
 
     <div class="col-md-12">
         <div class="box box-primary">
-            {{ form_start(edit_form, {'attr': {'role' : 'form'}}) }}
+
 
             <div class="box-header">
                 <h3 class="box-title">Edit</h3>
@@ -22,6 +18,8 @@
 
             <div class="box-body">
                 {{ form_errors(edit_form) }}
+
+                {{ form_start(edit_form, {'attr': {'role' : 'form'}}) }}
 
                 <div class="form-group">
                     {{ form_label(edit_form.name) }}
@@ -54,9 +52,8 @@
                 </div>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
-                {{ form_end(edit_form) }}
             </div>
         </div>
     </div>
