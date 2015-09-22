@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Project;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -20,21 +21,21 @@ class TaskController extends Controller
     /**
      * Lists all Task entities.
      *
-     * @Route("/tasks", name="task")
+     * @Route("/{project_id}/task", name="task")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($project_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Task')->findAll();
+        $entities = $em->getRepository('AppBundle:Task')->findByProject($project_id);
 
         return $this->render('Task/index.html.twig', ['entities' => $entities]);
     }
     /**
      * Creates a new Task entity.
      *
-     * @Route("/{project_id}/task", name="task_create")
+     * @Route("/{project_id}/task-create", name="task_create")
      * @Method("POST")
      */
     public function createAction(Request $request, $project_id)
@@ -91,9 +92,14 @@ class TaskController extends Controller
         $entity = new Task();
         $form   = $this->createCreateForm($entity, $project_id);
 
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:User');
+        $users = $repository->findAll();
+
         return $this->render('Task/new.html.twig', [
             'entity' => $entity,
             'form'   => $form->createView(),
+            'users'   => $users
         ]);
     }
 
@@ -103,18 +109,18 @@ class TaskController extends Controller
      * @Route("/{project_id}/task/{task_id}", name="task_show")
      * @Method("GET")
      */
-    public function showAction($project_id, $version_id)
+    public function showAction($project_id, $task_id)
     {
-        $entity = $this->getDoctrine()->getRepository('AppBundle:Version')
+        $entity = $this->getDoctrine()->getRepository('AppBundle:Task')
             ->findBy(['project' => $project_id,
-                'id' => $version_id
+                'id' => $task_id
             ]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Task entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($project_id, $task_id);
 
         return $this->render('Task/show.html.twig', [
             'entity' => $entity,
@@ -125,26 +131,26 @@ class TaskController extends Controller
     /**
      * Displays a form to edit an existing Task entity.
      *
-     * @Route("/{id}/edit", name="task_edit")
+     * @Route("/task/{task_id}/edit", name="task_edit")
      * @Method("GET")
      */
-    public function editAction($id)
+    public function editAction($task_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Task')->find($id);
+        $entity = $em->getRepository('AppBundle:Task')->find($task_id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Task entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity, $task_id);
+       // $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('Task/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
 
@@ -155,10 +161,10 @@ class TaskController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEditForm(Task $entity)
+    private function createEditForm(Task $entity, $task_id)
     {
         $form = $this->createForm(new TaskType(), $entity, array(
-            'action' => $this->generateUrl('task_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('task_update', array('task_id' => $task_id)),
             'method' => 'PUT',
         ));
 
@@ -169,27 +175,27 @@ class TaskController extends Controller
     /**
      * Edits an existing Task entity.
      *
-     * @Route("/{id}", name="task_update")
+     * @Route("/{task_id}/update", name="task_update")
      * @Method("PUT")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $task_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Task')->find($id);
+        $entity = $em->getRepository('AppBundle:Task')->find($task_id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Task entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($task_id);
+        $editForm = $this->createEditForm($entity, $task_id);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('task_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('task_edit', array('task_id' => $task_id)));
         }
 
         return $this->render('Task/edit.html.twig', [
@@ -201,17 +207,22 @@ class TaskController extends Controller
     /**
      * Deletes a Task entity.
      *
-     * @Route("/{id}", name="task_delete")
+     * @Route("/{project_id}/task/{task_id}/delete", name="task_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $project_id, $task_id)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($project_id, $task_id);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Task')->find($id);
+            //$entity = $em->getRepository('AppBundle:Task')->find($task_id);
+
+            $entity = $this->getDoctrine()->getRepository('AppBundle:Task')
+                ->findBy(['project' => $project_id,
+                    'id' => $task_id
+                ]);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Task entity.');
@@ -219,9 +230,10 @@ class TaskController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
         }
 
-        return $this->redirect($this->generateUrl('task'));
+        //return $this->redirect($this->generateUrl(''));
     }
 
     /**
@@ -231,13 +243,14 @@ class TaskController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function createDeleteForm($project_id, $task_id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('task_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('task_delete', array('project_id' => $project_id, 'task_id' => $task_id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
             ;
     }
 }
+

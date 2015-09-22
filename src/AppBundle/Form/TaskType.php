@@ -26,7 +26,7 @@ class TaskType extends AbstractType
             //->add('discussionId')
             ->add('startDate')
             ->add('progress')
-            ->add('project', 'entity',      ['class' => 'AppBundle\Entity\Project', 'property' => 'name'])
+            //->add('project', 'entity',      ['class' => 'AppBundle\Entity\Project', 'property' => 'name'])
             //->add('ticket')
             ->add('taskStatus', 'entity',   ['class' => 'AppBundle\Entity\TaskStatus', 'property' => 'name'])
             ->add('taskPriority', 'entity', ['class' => 'AppBundle\Entity\TaskPriority', 'property' => 'name'])

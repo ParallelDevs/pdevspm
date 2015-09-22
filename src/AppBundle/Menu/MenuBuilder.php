@@ -28,12 +28,6 @@ class MenuBuilder
             'extras' => ['safe_label' => true]
         ]);
 
-        $menu->addChild('Task', [
-            'route' => 'task',
-            'label' => '<i class="fa fa-tasks"></i><span>Tasks</span>',
-            'extras' => ['safe_label' => true]
-        ]);
-
         $menu->addChild('User', [
             'route' => 'admin_user',
             'label' => '<i class="fa fa-users"></i><span>User</span>',
