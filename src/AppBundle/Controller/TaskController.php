@@ -45,10 +45,14 @@ class TaskController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            // Assign Current user
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $entity->setCreatedBy($user);
+            $entity->setCreatedAt(new \DateTime('now'));
+
             $em = $this->getDoctrine()->getManager();
             $project = $em->getRepository('AppBundle:Project')->find($project_id);
             $entity->setProject($project);
-
 
             $em->persist($entity);
             $em->flush();
@@ -233,7 +237,7 @@ class TaskController extends Controller
 
         }
 
-        //return $this->redirect($this->generateUrl(''));
+        return $this->redirect($this->generateUrl('project'));
     }
 
     /**
