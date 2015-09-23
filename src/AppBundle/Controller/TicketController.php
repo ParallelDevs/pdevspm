@@ -6,89 +6,93 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Entity\TaskGroup;
-use AppBundle\Form\TaskGroupType;
+use AppBundle\Entity\Ticket;
+use AppBundle\Form\TicketType;
 
 /**
- * TaskGroup controller.
+ * Ticket controller.
  *
  * @Route("/app/project")
  */
-class TaskGroupController extends Controller
+class TicketController extends Controller
 {
 
     /**
-     * Lists all TaskGroup entities.
+     * Lists all Ticket entities.
      *
-     * @Route("/{project_id}/task-group", name="config_task_group")
+     * @Route("/{project_id}/ticket", name="ticket")
      * @Method("GET")
      */
     public function indexAction($project_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:TaskGroup')->findByProject($project_id);
+        $entities = $em->getRepository('AppBundle:Ticket')->findByProject($project_id);
 
-        return $this->render('TaskGroup/index.html.twig', ['entities' => $entities]);
+        return $this->render('Ticket/index.html.twig', ['entities' => $entities]);
     }
     /**
-     * Creates a new TaskGroup entity.
+     * Creates a new Ticket entity.
      *
-     * @Route("/{project_id}/task-group", name="config_task_group_create")
+     * @Route("/{project_id}/ticket-create", name="ticket_create")
      * @Method("POST")
-     *
      */
     public function createAction(Request $request, $project_id)
     {
-        $entity = new TaskGroup();
+        $entity = new Ticket();
         $form = $this->createCreateForm($entity, $project_id);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            // Assign Current user
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $entity->setUser($user);
+            $entity->setCreatedAt(new \DateTime('now'));
+
             $project= $em->getRepository('AppBundle:Project')->find($project_id);
             $entity->setProject($project);
 
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('config_task_group_show', ['task_group_id' => $entity->getId(), 'project_id' => $project_id]));
+            return $this->redirect($this->generateUrl('ticket_show', ['ticket_id' => $entity->getId(), 'project_id' => $project_id]));
         }
 
-        return $this->render('TaskGroup/new.html.twig',[
+        return $this->render('Ticket/new.html.twig',[
             'entity' => $entity,
             'form'   => $form->createView(),
         ]);
     }
 
     /**
-     * Creates a form to create a TaskGroup entity.
+     * Creates a form to create a Ticket entity.
      *
-     * @param TaskGroup $entity The entity
+     * @param Ticket $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(TaskGroup $entity, $project_id)
+    private function createCreateForm(Ticket $entity, $project_id)
     {
-        $form = $this->createForm(new TaskGroupType(), $entity, array(
-            'action' => $this->generateUrl('config_task_group_create', ['project_id' => $project_id]),
+        $form = $this->createForm(new TicketType(), $entity, array(
+            'action' => $this->generateUrl('ticket_create', ['project_id' => $project_id]),
             'method' => 'POST',
         ));
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new TaskGroup entity.
+     * Displays a form to create a new Ticket entity.
      *
-     * @Route("/{project_id}/task-group/new", name="config_task_group_new")
+     * @Route("/{project_id}/ticket/new", name="ticket_new")
      * @Method("GET")
-     *
      */
     public function newAction($project_id)
     {
-        $entity = new TaskGroup();
+        $entity = new Ticket();
         $em = $this->getDoctrine()->getManager();
 
         $project= $em->getRepository('AppBundle:Project')->find($project_id);
@@ -96,60 +100,58 @@ class TaskGroupController extends Controller
 
         $form   = $this->createCreateForm($entity, $project_id);
 
-        return $this->render('TaskGroup/new.html.twig', [
+        return $this->render('Ticket/new.html.twig', [
             'entity' => $entity,
             'form'   => $form->createView(),
         ]);
     }
 
     /**
-     * Finds and displays a TaskGroup entity.
+     * Finds and displays a Ticket entity.
      *
-     * @Route("/{project_id}/task-group/{task_group_id}", name="config_task_group_show")
+     * @Route("/{project_id}/ticket/{ticket_id}", name="ticket_show")
      * @Method("GET")
-     *
      */
-    public function showAction($project_id, $task_group_id)
+    public function showAction($project_id, $ticket_id)
     {
-        $entity = $this->getDoctrine()->getRepository('AppBundle:TaskGroup')
-                        ->findBy(['project' => $project_id,
-                            'id' => $task_group_id
-                            ]);
+        $entity = $this->getDoctrine()->getRepository('AppBundle:Ticket')
+            ->findBy(['project' => $project_id,
+                'id' => $ticket_id
+            ]);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find TaskGroup entity.');
+            throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
         $deleteForm = $this->createDeleteForm($project_id);
 
-        return $this->render('TaskGroup/show.html.twig',[
+        return $this->render('Ticket/show.html.twig',[
             'entity' => $entity,
             'delete_form' => $deleteForm->createView()]);
     }
 
     /**
-     * Displays a form to edit an existing TaskGroup entity.
+     * Displays a form to edit an existing Ticket entity.
      *
-     * @Route("/{project_id}/task-group/edit", name="config_task_group_edit")
+     * @Route("/{id}/ticket/edit", name="ticket_edit")
      * @Method("GET")
-     *
      */
-    public function editAction($project_id)
+    public function editAction($id)
     {
-        $entity = new TaskGroup();
+        $entity = new Ticket();
         $em = $this->getDoctrine()->getManager();
 
-        $project= $em->getRepository('AppBundle:Project')->find($project_id);
-        $entity->setProject($project);
+        $entity= $em->getRepository('AppBundle:Ticket')->find($id);
+
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find TaskGroup entity.');
+            throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        $editForm = $this->createEditForm($entity, $project_id);
+        $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('TaskGroup/edit.html.twig', [
+        return $this->render('Ticket/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -157,16 +159,16 @@ class TaskGroupController extends Controller
     }
 
     /**
-    * Creates a form to edit a TaskGroup entity.
+    * Creates a form to edit a Ticket entity.
     *
-    * @param TaskGroup $entity The entity
+    * @param Ticket $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(TaskGroup $entity, $project_id)
+    private function createEditForm(Ticket $entity, $project_id)
     {
-        $form = $this->createForm(new TaskGroupType(), $entity, array(
-            'action' => $this->generateUrl('config_task_group_update', ['project_id' => $project_id]),
+        $form = $this->createForm(new TicketType(), $entity, array(
+            'action' => $this->generateUrl('ticket_update', ['project_id' => $project_id]),
             'method' => 'PUT',
         ));
 
@@ -175,20 +177,19 @@ class TaskGroupController extends Controller
         return $form;
     }
     /**
-     * Edits an existing TaskGroup entity.
+     * Edits an existing Ticket entity.
      *
-     * @Route("/{id}", name="config_task_group_update")
+     * @Route("/{id}", name="ticket_update")
      * @Method("PUT")
-     *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:TaskGroup')->find($id);
+        $entity = $em->getRepository('AppBundle:Ticket')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find TaskGroup entity.');
+            throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -198,19 +199,19 @@ class TaskGroupController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('config_task_group_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('ticket_edit', array('id' => $id)));
         }
 
-        return $this->render('TaskGroup/edit.html.twig', [
+        return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ]);
+        );
     }
     /**
-     * Deletes a TaskGroup entity.
+     * Deletes a Ticket entity.
      *
-     * @Route("/{id}", name="config_task_group_delete")
+     * @Route("/{id}", name="ticket_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -220,21 +221,21 @@ class TaskGroupController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:TaskGroup')->find($id);
+            $entity = $em->getRepository('AppBundle:Ticket')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TaskGroup entity.');
+                throw $this->createNotFoundException('Unable to find Ticket entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('config_task_group'));
+        return $this->redirect($this->generateUrl('ticket'));
     }
 
     /**
-     * Creates a form to delete a TaskGroup entity by id.
+     * Creates a form to delete a Ticket entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -243,7 +244,7 @@ class TaskGroupController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('config_task_group_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('ticket_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

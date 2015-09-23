@@ -52,6 +52,11 @@
                     Add Task Group
                 </a>
             </li>
+            <li>
+                <a class="fa fa-edit" href="{{ path('ticket_new', { 'project_id': entity.id }) }}">
+                    Add Ticket
+                </a>
+            </li>
             <li>{{ form(delete_form) }}</li>
         </ul>
 {% endblock %}

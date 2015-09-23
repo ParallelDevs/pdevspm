@@ -1,0 +1,58 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title -%} Create New Ticket {% endblock %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            {{ form_start(form, {'attr': {'role' : 'form'}}) }}
+            <div class="box-header">
+                <div class="box-tools">
+
+
+                </div>
+            </div>
+
+            <div class="box-body">
+                {{ form_errors(form) }}
+                {{ form_row(form._token) }}
+
+                <div class="form-group">
+                    {{ form_label(form.department) }}
+                    {{ form_errors(form.department) }}
+                    {{ form_widget(form.department) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.ticketType) }}
+                    {{ form_errors(form.ticketType) }}
+                    {{ form_widget(form.ticketType) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.ticketStatus) }}
+                    {{ form_errors(form.ticketStatus) }}
+                    {{ form_widget(form.ticketStatus) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter the name'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.description) }}
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter the description'}}) }}
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                {#{{ form_end(form) }}#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
