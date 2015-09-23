@@ -1,0 +1,117 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title -%} Create New Task {% endblock %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            {{ form_start(form, {'attr': {'role' : 'form'}}) }}
+
+            <div class="box-header">
+                <div class="box-tools">
+
+
+                </div>
+            </div>
+
+            <div class="box-body">
+                {{ form_errors(form) }}
+                {{ form_row(form._token) }}
+
+                <div class="form-group">
+                    {{ form_label(form.taskType) }}
+                    {{ form_errors(form.taskType) }}
+                    {{ form_widget(form.taskType) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter the name'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.taskStatus) }}
+                    {{ form_errors(form.taskStatus) }}
+                    {{ form_widget(form.taskStatus) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.taskPriority) }}
+                    {{ form_errors(form.taskPriority) }}
+                    {{ form_widget(form.taskPriority) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.taskLabel) }}
+                    {{ form_errors(form.taskLabel) }}
+                    {{ form_widget(form.taskLabel) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.taskGroup) }}
+                    {{ form_errors(form.taskGroup) }}
+                    {{ form_widget(form.taskGroup) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.assignedTo) }}
+                    {{ form_errors(form.assignedTo) }}
+                    {% for form_assignedTo in form.assignedTo %}
+                        <div class="checkbox">
+                            {{ form_widget(form_assignedTo) }}
+                            {{ form_label(form_assignedTo) }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.description) }}
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter the description'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.estimatedTime) }}
+                    {{ form_errors(form.estimatedTime) }}
+                    {{ form_widget(form.estimatedTime) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.startDate) }}
+                    {{ form_errors(form.startDate) }}
+                    {{ form_widget(form.startDate) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.dueDate) }}
+                    {{ form_errors(form.dueDate) }}
+                    {{ form_widget(form.dueDate) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.closedDate) }}
+                    {{ form_errors(form.closedDate) }}
+                    {{ form_widget(form.closedDate) }}
+                </div>
+
+
+                <div class="form-group">
+                    {{ form_label(form.progress) }}
+                    {{ form_errors(form.progress) }}
+                    {{ form_widget(form.progress) }}
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+
+
+                {#{{ form_end(form) }}#}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

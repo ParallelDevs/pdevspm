@@ -1,0 +1,78 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title -%} Tasks List {% endblock %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <i class="fa fa-filter"></i>
+                <h3 class="box-title">Filters</h3>
+            </div>
+            <div class="box-body pad table-responsive">
+                Here will go the filters
+            </div><!-- /.box -->
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <table class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Estimatedtime</th>
+                        <th>Duedate</th>
+                        <th>Createdat</th>
+                        <th>Closeddate</th>
+                        <th>Discussionid</th>
+                        <th>Startdate</th>
+                        <th>Progress</th>
+                        <th>Project</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a>{{ entity.id }}</a></td>
+                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.description }}</td>
+                        <td>{{ entity.estimatedTime }}</td>
+                        <td>{% if entity.dueDate %}{{ entity.dueDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if entity.closedDate %}{{ entity.closedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ entity.discussionId }}</td>
+                        <td>{% if entity.startDate %}{{ entity.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ entity.progress }}</td>
+                        <td>{{ entity.project.id }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('task_show', { 'project_id': entity.project.id , 'task_id': entity.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('task_edit', { 'task_id': entity.id }) }}">edit</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('task_delete', { 'project_id': entity.project.id , 'task_id': entity.id }) }}">Delete</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                    </tbody>
+            </table>
+
+        </div>
+    </div>
+    <ul>
+
+    </ul>
+
+    {% endblock %}
