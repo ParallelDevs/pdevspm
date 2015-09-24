@@ -31,6 +31,7 @@ class TicketController extends Controller
 
         return $this->render('Ticket/index.html.twig', ['entities' => $entities]);
     }
+
     /**
      * Creates a new Ticket entity.
      *
@@ -50,7 +51,7 @@ class TicketController extends Controller
             $entity->setUser($user);
             $entity->setCreatedAt(new \DateTime('now'));
 
-            $project= $em->getRepository('AppBundle:Project')->find($project_id);
+            $project = $em->getRepository('AppBundle:Project')->find($project_id);
             $entity->setProject($project);
 
             $em->persist($entity);
@@ -59,9 +60,9 @@ class TicketController extends Controller
             return $this->redirect($this->generateUrl('ticket_show', ['ticket_id' => $entity->getId(), 'project_id' => $project_id]));
         }
 
-        return $this->render('Ticket/new.html.twig',[
+        return $this->render('Ticket/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -95,14 +96,14 @@ class TicketController extends Controller
         $entity = new Ticket();
         $em = $this->getDoctrine()->getManager();
 
-        $project= $em->getRepository('AppBundle:Project')->find($project_id);
+        $project = $em->getRepository('AppBundle:Project')->find($project_id);
         $entity->setProject($project);
 
-        $form   = $this->createCreateForm($entity, $project_id);
+        $form = $this->createCreateForm($entity, $project_id);
 
         return $this->render('Ticket/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -123,52 +124,51 @@ class TicketController extends Controller
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($project_id);
-
-        return $this->render('Ticket/show.html.twig',[
+        return $this->render('Ticket/show.html.twig', [
             'entity' => $entity,
-            'delete_form' => $deleteForm->createView()]);
+        ]);
     }
 
     /**
      * Displays a form to edit an existing Ticket entity.
      *
-     * @Route("/{id}/ticket/edit", name="ticket_edit")
+     * @Route("/{project_id}/ticket/{ticket_id}/edit", name="ticket_edit")
      * @Method("GET")
      */
-    public function editAction($id)
+    public function editAction($project_id, $ticket_id)
     {
         $entity = new Ticket();
+
         $em = $this->getDoctrine()->getManager();
 
-        $entity= $em->getRepository('AppBundle:Ticket')->find($id);
+        $project= $em->getRepository('AppBundle:Project')->find($project_id);
 
+        $entity->setProject($project);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity, $project_id, $ticket_id);
 
         return $this->render('Ticket/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
 
     /**
-    * Creates a form to edit a Ticket entity.
-    *
-    * @param Ticket $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Ticket $entity, $project_id)
+     * Creates a form to edit a Ticket entity.
+     *
+     * @param Ticket $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(Ticket $entity, $project_id, $ticket_id)
     {
         $form = $this->createForm(new TicketType(), $entity, array(
-            'action' => $this->generateUrl('ticket_update', ['project_id' => $project_id]),
+            'action' => $this->generateUrl('ticket_update', ['project_id' => $project_id, 'ticket_id' => $ticket_id]),
             'method' => 'PUT',
         ));
 
@@ -176,78 +176,67 @@ class TicketController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Ticket entity.
      *
-     * @Route("/{id}", name="ticket_update")
+     * @Route("/{project_id}/ticket/{ticket_id}/update", name="ticket_update")
      * @Method("PUT")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $project_id, $ticket_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Ticket')->find($id);
+        $entity = $em->getRepository('AppBundle:Ticket')->find($ticket_id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $project_id, $ticket_id);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            // Assign Current user
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $entity->setUser($user);
+            $entity->setCreatedAt(new \DateTime('now'));
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ticket_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('ticket', array('project_id' => $project_id)));
         }
 
-        return array(
+        return $this->render('Ticket/index.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+
+        ]);
     }
+
     /**
      * Deletes a Ticket entity.
      *
-     * @Route("/{id}", name="ticket_delete")
-     * @Method("DELETE")
+     * @Route("/{project_id}/ticket/{ticket_id}/delete", name="ticket_delete")
+     * @Method("GET")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $ticket_id, $project_id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Ticket')->find($id);
+        $entity = $this->getDoctrine()->getRepository('AppBundle:Ticket')
+            ->findBy(['project' => $project_id,
+                'id' => $ticket_id
+            ]);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Ticket entity.');
-            }
+        foreach ($entity as $ticket) {
+            $em->remove($ticket);
+        }
+        $em->flush();
 
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        return $this->redirect($this->generateUrl('ticket'));
-    }
-
-    /**
-     * Creates a form to delete a Ticket entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ticket_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        return $this->redirect($this->generateUrl('ticket', array('project_id' => $project_id)));
     }
 }

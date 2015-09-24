@@ -109,11 +109,9 @@ class TicketTypeController extends Controller
             throw $this->createNotFoundException('Unable to find TicketType entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('TicketType/show.html.twig', [
                 'entity' => $entity,
-                'delete_form' => $deleteForm->createView()
+
         ]);
     }
 
@@ -134,12 +132,10 @@ class TicketTypeController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('TicketType/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -177,7 +173,6 @@ class TicketTypeController extends Controller
             throw $this->createNotFoundException('Unable to find TicketType entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
@@ -190,49 +185,28 @@ class TicketTypeController extends Controller
         return $this->render('TicketType/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
     /**
      * Deletes a TicketType entity.
      *
-     * @Route("/{id}", name="config_ticket_type_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="config_ticket_type_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:TicketType')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:TicketType')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TicketType entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+              throw $this->createNotFoundException('Unable to find TicketType entity.');
         }
 
-        return $this->redirect($this->generateUrl('config_ticket_type'));
-    }
+        $em->remove($entity);
+        $em->flush();
 
-    /**
-     * Creates a form to delete a TicketType entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('config_ticket_type_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        return $this->redirect($this->generateUrl('config_ticket_type'));
     }
 }

@@ -8,9 +8,7 @@
         <div class="box box-primary">
             {{ form_start(form, {'attr': {'role' : 'form'}}) }}
             <div class="box-header">
-                <h3 class="box-title">Create New Department</h3>
                 <div class="box-tools">
-
                     <a href="{{ path('config_department') }}">
                         Back to the list
                     </a>
@@ -19,6 +17,7 @@
 
             <div class="box-body">
                 {{ form_errors(form) }}
+                {{ form_row(form._token) }}
 
                 <div class="form-group">
                     {{ form_label(form.name) }}
@@ -37,30 +36,10 @@
                     {{ form_errors(form.active) }}
                     {{ form_widget(form.active) }}
                 </div>
-
-                {#<div class="form-group">#}
-                    {#{{ form_label(form.user) }}#}
-                    {#{{ form_errors(form.user) }}#}
-                    {#{{ form_widget(form.user) }}#}
-                {#</div>#}
             </div>
-
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            {{ form_end(form) }}
-
-
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
 {% endblock %}

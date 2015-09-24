@@ -1,8 +1,8 @@
 {% extends '::layout.html.twig' %}
 
-    {% block edit %}
-        {{ form(edit_form) }}
-    {% endblock%}
+    {#{% block edit %}#}
+        {#{{ form(edit_form) }}#}
+    {#{% endblock%}#}
 
 {% block content %}
 
@@ -12,6 +12,7 @@
 
             <div class="box-body">
                 {{ form_errors(edit_form) }}
+                {{ form_row(edit_form._token) }}
 
                 <div class="form-group">
                     {{ form_label(edit_form.department) }}
@@ -46,7 +47,6 @@
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            {{ form_end(edit_form) }}
         </div>
     </div>
 {% endblock %}

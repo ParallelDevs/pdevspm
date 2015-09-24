@@ -6,9 +6,11 @@
 
     <div class="col-md-12">
         <div class="box box-primary">
+
             {{ form_start(form, {'attr': {'role' : 'form'}}) }}
+            {{ form_row(form._token) }}
             <div class="box-header">
-                <h3 class="box-title">Create New Ticket Type</h3>
+
                 <div class="box-tools">
                     <a href="{{ path('config_ticket_type') }}">
                         Back to the list
@@ -18,6 +20,7 @@
 
             <div class="box-body">
                 {{ form_errors(form) }}
+
 
                 <div class="form-group">
                     {{ form_label(form.name) }}
@@ -42,7 +45,6 @@
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            {{ form_end(form) }}
 
         </div>
     </div>

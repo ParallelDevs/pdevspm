@@ -114,11 +114,9 @@ class DepartmentController extends Controller
             throw $this->createNotFoundException('Unable to find Department entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('Department/show.html.twig', [
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
 
@@ -139,12 +137,11 @@ class DepartmentController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('Department/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
 
@@ -183,36 +180,30 @@ class DepartmentController extends Controller
             throw $this->createNotFoundException('Unable to find Department entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('department_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('config_department_edit', array('id' => $id)));
         }
 
         return $this->render('Department/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ]);
     }
     /**
      * Deletes a Department entity.
      *
-     * @Route("/{id}", name="config_department_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="config_department_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Department')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:Department')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Department entity.');
@@ -220,24 +211,8 @@ class DepartmentController extends Controller
 
             $em->remove($entity);
             $em->flush();
-        }
 
         return $this->redirect($this->generateUrl('config_department'));
     }
-    /**
-     * Creates a form to delete a Department entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('config_department_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
+
 }

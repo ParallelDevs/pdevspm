@@ -18,8 +18,12 @@
                     <td>{{ entity.name }}</td>
                 </tr>
                 <tr>
-                    <th>Group</th>
-                    <td>{{ entity.group.name }}</td>
+                    <th>Group Name</th>
+                    <td>
+                    {% if entity.group %}
+                        {{ entity.group.name }}
+                    {% endif %}
+                    <td>
                 </tr>
                 <tr>
                     <th>Sortorder</th>
@@ -45,11 +49,5 @@
                 Back to the list
             </a>
         </li>
-        <li>
-            <a href="{{ path('config_ticket_status_edit', { 'id': entity.id }) }}">
-                Edit
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
     </ul>
 {% endblock %}

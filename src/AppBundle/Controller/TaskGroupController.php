@@ -147,7 +147,7 @@ class TaskGroupController extends Controller
         }
 
         $editForm = $this->createEditForm($entity, $project_id);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($project_id);
 
         return $this->render('TaskGroup/edit.html.twig', [
             'entity'      => $entity,

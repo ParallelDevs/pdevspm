@@ -9,6 +9,7 @@
     <div class="col-md-12">
         <div class="box box-primary">
             {{ form_start(edit_form, {'attr': {'role' : 'form'}}) }}
+            {{ form_row(edit_form._token) }}
 
             <div class="box-header">
                 <h3 class="box-title">Ticket Type Edit</h3>
@@ -44,13 +45,6 @@
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
         </div>
     </div>
-
-    </div>
-    <ul class="record_actions">
-        <li>{{ form(delete_form) }}</li>
-    </ul>
-
 {% endblock%}

@@ -17,10 +17,8 @@ class TicketType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('createdAt')
             ->add('ticketStatus', 'entity', ['class' => 'AppBundle\Entity\TicketStatus', 'property' => 'name'])
             ->add('ticketType', 'entity', ['class' => 'AppBundle\Entity\TicketType', 'property' => 'name'])
-            ->add('user', 'entity', ['class' => 'AppBundle\Entity\User', 'property' => 'name'])
             ->add('department', 'entity', ['class' => 'AppBundle\Entity\Department', 'property' => 'name'])
         ;
     }
