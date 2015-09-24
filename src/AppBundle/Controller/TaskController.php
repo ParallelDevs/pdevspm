@@ -225,13 +225,17 @@ class TaskController extends Controller
                 'id' => $task_id
             ]);
 
+        foreach ($entity as $task) {
+            $em->remove($task);
+        }
+
+        $em->flush();
+
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Task entity.');
         }
 
-        $em->remove($entity, $task_id);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('project'));
+        return $this->redirect($this->generateUrl('task', array('project_id' => $project_id)));
     }
 }
