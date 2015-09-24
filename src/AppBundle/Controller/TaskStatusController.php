@@ -110,12 +110,10 @@ class TaskStatusController extends Controller
             throw $this->createNotFoundException('Unable to find TaskStatus entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('TaskStatus/show.html.twig',[
             'entity' => $entity,
             'id'=>$entity->getId(),
-            'delete_form' => $deleteForm->createView()]);
+            ]);
     }
 
     /**
@@ -135,12 +133,11 @@ class TaskStatusController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('TaskStatus/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
 
@@ -179,7 +176,6 @@ class TaskStatusController extends Controller
             throw $this->createNotFoundException('Unable to find TaskStatus entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
@@ -192,49 +188,27 @@ class TaskStatusController extends Controller
         return $this->render('TaskStatus/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
     /**
      * Deletes a TaskStatus entity.
      *
-     * @Route("/{id}", name="config_task_status_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="config_task_status_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:TaskStatus')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:TaskStatus')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TaskStatus entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+           throw $this->createNotFoundException('Unable to find TaskStatus entity.');
         }
 
-        return $this->redirect($this->generateUrl('config_task_status'));
-    }
+        $em->remove($entity);
+        $em->flush();
 
-    /**
-     * Creates a form to delete a TaskStatus entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('config_task_status_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        return $this->redirect($this->generateUrl('config_task_status'));
     }
 }

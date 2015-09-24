@@ -109,12 +109,10 @@ class TaskPriorityController extends Controller
             throw $this->createNotFoundException('Unable to find TaskPriority entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('TaskPriority/show.html.twig',[
             'entity' => $entity,
             'id'=>$entity->getId(),
-            'delete_form' => $deleteForm->createView()
+
         ]);
     }
 
@@ -135,12 +133,11 @@ class TaskPriorityController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('TaskPriority/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
 
@@ -178,7 +175,6 @@ class TaskPriorityController extends Controller
             throw $this->createNotFoundException('Unable to find TaskPriority entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
@@ -191,49 +187,28 @@ class TaskPriorityController extends Controller
         return $this->render('TaskPriority/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
     /**
      * Deletes a TaskPriority entity.
      *
      * @Route("/{id}/delete", name="config_task_priority_delete")
-     * @Method("DELETE")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:TaskPriority')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:TaskPriority')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find TaskPriority entity.');
             }
 
-            $em->remove($entity);
-            $em->flush();
-        }
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('config_task_priority'));
     }
 
-    /**
-     * Creates a form to delete a TaskPriority entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('config_task_priority_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
 }

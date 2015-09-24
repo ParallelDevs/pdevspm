@@ -61,12 +61,8 @@
             Back to the list
         </a>
     </li>
-    <li>
-        <a href="{{ path('task_edit', { 'task_id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
+
     {% endfor %}
-    <li>{{ form(delete_form) }}</li>
+
 </ul>
 {% endblock %}

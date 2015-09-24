@@ -109,12 +109,10 @@ class TaskTypeController extends Controller
             throw $this->createNotFoundException('Unable to find TaskType entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('TaskType/show.html.twig',[
+       return $this->render('TaskType/show.html.twig',[
             'entity' => $entity,
-            'id'=>$entity->getId(),
-            'delete_form' => $deleteForm->createView()]);
+            'id'=>$entity->getId() ]);
+
     }
 
     /**
@@ -134,12 +132,11 @@ class TaskTypeController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('TaskType/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
 
@@ -177,7 +174,6 @@ class TaskTypeController extends Controller
             throw $this->createNotFoundException('Unable to find TaskType entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
@@ -190,49 +186,29 @@ class TaskTypeController extends Controller
         return $this->render('TaskType/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+
         ]);
     }
     /**
      * Deletes a TaskType entity.
      *
-     * @Route("/{id}", name="config_task_type_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="config_task_type_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:TaskType')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:TaskType')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TaskType entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+             throw $this->createNotFoundException('Unable to find TaskType entity.');
         }
+
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('config_task_type'));
     }
 
-    /**
-     * Creates a form to delete a TaskType entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('config_task_type_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
 }

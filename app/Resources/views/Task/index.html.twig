@@ -39,8 +39,8 @@
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td><a>{{ entity.id }}</a></td>
-                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.id }}</td>
+                        <td><a href="{{ path('task_show', { 'project_id': entity.project.id , 'task_id': entity.id }) }}">{{ entity.name }}</a></td>
                         <td>{{ entity.description }}</td>
                         <td>{{ entity.estimatedTime }}</td>
                         <td>{% if entity.dueDate %}{{ entity.dueDate|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -52,15 +52,12 @@
                         <td>{{ entity.project.id }}</td>
                         <td>
                             <ul>
-                                <li>
-                                    <a href="{{ path('task_show', { 'project_id': entity.project.id , 'task_id': entity.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('task_edit', { 'task_id': entity.id }) }}">edit</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('task_delete', { 'project_id': entity.project.id , 'task_id': entity.id }) }}">Delete</a>
-                                </li>
+                               <li>
+                                    <a href="{{ path('task_edit', { 'task_id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
+                               </li>
+                               <li>
+                                    <a href="{{ path('task_delete', { 'project_id': entity.project.id , 'task_id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
+                               </li>
                             </ul>
                         </td>
                     </tr>
