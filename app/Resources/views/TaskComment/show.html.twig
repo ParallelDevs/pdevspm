@@ -8,7 +8,7 @@
         <div class="box box-primary">
             <table class="table table-hover">
                 <tbody>
-                {% for entity in entity %}
+
                 <tr>
                     <th>Id</th>
                     <td>{{ entity.id }}</td>
@@ -17,10 +17,6 @@
                     <th>Duedate</th>
                     <td>{{ entity.dueDate|date('Y-m-d H:i:s') }}</td>
                 </tr>
-                {#<tr>#}
-                    {#<th>Workedhours</th>#}
-                    {#<td>{{ entity.workedHours }}</td>#}
-                {#</tr>#}
                 <tr>
                     <th>Description</th>
                     <td>{{ entity.description }}</td>
@@ -39,18 +35,4 @@
         </div>
     </div>
 
-        {#<ul class="record_actions">#}
-    {#<li>#}
-        {#<a href="{{ path('task_comment') }}">#}
-            {#Back to the list#}
-        {#</a>#}
-    {#</li>#}
-    {#<li>#}
-        {#<a href="{{ path('task_comment_edit', { 'id': entity.id }) }}">#}
-            {#Edit#}
-        {#</a>#}
-    {#</li>#}
-    {#<li>{{ form(delete_form) }}</li>#}
-{#</ul>#}
-{% endfor %}
 {% endblock %}

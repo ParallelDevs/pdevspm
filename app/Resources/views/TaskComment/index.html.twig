@@ -44,9 +44,9 @@
                             <li>
                                 <a href="{{ path('task_comment_edit', { 'task_comment_id': entity.id, 'task_id':entity.task.id }) }}">Edit</a>
                             </li>
-                            {#<li>#}
-                                {#<a href="{{ path('task_comment_edit', { 'task_comment_id': entity.id }) }}">edit</a>#}
-                            {#</li>#}
+                            <li>
+                                <a href="{{ path('task_comment_delete', { 'task_comment_id': entity.id, 'task_id':entity.task.id }) }}">Delete</a>
+                            </li>
                         </ul>
                         </td>
                     </tr>
