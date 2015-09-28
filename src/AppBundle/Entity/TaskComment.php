@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TaskComment
  *
- * @ORM\Table(name="task_comment", indexes={@ORM\Index(name="fk_task_comment_user", columns={"created_by"}), @ORM\Index(name="fk_task_comment_task", columns={"task_id"}), @ORM\Index(name="fk_task_comment_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_comment_priority", columns={"task_priority_id"})})
+ * @ORM\Table(name="task_comment", indexes={@ORM\Index(name="fk_task_comment_user", columns={"created_by"}), @ORM\Index(name="fk_task_comment_task", columns={"task_id"}), @ORM\Index(name="fk_task_comment_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_comment_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_comment_label", columns={"task_label_id"})})
  * @ORM\Entity
  */
 class TaskComment
@@ -31,7 +31,7 @@ class TaskComment
     /**
      * @var float
      *
-     * @ORM\Column(name="worked_hours", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="worked_hours", type="time", precision=10, scale=0, nullable=true)
      */
     private $workedHours;
 
@@ -95,6 +95,26 @@ class TaskComment
      * })
      */
     private $taskPriority;
+
+    /**
+     * @var \AppBundle\Entity\TaskPriority
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskLabel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="task_label_id", referencedColumnName="id")
+     * })
+     */
+    private $taskLabel;
+
+    /**
+     * @var \AppBundle\Entity\TaskPriority
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TaskType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="task_type_id", referencedColumnName="id")
+     * })
+     */
+    private $taskType;
 
 
 
@@ -313,5 +333,51 @@ class TaskComment
     public function getTaskPriority()
     {
         return $this->taskPriority;
+    }
+
+    /**
+     * Set taskPriority
+     *
+     * @param \AppBundle\Entity\TaskLabel $taskLabel
+     * @return TaskComment
+     */
+    public function setTaskLabel(\AppBundle\Entity\TaskLabel $taskLabel = null)
+    {
+        $this->taskLabel = $taskLabel;
+
+        return $this;
+    }
+
+    /**
+     * Get taskPriority
+     *
+     * @return \AppBundle\Entity\TaskLabel
+     */
+    public function getTaskLabel()
+    {
+        return $this->taskLabel;
+    }
+
+    /**
+     * Set taskPriority
+     *
+     * @param \AppBundle\Entity\TaskType $taskType
+     * @return TaskComment
+     */
+    public function setTaskType(\AppBundle\Entity\TaskType $taskType = null)
+    {
+        $this->taskType = $taskType;
+
+        return $this;
+    }
+
+    /**
+     * Get taskPriority
+     *
+     * @return \AppBundle\Entity\TaskType
+     */
+    public function getTaskType()
+    {
+        return $this->taskType;
     }
 }
