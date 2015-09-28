@@ -6,14 +6,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\TaskType;
 use AppBundle\Form\TaskTypeType;
 
 /**
  * TaskType controller.
  *
- * @Route("/tasktype")
+ * @Route("/app/config/task/type")
  */
 class TaskTypeController extends Controller
 {
@@ -21,9 +20,8 @@ class TaskTypeController extends Controller
     /**
      * Lists all TaskType entities.
      *
-     * @Route("/", name="tasktype")
+     * @Route("/", name="config_task_type")
      * @Method("GET")
-     * @Template()
      */
     public function indexAction()
     {
@@ -31,16 +29,13 @@ class TaskTypeController extends Controller
 
         $entities = $em->getRepository('AppBundle:TaskType')->findAll();
 
-        return array(
-            'entities' => $entities,
-        );
+        return $this->render('TaskType/index.html.twig', ['entities' => $entities]);
     }
     /**
      * Creates a new TaskType entity.
      *
-     * @Route("/", name="tasktype_create")
+     * @Route("/", name="config_task_type_create")
      * @Method("POST")
-     * @Template("AppBundle:TaskType:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -53,13 +48,13 @@ class TaskTypeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('tasktype_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('config_task_type_show', ['id' => $entity->getId()]));
         }
 
-        return array(
+        return $this->render('TaskType/new.html.twig',[
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ]);
     }
 
     /**
@@ -72,7 +67,7 @@ class TaskTypeController extends Controller
     private function createCreateForm(TaskType $entity)
     {
         $form = $this->createForm(new TaskTypeType(), $entity, array(
-            'action' => $this->generateUrl('tasktype_create'),
+            'action' => $this->generateUrl('config_task_type_create'),
             'method' => 'POST',
         ));
 
@@ -84,27 +79,25 @@ class TaskTypeController extends Controller
     /**
      * Displays a form to create a new TaskType entity.
      *
-     * @Route("/new", name="tasktype_new")
+     * @Route("/new", name="config_task_type_new")
      * @Method("GET")
-     * @Template()
      */
     public function newAction()
     {
         $entity = new TaskType();
         $form   = $this->createCreateForm($entity);
 
-        return array(
+        return $this->render('TaskType/new.html.twig', [
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ]);
     }
 
     /**
      * Finds and displays a TaskType entity.
      *
-     * @Route("/{id}", name="tasktype_show")
+     * @Route("/{id}", name="config_task_type_show")
      * @Method("GET")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -116,20 +109,17 @@ class TaskTypeController extends Controller
             throw $this->createNotFoundException('Unable to find TaskType entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+       return $this->render('TaskType/show.html.twig',[
+            'entity' => $entity,
+            'id'=>$entity->getId() ]);
 
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
     }
 
     /**
      * Displays a form to edit an existing TaskType entity.
      *
-     * @Route("/{id}/edit", name="tasktype_edit")
+     * @Route("/{id}/edit", name="config_task_type_edit")
      * @Method("GET")
-     * @Template()
      */
     public function editAction($id)
     {
@@ -142,13 +132,12 @@ class TaskTypeController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('TaskType/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+
+        ]);
     }
 
     /**
@@ -161,7 +150,7 @@ class TaskTypeController extends Controller
     private function createEditForm(TaskType $entity)
     {
         $form = $this->createForm(new TaskTypeType(), $entity, array(
-            'action' => $this->generateUrl('tasktype_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('config_task_type_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,9 +161,8 @@ class TaskTypeController extends Controller
     /**
      * Edits an existing TaskType entity.
      *
-     * @Route("/{id}", name="tasktype_update")
+     * @Route("/{id}", name="config_task_type_update")
      * @Method("PUT")
-     * @Template("AppBundle:TaskType:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -186,62 +174,41 @@ class TaskTypeController extends Controller
             throw $this->createNotFoundException('Unable to find TaskType entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('tasktype_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('config_task_type_edit', array('id' => $id)));
         }
 
-        return array(
+        return $this->render('TaskType/edit.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+
+        ]);
     }
     /**
      * Deletes a TaskType entity.
      *
-     * @Route("/{id}", name="tasktype_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="config_task_type_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:TaskType')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:TaskType')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TaskType entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+             throw $this->createNotFoundException('Unable to find TaskType entity.');
         }
 
-        return $this->redirect($this->generateUrl('tasktype'));
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('config_task_type'));
     }
 
-    /**
-     * Creates a form to delete a TaskType entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('tasktype_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
 }

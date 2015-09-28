@@ -41,19 +41,19 @@
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td><a href="{{ path('config_task_status_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{{ entity.name }}</td>
-                        <td>{{ entity.group }}</td>
+                        <td>{{ entity.id }}</td>
+                        <td><a href="{{ path('config_task_status_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                        <td>{{ entity.group.name }}</td>
                         <td>{{ entity.sortOrder }}</td>
                         <td>{{ entity.defaultValue }}</td>
                         <td>{{ entity.active }}</td>
                         <td>
                             <ul>
                                 <li>
-                                    <a class="fa fa-list" href="{{ path('config_task_status_show', { 'id': entity.id }) }}"></a>
+                                    <a href="{{ path('config_task_status_delete', { 'id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
                                 </li>
                                 <li>
-                                    <a class="fa fa-edit" href="{{ path('config_task_status_edit', { 'id': entity.id }) }}"></a>
+                                    <a href="{{ path('config_task_status_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
                                 </li>
                             </ul>
                         </td>
@@ -63,6 +63,5 @@
             </table>
         </div>
     </div>
-
 
     {% endblock %}

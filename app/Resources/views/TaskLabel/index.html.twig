@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%}Task Types List{% endblock %}
+{% block page_title -%}Tasks Label List{% endblock %}
 
 {% block content %}
 
@@ -18,8 +18,8 @@
 
     <div class="col-md-2">
         <div class="box">
-            <a class="btn btn-block btn-primary btn-lg" href="{{ path('config_task_type_new') }}">
-                Create a Task Type
+            <a class="btn btn-block btn-primary btn-lg" href="{{ path('config_task_label_new') }}">
+                Create a Task Label
             </a>
         </div>
     </div>
@@ -41,17 +41,17 @@
                 {% for entity in entities %}
                     <tr>
                         <td>{{ entity.id }}</td>
-                        <td><a href="{{ path('config_task_type_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                        <td><a href="{{ path('config_task_label_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                         <td>{{ entity.sortOrder }}</td>
                         <td>{{ entity.defaultValue }}</td>
                         <td>{{ entity.active }}</td>
                         <td>
                             <ul>
                                 <li>
-                                    <a href="{{ path('config_task_type_delete', { 'id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
+                                    <a href="{{ path('config_task_label_delete', { 'id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('config_task_type_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
+                                    <a href="{{ path('config_task_label_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
                                 </li>
                             </ul>
                         </td>

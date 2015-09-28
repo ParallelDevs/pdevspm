@@ -35,10 +35,14 @@ class Task
      */
     private $description;
 
-    /**
-     * @var string
+     /**
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\Column(name="assigned_to", type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinTable(name="task_assignedTo_team",
+     *      joinColumns={@ORM\JoinColumn(name="task_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *      )
      */
     private $assignedTo;
 
@@ -85,9 +89,9 @@ class Task
     private $startDate;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="progress", type="integer", nullable=true)
+     * @ORM\Column(name="progress", type="string", nullable=true)
      */
     private $progress;
 

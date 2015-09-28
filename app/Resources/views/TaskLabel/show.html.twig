@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%} Tasks Status List {% endblock %}
+{% block page_title -%} Tasks Label List {% endblock %}
 
 {% block content %}
 
@@ -15,10 +15,6 @@
                     <tr>
                         <th>Name</th>
                         <td>{{ entity.name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Group</th>
-                        <td>{{ entity.group.name }}</td>
                     </tr>
                     <tr>
                         <th>Sortorder</th>
@@ -36,11 +32,10 @@
             </table>
         </div>
     </div>
-
     <ul class="record_actions">
         <li>
-            <a href="{{ path('config_task_status') }}">
-                    Back to the list
+            <a href="{{ path('config_task_label') }}">
+                Back to the list
             </a>
         </li>
 
