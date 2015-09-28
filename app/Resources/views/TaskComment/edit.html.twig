@@ -1,16 +1,82 @@
-{% extends '::base.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block body -%}
-    <h1>TaskComment edit</h1>
-
+{% block edit %}
     {{ form(edit_form) }}
+{% endblock%}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('taskcomment') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{% block content %}
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            {{ form_start(edit_form, {'attr': {'role' : 'form'}}) }}
+            {{ form_row(edit_form._token) }}
+
+            <div class="box-body">
+                {{ form_errors(edit_form) }}
+
+                <div class="form-group">
+                    {{ form_label(edit_form.taskStatus) }}
+                    {{ form_errors(edit_form.taskStatus) }}
+                    {{ form_widget(edit_form.taskStatus) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.taskPriority) }}
+                    {{ form_errors(edit_form.taskPriority) }}
+                    {{ form_widget(edit_form.taskPriority) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.taskLabel) }}
+                    {{ form_errors(edit_form.taskLabel) }}
+                    {{ form_widget(edit_form.taskLabel) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.taskType) }}
+                    {{ form_errors(edit_form.taskType) }}
+                    {{ form_widget(edit_form.taskType) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.dueDate) }}
+                    {{ form_errors(edit_form.dueDate) }}
+                    {{ form_widget(edit_form.dueDate) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.workedHours) }}
+                    {{ form_errors(edit_form.workedHours) }}
+                    {{ form_widget(edit_form.workedHours) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.progress) }}
+                    {{ form_errors(edit_form.progress) }}
+                    {{ form_widget(edit_form.progress) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(edit_form.description) }}
+                    {{ form_errors(edit_form.description) }}
+                    {{ form_widget(edit_form.description) }}
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                {{ form_end(edit_form) }}
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
 {% endblock %}

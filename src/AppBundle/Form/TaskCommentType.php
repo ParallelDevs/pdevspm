@@ -26,7 +26,6 @@ class TaskCommentType extends AbstractType
                     '60%' => '60%', '65%' => '65%', '70%' => '70%', '75%' => '75%', '80%' => '80%', '85%' => '85%', '90%' => '90%',
                     '95%' => '95%', '100%' => '100%',
                 )))
-            ->add('task', 'entity', ['class' => 'AppBundle\Entity\Task', 'property' => 'name'])
             ->add('taskStatus', 'entity', ['class' => 'AppBundle\Entity\TaskStatus', 'property' => 'name'])
             ->add('taskPriority', 'entity', ['class' => 'AppBundle\Entity\TaskPriority', 'property' => 'name'])
             ->add('taskLabel', 'entity', ['class' => 'AppBundle\Entity\TaskLabel', 'property' => 'name'])
