@@ -15,11 +15,11 @@ class TicketCommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('ticketStatus', 'entity', ['class' => 'AppBundle\Entity\TicketStatus', 'property' => 'name'])
+            ->add('department', 'entity', ['class' => 'AppBundle\Entity\Department', 'property' => 'name'])
+            ->add('ticketType', 'entity', ['class' => 'AppBundle\Entity\TicketType', 'property' => 'name'])
+            ->add('ticketStatus', 'entity', ['class' => 'AppBundle\Entity\TicketStatus', 'property' => 'name'])
             ->add('description')
-            ->add('createdAt')
-            ->add('ticket')
-            ->add('user')
-            ->add('ticketStatus')
         ;
     }
     
@@ -38,6 +38,6 @@ class TicketCommentType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_ticketcomment';
+        return 'ticket_comment';
     }
 }
