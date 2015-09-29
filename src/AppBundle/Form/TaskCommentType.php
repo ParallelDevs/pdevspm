@@ -18,7 +18,8 @@ class TaskCommentType extends AbstractType
             ->add('dueDate')
             ->add('workedHours', 'time', array(
                 'input'  => 'datetime',
-                'widget' => 'choice',))
+                'widget' => 'choice',
+                'minutes' => array('10' => '10', '20' => '20', '30' => '30', '40' => '40', '50' => '50')))
             ->add('description')
             ->add('progress', 'choice', array(
                 'choices' => array('5%' => '5%', '10%' => '10%', '15%' => '15%', '20%' => '20%', '25%' => '25%',
