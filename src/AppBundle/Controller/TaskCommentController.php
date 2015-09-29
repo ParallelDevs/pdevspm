@@ -219,7 +219,7 @@ class TaskCommentController extends Controller
 
             $em->flush();
 
-            if (!$entity) { 
+            if (!$entity) {
                 throw $this->createNotFoundException('Unable to find TaskComment entity.');
             }
 
