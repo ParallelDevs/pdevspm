@@ -20,14 +20,14 @@ class TicketCommentController extends Controller
     /**
      * Lists all TicketComment entities.
      *
-     * @Route("/{project_id}/ticket/{ticket_id}", name="ticket_comment")
+     * @Route("/{project_id}/ticket/{ticket_id}/ticket-comment", name="ticket_comment")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($project_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:TicketComment')->findAll();
+        $entities = $em->getRepository('AppBundle:TaskComment')->findByProject($project_id);
 
         return $this->render('TicketComment/index.html.twig', ['entities' => $entities]);
     }
