@@ -206,7 +206,7 @@ class TaskCommentController extends Controller
     /**
      * Deletes a TaskComment entity.
      *
-     * @Route("/{project_id}/task/{task_id}/task-comment/{task_comment_id}/ delete", name="task_comment_delete")
+     * @Route("/{project_id}/task/{task_id}/task-comment/{task_comment_id}/delete", name="task_comment_delete")
      * @Method("GET")
      */
     public function deleteAction(Request $request, $project_id, $task_id, $task_comment_id)
