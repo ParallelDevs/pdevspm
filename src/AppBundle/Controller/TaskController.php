@@ -252,7 +252,7 @@ class TaskController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    public function createDeleteForm($project_id, $task_id)
+    private function createDeleteForm($project_id, $task_id)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('task_delete', ['project_id' => $project_id , 'task_id' => $task_id]))
