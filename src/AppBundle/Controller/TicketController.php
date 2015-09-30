@@ -124,8 +124,13 @@ class TicketController extends Controller
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
+        $deleteForm = $this->createDeleteForm($project_id, $ticket_id);
+
         return $this->render('Ticket/show.html.twig', [
             'entity' => $entity,
+            'delete_form' => $deleteForm->createView(),
+            'project_id' => $project_id,
+            'ticket_id' => $ticket_id
         ]);
     }
 
@@ -217,7 +222,7 @@ class TicketController extends Controller
      * Deletes a Ticket entity.
      *
      * @Route("/{project_id}/ticket/{ticket_id}/delete", name="ticket_delete")
-     * @Method("GET")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $ticket_id, $project_id)
     {
@@ -238,5 +243,22 @@ class TicketController extends Controller
         }
 
         return $this->redirect($this->generateUrl('ticket', array('project_id' => $project_id)));
+    }
+
+    /**
+     * Creates a form to delete a Project entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($project_id, $ticket_id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('ticket_delete', ['project_id' => $project_id,'ticket_id' => $ticket_id]))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', ['label' => 'Delete'])
+            ->getForm()
+            ;
     }
 }

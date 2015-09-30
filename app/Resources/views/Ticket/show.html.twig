@@ -34,8 +34,7 @@
         <a href="{{ path('ticket', { 'project_id': entity.project.id }) }}">Back to the list</a>
     </li>
 
-    <li>
-        <a href="{{ path('ticket_comment', { 'project_id': entity.project.id, 'ticket_id': entity.id }) }}">Back to the list</a>
-    </li>
+    <li>{{ form(delete_form) }}</li>
+
     {% endfor %}
 {% endblock %}
