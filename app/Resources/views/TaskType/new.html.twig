@@ -8,9 +8,7 @@
         <div class="box box-primary">
             {{ form_start(form, {'attr': {'role' : 'form'}}) }}
             <div class="box-header">
-
                 <div class="box-tools">
-
                     <a href="{{ path('config_task_type') }}">
                         Back to the list
                     </a>
@@ -51,10 +49,7 @@
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
+            {{ form_end(form) }}
         </div>
     </div>
-
-    {{ form_end(form) }}
-
 {% endblock %}
