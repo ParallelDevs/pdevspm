@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Task
  *
- * @ORM\Table(name="task", indexes={@ORM\Index(name="fk_task_project", columns={"project_id"}), @ORM\Index(name="fk_task_task_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_task_type", columns={"task_type_id"}), @ORM\Index(name="fk_task_task_label", columns={"task_label_id"}), @ORM\Index(name="fk_task_project_phase", columns={"project_phase_id"}), @ORM\Index(name="fk_task_pople", columns={"created_by"}), @ORM\Index(name="fk_task_task_group", columns={"task_group_id"}), @ORM\Index(name="fk_task_versions", columns={"versions_id"}), @ORM\Index(name="fk_task_task_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_ticket", columns={"ticket_id"})})
+ * @ORM\Table(name="task", indexes={@ORM\Index(name="fk_task_project", columns={"project_id"}), @ORM\Index(name="fk_task_task_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_task_type", columns={"task_type_id"}), @ORM\Index(name="fk_task_task_label", columns={"task_label_id"}), @ORM\Index(name="fk_task_project_phase", columns={"project_phase_id"}), @ORM\Index(name="fk_task_created_by", columns={"created_by"}), @ORM\Index(name="fk_task_task_group", columns={"task_group_id"}), @ORM\Index(name="fk_task_versions", columns={"versions_id"}), @ORM\Index(name="fk_task_task_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_ticket", columns={"ticket_id"})})
  * @ORM\Entity
  */
 class Task

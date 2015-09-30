@@ -113,20 +113,24 @@ class TaskCommentController extends Controller
      * @Route("/{project_id}/task/{task_id}/task-comment/{task_comment_id}", name="task_comment_show")
      * @Method("GET")
      */
-    public function showAction($task_id)
+    public function showAction($project_id, $task_id, $task_comment_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:TaskComment')->find($task_id);
+        $entity = $em->getRepository('AppBundle:TaskComment')->findBy(['task' => $task_id, 'id' => $task_comment_id]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TaskComment entity.');
         }
 
-        return $this->render('TaskComment/show.html.twig', [
-            'entity' => $entity,
+        $deleteForm = $this->createDeleteForm($project_id, $task_id, $task_comment_id);
 
-        ]);
+        return $this->render('TaskComment/show.html.twig',[
+            'entity' => $entity,
+            'id'=>$task_comment_id ,
+            'project' =>$project_id,
+            'task' => $task_id,
+            'delete_form' => $deleteForm->createView()]);
     }
 
     /**
@@ -207,10 +211,12 @@ class TaskCommentController extends Controller
      * Deletes a TaskComment entity.
      *
      * @Route("/{project_id}/task/{task_id}/task-comment/{task_comment_id}/delete", name="task_comment_delete")
-     * @Method("GET")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $project_id, $task_id, $task_comment_id)
     {
+            $form = $this->createDeleteForm($project_id, $task_id, $task_comment_id);
+            $form->handleRequest($request);
 
             $em = $this->getDoctrine()->getManager();
 
@@ -226,8 +232,22 @@ class TaskCommentController extends Controller
                 throw $this->createNotFoundException('Unable to find TaskComment entity.');
             }
 
-        return $this->redirect($this->generateUrl('task', array('project_id' => $project_id, 'task_id' => $task_id)));
+        return $this->redirect($this->generateUrl('task_comment', array('project_id' => $project_id, 'task_id' => $task_id)));
     }
-
-
+    /**
+     * Creates a form to delete a  entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    public function createDeleteForm($project_id, $task_id, $task_comment_id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('task_comment_delete', ['project_id' => $project_id , 'task_id' => $task_id, 'task_comment_id' => $task_comment_id]))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', ['label' => 'Delete'])
+            ->getForm()
+            ;
+    }
 }
