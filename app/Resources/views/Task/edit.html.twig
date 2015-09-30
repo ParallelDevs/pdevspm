@@ -1,9 +1,5 @@
 {% extends '::layout.html.twig' %}
 
-{% block edit %}
-    {{ form(edit_form) }}
-{% endblock%}
-
 {% block content %}
 
     <div class="col-md-12">
@@ -12,12 +8,7 @@
 
             <div class="box-header">
                 <h3 class="box-title">Edit TASK</h3>
-                <div class="box-tools">
 
-                    {#<a href="{{ path('config_task_group') }}">#}
-                        {#Back to the list#}
-                    {#</a>#}
-                </div>
             </div>
 
             <div class="box-body">
