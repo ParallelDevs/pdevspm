@@ -29,27 +29,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for entity in entities %}
-                    <tr>
-                        <td>{{ entity.id }}</a></td>
-                        <td><a href="{{ path('ticket_comment_show', { 'project_id': entity.ticket.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id }) }}">{{ entity.description }}</td>
-                        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('ticket_comment_delete', { 'project_id': entity.project.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
-                                </li>
+                    {% for entity in entities %}
+                        <tr>
+                            <td>{{ entity.id }}</a></td>
+                            <td><a href="{{ path('ticket_comment_show', { 'project_id': entity.ticket.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id }) }}">{{ entity.description }}</td>
+                            <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('ticket_comment_delete', { 'project_id': entity.project.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
+                                    </li>
 
-                                <li>
-                                    <a href="{{ path('ticket_comment_edit', { 'project_id': entity.project.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id   }) }}"><i class="fa fa-pencil-square-o"></i></a>
-                                </li>
+                                    <li>
+                                        <a href="{{ path('ticket_comment_edit', { 'project_id': entity.project.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id   }) }}"><i class="fa fa-pencil-square-o"></i></a>
+                                    </li>
 
-                            </ul>
-                        </td>
-                    </tr>
-                {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-    {% endblock %}
+{% endblock %}

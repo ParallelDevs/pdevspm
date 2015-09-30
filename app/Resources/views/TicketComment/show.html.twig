@@ -38,18 +38,17 @@
         </div>
     </div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('ticket_comment', { 'ticket_id': entity.ticket.id, 'project_id': entity.project.id }) }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('ticket_comment_edit', { 'project_id': entity.project.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id   }) }}">
-            Edit
-        </a>
-    </li>
-
-</ul>
-{% endfor %}
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('ticket_comment', { 'ticket_id': entity.ticket.id, 'project_id': entity.project.id }) }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('ticket_comment_edit', { 'project_id': entity.project.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id   }) }}">
+                Edit
+            </a>
+        </li>
+                {% endfor %}
+    </ul>
 {% endblock %}
