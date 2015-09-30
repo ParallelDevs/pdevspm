@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%}Tasks List{% endblock %}
+{% block page_title -%} Tasks List {% endblock %}
 
 {% block content %}
 
@@ -18,30 +18,29 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Assignedto</th>
-                    <th>Estimatedtime</th>
-                    <th>Duedate</th>
-                    <th>Createdat</th>
-                    <th>Closeddate</th>
-                    <th>Discussionid</th>
-                    <th>Startdate</th>
-                    <th>Progress</th>
-                    <th>Actions</th>
 
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Estimatedtime</th>
+                        <th>Duedate</th>
+                        <th>Createdat</th>
+                        <th>Closeddate</th>
+                        <th>Discussionid</th>
+                        <th>Startdate</th>
+                        <th>Progress</th>
+                        <th>Project</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td><a href="{{ path('task_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.id }}</td>
+                        <td><a href="{{ path('task_show', { 'project_id': entity.project.id , 'task_id': entity.id }) }}">{{ entity.name }}</a></td>
                         <td>{{ entity.description }}</td>
-                        <td>{{ entity.assignedTo }}</td>
                         <td>{{ entity.estimatedTime }}</td>
                         <td>{% if entity.dueDate %}{{ entity.dueDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -49,20 +48,19 @@
                         <td>{{ entity.discussionId }}</td>
                         <td>{% if entity.startDate %}{{ entity.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{{ entity.progress }}</td>
+                        <td>{{ entity.project.id }}</td>
                         <td>
                             <ul>
-                                <li>
-                                    <a href="{{ path('task_show', { 'id': entity.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('task_edit', { 'id': entity.id }) }}">edit</a>
-                                </li>
+                               <li>
+                                    <a href="{{ path('task_edit', { 'task_id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
+                               </li>
+                               <li>
+                                    <a href="{{ path('task_delete', { 'project_id': entity.project.id , 'task_id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
+                               </li>
+
                             </ul>
                         </td>
                     </tr>
-
-
-
                 </tbody>
             </table>
             <div class="col-md-2">
@@ -75,5 +73,4 @@
             {% endfor %}
         </div>
     </div>
-
-    {% endblock %}
+{% endblock %}

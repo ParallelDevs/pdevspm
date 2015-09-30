@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%} Tasks Status List {% endblock %}
+{% block page_title -%} Tasks Priority List {% endblock %}
 
 {% block content %}
 
@@ -17,8 +17,8 @@
                         <td>{{ entity.name }}</td>
                     </tr>
                     <tr>
-                        <th>Group</th>
-                        <td>{{ entity.group.name }}</td>
+                        <th>Icon</th>
+                        <td>{{ entity.icon }}</td>
                     </tr>
                     <tr>
                         <th>Sortorder</th>
@@ -34,15 +34,17 @@
                     </tr>
                 </tbody>
             </table>
+
         </div>
     </div>
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('config_task_status') }}">
-                    Back to the list
-            </a>
-        </li>
 
-    </ul>
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('config_task_priority') }}">
+            Back to the list
+        </a>
+    </li>
+
+</ul>
 {% endblock %}

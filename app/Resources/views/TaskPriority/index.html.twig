@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%}Task Types List{% endblock %}
+{% block page_title -%}Tasks Status List{% endblock %}
 
 {% block content %}
 
@@ -18,8 +18,8 @@
 
     <div class="col-md-2">
         <div class="box">
-            <a class="btn btn-block btn-primary btn-lg" href="{{ path('config_task_type_new') }}">
-                Create a Task Type
+            <a class="btn btn-block btn-primary btn-lg" href="{{ path('config_task_priority_new') }}">
+                Create a Task Priority
             </a>
         </div>
     </div>
@@ -28,30 +28,32 @@
         <div class="box box-primary">
             <table class="table table-hover">
                 <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Sortorder</th>
-                        <th>Defaultvalue</th>
-                        <th>Active</th>
-                        <th>Actions</th>
-                    </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Icon</th>
+                    <th>Sortorder</th>
+                    <th>Defaultvalue</th>
+                    <th>Active</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
                 {% for entity in entities %}
                     <tr>
                         <td>{{ entity.id }}</td>
-                        <td><a href="{{ path('config_task_type_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                        <td><a href="{{ path('config_task_priority_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                        <td>{{ entity.icon }}</td>
                         <td>{{ entity.sortOrder }}</td>
                         <td>{{ entity.defaultValue }}</td>
                         <td>{{ entity.active }}</td>
                         <td>
                             <ul>
                                 <li>
-                                    <a href="{{ path('config_task_type_delete', { 'id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
+                                    <a href="{{ path('config_task_priority_delete', { 'id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('config_task_type_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
+                                    <a href="{{ path('config_task_priority_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
                                 </li>
                             </ul>
                         </td>

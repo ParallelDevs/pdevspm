@@ -1,0 +1,84 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title -%} Add New Task Comment {% endblock %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            {{ form_start(form, {'attr': {'role' : 'form'}}) }}
+
+            <div class="box-body">
+                {{ form_errors(form) }}
+                {{ form_row(form._token) }}
+
+                <div class="form-group">
+                    {{ form_label(form.taskStatus) }}
+                    {{ form_errors(form.taskStatus) }}
+                    {{ form_widget(form.taskStatus) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.taskPriority) }}
+                    {{ form_errors(form.taskPriority) }}
+                    {{ form_widget(form.taskPriority) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.taskLabel) }}
+                    {{ form_errors(form.taskLabel) }}
+                    {{ form_widget(form.taskLabel) }}
+                </div>
+
+                <div class="form-group">
+                {{ form_label(form.taskType) }}
+                {{ form_errors(form.taskType) }}
+                {{ form_widget(form.taskType) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.dueDate) }}
+                    {{ form_errors(form.dueDate) }}
+                    {{ form_widget(form.dueDate) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.workedHours) }}
+                    {{ form_errors(form.workedHours) }}
+                    {{ form_widget(form.workedHours) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.progress) }}
+                    {{ form_errors(form.progress) }}
+                    {{ form_widget(form.progress) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.description) }}
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter the description'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.task) }}
+                    {{ form_errors(form.task) }}
+                    {{ form_widget(form.task) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.createdBy) }}
+                    {{ form_errors(form.createdBy) }}
+                    {{ form_widget(form.createdBy) }}
+                </div>
+
+
+
+
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+        </div>
+    </div>
+{% endblock %}

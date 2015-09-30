@@ -68,31 +68,7 @@ class MenuBuilder
             'extras' => ['safe_label' => true]
         ]);
 
-        $menu['Configuration']->addChild('Ticket', [
-            'uri' => '#',
-            'label' => '<span>Tickets</span><i class="fa fa-angle-left pull-right"></i>',
-            'attributes' => ['class' => 'treeview'],
-            'childrenAttributes' => ['class' => 'treeview-menu'],
-            'extras' => ['safe_label' => true]
-        ]);
 
-        $menu['Configuration']['Ticket']->addChild('Department', [
-            'route' => 'config_department',
-            'label' => '<span>Departments</span>',
-            'extras' => ['safe_label' => true]
-        ]);
-
-        $menu['Configuration']['Ticket']->addChild('TicketType', [
-            'route' => 'config_ticket_type',
-            'label' => '<span>Ticket Type</span>',
-            'extras' => ['safe_label' => true]
-        ]);
-
-        $menu['Configuration']['Ticket']->addChild('TicketStatus', [
-            'route' => 'config_ticket_status',
-            'label' => '<span>Ticket Status</span>',
-            'extras' => ['safe_label' => true]
-        ]);
 
         return $menu;
     }
