@@ -127,9 +127,9 @@ class TicketCommentController extends Controller
 
         return $this->render('TicketComment/show.html.twig', [
             'entity' => $entity,
-            'project_id' => $project_id,
-            'ticket_id' => $ticket_id,
-            'ticket_comment_id' => $ticket_comment_id,
+            'project' => $project_id,
+            'ticket' => $ticket_id,
+            'id' => $ticket_comment_id,
             'delete_form' => $deleteForm
         ]);
     }
@@ -219,7 +219,7 @@ class TicketCommentController extends Controller
             $form->handleRequest($request);
             $em = $this->getDoctrine()->getManager();
 
-            $entity = $this->getDoctrine()->getRepository('AppBundle:TicketComment')
+            $entity = $em->getDoctrine()->getRepository('AppBundle:TicketComment')
             ->findBy(['ticket' => $ticket_id,
                 'id' => $ticket_comment_id
             ]);
