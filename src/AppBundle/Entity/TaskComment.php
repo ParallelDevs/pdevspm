@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TaskComment
  *
- * @ORM\Table(name="task_comment", indexes={@ORM\Index(name="fk_task_comment_user", columns={"created_by"}), @ORM\Index(name="fk_task_comment_task", columns={"task_id"}), @ORM\Index(name="fk_task_comment_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_comment_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_comment_label", columns={"task_label_id"})})
+ * @ORM\Table(name="task_comment", indexes={@ORM\Index(name="fk_task_comment_user", columns={"created_by"}), @ORM\Index(name="fk_task_comment_task", columns={"task_id"}), @ORM\Index(name="fk_task_comment_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_comment_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_comment_label", columns={"task_label_id"}), @ORM\Index(name="fk_project_task_comment", columns={"project_id"})})
  * @ORM\Entity
  */
 class TaskComment
@@ -115,6 +115,16 @@ class TaskComment
      * })
      */
     private $taskType;
+
+    /**
+     * @var \AppBundle\Entity\Project
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     * })
+     */
+    private $project;
 
 
 
@@ -379,5 +389,28 @@ class TaskComment
     public function getTaskType()
     {
         return $this->taskType;
+    }
+
+    /**
+     * Set project
+     *
+     * @param \AppBundle\Entity\Project $project
+     * @return TaskComment
+     */
+    public function setProject(\AppBundle\Entity\Project $project = null)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get taskPriority
+     *
+     * @return \AppBundle\Entity\Project
+     */
+    public function getProject()
+    {
+        return $this->project;
     }
 }
