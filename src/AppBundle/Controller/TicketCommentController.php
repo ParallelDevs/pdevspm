@@ -59,8 +59,8 @@ class TicketCommentController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('ticket_comment_show', array(
-                                                                        'project_id' => $entity->getProject()->getId(),
-                                                                        'ticket_id' => $entity->getTicket()->getId(),
+                                                                        'project_id' => $project_id,
+                                                                        'ticket_id' => $ticket_id,
                                                                         'ticket_comment_id' => $entity->getId())));
         }
 
@@ -112,7 +112,7 @@ class TicketCommentController extends Controller
      * @Route("/{project_id}/ticket/{ticket_id}/ticket-comment/{ticket_comment_id}", name="ticket_comment_show")
      * @Method("GET")
      */
-    public function showAction($ticket_id, $ticket_comment_id)
+    public function showAction($project_id, $ticket_id, $ticket_comment_id)
     {
         $entity = $this->getDoctrine()->getRepository('AppBundle:TicketComment')
             ->findBy(['ticket' => $ticket_id,
@@ -123,8 +123,14 @@ class TicketCommentController extends Controller
             throw $this->createNotFoundException('Unable to find TicketComment entity.');
         }
 
+        $deleteForm = $this->createDeleteForm($project_id, $ticket_id, $ticket_comment_id);
+
         return $this->render('TicketComment/show.html.twig', [
             'entity' => $entity,
+            'project_id' => $project_id,
+            'ticket_id' => $ticket_id,
+            'ticket_comment_id' => $ticket_comment_id,
+            'delete_form' => $deleteForm
         ]);
     }
 
@@ -205,10 +211,12 @@ class TicketCommentController extends Controller
      * Deletes a TicketComment entity.
      *
      * @Route("/{project_id}/ticket/{ticket_id}/ticket-comment/{ticket_comment_id}/delete", name="ticket_comment_delete")
-     * @Method("GET")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $project_id, $ticket_id, $ticket_comment_id)
     {
+            $form = $this->createDeleteForm($project_id, $ticket_id, $ticket_comment_id);
+            $form->handleRequest($request);
             $em = $this->getDoctrine()->getManager();
 
             $entity = $this->getDoctrine()->getRepository('AppBundle:TicketComment')
@@ -236,10 +244,10 @@ class TicketCommentController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function createDeleteForm($project_id, $ticket_id, $ticket_comment_id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ticket_comment_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('ticket_comment_delete', array('project_id' => $project_id , 'ticket_id' => $ticket_id, 'ticket_comment_id' => $ticket_comment_id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

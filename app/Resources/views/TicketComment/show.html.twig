@@ -17,10 +17,7 @@
                         <th>Description:</th>
                         <td>{{ entity.description }}</td>
                     </tr>
-                    <tr>
-                        <th>Project:</th>
-                        <td>{{ entity.project.name }}</td>
-                    </tr>
+
                     <tr>
                         <th>Ticket:</th>
                         <td>{{ entity.ticket.name }}</td>
@@ -39,16 +36,19 @@
     </div>
 
     <ul class="record_actions">
-        <li>
-            <a href="{{ path('ticket_comment', { 'ticket_id': entity.ticket.id, 'project_id': entity.project.id }) }}">
-                Back to the list
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('ticket_comment_edit', { 'project_id': entity.project.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id   }) }}">
-                Edit
-            </a>
-        </li>
+        {#<li>#}
+            {#<a href="{{ path('ticket_comment', { 'ticket_id': entity.ticket.id, 'project_id': entity.project.id }) }}">#}
+                {#Back to the list#}
+            {#</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('ticket_comment_edit', { 'project_id': entity.project.id, 'ticket_id': entity.ticket.id, 'ticket_comment_id': entity.id   }) }}">#}
+                {#Edit#}
+            {#</a>#}
+        {#</li>#}
+                    {#<li>{{ form(delete_form) }}</li>#}
                 {% endfor %}
+
+
     </ul>
 {% endblock %}
