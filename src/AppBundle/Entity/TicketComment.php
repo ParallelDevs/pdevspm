@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TicketComment
  *
- * @ORM\Table(name="ticket_comment", indexes={@ORM\Index(name="fk_ticket_comment_ticket", columns={"ticket_id"}), @ORM\Index(name="fk_ticket_comment_user", columns={"user_id"}), @ORM\Index(name="fk_ticket_comment_status", columns={"ticket_status_id"}), @ORM\Index(name="fk_ticket_department_id", columns={"department_id"}), @ORM\Index(name="fk_ticket_comment_type_id", columns={"ticket_type_id"}), @ORM\Index(name="fk_ticket_project_id", columns={"project_id"})})
+ * @ORM\Table(name="ticket_comment", indexes={@ORM\Index(name="fk_ticket_comment_ticket", columns={"ticket_id"}), @ORM\Index(name="fk_ticket_comment_user", columns={"user_assigned_to"}), @ORM\Index(name="fk_ticket_comment_status", columns={"ticket_status_id"}), @ORM\Index(name="fk_ticket_department_id", columns={"department_id"}), @ORM\Index(name="fk_ticket_comment_type_id", columns={"ticket_type_id"}), @ORM\Index(name="fk_ticket_project_id", columns={"project_id"})})
  * @ORM\Entity
  */
 class TicketComment
@@ -50,7 +50,7 @@ class TicketComment
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_assigned_to", referencedColumnName="id")
      * })
      */
     private $user;
@@ -94,6 +94,7 @@ class TicketComment
      * })
      */
     private $project;
+
 
     /**
      * Get id

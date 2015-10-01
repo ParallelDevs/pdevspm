@@ -38,6 +38,10 @@
                         <th>CreatedAt:</th>
                         <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
                     </tr>
+                    <tr>
+                        <th>Assigned To:</th>
+                        <td>{{ entity.user.username }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -52,7 +56,5 @@
                 Edit
         </a>
     </li>
-    <li>{{ form(delete_form) }}</li>
-        {% endfor %}
-
+    {% endfor %}
 {% endblock %}
