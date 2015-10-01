@@ -126,6 +126,17 @@ class TaskComment
      */
     private $project;
 
+    /**
+     * @var \AppBundle\Entity\User
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinTable(name="task_comment_assignedTo_team",
+     *      joinColumns={@ORM\JoinColumn(name="task_comment_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *      )
+     */
+    private $taskAssignedTo;
+
 
 
     /**
@@ -412,5 +423,29 @@ class TaskComment
     public function getProject()
     {
         return $this->project;
+    }
+
+
+    /**
+     * Set team
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection $taskAssignedTo
+     * @return TaskComment
+     */
+    public function setTaskAssignedTo(\Doctrine\Common\Collections\ArrayCollection $taskAssignedTo)
+    {
+        $this->taskAssignedTo = $taskAssignedTo;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getTaskAssignedTo()
+    {
+        return $this->taskAssignedTo;
     }
 }

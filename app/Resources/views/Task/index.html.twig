@@ -29,10 +29,10 @@
                         <th>Duedate</th>
                         <th>Createdat</th>
                         <th>Closeddate</th>
-                        <th>Discussionid</th>
                         <th>Startdate</th>
                         <th>Progress</th>
                         <th>Project</th>
+                        <th>Assigned To</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -46,10 +46,10 @@
                         <td>{% if entity.dueDate %}{{ entity.dueDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{% if entity.closedDate %}{{ entity.closedDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ entity.discussionId }}</td>
                         <td>{% if entity.startDate %}{{ entity.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{{ entity.progress }}</td>
                         <td>{{ entity.project.id }}</td>
+                        <td></td>
                         <td>
                             <ul>
                                <li>
@@ -60,7 +60,7 @@
                                </li>
                             </ul>
                         </td>
-                    </tr>
+                        </tr>
                 {% endfor %}
                     </tbody>
             </table>

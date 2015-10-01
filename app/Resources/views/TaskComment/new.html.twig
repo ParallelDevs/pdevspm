@@ -31,9 +31,9 @@
                 </div>
 
                 <div class="form-group">
-                {{ form_label(form.taskType) }}
-                {{ form_errors(form.taskType) }}
-                {{ form_widget(form.taskType) }}
+                    {{ form_label(form.taskType) }}
+                    {{ form_errors(form.taskType) }}
+                    {{ form_widget(form.taskType) }}
                 </div>
 
                 <div class="form-group">
@@ -55,23 +55,26 @@
                 </div>
 
                 <div class="form-group">
-                    {{ form_label(form.createdBy) }}
-                    {{ form_errors(form.createdBy) }}
-                    {% for form_assignedTo in form.createdBy %}
-                        <div class="checkbox">
-                            {{ form_widget(form_assignedTo) }}
-                            {{ form_label(form_assignedTo) }}
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group">
                     {{ form_label(form.description) }}
                     {{ form_errors(form.description) }}
                     {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter the description'}}) }}
                 </div>
 
-
+                <div class="form-group">
+                    {{ form_label(form.createdBy) }}
+                    {{ form_errors(form.createdBy) }}
+                    {{ form_widget(form.createdBy) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.taskAssignedTo) }}
+                    {{ form_errors(form.taskAssignedTo) }}
+                    {% for form_task_assignedTo in form.taskAssignedTo %}
+                        <div class="checkbox">
+                            {{ form_widget(form_task_assignedTo) }}
+                            {{ form_label(form_task_assignedTo) }}
+                        </div>
+                    {% endfor %}
+                </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

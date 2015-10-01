@@ -60,9 +60,9 @@
 
                 <div class="form-group">
 
-                    {{ form_label(form.createdBy) }}
-                    {{ form_errors(form.createdBy) }}
-                    {% for form_assignedTo in form.createdBy %}
+                    {{ form_label(edit_form.createdBy) }}
+                    {{ form_errors(edit_form.createdBy) }}
+                    {% for form_assignedTo in edit_form.createdBy %}
                         <div class="checkbox">
                             {{ form_widget(form_assignedTo) }}
                             {{ form_label(form_assignedTo) }}

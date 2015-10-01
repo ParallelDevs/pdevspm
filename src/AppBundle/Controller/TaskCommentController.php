@@ -100,9 +100,14 @@ class TaskCommentController extends Controller
         $entity = new TaskComment();
         $form   = $this->createCreateForm($entity, $project_id, $task_id);
 
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:User');
+        $users = $repository->findAll();
+
         return $this->render('TaskComment/new.html.twig', [
             'entity' => $entity,
             'form' => $form->createView(),
+            'users' => $users
 
         ]);
     }
