@@ -55,10 +55,22 @@
                 </div>
 
                 <div class="form-group">
+                    {{ form_label(form.createdBy) }}
+                    {{ form_errors(form.createdBy) }}
+                    {% for form_assignedTo in form.createdBy %}
+                        <div class="checkbox">
+                            {{ form_widget(form_assignedTo) }}
+                            {{ form_label(form_assignedTo) }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
                     {{ form_label(form.description) }}
                     {{ form_errors(form.description) }}
                     {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter the description'}}) }}
                 </div>
+
 
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>

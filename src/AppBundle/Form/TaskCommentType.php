@@ -31,6 +31,7 @@ class TaskCommentType extends AbstractType
             ->add('taskPriority', 'entity', ['class' => 'AppBundle\Entity\TaskPriority', 'property' => 'name'])
             ->add('taskLabel', 'entity', ['class' => 'AppBundle\Entity\TaskLabel', 'property' => 'name'])
             ->add('taskType', 'entity', ['class' => 'AppBundle\Entity\TaskType', 'property' => 'name'])
+            ->add('createdBy', 'entity', ['class' => 'AppBundle\Entity\User', 'property' => 'username', 'label' => 'Assigned To', 'expanded' => true, 'multiple' => true])
 
         ;
     }
