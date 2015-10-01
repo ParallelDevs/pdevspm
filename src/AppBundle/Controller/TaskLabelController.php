@@ -109,10 +109,13 @@ class TaskLabelController extends Controller
             throw $this->createNotFoundException('Unable to find TaskLabel entity.');
         }
 
+        $deleteForm = $this->createDeleteForm($id);
+
         return $this->render('TaskLabel/show.html.twig',[
             'entity' => $entity,
             'id'=>$entity->getId(),
-            ]);
+            'delete_form' => $deleteForm->createView()
+        ]);
     }
 
     /**
@@ -192,7 +195,7 @@ class TaskLabelController extends Controller
      * Deletes a TaskLabel entity.
      *
      * @Route("/{id}/delete", name="config_task_label_delete")
-     * @Method("GET")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -207,6 +210,23 @@ class TaskLabelController extends Controller
             $em->flush();
 
         return $this->redirect($this->generateUrl('config_task_label'));
+    }
+
+    /**
+     * Creates a form to delete a Project entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('config_task_label_delete', ['id' => $id]))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', ['label' => 'Delete'])
+            ->getForm()
+            ;
     }
 
 }
