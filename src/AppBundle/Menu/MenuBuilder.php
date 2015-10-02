@@ -18,7 +18,7 @@ class MenuBuilder
     }
 
 
-    public function createMainMenu(RequestStack $requestStack)
+    public function createMainMenu()
     {
         $menu = $this->factory->createItem('root', ['childrenAttributes' => ['class' => 'sidebar-menu']]);
 
