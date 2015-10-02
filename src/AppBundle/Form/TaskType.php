@@ -45,7 +45,7 @@ class TaskType extends AbstractType
                                    '60%' => '60%', '65%' => '65%', '70%' => '70%', '75%' => '75%', '80%' => '80%', '85%' => '85%', '90%' => '90%',
                                    '95%' => '95%', '100%' => '100%',
                 )));
-            //NOTE: In this moment this entity CRUD is in the process. Ignore this comments. If they work.
+            //TODO: In this moment this entity CRUD its in process to build. Ignore this comments. If they work.
         ;
     }
 

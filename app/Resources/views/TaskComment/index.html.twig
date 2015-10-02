@@ -18,7 +18,7 @@
 
     <div class="col-xs-12">
         <div class="box box-primary">
-            <table class="records_list">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -33,19 +33,17 @@
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td><a href="{{ path('task_comment_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td><a href="{{ path('task_comment_show', { 'project_id': entity.project.id, 'task_comment_id': entity.id, 'task_id':entity.task.id }) }}">{{ entity.id }}</a></td>
                         <td>{% if entity.dueDate %}{{ entity.dueDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ entity.workedHours }}</td>
                         <td>{{ entity.description }}</td>
                         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{{ entity.progress }}</td>
                         <td>
                         <ul>
                             <li>
-                                <a href="{{ path('task_comment_show', { 'id': entity.id }) }}">show</a>
+                                <a href="{{ path('task_comment_edit', { 'project_id': entity.project.id, 'task_comment_id': entity.id, 'task_id':entity.task.id }) }}">Edit</a>
                             </li>
-                            <li>
-                                <a href="{{ path('task_comment_edit', { 'id': entity.id }) }}">edit</a>
+                                <a href="{{ path('task_comment_delete', { 'project_id': entity.project.id, 'task_comment_id': entity.id, 'task_id':entity.task.id }) }}">Delete</a>
                             </li>
                         </ul>
                         </td>
@@ -55,11 +53,4 @@
             </table>
         </div>
     </div>
-        {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('task_comment_new') }}">#}
-                {#Create a new entry#}
-            {#</a>#}
-        {#</li>#}
-    {#</ul>#}
-    {% endblock %}
+{% endblock %}

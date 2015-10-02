@@ -61,13 +61,12 @@
             Back to the list
         </a>
     </li>
-                    {#Segun la version anterior, aca se veria la informacion de los task_comments asociados a cada task#}
-
     <li>
         <a href="{{ path('task_comment_new', { 'task_id': entity.id, 'project_id': entity.project.id }) }}">
             Add Task Comment
         </a>
     </li>
     {% endfor %}
+    {{ form(delete_form) }}
 </ul>
 {% endblock %}
