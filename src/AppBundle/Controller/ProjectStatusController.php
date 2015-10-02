@@ -103,8 +103,6 @@ class ProjectStatusController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();        
-        
         $repository = $this->getDoctrine()
                     ->getRepository('AppBundle:ProjectStatus');        
         $entity = $repository->find($id);  
