@@ -39,7 +39,7 @@ class Task
      * @var \AppBundle\Entity\User
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinTable(name="task_assignedTo_team",
+     * @ORM\JoinTable(name="task_assigned_to_user",
      *      joinColumns={@ORM\JoinColumn(name="task_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      *      )
