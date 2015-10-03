@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Entity;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class ProjectStatusRepositoryFunctionalTest extends KernelTestCase
+class ProjectTypeRepositoryFunctionalTest extends KernelTestCase
 {
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -25,12 +25,12 @@ class ProjectStatusRepositoryFunctionalTest extends KernelTestCase
 
     public function testSearchProjectByName()
     {
-        $projectStatus = $this->em
-            ->getRepository('AppBundle:ProjectStatus')
-            ->findOneByName('Open')
+        $projectType = $this->em
+            ->getRepository('AppBundle:ProjectType')
+            ->findOneByName('Support')
         ;
 
-        $this->assertEquals('Open', $projectStatus->getName());
+        $this->assertEquals('Support', $projectType->getName());
     }
 
     /**

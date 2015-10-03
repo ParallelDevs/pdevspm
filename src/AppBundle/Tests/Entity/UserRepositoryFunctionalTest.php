@@ -3,6 +3,7 @@
 namespace AppBundle\Tests\Entity;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use AppBundle\Entity\User;
 
 class UserRepositoryFunctionalTest extends KernelTestCase
 {
@@ -24,7 +25,26 @@ class UserRepositoryFunctionalTest extends KernelTestCase
         ;
     }
 
-    public function testSearchByCategoryName()
+    public function testUserCreation()
+    {
+        $testUser = new User();
+        $testUser
+            ->setUsername('test')
+            ->setName('Test User')
+            ->setUsernameCanonical('test')
+            ->setEmail('test@pdevspm.com')
+            ->setEmailCanonical('test@pdevspm.com')
+            ->setEnabled(true)
+            ->setPlainPassword('test')
+        ;
+        $this->em->persist($testUser);
+        $this->em->flush();
+    }
+
+    /**
+     * Make sure there is an admin user to make test
+     */
+    public function testGetAdminUser()
     {
         $user = $this->em
             ->getRepository('AppBundle:User')
