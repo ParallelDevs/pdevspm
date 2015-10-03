@@ -7,9 +7,9 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use AppBundle\Entity\ProjectStatus;
+use AppBundle\Entity\ProjectType;
 
-class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -29,39 +29,29 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
      */
     public function load(ObjectManager $manager)
     {
-        $open = new ProjectStatus();
-        $open
-            ->setName('Open')
-            ->setDefaultValue(1)
+        $support = new ProjectType();
+        $support
+            ->setName('Support')
             ->setSortOrder(0)
-            ->setActive(1)
+            ->setActive(1);
         ;
-        $manager->persist($open);
+        $manager->persist($support);
 
-        $onHold = new ProjectStatus();
-        $onHold
-            ->setName('On Hold')
+        $newSite = new ProjectType();
+        $newSite
+            ->setName('New Site')
             ->setSortOrder(1)
-            ->setActive(1)
+            ->setActive(1);
         ;
-        $manager->persist($onHold);
+        $manager->persist($newSite);
 
-
-        $closed = new ProjectStatus();
-        $closed
-            ->setName('Closed')
+        $internal = new ProjectType();
+        $internal
+            ->setName('Internal')
             ->setSortOrder(2)
-            ->setActive(1)
+            ->setActive(1);
         ;
-        $manager->persist($closed);
-
-        $cancelled = new ProjectStatus();
-        $cancelled
-            ->setName('Cancelled')
-            ->setSortOrder(3)
-            ->setActive(1)
-        ;
-        $manager->persist($cancelled);
+        $manager->persist($internal);
 
         $manager->flush();
     }
