@@ -41,6 +41,47 @@ class UserRepositoryFunctionalTest extends KernelTestCase
         $this->em->flush();
     }
 
+    public function testGetUserByEmail()
+    {
+        $user = $this->em
+            ->getRepository('AppBundle:User')
+            ->findOneByEmail('test@pdevspm.com')
+        ;
+
+        $this->assertEquals('test@pdevspm.com', $user->getEmail());
+    }
+
+    public function testUpdateUser()
+    {
+        $user = $this->em
+            ->getRepository('AppBundle:User')
+            ->findOneByEmail('test@pdevspm.com')
+        ;
+
+        // Update email
+        $user->setEmail('test2@pdevspm.com');
+        $this->em->persist($user);
+        $this->em->flush();
+
+        $user = $this->em
+            ->getRepository('AppBundle:User')
+            ->findOneByEmail('test2@pdevspm.com')
+        ;
+
+        $this->assertEquals('test2@pdevspm.com', $user->getEmail());
+    }
+
+    public function testDeleteUser()
+    {
+        $user = $this->em
+            ->getRepository('AppBundle:User')
+            ->findOneByEmail('test2@pdevspm.com')
+        ;
+
+        $this->em->remove($user);
+        $this->em->flush();
+    }
+
     /**
      * Make sure there is an admin user to make test
      */
