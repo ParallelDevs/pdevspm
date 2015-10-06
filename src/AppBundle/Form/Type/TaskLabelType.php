@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TaskGroupType extends AbstractType
+class TaskLabelType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,16 +16,18 @@ class TaskGroupType extends AbstractType
     {
         $builder
             ->add('name')
-            ;
+            ->add('sortOrder')
+            ->add('defaultValue')
+            ->add('active')
+        ;
     }
-    
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\TaskGroup'
+            'data_class' => 'AppBundle\Entity\TaskLabel'
         ));
     }
 
@@ -34,6 +36,6 @@ class TaskGroupType extends AbstractType
      */
     public function getName()
     {
-        return 'taskgroup';
+        return 'taskLabel';
     }
 }

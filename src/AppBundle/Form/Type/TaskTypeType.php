@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TaskLabelType extends AbstractType
+class TaskTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,13 +21,14 @@ class TaskLabelType extends AbstractType
             ->add('active')
         ;
     }
+    
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\TaskLabel'
+            'data_class' => 'AppBundle\Entity\TaskType'
         ));
     }
 
@@ -36,6 +37,6 @@ class TaskLabelType extends AbstractType
      */
     public function getName()
     {
-        return 'taskLabel';
+        return 'TaskType';
     }
 }

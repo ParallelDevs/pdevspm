@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\TaskPriority;
-use AppBundle\Form\TaskPriorityType;
+use AppBundle\Form\Type\TaskPriorityType;
 
 /**
  * TaskPriority controller.
