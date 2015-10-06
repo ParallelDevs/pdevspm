@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\TaskLabel;
-use AppBundle\Form\TaskLabelType;
+use AppBundle\Form\Type\TaskLabelType;
 
 /**
  * TaskLabel controller.

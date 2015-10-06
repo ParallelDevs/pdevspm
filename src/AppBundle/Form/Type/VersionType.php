@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProjectTypeType extends AbstractType
+class VersionType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,8 +16,9 @@ class ProjectTypeType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('sortOrder')
-            ->add('active')
+            ->add('description')
+            ->add('dueDate')
+            ->add('versionStatus', 'entity', ['class' => 'AppBundle\Entity\VersionStatus', 'property' => 'name'])
         ;
     }
     
@@ -27,7 +28,7 @@ class ProjectTypeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ProjectType'
+            'data_class' => 'AppBundle\Entity\Version'
         ));
     }
 
@@ -36,6 +37,6 @@ class ProjectTypeType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_projecttype';
+        return 'version';
     }
 }

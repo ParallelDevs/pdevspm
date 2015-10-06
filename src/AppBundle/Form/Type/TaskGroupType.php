@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RegistrationType extends AbstractType
+class TaskGroupType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,8 +16,7 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('file', 'file')
-        ;
+            ;
     }
     
     /**
@@ -26,7 +25,7 @@ class RegistrationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\User'
+            'data_class' => 'AppBundle\Entity\TaskGroup'
         ));
     }
 
@@ -35,11 +34,6 @@ class RegistrationType extends AbstractType
      */
     public function getName()
     {
-        return 'app_user_registration';
-    }
-
-    public function getParent()
-    {
-        return 'fos_user_registration';
+        return 'taskgroup';
     }
 }

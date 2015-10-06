@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TaskPriorityType extends AbstractType
+class ProjectStatusType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,10 +16,9 @@ class TaskPriorityType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('icon')
-            ->add('sortOrder')
             ->add('defaultValue')
             ->add('active')
+            ->add('sortOrder')
         ;
     }
     
@@ -29,7 +28,7 @@ class TaskPriorityType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\TaskPriority'
+            'data_class' => 'AppBundle\Entity\ProjectStatus'
         ));
     }
 
@@ -38,6 +37,6 @@ class TaskPriorityType extends AbstractType
      */
     public function getName()
     {
-        return 'task_priority';
+        return 'appbundle_projectstatus';
     }
 }

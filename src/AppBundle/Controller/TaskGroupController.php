@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\TaskGroup;
-use AppBundle\Form\TaskGroupType;
+use AppBundle\Form\Type\TaskGroupType;
 
 /**
  * TaskGroup controller.
