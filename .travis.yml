@@ -19,8 +19,8 @@ script:
 notifications:
   email:
     -  d.noyola@paralleldevs.com
-    on_success: change
-    on_failure: always
+  on_success: change
+  on_failure: always
 
 addons:
   code_climate:
