@@ -39,10 +39,7 @@ class UserRepositoryFunctionalTest extends KernelTestCase
         ;
         $this->em->persist($testUser);
         $this->em->flush();
-    }
 
-    public function testGetUserByEmail()
-    {
         $user = $this->em
             ->getRepository('AppBundle:User')
             ->findOneByEmail('test@pdevspm.com')
@@ -58,8 +55,12 @@ class UserRepositoryFunctionalTest extends KernelTestCase
             ->findOneByEmail('test@pdevspm.com')
         ;
 
+        $this->assertEquals('test@pdevspm.com', $user->getEmail());
+
         // Update email
         $user->setEmail('test2@pdevspm.com');
+        $this->assertEquals('test2@pdevspm.com', $user->getEmail());
+
         $this->em->persist($user);
         $this->em->flush();
 
@@ -78,21 +79,17 @@ class UserRepositoryFunctionalTest extends KernelTestCase
             ->findOneByEmail('test2@pdevspm.com')
         ;
 
+        $this->assertEquals('test2@pdevspm.com', $user->getEmail());
+
         $this->em->remove($user);
         $this->em->flush();
-    }
 
-    /**
-     * Make sure there is an admin user to make test
-     */
-    public function testGetAdminUser()
-    {
         $user = $this->em
             ->getRepository('AppBundle:User')
-            ->findOneByName('admin')
+            ->findOneByEmail('test2@pdevspm.com')
         ;
 
-        $this->assertEquals('admin', $user->getUserName());
+        $this->assertNull($user);
     }
 
     /**
