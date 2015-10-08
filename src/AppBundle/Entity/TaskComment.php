@@ -127,13 +127,7 @@ class TaskComment
     private $project;
 
 
-
-    public function __construct()
-    {
-        $this->task = new ArrayCollection();
-    }
-
-    /**
+     /**
      * Get id
      *
      * @return integer 
@@ -418,30 +412,5 @@ class TaskComment
     {
         return $this->project;
     }
-
-    /**
-     * Set assignedTo
-     *
-     * @param string $taskAssignedTo
-     * @return Task
-     */
-    public function setTaskAssignedTo($taskAssignedTo)
-    {
-        $this->taskAssignedTo = $taskAssignedTo;
-
-        return $this;
-    }
-
-    /**
-     * Get assignedTo
-     *
-     * @return string
-     */
-    public function getTaskAssignedTo()
-    {
-        return $this->taskAssignedTo;
-    }
-
-
 
 }

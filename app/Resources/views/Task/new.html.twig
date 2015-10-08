@@ -54,16 +54,14 @@
                 </div>
 
                 <div class="form-group">
-
-                        {{ form_label(form.assignedTo) }}
-                        {{ form_errors(form.assignedTo) }}
-                            {% for form_assignedTo in form.assignedTo %}
-                                <div class="checkbox">
-                                    {{ form_widget(form_assignedTo) }}
-                                    {{ form_label(form_assignedTo) }}
-                                </div>
-                            {% endfor %}
-
+                    {{ form_label(form.assignedTo) }}
+                    {{ form_errors(form.assignedTo) }}
+                    {% for form_assignedTo in form.assignedTo %}
+                        <div class="checkbox">
+                            {{ form_widget(form_assignedTo) }}
+                            {{ form_label(form_assignedTo) }}
+                        </div>
+                    {% endfor %}
                 </div>
 
                 <div class="form-group">

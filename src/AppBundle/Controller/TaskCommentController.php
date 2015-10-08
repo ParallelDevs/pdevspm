@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Task;
+use AppBundle\Entity\TaskType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -41,8 +43,9 @@ class TaskCommentController extends Controller
     public function createAction(Request $request, $project_id, $task_id)
     {
         $entity = new TaskComment();
+        $task = new Task();
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createCreateForm($entity, $project_id, $task_id);
+        $form = $this->createCreateForm($entity, $task, $project_id, $task_id);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -95,22 +98,20 @@ class TaskCommentController extends Controller
      * @Route("/{project_id}/task/{task_id}/task-comment/new", name="task_comment_new")
      * @Method("GET")
      */
-    public function newAction($project_id, $task_id)
+    public function newAction(Request $request, $project_id, $task_id)
     {
-
         $em = $this->getDoctrine()->getManager();
-        $entity = new TaskComment();
-        $form   = $this->createCreateForm($entity, $project_id, $task_id);
-
 
         $task = $em->getRepository('AppBundle:Task')->find($task_id);
-        $entity->setTaskAssignedTo($task);
+        $taskComment = new TaskComment();
+        $taskComment->setTask($task);
 
+        $form = $this->createCreateForm($taskComment, $project_id, $task_id);
 
         return $this->render('TaskComment/new.html.twig', [
-            'entity' => $entity,
+            'entity' => $taskComment,
             'form' => $form->createView(),
-            'task' => $task
+            'task' => $task,
         ]);
     }
 

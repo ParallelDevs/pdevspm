@@ -2,9 +2,12 @@
 
 namespace AppBundle\Form;
 
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use AppBundle\Form\TaskCommentAssignToType;
+
 
 class TaskCommentType extends AbstractType
 {
@@ -32,8 +35,7 @@ class TaskCommentType extends AbstractType
             ->add('taskLabel', 'entity', ['class' => 'AppBundle\Entity\TaskLabel', 'property' => 'name'])
             ->add('taskType', 'entity', ['class' => 'AppBundle\Entity\TaskType', 'property' => 'name'])
             ->add('createdBy', 'entity', ['class' => 'AppBundle\Entity\User', 'property' => 'username', 'label' => 'Created By'])
-            ->add('task', 'entity', ['class' => 'AppBundle\Entity\Task', 'property' => 'name'])
-
+            ->add('assign_to', 'collection', array('type' => new TaskCommentAssignToType()))
         ;
     }
     /**
