@@ -97,18 +97,20 @@ class TaskCommentController extends Controller
      */
     public function newAction($project_id, $task_id)
     {
+
+        $em = $this->getDoctrine()->getManager();
         $entity = new TaskComment();
         $form   = $this->createCreateForm($entity, $project_id, $task_id);
 
-        $repository = $this->getDoctrine()
-            ->getRepository('AppBundle:User');
-        $users = $repository->findAll();
+
+        $task = $em->getRepository('AppBundle:Task')->find($task_id);
+        $entity->setTaskAssignedTo($task);
+
 
         return $this->render('TaskComment/new.html.twig', [
             'entity' => $entity,
             'form' => $form->createView(),
-            'users' => $users
-
+            'task' => $task
         ]);
     }
 
