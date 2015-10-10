@@ -46,6 +46,8 @@ class UserRepositoryFunctionalTest extends KernelTestCase
             ->findOneByEmail('test@pdevspm.com')
         ;
 
+        $this->assertNotNull($user);
+        $this->assertInstanceOf('AppBundle\Entity\User', $user);
         $this->assertEquals('test', $user->getUsername());
         $this->assertEquals('test@pdevspm.com', $user->getEmail());
         $this->assertEquals('Test User', $user->getName());
