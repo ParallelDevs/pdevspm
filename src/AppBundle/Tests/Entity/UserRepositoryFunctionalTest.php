@@ -37,6 +37,7 @@ class UserRepositoryFunctionalTest extends KernelTestCase
             ->setEnabled(true)
             ->setPlainPassword('test')
         ;
+
         $this->em->persist($testUser);
         $this->em->flush();
 
@@ -45,7 +46,13 @@ class UserRepositoryFunctionalTest extends KernelTestCase
             ->findOneByEmail('test@pdevspm.com')
         ;
 
+        $this->assertNotNull($user);
+        $this->assertInstanceOf('AppBundle\Entity\User', $user);
+        $this->assertEquals('test', $user->getUsername());
         $this->assertEquals('test@pdevspm.com', $user->getEmail());
+        $this->assertEquals('Test User', $user->getName());
+        $this->assertTrue($user->isEnabled());
+        $this->assertNotEquals('test', $user->getPassword());
     }
 
     public function testUpdateUser()
