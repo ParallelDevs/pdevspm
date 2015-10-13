@@ -103,8 +103,39 @@ class TaskCommentController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $task = $em->getRepository('AppBundle:Task')->find($task_id);
+
         $taskComment = new TaskComment();
         $taskComment->setTask($task);
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $repository = $this->getDoctrine()
+            ->getRepository('AppBundle:User');
+        $users = $repository->findAll();
+
+
+        $repository123 = $this->getDoctrine()
+            ->getRepository('AppBundle:Task');
+        $team = $repository123->find($task_id);
+        $taskComment->getTask()->setAssignedTo($team);
+
+        $id_user = $user->getId();
+
+//        echo "<pre>";
+//        print_r($id_user);
+//        echo "</pre>";
+//        exit();
+
+        $teamXYZ = $this->getDoctrine()->getRepository('AppBundle:Task')
+            ->findBy([
+                'id' => $task_id
+            ]);
+
+//        echo "<pre>";
+//            print_r($teamXYZ);
+//        echo "</pre>";
+//        exit();
+
 
         $form = $this->createCreateForm($taskComment, $project_id, $task_id);
 
@@ -112,9 +143,10 @@ class TaskCommentController extends Controller
             'entity' => $taskComment,
             'form' => $form->createView(),
             'task' => $task,
+            'users' => $users,
+            'team' => $teamXYZ
         ]);
     }
-
     /**
      * Finds and displays a TaskComment entity.
      *

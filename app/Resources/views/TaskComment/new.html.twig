@@ -54,22 +54,44 @@
                     {{ form_widget(form.progress) }}
                 </div>
 
+                {#<div class="form-group">#}
+                    {#{{ form_label(form.task) }}#}
+                    {#{{ form_errors(form.task) }}#}
+                    {#{{ form_widget(form.task) }}#}
+                {#</div>#}
+
+                {#{{ task.assignedTo }}#}
+
+                {#{{ dump(task.assignedTo) }}#}
+
+                {#<div class="form-group">#}
+                {#{% for user in task.assignedTo %}#}
+                {#<input type="checkbox" value="{{ user.id }}"> {{ user }}#}
+                {#{% endfor %}#}
+                {#</div>#}
+
                 <div class="form-group">
                     {{ form_label(form.description) }}
                     {{ form_errors(form.description) }}
                     {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter the description'}}) }}
                 </div>
+                {#Assigned To Users:#}
+                {#{% for user in users %}#}
+                    {#<div class="form-group">#}
+                        {#<input type="checkbox" value="{{ user.id }}"> {{ user.username }}#}
+                    {#</div>#}
+                {#{% endfor %}#}
 
-                {#<div class="form-group">#}
-                    {#{% for user in task.assignedTo %}#}
-                        {#<input type="checkbox" value="{{ user.id }}"> {{ user }}#}
-                        {#{{ dump(user) }}#}
+                {% for user in users %}
+                    {#{% for task in task.assignedTo %}#}
+                        <div class="form-group">
+                            <input type="checkbox" value="{{ user.id }}"> {{ user.username }}
+                        </div>
                     {#{% endfor %}#}
-                {#</div>#}
-
+                {% endfor %}
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-        </div>
+        </>
     </div>
 {% endblock %}
