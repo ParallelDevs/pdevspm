@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * TaskComment
@@ -126,6 +127,35 @@ class TaskComment
      */
     private $project;
 
+
+    private $assignedTo;
+
+    public function __construct(){
+        $this->assignedTo = new ArrayCollection();
+    }
+
+    /**
+     * Set assignedTo
+     *
+     * @param \Doctrine\Common\Collections\ArrayCollection $assignedTo
+     * @return Task
+     */
+    public function setAssignedTo(\Doctrine\Common\Collections\ArrayCollection $assignedTo)
+    {
+        $this->assignedTo = $assignedTo;
+
+        return $this;
+    }
+
+    /**
+     * Get assignedTo
+     *
+     *@return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getAssignedTo()
+    {
+        return $this->assignedTo;
+    }
 
      /**
      * Get id

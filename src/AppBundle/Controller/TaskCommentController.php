@@ -45,7 +45,7 @@ class TaskCommentController extends Controller
         $entity = new TaskComment();
         $task = new Task();
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createCreateForm($entity, $task, $project_id, $task_id);
+        $form = $this->createCreateForm($entity, $project_id, $task_id);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -54,17 +54,23 @@ class TaskCommentController extends Controller
             $entity->setCreatedBy($user);
             $entity->setCreatedAt(new \DateTime('now'));
 
+
+
+
             $project = $em->getRepository('AppBundle:Project')->find($project_id);
             $entity->setProject($project);
 
             $task = $em->getRepository('AppBundle:Task')->find($task_id);
             $entity->setTask($task);
 
+            $team = $task->getAssignedTo()->getValues();
+            $dfg = $task->setAssignedTo($team);
+
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+            $em->persist($entity, $dfg);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('task_comment_show', array('task_id' => $entity->getTask()->getId(), 'project_id' => $project_id, 'task_comment_id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('task_comment_show', array('project_id' => $project_id, 'task_id' => $entity->getTask()->getId(), 'task_comment_id' => $entity->getId())));
         }
 
         return $this->render('TaskComment/new.html.twig', [
@@ -107,44 +113,19 @@ class TaskCommentController extends Controller
         $taskComment = new TaskComment();
         $taskComment->setTask($task);
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:User');
         $users = $repository->findAll();
+        $team = $task->getAssignedTo()->getValues();
 
-
-        $repository123 = $this->getDoctrine()
-            ->getRepository('AppBundle:Task');
-        $team = $repository123->find($task_id);
-        $taskComment->getTask()->setAssignedTo($team);
-
-        $id_user = $user->getId();
-
-//        echo "<pre>";
-//        print_r($id_user);
-//        echo "</pre>";
-//        exit();
-
-        $teamXYZ = $this->getDoctrine()->getRepository('AppBundle:Task')
-            ->findBy([
-                'id' => $task_id
-            ]);
-
-//        echo "<pre>";
-//            print_r($teamXYZ);
-//        echo "</pre>";
-//        exit();
-
-
-        $form = $this->createCreateForm($taskComment, $project_id, $task_id);
+        $form = $this->createCreateForm($taskComment, $task_id, $project_id);
 
         return $this->render('TaskComment/new.html.twig', [
             'entity' => $taskComment,
             'form' => $form->createView(),
             'task' => $task,
-            'users' => $users,
-            'team' => $teamXYZ
+            'teamK' => $team,
+            'users' => $users
         ]);
     }
     /**

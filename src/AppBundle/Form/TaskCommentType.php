@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Task;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -12,6 +14,15 @@ class TaskCommentType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
+
+//    protected $task;
+//
+//    public function __construct (Task $task)
+//    {
+//        $this->task = $task;
+//    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -34,8 +45,21 @@ class TaskCommentType extends AbstractType
             ->add('createdBy', 'entity', ['class' => 'AppBundle\Entity\User', 'property' => 'username', 'label' => 'Created By'])
             //->add('task', 'entity', ['class' => 'AppBundle\Entity\Task', 'property' => 'name'])
             //->add('assign_to', 'collection', array('type' => new TaskCommentAssignToType()))
+//            ->add('teamTask', 'entity', [
+//                'class' => 'AppBundle\Entity\Task',
+//                'property' => 'assignedTo.username',
+//                'query_builder' => function(TaskRepository $er) use ($task){
+//                    return $er->createQueryBuilder('p')
+//                              ->where('p.name')
+//                              ->setParameter(1, $task);
+//                },
+//                'required' => true,
+//                'expanded' => true,
+//                'multiple' => true
+          //->add('teamTask', 'collection', array('type' => new TaskType()))
 
         ;
+
     }
     /**
      * @param OptionsResolverInterface $resolver

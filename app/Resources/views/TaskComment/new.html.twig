@@ -54,41 +54,49 @@
                     {{ form_widget(form.progress) }}
                 </div>
 
-                {#<div class="form-group">#}
-                    {#{{ form_label(form.task) }}#}
-                    {#{{ form_errors(form.task) }}#}
-                    {#{{ form_widget(form.task) }}#}
-                {#</div>#}
-
-                {#{{ task.assignedTo }}#}
-
-                {#{{ dump(task.assignedTo) }}#}
-
-                {#<div class="form-group">#}
-                {#{% for user in task.assignedTo %}#}
-                {#<input type="checkbox" value="{{ user.id }}"> {{ user }}#}
-                {#{% endfor %}#}
-                {#</div>#}
-
                 <div class="form-group">
                     {{ form_label(form.description) }}
                     {{ form_errors(form.description) }}
                     {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter the description'}}) }}
                 </div>
-                {#Assigned To Users:#}
-                {#{% for user in users %}#}
-                    {#<div class="form-group">#}
-                        {#<input type="checkbox" value="{{ user.id }}"> {{ user.username }}#}
-                    {#</div>#}
-                {#{% endfor %}#}
 
-                {% for user in users %}
-                    {#{% for task in task.assignedTo %}#}
-                        <div class="form-group">
-                            <input type="checkbox" value="{{ user.id }}"> {{ user.username }}
-                        </div>
+                {#<div class="form-group">#}
+                    {#{% for user in users %}#}
+                           {#<div class="checkbox">#}
+                               {#{{ user.username }}#}
+                           {#</div>#}
                     {#{% endfor %}#}
-                {% endfor %}
+                {#</div>#}
+
+                <div class="form-group">
+                    {#{{ form_label(teamK) }}#}
+                    {#{{ form_errors(teamK) }}#}
+                    {#{% for form_assignedTo in teamK %}#}
+                        {#<div class="checkbox">#}
+                            {#{{ form_widget(form_assignedTo) }}#}
+                            {#{{ form_label(form_assignedTo) }}#}
+                        {#</div>#}
+                    {#{% endfor %}#}
+                    {#{{ dump(teamK.username) }}#}
+                    {#{% if teamK.id is defined %}#}
+                        {% for team in teamK %}
+                            <input type="checkbox">
+                                {{ team.username }}
+                            </input>
+                        {% endfor %}
+                    {#{% endif %}#}
+                    {#{% if form.teamK.name is defined %}#}
+                        {#<div class="checkbox">#}
+                            {#{% for team in teamK %}#}
+                                {#&#123;&#35;{{ form_widget(teamK.username) }}&#35;&#125;#}
+                                {#{{ dump(form.teamK.name) }}#}
+
+                                {#{{ form_widget(form.teamK.username.vars.prototype)|e }}#}
+                            {#{% endfor %}#}
+                        {#</div>#}
+                    {#{% endif %}#}
+                </div>
+
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
