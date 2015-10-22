@@ -71,6 +71,21 @@
 
                 </div>
 
+                <label>Team Assigned: </label>
+                <div class="form-group">
+
+                        {% for team in teamK %}
+
+                                <input checked type="checkbox" value="{{ team.id }}">
+
+                                     {{ team.username }}
+
+                                </input>
+
+                        {% endfor %}
+
+                </div>
+
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

@@ -4,12 +4,16 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Task;
 use AppBundle\Entity\TaskType;
+use AppBundle\Entity\User;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\TaskComment;
 use AppBundle\Form\TaskCommentType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 
 /**
  * TaskComment controller.
@@ -42,40 +46,50 @@ class TaskCommentController extends Controller
      */
     public function createAction(Request $request, $project_id, $task_id)
     {
-        $entity = new TaskComment();
-        $task = new Task();
-        $em = $this->getDoctrine()->getManager();
-        $form = $this->createCreateForm($entity, $project_id, $task_id);
-        $form->handleRequest($request);
+        $taskComment = new TaskComment();
 
-        if ($form->isValid()) {
+
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createCreateForm($taskComment, $project_id, $task_id);
+        $form->handleRequest($request)->getData();
+
+       if ($form->isValid()) {
             // Assign Current user
             $user = $this->get('security.token_storage')->getToken()->getUser();
-            $entity->setCreatedBy($user);
-            $entity->setCreatedAt(new \DateTime('now'));
-
-
-
+            $taskComment->setCreatedBy($user);
+            $taskComment->setCreatedAt(new \DateTime('now'));
 
             $project = $em->getRepository('AppBundle:Project')->find($project_id);
-            $entity->setProject($project);
+            $taskComment->setProject($project);
 
             $task = $em->getRepository('AppBundle:Task')->find($task_id);
-            $entity->setTask($task);
+            $taskComment->setTask($task);
 
-            $team = $task->getAssignedTo()->getValues();
-            $dfg = $task->setAssignedTo($team);
+            $arrayIdUsersTeam = new ArrayCollection();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity, $dfg);
-            $em->flush();
+           $arrayIdUsersTeam[] = $request->get('users');
 
-            return $this->redirect($this->generateUrl('task_comment_show', array('project_id' => $project_id, 'task_id' => $entity->getTask()->getId(), 'task_comment_id' => $entity->getId())));
+           //foreach ($arrayIdUsersTeam as $listUsers) {
+
+               $taskComment->task->addTeam($arrayIdUsersTeam);
+
+               $em->persist($taskComment->task);
+               $em->flush();
+
+
+          // }
+
+           $em->persist($taskComment);
+           $em->flush();
+
+           return $this->redirect($this->generateUrl('task_comment_show', array('project_id' => $project_id, 'task_id' => $taskComment->getTask()->getId(), 'task_comment_id' => $taskComment->getId())));
+
         }
 
         return $this->render('TaskComment/new.html.twig', [
-            'entity' => $entity,
+            'entity' => $taskComment,
             'form' => $form->createView(),
+
         ]);
     }
 
@@ -89,7 +103,7 @@ class TaskCommentController extends Controller
     private function createCreateForm(TaskComment $entity, $project_id, $task_id)
     {
         $form = $this->createForm(new TaskCommentType(), $entity, array(
-            'action' => $this->generateUrl('task_comment_create', ['project_id' => $project_id , 'task_id' => $task_id]),
+            'action' => $this->generateUrl('task_comment_create', ['project_id' => $task_id , 'task_id' => $project_id]),
             'method' => 'POST',
         ));
 
@@ -116,7 +130,8 @@ class TaskCommentController extends Controller
         $repository = $this->getDoctrine()
             ->getRepository('AppBundle:User');
         $users = $repository->findAll();
-        $team = $task->getAssignedTo()->getValues();
+
+        $team = $taskComment->task->getAssignedTo();
 
         $form = $this->createCreateForm($taskComment, $task_id, $project_id);
 
@@ -160,21 +175,29 @@ class TaskCommentController extends Controller
      * @Route("/{project_id}/task/{task_id}/task-comment/{task_comment_id}/edit", name="task_comment_edit")
      * @Method("GET")
      */
-    public function editAction($task_comment_id)
+    public function editAction($task_comment_id, $task_id)
     {
         $em = $this->getDoctrine()->getManager();
 
+        $team = new ArrayCollection();
+
         $entity = $em->getRepository('AppBundle:TaskComment')->find($task_comment_id);
+        //$entity = $em->getRepository('AppBundle:TaskComment')->findBy(['task' => $task_id, 'id' => $task_comment_id]);
+
+        $task = $em->getRepository('AppBundle:Task')->find($task_id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TaskComment entity.');
         }
+
+        $team = $entity->task->getAssignedTo();
 
         $editForm = $this->createEditForm($entity);
 
         return $this->render('TaskComment/edit.html.twig', [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
+            'teamK' => $team
 
         ]);
     }
@@ -203,7 +226,7 @@ class TaskCommentController extends Controller
      * @Route("/{project_id}/task/{task_id}/task-comment/{task_comment_id}/update", name="task_comment_update")
      * @Method("PUT")
      */
-    public function updateAction(Request $request, $task_comment_id)
+    public function updateAction(Request $request, $task_comment_id, $task_id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -213,9 +236,18 @@ class TaskCommentController extends Controller
             throw $this->createNotFoundException('Unable to find TaskComment entity.');
         }
 
+        $task = $em->getRepository('AppBundle:Task')->find($task_id);
+        $entity->setTask($task);
 
         $editForm = $this->createEditForm($entity, $task_comment_id);
         $editForm->handleRequest($request);
+
+        $team = new ArrayCollection();
+        $task = new Task($team);
+        $team = $task->getAssignedTo();
+        $task->getAssignedTo()->add($team);
+        $task->setAssignedTo($team);
+        $task->addTeam($team);
 
         if ($editForm->isValid()) {
             $em->flush();

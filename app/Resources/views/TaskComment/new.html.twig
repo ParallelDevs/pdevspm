@@ -80,7 +80,7 @@
                     {#{{ dump(teamK.username) }}#}
                     {#{% if teamK.id is defined %}#}
                         {% for team in teamK %}
-                            <input type="checkbox">
+                            <input type="checkbox" value="{{ team.id }}" name="users[]">
                                 {{ team.username }}
                             </input>
                         {% endfor %}
@@ -100,6 +100,6 @@
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-        </>
+        </div>
     </div>
 {% endblock %}

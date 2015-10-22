@@ -43,21 +43,7 @@ class TaskCommentType extends AbstractType
             ->add('taskLabel', 'entity', ['class' => 'AppBundle\Entity\TaskLabel', 'property' => 'name'])
             ->add('taskType', 'entity', ['class' => 'AppBundle\Entity\TaskType', 'property' => 'name'])
             ->add('createdBy', 'entity', ['class' => 'AppBundle\Entity\User', 'property' => 'username', 'label' => 'Created By'])
-            //->add('task', 'entity', ['class' => 'AppBundle\Entity\Task', 'property' => 'name'])
-            //->add('assign_to', 'collection', array('type' => new TaskCommentAssignToType()))
-//            ->add('teamTask', 'entity', [
-//                'class' => 'AppBundle\Entity\Task',
-//                'property' => 'assignedTo.username',
-//                'query_builder' => function(TaskRepository $er) use ($task){
-//                    return $er->createQueryBuilder('p')
-//                              ->where('p.name')
-//                              ->setParameter(1, $task);
-//                },
-//                'required' => true,
-//                'expanded' => true,
-//                'multiple' => true
-          //->add('teamTask', 'collection', array('type' => new TaskType()))
-
+            ->add('task', 'entity', ['class' => 'AppBundle\Entity\Task', 'property' => 'name'])
         ;
 
     }

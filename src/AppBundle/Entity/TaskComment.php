@@ -65,7 +65,7 @@ class TaskComment
      *   @ORM\JoinColumn(name="task_id", referencedColumnName="id")
      * })
      */
-    private $task;
+    public $task;
 
     /**
      * @var \AppBundle\Entity\User
@@ -127,37 +127,15 @@ class TaskComment
      */
     private $project;
 
+    public function addTeamTask(ArrayCollection $team){
 
-    private $assignedTo;
+        foreach($team as $teamParallel){
 
-    public function __construct(){
-        $this->assignedTo = new ArrayCollection();
+            $this->task->setAssignedTo($teamParallel);
+
+        }
     }
-
     /**
-     * Set assignedTo
-     *
-     * @param \Doctrine\Common\Collections\ArrayCollection $assignedTo
-     * @return Task
-     */
-    public function setAssignedTo(\Doctrine\Common\Collections\ArrayCollection $assignedTo)
-    {
-        $this->assignedTo = $assignedTo;
-
-        return $this;
-    }
-
-    /**
-     * Get assignedTo
-     *
-     *@return \Doctrine\Common\Collections\ArrayCollection
-     */
-    public function getAssignedTo()
-    {
-        return $this->assignedTo;
-    }
-
-     /**
      * Get id
      *
      * @return integer 
