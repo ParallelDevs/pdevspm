@@ -2,18 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Task;
-use AppBundle\Entity\TaskType;
-use AppBundle\Entity\User;
-use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\TaskComment;
-use AppBundle\Form\TaskCommentType;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\HttpFoundation\AcceptHeader;
 
 /**
  * TaskComment controller.

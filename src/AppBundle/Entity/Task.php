@@ -39,8 +39,8 @@ class Task
      /**
      * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", cascade={"persist"})
-     * @ORM\JoinTable(name="task_assignedTo_team",
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinTable(name="task_assigned_to_user",
      *      joinColumns={@ORM\JoinColumn(name="task_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      *      )
@@ -201,17 +201,6 @@ class Task
         $this->assignedTo = new ArrayCollection();
     }
 
-    public function addTeam(ArrayCollection $assignedTo){
-
-        foreach($assignedTo as $team){
-
-            $this->assignedTo->add($team);
-            $this->setAssignedTo($assignedTo);
-
-        }
-
-        return $this;
-    }
     /**
      * Get id
      *

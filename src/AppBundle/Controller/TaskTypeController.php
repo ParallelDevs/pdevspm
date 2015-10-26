@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\TaskType;
-use AppBundle\Form\TaskTypeType;
+use AppBundle\Form\Type\TaskTypeType;
 
 /**
  * TaskType controller.

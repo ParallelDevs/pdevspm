@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\TaskStatus;
-use AppBundle\Form\TaskStatusType;
+use AppBundle\Form\Type\TaskStatusType;
 
 /**
  * TaskStatus controller.
