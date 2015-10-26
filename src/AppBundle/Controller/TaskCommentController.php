@@ -65,22 +65,19 @@ class TaskCommentController extends Controller
             $task = $em->getRepository('AppBundle:Task')->find($task_id);
             $taskComment->setTask($task);
 
-            $arrayIdUsersTeam = new ArrayCollection();
+            //$arrayIdUsersTeam = new ArrayCollection();
 
-           $arrayIdUsersTeam[] = $request->get('users');
+            $arrayIdUsersTeam = $request->get('users');
 
-           //foreach ($arrayIdUsersTeam as $listUsers) {
+            $newTeam = $em->getRepository('AppBundle:User')->findById($arrayIdUsersTeam);
 
-               $taskComment->task->addTeam($arrayIdUsersTeam);
+            $newTeam = new ArrayCollection($newTeam);
 
-               $em->persist($taskComment->task);
-               $em->flush();
+            $taskComment->task->setAssignedTo($newTeam);
 
-
-          // }
-
-           $em->persist($taskComment);
-           $em->flush();
+            $em->persist($task);
+            $em->persist($taskComment);
+            $em->flush();
 
            return $this->redirect($this->generateUrl('task_comment_show', array('project_id' => $project_id, 'task_id' => $taskComment->getTask()->getId(), 'task_comment_id' => $taskComment->getId())));
 
@@ -179,10 +176,7 @@ class TaskCommentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $team = new ArrayCollection();
-
         $entity = $em->getRepository('AppBundle:TaskComment')->find($task_comment_id);
-        //$entity = $em->getRepository('AppBundle:TaskComment')->findBy(['task' => $task_id, 'id' => $task_comment_id]);
 
         $task = $em->getRepository('AppBundle:Task')->find($task_id);
 
@@ -230,32 +224,32 @@ class TaskCommentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:TaskComment')->find($task_comment_id);
+        $taskComment = $em->getRepository('AppBundle:TaskComment')->find($task_comment_id);
 
-        if (!$entity) {
+        if (!$taskComment) {
             throw $this->createNotFoundException('Unable to find TaskComment entity.');
         }
 
         $task = $em->getRepository('AppBundle:Task')->find($task_id);
-        $entity->setTask($task);
+        $taskComment->setTask($task);
 
-        $editForm = $this->createEditForm($entity, $task_comment_id);
+        $arrayIdUsersTeam = $request->get('users');
+        $newTeam = $em->getRepository('AppBundle:User')->findById($arrayIdUsersTeam);
+        $newTeam = new ArrayCollection($newTeam);
+        $taskComment->task->setAssignedTo($newTeam);
+
+        $em->persist($task);
+
+        $editForm = $this->createEditForm($taskComment, $task_comment_id);
         $editForm->handleRequest($request);
-
-        $team = new ArrayCollection();
-        $task = new Task($team);
-        $team = $task->getAssignedTo();
-        $task->getAssignedTo()->add($team);
-        $task->setAssignedTo($team);
-        $task->addTeam($team);
 
         if ($editForm->isValid()) {
             $em->flush();
-            return $this->redirect($this->generateUrl('task_comment_edit', array('project_id' => $entity->getProject()->getId() ,'task_id' => $entity->getTask()->getId(), 'task_comment_id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('task_comment_edit', array('project_id' => $taskComment->getProject()->getId() ,'task_id' => $taskComment->getTask()->getId(), 'task_comment_id' => $taskComment->getId())));
         }
 
         return $this->render('TaskComment/edit.html.twig', [
-            'entity' => $entity,
+            'entity' => $taskComment,
             'edit_form' => $editForm->createView(),
 
         ]);

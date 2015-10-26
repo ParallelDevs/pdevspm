@@ -206,7 +206,7 @@ class Task
         foreach($assignedTo as $team){
 
             $this->assignedTo->add($team);
-            $this->setAssignedTo($team);
+            $this->setAssignedTo($assignedTo);
 
         }
 
