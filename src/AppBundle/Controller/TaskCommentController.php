@@ -56,15 +56,13 @@ class TaskCommentController extends Controller
             $task = $em->getRepository('AppBundle:Task')->find($task_id);
             $taskComment->setTask($task);
 
-            //$arrayIdUsersTeam = new ArrayCollection();
-
             $arrayIdUsersTeam = $request->get('users');
 
             $newTeam = $em->getRepository('AppBundle:User')->findById($arrayIdUsersTeam);
 
             $newTeam = new ArrayCollection($newTeam);
 
-            $taskComment->task->setAssignedTo($newTeam);
+            $taskComment->$task->setAssignedTo($newTeam);
 
             $em->persist($task);
             $em->persist($taskComment);
@@ -119,7 +117,7 @@ class TaskCommentController extends Controller
             ->getRepository('AppBundle:User');
         $users = $repository->findAll();
 
-        $team = $taskComment->task->getAssignedTo();
+        $team = $taskComment->$task->getAssignedTo();
 
         $form = $this->createCreateForm($taskComment, $task_id, $project_id);
 

@@ -15,14 +15,6 @@ class TaskCommentType extends AbstractType
      * @param array $options
      */
 
-//    protected $task;
-//
-//    public function __construct (Task $task)
-//    {
-//        $this->task = $task;
-//    }
-
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -42,10 +34,7 @@ class TaskCommentType extends AbstractType
             ->add('taskPriority', 'entity', ['class' => 'AppBundle\Entity\TaskPriority', 'property' => 'name'])
             ->add('taskLabel', 'entity', ['class' => 'AppBundle\Entity\TaskLabel', 'property' => 'name'])
             ->add('taskType', 'entity', ['class' => 'AppBundle\Entity\TaskType', 'property' => 'name'])
-            ->add('createdBy', 'entity', ['class' => 'AppBundle\Entity\User', 'property' => 'username', 'label' => 'Created By'])
-
         ;
-
     }
     /**
      * @param OptionsResolverInterface $resolver

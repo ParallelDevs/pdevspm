@@ -65,7 +65,7 @@ class TaskComment
      *   @ORM\JoinColumn(name="task_id", referencedColumnName="id")
      * })
      */
-    public $task;
+    private $task;
 
     /**
      * @var \AppBundle\Entity\User
