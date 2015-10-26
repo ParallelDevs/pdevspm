@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\TaskStatus;
-use AppBundle\Form\TaskStatusType;
+use AppBundle\Form\Type\TaskStatusType;
 
 /**
  * TaskStatus controller.
@@ -110,9 +110,12 @@ class TaskStatusController extends Controller
             throw $this->createNotFoundException('Unable to find TaskStatus entity.');
         }
 
+        $deleteForm = $this->createDeleteForm($id);
+
         return $this->render('TaskStatus/show.html.twig',[
             'entity' => $entity,
             'id'=>$entity->getId(),
+            'delete_form' => $deleteForm->createView()
             ]);
     }
 
@@ -195,7 +198,7 @@ class TaskStatusController extends Controller
      * Deletes a TaskStatus entity.
      *
      * @Route("/{id}/delete", name="config_task_status_delete")
-     * @Method("GET")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
@@ -210,5 +213,22 @@ class TaskStatusController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('config_task_status'));
+    }
+
+    /**
+     * Creates a form to delete a Project entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('config_task_status_delete', ['id' => $id]))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', ['label' => 'Delete'])
+            ->getForm()
+            ;
     }
 }

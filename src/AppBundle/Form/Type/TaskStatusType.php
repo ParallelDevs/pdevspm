@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class VersionStatusType extends AbstractType
+class TaskStatusType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,6 +16,7 @@ class VersionStatusType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('group', 'entity', ['class' => 'AppBundle\Entity\TaskGroup', 'property' => 'name'])
             ->add('sortOrder')
             ->add('defaultValue')
             ->add('active')
@@ -28,7 +29,7 @@ class VersionStatusType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\VersionStatus'
+            'data_class' => 'AppBundle\Entity\TaskStatus'
         ));
     }
 
@@ -37,6 +38,6 @@ class VersionStatusType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_versionstatus';
+        return 'task_status';
     }
 }

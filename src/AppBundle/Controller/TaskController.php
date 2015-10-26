@@ -2,13 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Project;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Task;
-use AppBundle\Form\TaskType;
+use AppBundle\Form\Type\TaskType;
 
 /**
  * Task controller.
@@ -125,10 +124,14 @@ class TaskController extends Controller
             throw $this->createNotFoundException('Unable to find Task entity.');
         }
 
+        $deleteForm = $this->createDeleteForm($project_id, $task_id);
+
 
         return $this->render('Task/show.html.twig', [
             'entity' => $entity,
-
+            'id' => $task_id,
+            'project' => $project_id,
+            'delete_form' => $deleteForm->createView()
         ]);
     }
 
@@ -213,12 +216,14 @@ class TaskController extends Controller
      * Deletes a Task entity.
      *
      * @Route("/{project_id}/task/{task_id}/delete", name="task_delete")
-     * @Method("GET")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $project_id, $task_id)
     {
+        $form = $this->createDeleteForm($project_id, $task_id);
+        $form->handleRequest($request);
+
         $em = $this->getDoctrine()->getManager();
-        //$entity = $em->getRepository('AppBundle:Task')->find($task_id);
 
         $entity = $this->getDoctrine()->getRepository('AppBundle:Task')
             ->findBy(['project' => $project_id,
@@ -237,5 +242,22 @@ class TaskController extends Controller
         }
 
         return $this->redirect($this->generateUrl('task', array('project_id' => $project_id)));
+    }
+
+    /**
+     * Creates a form to delete a  entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($project_id, $task_id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('task_delete', ['project_id' => $project_id , 'task_id' => $task_id]))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', ['label' => 'Delete'])
+            ->getForm()
+            ;
     }
 }

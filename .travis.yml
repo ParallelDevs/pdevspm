@@ -1,0 +1,27 @@
+sudo: false
+
+language: php
+
+php:
+    - 5.4
+
+before_script:
+  - cp app/config/parameters.yml.travis app/config/parameters.yml
+  - composer self-update
+  - composer install
+  - php app/console doctrine:database:create --env=test
+  - php app/console doctrine:schema:create --env=test
+  - php app/console doctrine:fixtures:load -n --env=test
+
+script:
+  - phpunit -c app
+
+notifications:
+  email:
+    -  d.noyola@paralleldevs.com
+  on_success: change
+  on_failure: always
+
+addons:
+  code_climate:
+    repo_token: ef2891e899cf5a45182a6b0660c27896127d5240900ba6c5983cbd2b3561b923

@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\VersionStatus;
-use AppBundle\Form\VersionStatusType;
+use AppBundle\Form\Type\VersionStatusType;
 
 /**
  * VersionStatus controller.

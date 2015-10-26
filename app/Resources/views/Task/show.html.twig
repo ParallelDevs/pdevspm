@@ -55,6 +55,7 @@
             </table>
         </div>
     </div>
+<<<<<<< HEAD
     <ul class="record_actions">
         <li>
             <a href="{{ path('task', { 'project_id': entity.project.id }) }}">
@@ -68,4 +69,20 @@
         </li>
         {% endfor %}
     </ul>
+=======
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('task', { 'project_id': entity.project.id }) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('task_comment_new', { 'task_id': entity.id, 'project_id': entity.project.id }) }}">
+            Add Task Comment
+        </a>
+    </li>
+    {% endfor %}
+    {{ form(delete_form) }}
+</ul>
+>>>>>>> master
 {% endblock %}

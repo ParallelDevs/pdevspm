@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class VersionType extends AbstractType
+class RegistrationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,9 +16,7 @@ class VersionType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
-            ->add('dueDate')
-            ->add('versionStatus', 'entity', ['class' => 'AppBundle\Entity\VersionStatus', 'property' => 'name'])
+            ->add('file', 'file')
         ;
     }
     
@@ -28,7 +26,7 @@ class VersionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Version'
+            'data_class' => 'AppBundle\Entity\User'
         ));
     }
 
@@ -37,6 +35,11 @@ class VersionType extends AbstractType
      */
     public function getName()
     {
-        return 'version';
+        return 'app_user_registration';
+    }
+
+    public function getParent()
+    {
+        return 'fos_user_registration';
     }
 }
