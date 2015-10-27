@@ -42,6 +42,17 @@
                     {{ form_widget(form.user) }}
                 </div>
 
+                <div class="form-group">
+
+                        {% for team in team %}
+                            <input type="checkbox">
+                                {{ team.username }}
+                            </input>
+                        {% endfor %}
+
+                </div>
+
+
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

@@ -100,9 +100,16 @@ class TicketCommentController extends Controller
         $entity = new TicketComment();
         $form   = $this->createCreateForm($entity, $project_id, $ticket_id);
 
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $em->getRepository('AppBundle:Project')->find($project_id);
+
+        $teamProject = $project->getTeam();
+
         return $this->render('TicketComment/new.html.twig', [
             'entity' => $entity,
             'form' => $form->createView(),
+            'team' => $teamProject
         ]);
     }
 
