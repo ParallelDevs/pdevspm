@@ -36,9 +36,9 @@ class TicketType
     private $sortOrder;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="active", type="string", length=1, nullable=true)
+     * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active;
 

@@ -101,7 +101,6 @@ class VersionController extends Controller
             'entity' => $entity,
             'form'   => $form->createView(),
         ]);
-        
     }
 
     /**

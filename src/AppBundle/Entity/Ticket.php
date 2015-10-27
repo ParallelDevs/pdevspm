@@ -92,8 +92,6 @@ class Ticket
      */
     private $department;
 
-
-
     /**
      * Get id
      *

@@ -199,9 +199,9 @@ class ProjectController extends Controller
         }
 
         return $this->render('Project/edit.html.twig', [
-          'entity'      => $entity,
-          'edit_form'   => $editForm->createView(),
-          'delete_form' => $deleteForm->createView(),
+              'entity'      => $entity,
+              'edit_form'   => $editForm->createView(),
+              'delete_form' => $deleteForm->createView(),
         ]);
     }
     /**

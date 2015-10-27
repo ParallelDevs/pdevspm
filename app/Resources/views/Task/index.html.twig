@@ -15,7 +15,6 @@
             </div><!-- /.box -->
         </div>
     </div>
-
     <div class="col-xs-12">
         <div class="box box-primary">
             <table class="table table-hover">
@@ -58,14 +57,20 @@
                                <li>
                                     <a href="{{ path('task_delete', { 'project_id': entity.project.id , 'task_id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
                                </li>
+
                             </ul>
                         </td>
                     </tr>
-                {% endfor %}
-                    </tbody>
+                </tbody>
             </table>
+            <div class="col-md-2">
+                <div class="box">
+                    <a class="btn btn-block btn-primary btn-lg" href="{{ path('task_new', { 'project_id': entity.project.id }) }}">
+                        Create a New Task
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-    <ul>
-    </ul>
-    {% endblock %}
+{% endblock %}
