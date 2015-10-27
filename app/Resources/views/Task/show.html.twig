@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%} Tasks List {% endblock %}
+{% block page_title -%} Tasks Details {% endblock %}
 
 {% block content %}
 
@@ -40,10 +40,6 @@
                     <td>{{ entity.closedDate|date('Y-m-d H:i:s') }}</td>
                 </tr>
                 <tr>
-                    <th>Discussionid</th>
-                    <td>{{ entity.discussionId }}</td>
-                </tr>
-                <tr>
                     <th>Startdate</th>
                     <td>{{ entity.startDate|date('Y-m-d H:i:s') }}</td>
                 </tr>
@@ -55,7 +51,40 @@
             </table>
         </div>
     </div>
-        <ul class="record_actions">
+
+    <br/>
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th>Comment</th>
+                    <th>Assigned To</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('task_edit', { 'task_id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('task_delete', { 'project_id': entity.project.id , 'task_id': entity.id }) }}"><i class="fa fa-trash-o"></i></a>
+                                </li>
+                            </ul>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        <div>
+    <div>
+
+
+    <ul class="record_actions">
     <li>
         <a href="{{ path('task', { 'project_id': entity.project.id }) }}">
             Back to the list
@@ -65,6 +94,9 @@
         <a href="{{ path('task_comment_new', { 'task_id': entity.id, 'project_id': entity.project.id }) }}">
             Add Task Comment
         </a>
+    </li>
+    <li>
+        <a href="{{ path('task_edit', { 'task_id': entity.id }) }}">Edit Details</a>
     </li>
     {% endfor %}
     {{ form(delete_form) }}

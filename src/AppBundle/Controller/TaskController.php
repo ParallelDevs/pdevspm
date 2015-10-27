@@ -131,7 +131,7 @@ class TaskController extends Controller
             'entity' => $entity,
             'id' => $task_id,
             'project' => $project_id,
-            'delete_form' => $deleteForm->createView()
+            'delete_form' => $deleteForm->createView(),
         ]);
     }
 

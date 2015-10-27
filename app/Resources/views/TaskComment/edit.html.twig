@@ -58,6 +58,28 @@
                     {{ form_widget(edit_form.description) }}
                 </div>
 
+                <div class="form-group">
+
+                    {{ form_label(edit_form.createdBy) }}
+                    {{ form_errors(edit_form.createdBy) }}
+                    {% for form_assignedTo in edit_form.createdBy %}
+                        <div class="checkbox">
+                            {{ form_widget(form_assignedTo) }}
+                            {{ form_label(form_assignedTo) }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <label>Team Assigned: </label>
+                <div class="form-group">
+                        {% for team in teamK %}
+                                <input checked type="checkbox" value="{{ team.id }}" name="users[]">
+                                     {{ team.username }}
+                                </input>
+                        {% endfor %}
+                </div>
+
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

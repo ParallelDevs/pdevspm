@@ -31,9 +31,9 @@
                 </div>
 
                 <div class="form-group">
-                {{ form_label(form.taskType) }}
-                {{ form_errors(form.taskType) }}
-                {{ form_widget(form.taskType) }}
+                    {{ form_label(form.taskType) }}
+                    {{ form_errors(form.taskType) }}
+                    {{ form_widget(form.taskType) }}
                 </div>
 
                 <div class="form-group">
@@ -58,6 +58,16 @@
                     {{ form_label(form.description) }}
                     {{ form_errors(form.description) }}
                     {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter the description'}}) }}
+                </div>
+
+                <div class="form-group">
+
+                        {% for team in teamK %}
+                            <input type="checkbox" value="{{ team.id }}" name="users[]">
+                                {{ team.username }}
+                            </input>
+                        {% endfor %}
+                    
                 </div>
 
                 <div class="box-footer">

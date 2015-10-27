@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Task
@@ -195,7 +196,10 @@ class Task
      */
     private $createdBy;
 
-
+    public function __construct()
+    {
+        $this->assignedTo = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -256,10 +260,10 @@ class Task
     /**
      * Set assignedTo
      *
-     * @param string $assignedTo
+     * @param \Doctrine\Common\Collections\ArrayCollection $assignedTo
      * @return Task
      */
-    public function setAssignedTo($assignedTo)
+    public function setAssignedTo(\Doctrine\Common\Collections\ArrayCollection $assignedTo)
     {
         $this->assignedTo = $assignedTo;
 
@@ -269,7 +273,7 @@ class Task
     /**
      * Get assignedTo
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getAssignedTo()
     {

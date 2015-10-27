@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * TaskComment
@@ -126,8 +127,14 @@ class TaskComment
      */
     private $project;
 
+    public function addTeamTask(ArrayCollection $team){
 
+        foreach($team as $teamParallel){
 
+            $this->task->setAssignedTo($teamParallel);
+
+        }
+    }
     /**
      * Get id
      *
@@ -413,4 +420,5 @@ class TaskComment
     {
         return $this->project;
     }
+
 }

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Task;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -12,6 +14,7 @@ class TaskCommentType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -31,10 +34,8 @@ class TaskCommentType extends AbstractType
             ->add('taskPriority', 'entity', ['class' => 'AppBundle\Entity\TaskPriority', 'property' => 'name'])
             ->add('taskLabel', 'entity', ['class' => 'AppBundle\Entity\TaskLabel', 'property' => 'name'])
             ->add('taskType', 'entity', ['class' => 'AppBundle\Entity\TaskType', 'property' => 'name'])
-
         ;
     }
-    
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -50,6 +51,6 @@ class TaskCommentType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_taskcomment';
+        return 'task_comment';
     }
 }
