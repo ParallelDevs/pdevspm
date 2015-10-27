@@ -45,8 +45,6 @@ class TicketCommentController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $user = $this->get('security.token_storage')->getToken()->getUser();
-            $entity->setUser($user);
             $entity->setCreatedAt(new \DateTime('now'));
 
             $project = $em->getRepository('AppBundle:Project')->find($project_id);
@@ -100,16 +98,10 @@ class TicketCommentController extends Controller
         $entity = new TicketComment();
         $form   = $this->createCreateForm($entity, $project_id, $ticket_id);
 
-        $em = $this->getDoctrine()->getManager();
-
-        $project = $em->getRepository('AppBundle:Project')->find($project_id);
-
-        $teamProject = $project->getTeam();
-
         return $this->render('TicketComment/new.html.twig', [
             'entity' => $entity,
             'form' => $form->createView(),
-            'team' => $teamProject
+
         ]);
     }
 

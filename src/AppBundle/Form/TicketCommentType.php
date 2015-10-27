@@ -20,7 +20,7 @@ class TicketCommentType extends AbstractType
             ->add('ticketType', 'entity', ['class' => 'AppBundle\Entity\TicketType', 'property' => 'name'])
             ->add('ticketStatus', 'entity', ['class' => 'AppBundle\Entity\TicketStatus', 'property' => 'name'])
             ->add('description')
-            ->add('user', 'entity', ['class' => 'AppBundle\Entity\User', 'property' => 'username', 'label' => 'Assigned to other Developer'])
+            ->add('user', 'entity', ['class' => 'AppBundle\Entity\User', 'property' => 'username', 'label' => 'Users'])
         ;
     }
     
