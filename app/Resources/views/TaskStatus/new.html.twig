@@ -1,0 +1,68 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title -%} Create New Task Status {% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="box box-primary">
+            {{ form_start(form, {'attr': {'role' : 'form'}}) }}
+            <div class="box-header">
+
+                <div class="box-tools">
+
+                    <a href="{{ path('project') }}">
+                        Back to the list
+                    </a>
+                </div>
+            </div>
+            <div class="box-body">
+                {{ form_errors(form) }}
+
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter the name'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.group) }}
+                    {{ form_errors(form.group) }}
+                    {{ form_widget(form.group) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.sortOrder) }}
+                    {{ form_errors(form.sortOrder) }}
+                    {{ form_widget(form.sortOrder) }}
+                </div>
+
+                <div class="form-group">
+                        {{ form_label(form.defaultValue) }}
+                        {{ form_errors(form.defaultValue) }}
+                        {{ form_widget(form.defaultValue) }}
+                </div>
+
+                <div class="form-group">
+
+                    {{ form_label(form.active) }}
+                    {{ form_errors(form.active) }}
+                    {{ form_widget(form.active) }}
+
+                </div>
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+        {{ form_end(form) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('config_task_status') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+{% endblock %}

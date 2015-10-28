@@ -31,24 +31,33 @@
             </tr>
                         
         </tbody>        
-    </table>
+   </table>
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('project') }}">
-            Back to the list of Projects
-        </a>
-    </li>
-    <li>
-        <a class="fa fa-edit" href="{{ path('project_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    
-    <li>
-        <a class="fa fa-edit" href="{{ path('version_new', { 'project_id': entity.id }) }}">
-            Add Version
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <li>
+                <a href="{{ path('project') }}">
+                    Back to the list of Projects
+                </a>
+            </li>
+            <li>
+                <a class="fa fa-edit" href="{{ path('project_edit', { 'id': entity.id }) }}">
+                    Edit
+                </a>
+            </li>
+            <li>
+                <a class="fa fa-edit" href="{{ path('version_new', { 'project_id': entity.id }) }}">
+                    Add Version
+                </a>
+            </li>
+            <li>
+                <a class="fa fa-edit" href="{{ path('config_task_group_new', { 'project_id': entity.id }) }}">
+                    Add Task Group
+                </a>
+            </li>
+            <li>
+                <a class="fa fa-edit" href="{{ path('task_new', { 'project_id': entity.id }) }}">
+                    Add Task
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
 {% endblock %}

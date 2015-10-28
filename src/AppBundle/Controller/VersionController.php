@@ -2,18 +2,17 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Project;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Version;
-use AppBundle\Form\VersionType;
+use AppBundle\Form\Type\VersionType;
 
 /**
  * Version controller.
  *
- * @Route("/project")
+ * @Route("/app/project")
  */
 class VersionController extends Controller
 {
@@ -32,29 +31,21 @@ class VersionController extends Controller
         $entities = $em->getRepository('AppBundle:Version')->findByProject($project_id);
 
         return $this->render('Version/index.html.twig', ['entities' => $entities]);
-        
     }
-
     /**
      * Creates a new Version entity.
      *
      * @Route("/{project_id}/version", name="version_create")
      * @Method("POST")
-     *
      */
     public function createAction(Request $request, $project_id)
     {
-
         $entity = new Version();
-
         $form = $this->createCreateForm($entity, $project_id);
-
         $form->handleRequest($request);
-
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
             $project= $em->getRepository('AppBundle:Project')->find($project_id);
             $entity->setProject($project);
 
@@ -79,8 +70,6 @@ class VersionController extends Controller
      */
     private function createCreateForm(Version $entity, $project_id)
     {
-
-
         $form = $this->createForm(new VersionType(), $entity, array(
             'action' => $this->generateUrl('version_create', ['project_id' => $project_id]),
             'method' => 'POST',
@@ -88,7 +77,7 @@ class VersionController extends Controller
 
         $form->add('submit', 'submit', array('label' => 'Create'));
 
-        return $form;
+       return $form;
     }
 
     /**
@@ -101,7 +90,6 @@ class VersionController extends Controller
     public function newAction($project_id)
     {
         $entity = new Version();
-
         $em = $this->getDoctrine()->getManager();
 
         $project= $em->getRepository('AppBundle:Project')->find($project_id);
@@ -112,7 +100,6 @@ class VersionController extends Controller
         return $this->render('Version/new.html.twig', [
             'entity' => $entity,
             'form'   => $form->createView(),
-
         ]);
         
     }
@@ -122,14 +109,12 @@ class VersionController extends Controller
      *
      * @Route("/{project_id}/version/{version_id}", name="version_show")
      * @Method("GET")
-     *
      */
     public function showAction($project_id, $version_id)
     {
-        
         $entity = $this->getDoctrine()->getRepository('AppBundle:Version')
                         ->findBy(['project' => $project_id,
-                            'id' => $version_id                                
+                            'id' => $version_id
                             ]);
                         
         if (!$entity) {
@@ -138,9 +123,10 @@ class VersionController extends Controller
         
         $deleteForm = $this->createDeleteForm($project_id);
 
-        return $this->render('Version/show.html.twig', 
-                 ['entity' => $entity,
-                  'delete_form' => $deleteForm->createView()]);
+        return $this->render('Version/show.html.twig', [
+            'entity' => $entity,
+            'delete_form' => $deleteForm->createView()
+        ]);
     }
 
     /**

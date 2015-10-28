@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\ProjectStatus;
-use AppBundle\Form\ProjectStatusType;
+use AppBundle\Form\Type\ProjectStatusType;
 
 /**
  * ProjectStatus controller.
@@ -103,8 +103,6 @@ class ProjectStatusController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();        
-        
         $repository = $this->getDoctrine()
                     ->getRepository('AppBundle:ProjectStatus');        
         $entity = $repository->find($id);  

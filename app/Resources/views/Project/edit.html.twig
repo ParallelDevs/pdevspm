@@ -3,6 +3,8 @@
     {% block edit %}
         {{ form(edit_form) }}
     {% endblock%}
+
+{% block content %}
 <ul class="record_actions">
     <li>
         <a href="{{ path('project') }}">
@@ -66,13 +68,8 @@
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+            {{ form(delete_form) }}
             {{ form_end(edit_form) }}
-
         </div>
-
     </div>
-    <ul class="record_actions">
-        <li>{{ form(delete_form) }}</li>
-    </ul>
-
 {% endblock %}

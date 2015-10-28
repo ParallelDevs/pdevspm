@@ -1,6 +1,5 @@
 {% extends '::layout.html.twig' %}
 
-
 {% block page_title -%}Projects{% endblock %}
 
 {% block content %}
@@ -40,8 +39,8 @@
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.id }}</td>
+                        <td><a href="{{ path('project_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                         <td>{{ entity.description }}</td>
                         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{{ entity.createdBy }}</td>

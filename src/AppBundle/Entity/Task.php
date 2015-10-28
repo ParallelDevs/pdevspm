@@ -3,11 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Task
  *
- * @ORM\Table(name="task", indexes={@ORM\Index(name="fk_task_project", columns={"project_id"}), @ORM\Index(name="fk_task_task_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_task_type", columns={"task_type_id"}), @ORM\Index(name="fk_task_task_label", columns={"task_label_id"}), @ORM\Index(name="fk_task_project_phase", columns={"project_phase_id"}), @ORM\Index(name="fk_task_pople", columns={"created_by"}), @ORM\Index(name="fk_task_task_group", columns={"task_group_id"}), @ORM\Index(name="fk_task_versions", columns={"versions_id"}), @ORM\Index(name="fk_task_task_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_ticket", columns={"ticket_id"})})
+ * @ORM\Table(name="task", indexes={@ORM\Index(name="fk_task_project", columns={"project_id"}), @ORM\Index(name="fk_task_task_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_task_type", columns={"task_type_id"}), @ORM\Index(name="fk_task_task_label", columns={"task_label_id"}), @ORM\Index(name="fk_task_project_phase", columns={"project_phase_id"}), @ORM\Index(name="fk_task_created_by", columns={"created_by"}), @ORM\Index(name="fk_task_task_group", columns={"task_group_id"}), @ORM\Index(name="fk_task_versions", columns={"versions_id"}), @ORM\Index(name="fk_task_task_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_ticket", columns={"ticket_id"})})
  * @ORM\Entity
  */
 class Task
@@ -35,10 +36,14 @@ class Task
      */
     private $description;
 
-    /**
-     * @var string
+     /**
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\Column(name="assigned_to", type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinTable(name="task_assigned_to_user",
+     *      joinColumns={@ORM\JoinColumn(name="task_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+     *      )
      */
     private $assignedTo;
 
@@ -85,9 +90,9 @@ class Task
     private $startDate;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="progress", type="integer", nullable=true)
+     * @ORM\Column(name="progress", type="string", nullable=true)
      */
     private $progress;
 
@@ -191,7 +196,10 @@ class Task
      */
     private $createdBy;
 
-
+    public function __construct()
+    {
+        $this->assignedTo = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -252,10 +260,10 @@ class Task
     /**
      * Set assignedTo
      *
-     * @param string $assignedTo
+     * @param \Doctrine\Common\Collections\ArrayCollection $assignedTo
      * @return Task
      */
-    public function setAssignedTo($assignedTo)
+    public function setAssignedTo(\Doctrine\Common\Collections\ArrayCollection $assignedTo)
     {
         $this->assignedTo = $assignedTo;
 
@@ -265,7 +273,7 @@ class Task
     /**
      * Get assignedTo
      *
-     * @return string 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getAssignedTo()
     {

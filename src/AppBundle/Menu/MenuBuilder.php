@@ -3,7 +3,6 @@
 namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class MenuBuilder
 {
@@ -18,7 +17,7 @@ class MenuBuilder
     }
 
 
-    public function createMainMenu(RequestStack $requestStack)
+    public function createMainMenu()
     {
         $menu = $this->factory->createItem('root', ['childrenAttributes' => ['class' => 'sidebar-menu']]);
 
@@ -65,6 +64,38 @@ class MenuBuilder
         $menu['Configuration']['Project']->addChild('VersionStatus', [
             'route' => 'versionstatus',
             'label' => '<span>Version Status</span>',
+            'extras' => ['safe_label' => true]
+        ]);
+
+        $menu['Configuration']->addChild('Task', [
+            'uri' => '#',
+            'label' => '<span>Task</span><i class="fa fa-angle-left pull-right"></i>',
+            'attributes' => ['class' => 'treeview'],
+            'childrenAttributes' => ['class' => 'treeview-menu'],
+            'extras' => ['safe_label' => true]
+        ]);
+
+        $menu['Configuration']['Task']->addChild('task_status', [
+            'route' => 'config_task_status',
+            'label' => '<span>Task Status</span>',
+            'extras' => ['safe_label' => true]
+        ]);
+
+        $menu['Configuration']['Task']->addChild('TaskType', [
+            'route' => 'config_task_type',
+            'label' => '<span>Task Types</span>',
+            'extras' => ['safe_label' => true]
+        ]);
+
+        $menu['Configuration']['Task']->addChild('TaskLabel', [
+            'route' => 'config_task_label',
+            'label' => '<span>Task Labels</span>',
+            'extras' => ['safe_label' => true]
+        ]);
+
+        $menu['Configuration']['Task']->addChild('task_priority', [
+            'route' => 'config_task_priority',
+            'label' => '<span>Task Priority</span>',
             'extras' => ['safe_label' => true]
         ]);
 
