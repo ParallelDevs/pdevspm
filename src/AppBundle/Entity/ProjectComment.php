@@ -55,6 +55,25 @@ class ProjectComment
      */
     private $createdBy;
 
+    /**
+     * @var \AppBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectStatus")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="project_status_id", referencedColumnName="id")
+     * })
+     */
+    private $projectStatus;
+
+    /**
+     * @var \AppBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProjectType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="project_type_id", referencedColumnName="id")
+     * })
+     */
+    private $projectType;
 
 
     /**
@@ -121,7 +140,7 @@ class ProjectComment
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
     {
-        $this->$project = $project;
+        $this->project = $project;
 
         return $this;
     }
@@ -157,5 +176,51 @@ class ProjectComment
     public function getCreatedBy()
     {
         return $this->createdBy;
+    }
+
+    /**
+     * Set ProjectStatus
+     *
+     * @param \AppBundle\Entity\ProjectStatus $projectStatus
+     * @return ProjectStatus
+     */
+    public function setProjectStatus(\AppBundle\Entity\ProjectStatus $projectStatus = null)
+    {
+        $this->projectStatus = $projectStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get ProjectStatus
+     *
+     * @return \AppBundle\Entity\ProjectStatus
+     */
+    public function getProjectStatus()
+    {
+        return $this->projectStatus;
+    }
+
+    /**
+     * Set ProjectType
+     *
+     * @param \AppBundle\Entity\ProjectType $projectType
+     * @return ProjectType
+     */
+    public function setProjectType(\AppBundle\Entity\ProjectType $projectType = null)
+    {
+        $this->projectType = $projectType;
+
+        return $this;
+    }
+
+    /**
+     * Get ProjectType
+     *
+     * @return \AppBundle\Entity\ProjectType
+     */
+    public function getProjectType()
+    {
+        return $this->projectType;
     }
 }
