@@ -1,0 +1,42 @@
+{% extends '::layout.html.twig' %}
+
+{% block page_title -%} Create New Project_Comment{% endblock %}
+
+{% block content %}
+
+<div class="col-md-12">
+    <div class="box box-primary">
+        {{ form_start(form, {'attr': {'role' : 'form'}}) }}
+        <div class="box-header">
+            <h3 class="box-title">Create New Project</h3>
+
+        </div>
+        <div class="box-body">
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                {{ form_label(form.projectStatus) }}
+                {{ form_errors(form.projectStatus) }}
+                {{ form_widget(form.projectStatus) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.projectType) }}
+                {{ form_errors(form.projectType) }}
+                {{ form_widget(form.projectType) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.description) }}
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control textarea', 'placeholder': 'The Project Comment description'}}) }}
+            </div>
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
