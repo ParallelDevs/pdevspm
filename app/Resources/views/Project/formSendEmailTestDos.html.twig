@@ -22,34 +22,29 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Email</th>
                     <th>Description</th>
                     <th>Created at</th>
-                    <th>Create By</th>
-                    <th>Actions</th>
+                    <th>Ticket Status</th>
+                    <th>Ticket Type</th>
+                    <th>User</th>
+                    <th>Project</th>
+                    <th>Department</th>
+
                 </tr>
                 </thead>
                 <tbody>
-                {% for entity in entities %}
+                {% for entity in entity %}
                     <tr>
                         <td>{{ entity.id }}</td>
                         <td>{{ entity.name }}</a></td>
-                        <td>{{ entity.email }}</a></td>
-                        <td>{{ entity.description }}</td>
+                        <td>{{ entity.description }}</a></td>
                         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ entity.createdBy }}</td>
+                        <td>{{ entity.ticketStatus }}</td>
+                        <td>{{ entity.ticketType }}</td>
+                        <td>{{ entity.user }}</td>
+                        <td>{{ entity.project.id }}</td>
+                        <td>{{ entity.department }}</td>
 
-
-                        {#<td>#}
-                            {#<ul>#}
-                                {#<li>#}
-                                    {#<a class="fa fa-list"  href="{{ path('project_show', { 'id': entity.id }) }}"></a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a class="fa fa-edit" href="{{ path('project_edit', { 'id': entity.id }) }}"></a>#}
-                                {#</li>#}
-                            {#</ul>#}
-                        {#</td>#}
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -57,4 +52,4 @@
         </div>
     </div>
 
-    {% endblock %}
+{% endblock %}
