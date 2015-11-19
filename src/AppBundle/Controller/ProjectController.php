@@ -1,7 +1,6 @@
 <?php
 
 namespace AppBundle\Controller;
-
 use AppBundle\Entity\Ticket;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -70,7 +69,7 @@ class ProjectController extends Controller
         ]);
     }
 
-    /**
+     /**
      * Creates a form to create a Project entity.
      *
      * @param Project $entity The entity
@@ -113,28 +112,29 @@ class ProjectController extends Controller
     /**
     * Finds and displays a Project entity.
     *
-    * @Route("/{id}", name="project_show")
+    * @Route("/{project_id}", name="project_show")
     * @Method("GET")
     *
     */
-    public function showAction($id)
+    public function showAction($project_id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $repository = $this->getDoctrine()
                     ->getRepository('AppBundle:Project');
-        $entity = $repository->find($id);
+        $entity = $repository->find($project_id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Projects entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($project_id);
 
        return $this->render('Project/show.html.twig',
                  ['entity' => $entity,
                  'id'=>$entity->getId(),
-                  'delete_form' => $deleteForm->createView()]);
+                  'delete_form' => $deleteForm
+                  ]);
     }
 
     /**
@@ -256,14 +256,14 @@ class ProjectController extends Controller
     /**
      * Displays a form to testing send email with TEST email.
      *
-     * @Route("/retrieve-email", name="retrieve_email")
+     * @Route("/receive-email", name="receive_email")
      * @Method("GET")
      *
      */
 
     public function retrieveEmailAction()
     {
-        $imapFlags = "{imap.gmail.com:993/imap/ssl/novalidate-cert}";
+        $imapFlags = "{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX";
 
         $emailUser = "i.delgado@paralleldevs.com";
 
@@ -275,63 +275,56 @@ class ProjectController extends Controller
 
         $numMessages = imap_num_msg($mailbox);
 
-            for ($i = $numMessages; $i > ($numMessages - 10); $i--) {
-
+            for ($i = $numMessages; $i > ($numMessages - 3); $i--)
+            {
                 $header = imap_header($mailbox, $i);
 
-                    $fromAddr = $header->from[0]->mailbox . "@" . $header->from[0]->host;
+                $fromAddr = $header->from[0]->mailbox . "@" . $header->from[0]->host;
 
-                if($fromAddr === 'i.delgado@paralleldevs.com'){
+                $projects = $em->getRepository('AppBundle:Project')->findByEmail($fromAddr);
 
-                    $details = array(
-                        "subject" => (isset($header->subject))
-                            ? $header->subject : ""
-                    );
+                $MC = imap_check($mailbox);
 
-                    $projects = $em->getRepository('AppBundle:Project')->findByEmail('i.delgado@paralleldevs.com');
+                $result = imap_fetch_overview($mailbox, "$numMessages:{$MC->Nmsgs}", 0);
 
-                    foreach ($projects as $project) {
+                if($result[0]->uid){
 
-                        if($project->getProjectType()->getName() === 'Support'){
+                    foreach($projects as $project) {
 
-                                if($project->getEmail() === 'i.delgado@paralleldevs.com'){
+                        if ($project->getProjectType()->getName() === 'Support'){
 
-                                    $ticket = new Ticket();
+                            $ticket = new Ticket();
+                            $ticket->setName($header->subject);
+                            $body_msg = imap_fetchbody($mailbox, $numMessages, 1);
+                            $ticket->setDescription($body_msg);
+                            $ticket->setCreatedAt(new \DateTime('now'));
+                            $ticket->setProject($project);
 
-                                    $ticket->setName($details["subject"]);
-                                    $body_msg = imap_body($mailbox, $numMessages);
-                                    $ticket->setDescription($body_msg);
-                                    $ticket->setCreatedAt(new \DateTime('now'));
-                                    $ticket->setProject($project);
+                            $em->persist($ticket);
+                            $em->flush();
 
-                                    $em->persist($ticket);
-                                    $em->flush();
-                                }
+
                         }
                     }
                 }
-                else{
-                    echo "The email its not found. Try again or dont kiding me";
-                    break;
-                }
             }
+
         imap_close($mailbox);
 
         $all_tiquets = $em->getRepository('AppBundle:Ticket')->findAll();
 
         return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $all_tiquets]);
-
     }
     //+++++++++++++++++++++++++++++END METHOD++++++++++++++++++++++++++
 
     /**
-    //    * Finds and displays a Project entity.
-    //    *
-    //    * @Route("/all-tickets", name="all_tickets_show")
-    //    * @Method("GET")
-    //    *
-    //    */
-    public function showAllEmailAction()
+        * Finds and displays a Project entity.
+        *
+        * @Route("/all-tickets", name="all_tickets_show")
+        * @Method("GET")
+        *
+        */
+    public function showAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -345,37 +338,121 @@ class ProjectController extends Controller
 
        return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $entity]);
     }
-    
+
+//    /**
+//     * Delete all elements in the table
+//     *
+//     * @Route("/delete-all-projects", name="delete_all")
+//     * @Method("GET")
+//     *
+//     */
+//    public function deleteAction(){
+//
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $entity = $em->getRepository('AppBundle:Project')->findAll();
+//
+////        foreach ($entity as $pro) {
+////            $em->remove($pro);
+////        }
+////
+////        $em->flush();
+////
+////        if (!$entity) {
+////            throw $this->createNotFoundException('Unable to find Task entity.');
+////        }
+//
+//        return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $entity]);
+//
+//    }
+
     /**
-     * Displays a form to create a new Project entity.
+     * Delete all elements in the table
      *
-     * @Route("/form-email", name="new_form_email")
+     * @Route("/delete-all", name="delete_all_elements")
      * @Method("GET")
      *
      */
-    public function newFormEmailAction()
-    {
-       // $entity = new Project();
 
-        return $this->render('Project/formSendEmailTest.html.twig', [
+    public function deleteAction(){
 
-            ]);
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Ticket')->findAll();
+
+        foreach ($entity as $ticket) {
+            $em->remove($ticket);
+        }
+
+        $em->flush();
+
+        if (!$entity) {
+            throw $this->createNotFoundException('All elements was deleted  ');
+        }
+
+        return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $entity]);
+
     }
 
-    /**
-     * Creates a form to delete a Project entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('project_delete', ['id' => $id]))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', ['label' => 'Delete'])
-            ->getForm()
-        ;
-    }
+//    /**
+//     * Displays a form to create a new Project entity.
+//     *
+//     * @Route("/form-email", name="new_form_email")
+//     * @Method("GET")
+//     *
+//     */
+//    public function newFormEmailAction()
+//    {
+//       // $entity = new Project();
+//
+//        return $this->render('Project/formSendEmailTest.html.twig', [
+//
+//            ]);
+//    }
+//
+
+//    /**
+//     * Deletes a Project entity.
+//     *
+//     * @Route("/{project_id}/delete", name="project_delete")
+//     * @Method("DELETE")
+//     */
+//    public function deleteAction(Request $request, $project_id)
+//    {
+//        $form = $this->createDeleteForm($project_id);
+//        $form->handleRequest($request);
+//
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $entity = $em->getRepository('AppBundle:Project')->findById($project_id);
+//
+//        foreach ($entity as $task) {
+//            $em->remove($task);
+//        }
+//
+//        $em->flush();
+//
+//
+//        if (!$entity) {
+//            throw $this->createNotFoundException('Unable to find Task entity.');
+//        }
+//
+//        return $this->redirect($this->generateUrl('task', array('project_id' => $project_id)));
+//    }
+//    /**
+//     * Creates a form to delete a Project entity by id.
+//     *
+//     * @param mixed $id The entity id
+//     *
+//     * @return \Symfony\Component\Form\Form The form
+//     */
+//    private function createDeleteForm($id)
+//    {
+//        return $this->createFormBuilder()
+//            ->setAction($this->generateUrl('project_delete', ['id' => $id]))
+//            ->setMethod('DELETE')
+//            ->add('submit', 'submit', ['label' => 'Delete'])
+//            ->getForm()
+//        ;
+//    }
 }
