@@ -274,7 +274,7 @@ class ProjectController extends Controller
 
         $mailbox = imap_open($imapFlags, $emailUser, $passEmail) or die(imap_last_error());
 
-        $numMessages = imap_num_msg($mailbox); 
+        $numMessages = imap_num_msg($mailbox);
 
         for ($i = 1; $i <= $numMessages; $i++) {
 
@@ -282,9 +282,7 @@ class ProjectController extends Controller
 
             if($headers->Unseen === 'U'){
 
-                $header = imap_header($mailbox, $i);
-
-                $fromAddr = $header->from[0]->mailbox . "@" . $header->from[0]->host;
+                $fromAddr = $headers->from[0]->mailbox . "@" . $headers->from[0]->host;
 
                 $project_type = $em->getRepository('AppBundle:ProjectType')->findBy(['name' => 'Support']);
 
@@ -300,7 +298,7 @@ class ProjectController extends Controller
                 if (sizeof($ticket_DB) == 0) {
 
                     $ticket = new Ticket();
-                    $ticket->setName($header->subject);
+                    $ticket->setName($headers->subject);
                     $body_msg = imap_fetchbody($mailbox, $i, 1);
                     $ticket->setDescription($body_msg);
                     $ticket->setCreatedAt(new \DateTime('now'));
@@ -312,7 +310,6 @@ class ProjectController extends Controller
 
                     $em->persist($ticket);
                     $em->flush();
-
                 }
             }
         }
