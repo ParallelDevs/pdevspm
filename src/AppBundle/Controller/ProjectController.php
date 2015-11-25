@@ -57,6 +57,12 @@ class ProjectController extends Controller
 //            $entity->setCreatedBy($user);
 //            $entity->setCreatedAt(new \DateTime('now'));
 //
+//            $emailsTxt = $request->request->get('project')['email'];
+//            $stringEmail = str_replace(" ", ",", $emailsTxt);
+//
+//            var_dump($stringEmail);
+//            exit();
+//
 //            $em = $this->getDoctrine()->getManager();
 //            $em->persist($entity);
 //            $em->flush();
@@ -252,8 +258,8 @@ class ProjectController extends Controller
 //          'delete_form' => $deleteForm->createView(),
 //        ]);
 //    }
-    //+++++++++++++++++++++++++++++BEGIN METHOD++++++++++++++++++++++++++
 
+    /*---------------------------------------RETRIEVE EMAIL FUNTIONALLITY----------------------------------*/
     /**
      * Displays a form to testing send email with TEST email.
      *
@@ -318,55 +324,6 @@ class ProjectController extends Controller
         return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $all_tiquets]);
 
     }
-    //+++++++++++++++++++++++++++++END METHOD++++++++++++++++++++++++++
-    /**
-        * Finds and displays a Project entity.
-        *
-        * @Route("/all-tickets", name="all_tickets_show")
-        * @Method("GET")
-        *
-        */
-    public function showAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $repository = $this->getDoctrine()
-                    ->getRepository('AppBundle:Ticket');
-        $entity = $repository->findAll();
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find all elements.');
-        }
-
-       return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $entity]);
-    }
-
-//    /**
-//     * Delete all elements in the table
-//     *
-//     * @Route("/delete-all-projects", name="delete_all")
-//     * @Method("GET")
-//     *
-//     */
-//    public function deleteAction(){
-//
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $entity = $em->getRepository('AppBundle:Project')->findAll();
-//
-////        foreach ($entity as $pro) {
-////            $em->remove($pro);
-////        }
-////
-////        $em->flush();
-////
-////        if (!$entity) {
-////            throw $this->createNotFoundException('Unable to find Task entity.');
-////        }
-//
-//        return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $entity]);
-//
-//    }
 
     /**
      * Delete all elements in the table
@@ -395,7 +352,7 @@ class ProjectController extends Controller
         return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $entity]);
 
     }
-
+        /*---------------------------------------RETRIEVE EMAIL FUNTIONALLITY----------------------------------*/
 //    /**
 //     * Displays a form to create a new Project entity.
 //     *
@@ -412,7 +369,7 @@ class ProjectController extends Controller
 //            ]);
 //    }
 //
-
+//
 //    /**
 //     * Deletes a Project entity.
 //     *
