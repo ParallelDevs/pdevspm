@@ -24,11 +24,11 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Created at</th>
-                    <th>Ticket Status</th>
-                    <th>Ticket Type</th>
+                    {#<th>Ticket Status</th>#}
+                    {#<th>Ticket Type</th>#}
                     <th>User</th>
                     <th>Project</th>
-                    <th>Department</th>
+                    <th>Email_Project</th>
 
                 </tr>
                 </thead>
@@ -39,11 +39,11 @@
                         <td>{{ entity.name }}</a></td>
                         <td>{{ entity.description }}</a></td>
                         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ entity.ticketStatus }}</td>
-                        <td>{{ entity.ticketType }}</td>
+                        {#<td>{{ entity.ticketStatus }}</td>#}
+                        {#<td>{{ entity.ticketType }}</td>#}
                         <td>{{ entity.user }}</td>
                         <td>{{ entity.project.id }}</td>
-                        <td>{{ entity.department }}</td>
+                        <td>{{ entity.project.email }}</td>
 
                     </tr>
                 {% endfor %}

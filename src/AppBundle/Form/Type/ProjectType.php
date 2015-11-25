@@ -25,7 +25,7 @@ class ProjectType extends AbstractType
                 ])
             ->add('projectStatus', 'entity', ['class' => 'AppBundle\Entity\ProjectStatus', 'property' => 'name'])
             ->add('projectType', 'entity', ['class' => 'AppBundle\Entity\ProjectType', 'property' => 'name'])
-            ->add('email', 'email')
+//            ->add('email', 'email')
         ;
     }
     
