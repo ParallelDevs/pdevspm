@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TicketComment
  *
- * @ORM\Table(name="ticket_comment", indexes={@ORM\Index(name="fk_ticket_comment_ticket", columns={"ticket_id"}), @ORM\Index(name="fk_ticket_comment_user", columns={"user_id"}), @ORM\Index(name="k_ticket_comment_status", columns={"ticket_status_id"})})
+ * @ORM\Table(name="ticket_comment", indexes={@ORM\Index(name="fk_ticket_comment_ticket", columns={"ticket_id"}), @ORM\Index(name="fk_ticket_comment_user", columns={"user_assigned_to"}), @ORM\Index(name="fk_ticket_comment_status", columns={"ticket_status_id"}), @ORM\Index(name="fk_ticket_department_id", columns={"department_id"}), @ORM\Index(name="fk_ticket_comment_type_id", columns={"ticket_type_id"}), @ORM\Index(name="fk_ticket_project_id", columns={"project_id"})})
  * @ORM\Entity
  */
 class TicketComment
@@ -50,7 +50,7 @@ class TicketComment
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_assigned_to", referencedColumnName="id")
      * })
      */
     private $user;
@@ -65,6 +65,35 @@ class TicketComment
      */
     private $ticketStatus;
 
+    /**
+     * @var \AppBundle\Entity\Department
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Department")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="department_id", referencedColumnName="id")
+     * })
+     */
+    private $department;
+
+    /**
+     * @var \AppBundle\Entity\TicketType
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TicketType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ticket_type_id", referencedColumnName="id")
+     * })
+     */
+    private $ticketType;
+
+    /**
+     * @var \AppBundle\Entity\Ticket
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     * })
+     */
+    private $project;
 
 
     /**
@@ -185,10 +214,79 @@ class TicketComment
     /**
      * Get ticketStatus
      *
-     * @return \AppBundle\Entity\TicketStatus 
+     * @return \AppBundle\Entity\TicketStatus
      */
     public function getTicketStatus()
     {
         return $this->ticketStatus;
+    }
+
+    /**
+     * Set department
+     *
+     * @param \AppBundle\Entity\Department $department
+     * @return TicketComment
+     */
+    public function setDepartment(\AppBundle\Entity\Department $department = null)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketStatus
+     *
+     * @return \AppBundle\Entity\Department
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * Set ticketType
+     *
+     * @param \AppBundle\Entity\TicketType $ticketType
+     * @return TicketComment
+     */
+    public function setTicketType(\AppBundle\Entity\TicketType $ticketType = null)
+    {
+        $this->ticketType = $ticketType;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketStatus
+     *
+     * @return \AppBundle\Entity\TicketStatus
+     */
+    public function getTicketType()
+    {
+        return $this->ticketType;
+    }
+
+    /**
+     * Set project
+     *
+     * @param \AppBundle\Entity\Project $project
+     * @return TicketComment
+     */
+    public function setProject(\AppBundle\Entity\Project $project = null)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketStatus
+     *
+     * @return \AppBundle\Entity\Project
+     */
+    public function getProject()
+    {
+        return $this->project;
     }
 }
