@@ -16,7 +16,6 @@ use AppBundle\Form\Type\TaskPriorityType;
  */
 class TaskPriorityController extends Controller
 {
-
     /**
      * Lists all TaskPriority entities.
      *
@@ -53,7 +52,7 @@ class TaskPriorityController extends Controller
 
         return $this->render('TaskPriority/new.html.twig', [
             'entity' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -85,11 +84,11 @@ class TaskPriorityController extends Controller
     public function newAction()
     {
         $entity = new TaskPriority();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('TaskPriority/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -111,10 +110,10 @@ class TaskPriorityController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('TaskPriority/show.html.twig',[
+        return $this->render('TaskPriority/show.html.twig', [
             'entity' => $entity,
-            'id'=>$entity->getId(),
-            'delete_form' => $deleteForm->createView()
+            'id' => $entity->getId(),
+            'delete_form' => $deleteForm->createView(),
 
         ]);
     }
@@ -138,19 +137,19 @@ class TaskPriorityController extends Controller
         $editForm = $this->createEditForm($entity);
 
         return $this->render('TaskPriority/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
 
     /**
-    * Creates a form to edit a TaskPriority entity.
-    *
-    * @param TaskPriority $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TaskPriority entity.
+     *
+     * @param TaskPriority $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TaskPriority $entity)
     {
         $form = $this->createForm(new TaskPriorityType(), $entity, array(
@@ -188,8 +187,8 @@ class TaskPriorityController extends Controller
         }
 
         return $this->render('TaskPriority/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
@@ -204,9 +203,9 @@ class TaskPriorityController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:TaskPriority')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TaskPriority entity.');
-            }
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find TaskPriority entity.');
+        }
 
         $em->remove($entity);
         $em->flush();
@@ -230,5 +229,4 @@ class TaskPriorityController extends Controller
             ->getForm()
             ;
     }
-
 }

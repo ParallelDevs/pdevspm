@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TaskLabel
+ * TaskLabel.
  *
  * @ORM\Table(name="task_label")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TaskLabel
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,32 +29,30 @@ class TaskLabel
     private $name;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="default_value", type="boolean", nullable=true)
      */
     private $defaultValue;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -62,9 +60,10 @@ class TaskLabel
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return TaskLabel
      */
     public function setName($name)
@@ -75,9 +74,9 @@ class TaskLabel
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -85,9 +84,10 @@ class TaskLabel
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return TaskLabel
      */
     public function setSortOrder($sortOrder)
@@ -98,9 +98,9 @@ class TaskLabel
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -108,9 +108,10 @@ class TaskLabel
     }
 
     /**
-     * Set defaultValue
+     * Set defaultValue.
      *
-     * @param boolean $defaultValue
+     * @param bool $defaultValue
+     *
      * @return TaskLabel
      */
     public function setDefaultValue($defaultValue)
@@ -121,9 +122,9 @@ class TaskLabel
     }
 
     /**
-     * Get defaultValue
+     * Get defaultValue.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getDefaultValue()
     {
@@ -131,9 +132,10 @@ class TaskLabel
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return TaskLabel
      */
     public function setActive($active)
@@ -144,9 +146,9 @@ class TaskLabel
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {

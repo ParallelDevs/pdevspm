@@ -13,7 +13,7 @@ class ProjectTypeRepositoryFunctionalTest extends KernelTestCase
     private $em;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setUp()
     {
@@ -31,7 +31,6 @@ class ProjectTypeRepositoryFunctionalTest extends KernelTestCase
             ->setName('Project Type Test')
             ->setSortOrder(10)
             ->setActive(1);
-        ;
 
         $this->em->persist($testProjectType);
         $this->em->flush();
@@ -57,7 +56,6 @@ class ProjectTypeRepositoryFunctionalTest extends KernelTestCase
             ->setName('Project Type Test 2')
             ->setSortOrder(77)
             ->setActive(0);
-        ;
 
         $this->em->persist($projectType);
         $this->em->flush();
@@ -89,9 +87,8 @@ class ProjectTypeRepositoryFunctionalTest extends KernelTestCase
         $this->assertNull($projectTypeDeleted);
     }
 
-
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function tearDown()
     {

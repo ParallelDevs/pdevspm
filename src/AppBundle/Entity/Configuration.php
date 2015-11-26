@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Configuration
+ * Configuration.
  *
  * @ORM\Table(name="configuration")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Configuration
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,12 +35,10 @@ class Configuration
      */
     private $value;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -48,9 +46,10 @@ class Configuration
     }
 
     /**
-     * Set key
+     * Set key.
      *
      * @param string $key
+     *
      * @return Configuration
      */
     public function setKey($key)
@@ -61,9 +60,9 @@ class Configuration
     }
 
     /**
-     * Get key
+     * Get key.
      *
-     * @return string 
+     * @return string
      */
     public function getKey()
     {
@@ -71,9 +70,10 @@ class Configuration
     }
 
     /**
-     * Set value
+     * Set value.
      *
      * @param string $value
+     *
      * @return Configuration
      */
     public function setValue($value)
@@ -84,9 +84,9 @@ class Configuration
     }
 
     /**
-     * Get value
+     * Get value.
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TicketReport
+ * TicketReport.
  *
  * @ORM\Table(name="ticket_report", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TicketReport
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,7 +29,7 @@ class TicketReport
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="display_on_home", type="boolean", nullable=true)
      */
@@ -78,7 +78,7 @@ class TicketReport
     private $ticketStatusId;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
@@ -94,12 +94,10 @@ class TicketReport
      */
     private $user;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -107,9 +105,10 @@ class TicketReport
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return TicketReport
      */
     public function setName($name)
@@ -120,9 +119,9 @@ class TicketReport
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -130,9 +129,10 @@ class TicketReport
     }
 
     /**
-     * Set displayOnHome
+     * Set displayOnHome.
      *
-     * @param boolean $displayOnHome
+     * @param bool $displayOnHome
+     *
      * @return TicketReport
      */
     public function setDisplayOnHome($displayOnHome)
@@ -143,9 +143,9 @@ class TicketReport
     }
 
     /**
-     * Get displayOnHome
+     * Get displayOnHome.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getDisplayOnHome()
     {
@@ -153,9 +153,10 @@ class TicketReport
     }
 
     /**
-     * Set projectId
+     * Set projectId.
      *
      * @param string $projectId
+     *
      * @return TicketReport
      */
     public function setProjectId($projectId)
@@ -166,9 +167,9 @@ class TicketReport
     }
 
     /**
-     * Get projectId
+     * Get projectId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectId()
     {
@@ -176,9 +177,10 @@ class TicketReport
     }
 
     /**
-     * Set projectTypeId
+     * Set projectTypeId.
      *
      * @param string $projectTypeId
+     *
      * @return TicketReport
      */
     public function setProjectTypeId($projectTypeId)
@@ -189,9 +191,9 @@ class TicketReport
     }
 
     /**
-     * Get projectTypeId
+     * Get projectTypeId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectTypeId()
     {
@@ -199,9 +201,10 @@ class TicketReport
     }
 
     /**
-     * Set projectStatusId
+     * Set projectStatusId.
      *
      * @param string $projectStatusId
+     *
      * @return TicketReport
      */
     public function setProjectStatusId($projectStatusId)
@@ -212,9 +215,9 @@ class TicketReport
     }
 
     /**
-     * Get projectStatusId
+     * Get projectStatusId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectStatusId()
     {
@@ -222,9 +225,10 @@ class TicketReport
     }
 
     /**
-     * Set departmentId
+     * Set departmentId.
      *
      * @param string $departmentId
+     *
      * @return TicketReport
      */
     public function setDepartmentId($departmentId)
@@ -235,9 +239,9 @@ class TicketReport
     }
 
     /**
-     * Get departmentId
+     * Get departmentId.
      *
-     * @return string 
+     * @return string
      */
     public function getDepartmentId()
     {
@@ -245,9 +249,10 @@ class TicketReport
     }
 
     /**
-     * Set ticketTypesId
+     * Set ticketTypesId.
      *
      * @param string $ticketTypesId
+     *
      * @return TicketReport
      */
     public function setTicketTypesId($ticketTypesId)
@@ -258,9 +263,9 @@ class TicketReport
     }
 
     /**
-     * Get ticketTypesId
+     * Get ticketTypesId.
      *
-     * @return string 
+     * @return string
      */
     public function getTicketTypesId()
     {
@@ -268,9 +273,10 @@ class TicketReport
     }
 
     /**
-     * Set ticketStatusId
+     * Set ticketStatusId.
      *
      * @param string $ticketStatusId
+     *
      * @return TicketReport
      */
     public function setTicketStatusId($ticketStatusId)
@@ -281,9 +287,9 @@ class TicketReport
     }
 
     /**
-     * Get ticketStatusId
+     * Get ticketStatusId.
      *
-     * @return string 
+     * @return string
      */
     public function getTicketStatusId()
     {
@@ -291,9 +297,10 @@ class TicketReport
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return TicketReport
      */
     public function setSortOrder($sortOrder)
@@ -304,9 +311,9 @@ class TicketReport
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -314,9 +321,10 @@ class TicketReport
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return TicketReport
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -327,9 +335,9 @@ class TicketReport
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {

@@ -10,7 +10,7 @@ class VersionStatusType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -21,14 +21,14 @@ class VersionStatusType extends AbstractType
             ->add('active')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\VersionStatus'
+            'data_class' => 'AppBundle\Entity\VersionStatus',
         ));
     }
 

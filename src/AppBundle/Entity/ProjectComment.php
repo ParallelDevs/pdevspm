@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProjectComment
+ * ProjectComment.
  *
  * @ORM\Table(name="project_comment", indexes={@ORM\Index(name="fk_project_comment_project", columns={"project_id"}), @ORM\Index(name="fk_project_comments_user", columns={"created_by"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ProjectComment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -55,12 +55,10 @@ class ProjectComment
      */
     private $createdBy;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -68,9 +66,10 @@ class ProjectComment
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return ProjectComment
      */
     public function setDescription($description)
@@ -81,9 +80,9 @@ class ProjectComment
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -91,9 +90,10 @@ class ProjectComment
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return ProjectComment
      */
     public function setCreatedAt($createdAt)
@@ -104,9 +104,9 @@ class ProjectComment
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -114,9 +114,10 @@ class ProjectComment
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return ProjectComment
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -127,7 +128,7 @@ class ProjectComment
     }
 
     /**
-     * Get project
+     * Get project.
      *
      * @return \AppBundle\Entity\Project
      */
@@ -137,9 +138,10 @@ class ProjectComment
     }
 
     /**
-     * Set createdBy
+     * Set createdBy.
      *
      * @param \AppBundle\Entity\User $createdBy
+     *
      * @return ProjectComment
      */
     public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
@@ -150,7 +152,7 @@ class ProjectComment
     }
 
     /**
-     * Get createdBy
+     * Get createdBy.
      *
      * @return \AppBundle\Entity\User
      */

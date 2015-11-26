@@ -17,7 +17,7 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
     private $container;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -25,7 +25,7 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
@@ -45,7 +45,6 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
             ->setActive(1)
         ;
         $manager->persist($onHold);
-
 
         $closed = new ProjectStatus();
         $closed
@@ -67,7 +66,7 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getOrder()
     {

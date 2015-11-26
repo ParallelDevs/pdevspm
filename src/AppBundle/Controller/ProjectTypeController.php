@@ -16,13 +16,11 @@ use AppBundle\Form\Type\ProjectTypeType;
  */
 class ProjectTypeController extends Controller
 {
-
     /**
      * Lists all ProjectType entities.
      *
      * @Route("/", name="config_project_type")
      * @Method("GET")
-     * 
      */
     public function indexAction()
     {
@@ -37,7 +35,6 @@ class ProjectTypeController extends Controller
      *
      * @Route("/", name="config_project_type_create")
      * @Method("POST")
-     * 
      */
     public function createAction(Request $request)
     {
@@ -53,10 +50,10 @@ class ProjectTypeController extends Controller
             return $this->redirect($this->generateUrl('config_project_type_show', ['id' => $entity->getId()]));
         }
 
-         return $this->render('ProjectType/new.html.twig',[
+        return $this->render('ProjectType/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        ]);   
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -81,17 +78,16 @@ class ProjectTypeController extends Controller
      *
      * @Route("/new", name="config_project_type_new")
      * @Method("GET")
-     * 
      */
     public function newAction()
     {
         $entity = new ProjectType();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
-         return $this->render('ProjectType/new.html.twig', [
+        return $this->render('ProjectType/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        ]); 
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -99,25 +95,24 @@ class ProjectTypeController extends Controller
      *
      * @Route("/{id}", name="config_project_type_show")
      * @Method("GET")
-     * 
      */
     public function showAction($id)
     {
         $repository = $this->getDoctrine()
-                    ->getRepository('AppBundle:ProjectType');   
-        
-        $entity = $repository->find($id);  
+                    ->getRepository('AppBundle:ProjectType');
+
+        $entity = $repository->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Projects entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        
-        return $this->render('ProjectType/show.html.twig', 
-                 ['entity' => $entity, 
-                  'id'=>$entity->getId(), 
-                  'delete_form' => $deleteForm->createView()]);
+
+        return $this->render('ProjectType/show.html.twig',
+                 ['entity' => $entity,
+                  'id' => $entity->getId(),
+                  'delete_form' => $deleteForm->createView(), ]);
     }
 
     /**
@@ -125,7 +120,6 @@ class ProjectTypeController extends Controller
      *
      * @Route("/{id}/edit", name="config_project_type_edit")
      * @Method("GET")
-     * 
      */
     public function editAction($id)
     {
@@ -141,19 +135,19 @@ class ProjectTypeController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ProjectType/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }
 
     /**
-    * Creates a form to edit a ProjectType entity.
-    *
-    * @param ProjectType $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a ProjectType entity.
+     *
+     * @param ProjectType $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(ProjectType $entity)
     {
         $form = $this->createForm(new ProjectTypeType(), $entity, array(
@@ -168,7 +162,6 @@ class ProjectTypeController extends Controller
      *
      * @Route("/{id}", name="config_project_type_update")
      * @Method("PUT")
-     * 
      */
     public function updateAction(Request $request, $id)
     {
@@ -191,8 +184,8 @@ class ProjectTypeController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

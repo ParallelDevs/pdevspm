@@ -17,7 +17,7 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
     private $container;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -25,7 +25,7 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
@@ -34,7 +34,6 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
             ->setName('Support')
             ->setSortOrder(0)
             ->setActive(1);
-        ;
         $manager->persist($support);
 
         $newSite = new ProjectType();
@@ -42,7 +41,6 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
             ->setName('New Site')
             ->setSortOrder(1)
             ->setActive(1);
-        ;
         $manager->persist($newSite);
 
         $internal = new ProjectType();
@@ -50,14 +48,13 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
             ->setName('Internal')
             ->setSortOrder(2)
             ->setActive(1);
-        ;
         $manager->persist($internal);
 
         $manager->flush();
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getOrder()
     {

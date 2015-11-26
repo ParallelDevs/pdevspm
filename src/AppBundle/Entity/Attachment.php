@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Attachment
+ * Attachment.
  *
  * @ORM\Table(name="attachment", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Attachment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,7 +29,7 @@ class Attachment
     private $bindType;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="bind_id", type="integer", nullable=false)
      */
@@ -49,12 +49,10 @@ class Attachment
      */
     private $info;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -62,9 +60,10 @@ class Attachment
     }
 
     /**
-     * Set bindType
+     * Set bindType.
      *
      * @param string $bindType
+     *
      * @return Attachment
      */
     public function setBindType($bindType)
@@ -75,9 +74,9 @@ class Attachment
     }
 
     /**
-     * Get bindType
+     * Get bindType.
      *
-     * @return string 
+     * @return string
      */
     public function getBindType()
     {
@@ -85,9 +84,10 @@ class Attachment
     }
 
     /**
-     * Set bindId
+     * Set bindId.
      *
-     * @param integer $bindId
+     * @param int $bindId
+     *
      * @return Attachment
      */
     public function setBindId($bindId)
@@ -98,9 +98,9 @@ class Attachment
     }
 
     /**
-     * Get bindId
+     * Get bindId.
      *
-     * @return integer 
+     * @return int
      */
     public function getBindId()
     {
@@ -108,9 +108,10 @@ class Attachment
     }
 
     /**
-     * Set file
+     * Set file.
      *
      * @param string $file
+     *
      * @return Attachment
      */
     public function setFile($file)
@@ -121,9 +122,9 @@ class Attachment
     }
 
     /**
-     * Get file
+     * Get file.
      *
-     * @return string 
+     * @return string
      */
     public function getFile()
     {
@@ -131,9 +132,10 @@ class Attachment
     }
 
     /**
-     * Set info
+     * Set info.
      *
      * @param string $info
+     *
      * @return Attachment
      */
     public function setInfo($info)
@@ -144,9 +146,9 @@ class Attachment
     }
 
     /**
-     * Get info
+     * Get info.
      *
-     * @return string 
+     * @return string
      */
     public function getInfo()
     {

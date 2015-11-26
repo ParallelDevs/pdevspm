@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProjectPhase
+ * ProjectPhase.
  *
  * @ORM\Table(name="project_phase", indexes={@ORM\Index(name="fk_project_phase_project", columns={"project_id"}), @ORM\Index(name="fk_project_phase_phase_status", columns={"phase_status_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ProjectPhase
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -55,12 +55,10 @@ class ProjectPhase
      */
     private $phaseStatus;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -68,9 +66,10 @@ class ProjectPhase
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return ProjectPhase
      */
     public function setName($name)
@@ -81,9 +80,9 @@ class ProjectPhase
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -91,9 +90,10 @@ class ProjectPhase
     }
 
     /**
-     * Set dueDate
+     * Set dueDate.
      *
      * @param \DateTime $dueDate
+     *
      * @return ProjectPhase
      */
     public function setDueDate($dueDate)
@@ -104,9 +104,9 @@ class ProjectPhase
     }
 
     /**
-     * Get dueDate
+     * Get dueDate.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDueDate()
     {
@@ -114,9 +114,10 @@ class ProjectPhase
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return ProjectPhase
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -127,7 +128,7 @@ class ProjectPhase
     }
 
     /**
-     * Get project
+     * Get project.
      *
      * @return \AppBundle\Entity\Project
      */
@@ -137,9 +138,10 @@ class ProjectPhase
     }
 
     /**
-     * Set phaseStatus
+     * Set phaseStatus.
      *
      * @param \AppBundle\Entity\PhaseStatus $phaseStatus
+     *
      * @return ProjectPhase
      */
     public function setPhaseStatus(\AppBundle\Entity\PhaseStatus $phaseStatus = null)
@@ -150,7 +152,7 @@ class ProjectPhase
     }
 
     /**
-     * Get phaseStatus
+     * Get phaseStatus.
      *
      * @return \AppBundle\Entity\PhaseStatus
      */

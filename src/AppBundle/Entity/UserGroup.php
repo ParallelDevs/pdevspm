@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserGroup
+ * UserGroup.
  *
  * @ORM\Table(name="user_group")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class UserGroup
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,74 +29,72 @@ class UserGroup
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_view_all", type="boolean", nullable=true)
      */
     private $allowViewAll;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_manage_projects", type="boolean", nullable=true)
      */
     private $allowManageProjects;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_manage_tasks", type="boolean", nullable=true)
      */
     private $allowManageTasks;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_manage_tickets", type="boolean", nullable=true)
      */
     private $allowManageTickets;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_manage_user", type="boolean", nullable=true)
      */
     private $allowManageUser;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_manage_configuration", type="boolean", nullable=true)
      */
     private $allowManageConfiguration;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_manage_tasks_viewonly", type="boolean", nullable=true)
      */
     private $allowManageTasksViewonly;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_manage_discussions", type="boolean", nullable=true)
      */
     private $allowManageDiscussions;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="allow_manage_discussions_viewonly", type="boolean", nullable=true)
      */
     private $allowManageDiscussionsViewonly;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -104,9 +102,10 @@ class UserGroup
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return UserGroup
      */
     public function setName($name)
@@ -117,9 +116,9 @@ class UserGroup
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -127,9 +126,10 @@ class UserGroup
     }
 
     /**
-     * Set allowViewAll
+     * Set allowViewAll.
      *
-     * @param boolean $allowViewAll
+     * @param bool $allowViewAll
+     *
      * @return UserGroup
      */
     public function setAllowViewAll($allowViewAll)
@@ -140,9 +140,9 @@ class UserGroup
     }
 
     /**
-     * Get allowViewAll
+     * Get allowViewAll.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowViewAll()
     {
@@ -150,9 +150,10 @@ class UserGroup
     }
 
     /**
-     * Set allowManageProjects
+     * Set allowManageProjects.
      *
-     * @param boolean $allowManageProjects
+     * @param bool $allowManageProjects
+     *
      * @return UserGroup
      */
     public function setAllowManageProjects($allowManageProjects)
@@ -163,9 +164,9 @@ class UserGroup
     }
 
     /**
-     * Get allowManageProjects
+     * Get allowManageProjects.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowManageProjects()
     {
@@ -173,9 +174,10 @@ class UserGroup
     }
 
     /**
-     * Set allowManageTasks
+     * Set allowManageTasks.
      *
-     * @param boolean $allowManageTasks
+     * @param bool $allowManageTasks
+     *
      * @return UserGroup
      */
     public function setAllowManageTasks($allowManageTasks)
@@ -186,9 +188,9 @@ class UserGroup
     }
 
     /**
-     * Get allowManageTasks
+     * Get allowManageTasks.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowManageTasks()
     {
@@ -196,9 +198,10 @@ class UserGroup
     }
 
     /**
-     * Set allowManageTickets
+     * Set allowManageTickets.
      *
-     * @param boolean $allowManageTickets
+     * @param bool $allowManageTickets
+     *
      * @return UserGroup
      */
     public function setAllowManageTickets($allowManageTickets)
@@ -209,9 +212,9 @@ class UserGroup
     }
 
     /**
-     * Get allowManageTickets
+     * Get allowManageTickets.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowManageTickets()
     {
@@ -219,9 +222,10 @@ class UserGroup
     }
 
     /**
-     * Set allowManageUser
+     * Set allowManageUser.
      *
-     * @param boolean $allowManageUser
+     * @param bool $allowManageUser
+     *
      * @return UserGroup
      */
     public function setAllowManageUser($allowManageUser)
@@ -232,9 +236,9 @@ class UserGroup
     }
 
     /**
-     * Get allowManageUser
+     * Get allowManageUser.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowManageUser()
     {
@@ -242,9 +246,10 @@ class UserGroup
     }
 
     /**
-     * Set allowManageConfiguration
+     * Set allowManageConfiguration.
      *
-     * @param boolean $allowManageConfiguration
+     * @param bool $allowManageConfiguration
+     *
      * @return UserGroup
      */
     public function setAllowManageConfiguration($allowManageConfiguration)
@@ -255,9 +260,9 @@ class UserGroup
     }
 
     /**
-     * Get allowManageConfiguration
+     * Get allowManageConfiguration.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowManageConfiguration()
     {
@@ -265,9 +270,10 @@ class UserGroup
     }
 
     /**
-     * Set allowManageTasksViewonly
+     * Set allowManageTasksViewonly.
      *
-     * @param boolean $allowManageTasksViewonly
+     * @param bool $allowManageTasksViewonly
+     *
      * @return UserGroup
      */
     public function setAllowManageTasksViewonly($allowManageTasksViewonly)
@@ -278,9 +284,9 @@ class UserGroup
     }
 
     /**
-     * Get allowManageTasksViewonly
+     * Get allowManageTasksViewonly.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowManageTasksViewonly()
     {
@@ -288,9 +294,10 @@ class UserGroup
     }
 
     /**
-     * Set allowManageDiscussions
+     * Set allowManageDiscussions.
      *
-     * @param boolean $allowManageDiscussions
+     * @param bool $allowManageDiscussions
+     *
      * @return UserGroup
      */
     public function setAllowManageDiscussions($allowManageDiscussions)
@@ -301,9 +308,9 @@ class UserGroup
     }
 
     /**
-     * Get allowManageDiscussions
+     * Get allowManageDiscussions.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowManageDiscussions()
     {
@@ -311,9 +318,10 @@ class UserGroup
     }
 
     /**
-     * Set allowManageDiscussionsViewonly
+     * Set allowManageDiscussionsViewonly.
      *
-     * @param boolean $allowManageDiscussionsViewonly
+     * @param bool $allowManageDiscussionsViewonly
+     *
      * @return UserGroup
      */
     public function setAllowManageDiscussionsViewonly($allowManageDiscussionsViewonly)
@@ -324,9 +332,9 @@ class UserGroup
     }
 
     /**
-     * Get allowManageDiscussionsViewonly
+     * Get allowManageDiscussionsViewonly.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAllowManageDiscussionsViewonly()
     {

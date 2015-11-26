@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Event
+ * Event.
  *
  * @ORM\Table(name="event", indexes={@ORM\Index(name="fk_event_user", columns={"user_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Event
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="event_id", type="integer")
      * @ORM\Id
@@ -59,12 +59,10 @@ class Event
      */
     private $user;
 
-
-
     /**
-     * Get eventId
+     * Get eventId.
      *
-     * @return integer 
+     * @return int
      */
     public function getEventId()
     {
@@ -72,9 +70,10 @@ class Event
     }
 
     /**
-     * Set eventName
+     * Set eventName.
      *
      * @param string $eventName
+     *
      * @return Event
      */
     public function setEventName($eventName)
@@ -85,9 +84,9 @@ class Event
     }
 
     /**
-     * Get eventName
+     * Get eventName.
      *
-     * @return string 
+     * @return string
      */
     public function getEventName()
     {
@@ -95,9 +94,10 @@ class Event
     }
 
     /**
-     * Set startDate
+     * Set startDate.
      *
      * @param \DateTime $startDate
+     *
      * @return Event
      */
     public function setStartDate($startDate)
@@ -108,9 +108,9 @@ class Event
     }
 
     /**
-     * Get startDate
+     * Get startDate.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -118,9 +118,10 @@ class Event
     }
 
     /**
-     * Set endDate
+     * Set endDate.
      *
      * @param \DateTime $endDate
+     *
      * @return Event
      */
     public function setEndDate($endDate)
@@ -131,9 +132,9 @@ class Event
     }
 
     /**
-     * Get endDate
+     * Get endDate.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEndDate()
     {
@@ -141,9 +142,10 @@ class Event
     }
 
     /**
-     * Set details
+     * Set details.
      *
      * @param string $details
+     *
      * @return Event
      */
     public function setDetails($details)
@@ -154,9 +156,9 @@ class Event
     }
 
     /**
-     * Get details
+     * Get details.
      *
-     * @return string 
+     * @return string
      */
     public function getDetails()
     {
@@ -164,9 +166,10 @@ class Event
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return Event
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -177,7 +180,7 @@ class Event
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \AppBundle\Entity\User
      */

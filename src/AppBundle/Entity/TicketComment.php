@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TicketComment
+ * TicketComment.
  *
  * @ORM\Table(name="ticket_comment", indexes={@ORM\Index(name="fk_ticket_comment_ticket", columns={"ticket_id"}), @ORM\Index(name="fk_ticket_comment_user", columns={"user_id"}), @ORM\Index(name="k_ticket_comment_status", columns={"ticket_status_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TicketComment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -65,12 +65,10 @@ class TicketComment
      */
     private $ticketStatus;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -78,9 +76,10 @@ class TicketComment
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return TicketComment
      */
     public function setDescription($description)
@@ -91,9 +90,9 @@ class TicketComment
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -101,9 +100,10 @@ class TicketComment
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return TicketComment
      */
     public function setCreatedAt($createdAt)
@@ -114,9 +114,9 @@ class TicketComment
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -124,9 +124,10 @@ class TicketComment
     }
 
     /**
-     * Set ticket
+     * Set ticket.
      *
      * @param \AppBundle\Entity\Ticket $ticket
+     *
      * @return TicketComment
      */
     public function setTicket(\AppBundle\Entity\Ticket $ticket = null)
@@ -137,9 +138,9 @@ class TicketComment
     }
 
     /**
-     * Get ticket
+     * Get ticket.
      *
-     * @return \AppBundle\Entity\Ticket 
+     * @return \AppBundle\Entity\Ticket
      */
     public function getTicket()
     {
@@ -147,9 +148,10 @@ class TicketComment
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return TicketComment
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -160,9 +162,9 @@ class TicketComment
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
@@ -170,9 +172,10 @@ class TicketComment
     }
 
     /**
-     * Set ticketStatus
+     * Set ticketStatus.
      *
      * @param \AppBundle\Entity\TicketStatus $ticketStatus
+     *
      * @return TicketComment
      */
     public function setTicketStatus(\AppBundle\Entity\TicketStatus $ticketStatus = null)
@@ -183,9 +186,9 @@ class TicketComment
     }
 
     /**
-     * Get ticketStatus
+     * Get ticketStatus.
      *
-     * @return \AppBundle\Entity\TicketStatus 
+     * @return \AppBundle\Entity\TicketStatus
      */
     public function getTicketStatus()
     {
