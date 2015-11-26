@@ -16,7 +16,6 @@ use AppBundle\Form\Type\TaskTypeType;
  */
 class TaskTypeController extends Controller
 {
-
     /**
      * Lists all TaskType entities.
      *
@@ -51,9 +50,9 @@ class TaskTypeController extends Controller
             return $this->redirect($this->generateUrl('config_task_type_show', ['id' => $entity->getId()]));
         }
 
-        return $this->render('TaskType/new.html.twig',[
+        return $this->render('TaskType/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -85,11 +84,11 @@ class TaskTypeController extends Controller
     public function newAction()
     {
         $entity = new TaskType();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('TaskType/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -111,12 +110,11 @@ class TaskTypeController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('TaskType/show.html.twig',[
+        return $this->render('TaskType/show.html.twig', [
             'entity' => $entity,
-            'id'=>$entity->getId(),
-            'delete_form' => $deleteForm->createView()
+            'id' => $entity->getId(),
+            'delete_form' => $deleteForm->createView(),
         ]);
-
     }
 
     /**
@@ -138,19 +136,19 @@ class TaskTypeController extends Controller
         $editForm = $this->createEditForm($entity);
 
         return $this->render('TaskType/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
 
     /**
-    * Creates a form to edit a TaskType entity.
-    *
-    * @param TaskType $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TaskType entity.
+     *
+     * @param TaskType $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TaskType $entity)
     {
         $form = $this->createForm(new TaskTypeType(), $entity, array(
@@ -188,8 +186,8 @@ class TaskTypeController extends Controller
         }
 
         return $this->render('TaskType/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
@@ -201,12 +199,11 @@ class TaskTypeController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:TaskType')->find($id);
 
         if (!$entity) {
-             throw $this->createNotFoundException('Unable to find TaskType entity.');
+            throw $this->createNotFoundException('Unable to find TaskType entity.');
         }
 
         $em->remove($entity);
@@ -230,5 +227,4 @@ class TaskTypeController extends Controller
             ->getForm()
             ;
     }
-
 }

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Phases
+ * Phases.
  *
  * @ORM\Table(name="phase")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Phase
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,12 +35,10 @@ class Phase
      */
     private $defaultValues;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -48,9 +46,10 @@ class Phase
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Phase
      */
     public function setName($name)
@@ -61,9 +60,9 @@ class Phase
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -71,9 +70,10 @@ class Phase
     }
 
     /**
-     * Set defaultValues
+     * Set defaultValues.
      *
      * @param string $defaultValues
+     *
      * @return Phase
      */
     public function setDefaultValues($defaultValues)
@@ -84,9 +84,9 @@ class Phase
     }
 
     /**
-     * Get defaultValues
+     * Get defaultValues.
      *
-     * @return string 
+     * @return string
      */
     public function getDefaultValues()
     {

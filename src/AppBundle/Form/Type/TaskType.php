@@ -10,7 +10,7 @@ class TaskType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,7 +22,7 @@ class TaskType extends AbstractType
                 'class' => 'AppBundle\Entity\User',
                 'property' => 'username',
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
             ->add('estimatedTime')
             ->add('dueDate')
@@ -45,7 +45,7 @@ class TaskType extends AbstractType
                                    '30%' => '30%', '35%' => '35%', '40%' => '40%', '45%' => '45%', '50%' => '50%', '55%' => '55%',
                                    '60%' => '60%', '65%' => '65%', '70%' => '70%', '75%' => '75%', '80%' => '80%', '85%' => '85%', '90%' => '90%',
                                    '95%' => '95%', '100%' => '100%',
-                )));
+                ), ));
             //TODO: In this moment this entity CRUD its in process to build. Ignore this comments. If they work.
         ;
     }
@@ -56,7 +56,7 @@ class TaskType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Task'
+            'data_class' => 'AppBundle\Entity\Task',
         ));
     }
 
@@ -68,4 +68,3 @@ class TaskType extends AbstractType
         return 'task';
     }
 }
-

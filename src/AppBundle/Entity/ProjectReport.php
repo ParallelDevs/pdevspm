@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * ProjectsReport
+ * ProjectsReport.
  *
  * @ORM\Table(name="project_report", indexes={@ORM\Index(name="fk_project_report_created_by", columns={"created_by"}), @ORM\Index(name="fk_project_report_user", columns={"user_id"})})
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class ProjectReport
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -30,7 +30,7 @@ class ProjectReport
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="display_on_home", type="boolean", nullable=true)
      */
@@ -80,21 +80,21 @@ class ProjectReport
     private $user;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="display_in_menu", type="boolean", nullable=true)
      */
     private $displayInMenu;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="visible_on_home", type="boolean", nullable=true)
      */
@@ -110,7 +110,6 @@ class ProjectReport
      */
     private $createdBy;
 
-
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -119,9 +118,9 @@ class ProjectReport
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -129,9 +128,10 @@ class ProjectReport
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return ProjectReport
      */
     public function setName($name)
@@ -142,9 +142,9 @@ class ProjectReport
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -152,9 +152,10 @@ class ProjectReport
     }
 
     /**
-     * Set displayOnHome
+     * Set displayOnHome.
      *
-     * @param boolean $displayOnHome
+     * @param bool $displayOnHome
+     *
      * @return ProjectReport
      */
     public function setDisplayOnHome($displayOnHome)
@@ -165,9 +166,9 @@ class ProjectReport
     }
 
     /**
-     * Get displayOnHome
+     * Get displayOnHome.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getDisplayOnHome()
     {
@@ -175,9 +176,10 @@ class ProjectReport
     }
 
     /**
-     * Set projects
+     * Set projects.
      *
      * @param string $projects
+     *
      * @return ProjectReport
      */
     public function setProjects($projects)
@@ -188,9 +190,9 @@ class ProjectReport
     }
 
     /**
-     * Get projects
+     * Get projects.
      *
-     * @return string 
+     * @return string
      */
     public function getProjects()
     {
@@ -198,9 +200,10 @@ class ProjectReport
     }
 
     /**
-     * Set projectTypes
+     * Set projectTypes.
      *
      * @param string $projectTypes
+     *
      * @return ProjectReport
      */
     public function setProjectTypes($projectTypes)
@@ -211,9 +214,9 @@ class ProjectReport
     }
 
     /**
-     * Get projectTypes
+     * Get projectTypes.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectTypes()
     {
@@ -221,9 +224,10 @@ class ProjectReport
     }
 
     /**
-     * Set projectStatus
+     * Set projectStatus.
      *
      * @param string $projectStatus
+     *
      * @return ProjectReport
      */
     public function setProjectStatus($projectStatus)
@@ -234,9 +238,9 @@ class ProjectReport
     }
 
     /**
-     * Get projectStatus
+     * Get projectStatus.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectStatus()
     {
@@ -244,9 +248,10 @@ class ProjectReport
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return ProjectReport
      */
     public function setUser(\AppBundle\Entity\User $user)
@@ -257,7 +262,7 @@ class ProjectReport
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \AppBundle\Entity\User
      */
@@ -267,9 +272,10 @@ class ProjectReport
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return ProjectReport
      */
     public function setSortOrder($sortOrder)
@@ -280,9 +286,9 @@ class ProjectReport
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -290,9 +296,10 @@ class ProjectReport
     }
 
     /**
-     * Set displayInMenu
+     * Set displayInMenu.
      *
-     * @param boolean $displayInMenu
+     * @param bool $displayInMenu
+     *
      * @return ProjectReport
      */
     public function setDisplayInMenu($displayInMenu)
@@ -303,9 +310,9 @@ class ProjectReport
     }
 
     /**
-     * Get displayInMenu
+     * Get displayInMenu.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getDisplayInMenu()
     {
@@ -313,9 +320,10 @@ class ProjectReport
     }
 
     /**
-     * Set visibleOnHome
+     * Set visibleOnHome.
      *
-     * @param boolean $visibleOnHome
+     * @param bool $visibleOnHome
+     *
      * @return ProjectReport
      */
     public function setVisibleOnHome($visibleOnHome)
@@ -326,9 +334,9 @@ class ProjectReport
     }
 
     /**
-     * Get visibleOnHome
+     * Get visibleOnHome.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getVisibleOnHome()
     {
@@ -336,9 +344,10 @@ class ProjectReport
     }
 
     /**
-     * Set createdBy
+     * Set createdBy.
      *
      * @param \AppBundle\Entity\User $createdBy
+     *
      * @return ProjectReport
      */
     public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
@@ -349,7 +358,7 @@ class ProjectReport
     }
 
     /**
-     * Get createdBy
+     * Get createdBy.
      *
      * @return \AppBundle\Entity\User
      */

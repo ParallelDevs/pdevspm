@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProjectType
+ * ProjectType.
  *
  * @ORM\Table(name="project_type")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ProjectType
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,25 +29,23 @@ class ProjectType
     private $name;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -55,9 +53,10 @@ class ProjectType
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return ProjectType
      */
     public function setName($name)
@@ -68,9 +67,9 @@ class ProjectType
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -78,9 +77,10 @@ class ProjectType
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return ProjectType
      */
     public function setSortOrder($sortOrder)
@@ -91,9 +91,9 @@ class ProjectType
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -101,9 +101,10 @@ class ProjectType
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return ProjectType
      */
     public function setActive($active)
@@ -114,9 +115,9 @@ class ProjectType
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {

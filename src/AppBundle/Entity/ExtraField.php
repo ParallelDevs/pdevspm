@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ExtraField
+ * ExtraField.
  *
  * @ORM\Table(name="extra_field")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ExtraField
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -43,32 +43,30 @@ class ExtraField
     private $type;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
     private $sortOrder;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
     private $active;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="display_in_list", type="boolean", nullable=true)
      */
     private $displayInList;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -76,9 +74,10 @@ class ExtraField
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return ExtraField
      */
     public function setName($name)
@@ -89,9 +88,9 @@ class ExtraField
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -99,9 +98,10 @@ class ExtraField
     }
 
     /**
-     * Set bindType
+     * Set bindType.
      *
      * @param string $bindType
+     *
      * @return ExtraField
      */
     public function setBindType($bindType)
@@ -112,9 +112,9 @@ class ExtraField
     }
 
     /**
-     * Get bindType
+     * Get bindType.
      *
-     * @return string 
+     * @return string
      */
     public function getBindType()
     {
@@ -122,9 +122,10 @@ class ExtraField
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param string $type
+     *
      * @return ExtraField
      */
     public function setType($type)
@@ -135,9 +136,9 @@ class ExtraField
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -145,9 +146,10 @@ class ExtraField
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return ExtraField
      */
     public function setSortOrder($sortOrder)
@@ -158,9 +160,9 @@ class ExtraField
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -168,9 +170,10 @@ class ExtraField
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return ExtraField
      */
     public function setActive($active)
@@ -181,9 +184,9 @@ class ExtraField
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {
@@ -191,9 +194,10 @@ class ExtraField
     }
 
     /**
-     * Set displayInList
+     * Set displayInList.
      *
-     * @param boolean $displayInList
+     * @param bool $displayInList
+     *
      * @return ExtraField
      */
     public function setDisplayInList($displayInList)
@@ -204,9 +208,9 @@ class ExtraField
     }
 
     /**
-     * Get displayInList
+     * Get displayInList.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getDisplayInList()
     {

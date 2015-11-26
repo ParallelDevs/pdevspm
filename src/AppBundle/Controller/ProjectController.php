@@ -22,7 +22,6 @@ use PhpImap\Mailbox;
  */
 class ProjectController extends Controller
 {
-
     /**
      * Lists all Project entities.
      *
@@ -36,14 +35,12 @@ class ProjectController extends Controller
         $entities = $em->getRepository('AppBundle:Project')->findAll();
 
         return $this->render('Project/index.html.twig', ['entities' => $entities]);
-
     }
     /**
      * Creates a new Project entity.
      *
      * @Route("/create", name="project_create")
      * @Method("POST")
-     *
      */
     public function createAction(Request $request)
     {
@@ -69,9 +66,10 @@ class ProjectController extends Controller
             return $this->redirect($this->generateUrl('project_show', ['id' => $entity->getId()]));
         }
 
-        return $this->render('Project/new.html.twig',[
+        return $this->render('Project/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
+
         ]);
     }
 
@@ -110,8 +108,8 @@ class ProjectController extends Controller
 
         return $this->render('Project/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
-            'users'   => $users
+            'form' => $form->createView(),
+            'users' => $users,
         ]);
     }
 
@@ -124,8 +122,6 @@ class ProjectController extends Controller
     */
     public function showAction($project_id)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $repository = $this->getDoctrine()
                     ->getRepository('AppBundle:Project');
         $entity = $repository->find($project_id);
@@ -200,18 +196,17 @@ class ProjectController extends Controller
 
        return $this->render('Project/edit.html.twig', [
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ]);
+            'edit_form'   => $editForm->createView()]);
+
     }
 
     /**
-    * Creates a form to edit a Project entity.
-    *
-    * @param Project $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Project entity.
+     *
+     * @param Project $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Project $entity)
     {
         $form = $this->createForm(new ProjectType(), $entity, array(
@@ -253,9 +248,8 @@ class ProjectController extends Controller
 
        return $this->render('Project/edit.html.twig', [
           'entity'      => $entity,
-          'edit_form'   => $editForm->createView(),
-          'delete_form' => $deleteForm->createView(),
-        ]);
+          'edit_form'   => $editForm->createView()]);
+
     }
 
     /*---------------------------------------RETRIEVE EMAIL FUNTIONALLITY----------------------------------*/
@@ -327,12 +321,12 @@ class ProjectController extends Controller
                     $em->flush();
                 }
             }
+
         }
 
         $all_tiquets = $em->getRepository('AppBundle:Ticket')->findAll();
 
         return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $all_tiquets]);
-
     }
 
     /**
@@ -357,6 +351,9 @@ class ProjectController extends Controller
 
         if (!$entity) {
             throw $this->createNotFoundException('All elements was deleted  ');
+
+            $em->remove($entity);
+            $em->flush();
         }
 
         return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $entity]);

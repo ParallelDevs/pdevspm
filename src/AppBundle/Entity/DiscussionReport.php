@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DiscussionReport
+ * DiscussionReport.
  *
  * @ORM\Table(name="discussion_report", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class DiscussionReport
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,7 +29,7 @@ class DiscussionReport
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="display_on_home", type="boolean", nullable=true)
      */
@@ -64,7 +64,7 @@ class DiscussionReport
     private $discussionStatusId;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
@@ -80,12 +80,10 @@ class DiscussionReport
      */
     private $user;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -93,9 +91,10 @@ class DiscussionReport
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return DiscussionReport
      */
     public function setName($name)
@@ -106,9 +105,9 @@ class DiscussionReport
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -116,9 +115,10 @@ class DiscussionReport
     }
 
     /**
-     * Set displayOnHome
+     * Set displayOnHome.
      *
-     * @param boolean $displayOnHome
+     * @param bool $displayOnHome
+     *
      * @return DiscussionReport
      */
     public function setDisplayOnHome($displayOnHome)
@@ -129,9 +129,9 @@ class DiscussionReport
     }
 
     /**
-     * Get displayOnHome
+     * Get displayOnHome.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getDisplayOnHome()
     {
@@ -139,9 +139,10 @@ class DiscussionReport
     }
 
     /**
-     * Set projectId
+     * Set projectId.
      *
      * @param string $projectId
+     *
      * @return DiscussionReport
      */
     public function setProjectId($projectId)
@@ -152,9 +153,9 @@ class DiscussionReport
     }
 
     /**
-     * Get projectId
+     * Get projectId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectId()
     {
@@ -162,9 +163,10 @@ class DiscussionReport
     }
 
     /**
-     * Set projectTypeId
+     * Set projectTypeId.
      *
      * @param string $projectTypeId
+     *
      * @return DiscussionReport
      */
     public function setProjectTypeId($projectTypeId)
@@ -175,9 +177,9 @@ class DiscussionReport
     }
 
     /**
-     * Get projectTypeId
+     * Get projectTypeId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectTypeId()
     {
@@ -185,9 +187,10 @@ class DiscussionReport
     }
 
     /**
-     * Set projectStatusId
+     * Set projectStatusId.
      *
      * @param string $projectStatusId
+     *
      * @return DiscussionReport
      */
     public function setProjectStatusId($projectStatusId)
@@ -198,9 +201,9 @@ class DiscussionReport
     }
 
     /**
-     * Get projectStatusId
+     * Get projectStatusId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectStatusId()
     {
@@ -208,9 +211,10 @@ class DiscussionReport
     }
 
     /**
-     * Set discussionStatusId
+     * Set discussionStatusId.
      *
      * @param string $discussionStatusId
+     *
      * @return DiscussionReport
      */
     public function setDiscussionStatusId($discussionStatusId)
@@ -221,9 +225,9 @@ class DiscussionReport
     }
 
     /**
-     * Get discussionStatusId
+     * Get discussionStatusId.
      *
-     * @return string 
+     * @return string
      */
     public function getDiscussionStatusId()
     {
@@ -231,9 +235,10 @@ class DiscussionReport
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return DiscussionReport
      */
     public function setSortOrder($sortOrder)
@@ -244,9 +249,9 @@ class DiscussionReport
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -254,9 +259,10 @@ class DiscussionReport
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return DiscussionReport
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -267,9 +273,9 @@ class DiscussionReport
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {

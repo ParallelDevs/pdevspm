@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TicketType
+ * TicketType.
  *
  * @ORM\Table(name="ticket_type")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TicketType
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,7 +29,7 @@ class TicketType
     private $name;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
@@ -42,12 +42,10 @@ class TicketType
      */
     private $active;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -55,9 +53,10 @@ class TicketType
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return TicketType
      */
     public function setName($name)
@@ -68,9 +67,9 @@ class TicketType
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -78,9 +77,10 @@ class TicketType
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return TicketType
      */
     public function setSortOrder($sortOrder)
@@ -91,9 +91,9 @@ class TicketType
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -101,9 +101,10 @@ class TicketType
     }
 
     /**
-     * Set active
+     * Set active.
      *
      * @param string $active
+     *
      * @return TicketType
      */
     public function setActive($active)
@@ -114,9 +115,9 @@ class TicketType
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return string 
+     * @return string
      */
     public function getActive()
     {

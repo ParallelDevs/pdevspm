@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ExtraFieldList
+ * ExtraFieldList.
  *
  * @ORM\Table(name="extra_field_list", indexes={@ORM\Index(name="fk_extra_field_list_extra_field", columns={"extra_field_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ExtraFieldList
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -22,7 +22,7 @@ class ExtraFieldList
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="bind_id", type="integer", nullable=false)
      */
@@ -45,12 +45,10 @@ class ExtraFieldList
      */
     private $extraField;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -58,9 +56,10 @@ class ExtraFieldList
     }
 
     /**
-     * Set bindId
+     * Set bindId.
      *
-     * @param integer $bindId
+     * @param int $bindId
+     *
      * @return ExtraFieldList
      */
     public function setBindId($bindId)
@@ -71,9 +70,9 @@ class ExtraFieldList
     }
 
     /**
-     * Get bindId
+     * Get bindId.
      *
-     * @return integer 
+     * @return int
      */
     public function getBindId()
     {
@@ -81,9 +80,10 @@ class ExtraFieldList
     }
 
     /**
-     * Set value
+     * Set value.
      *
      * @param string $value
+     *
      * @return ExtraFieldList
      */
     public function setValue($value)
@@ -94,9 +94,9 @@ class ExtraFieldList
     }
 
     /**
-     * Get value
+     * Get value.
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -104,9 +104,10 @@ class ExtraFieldList
     }
 
     /**
-     * Set extraField
+     * Set extraField.
      *
      * @param \AppBundle\Entity\ExtraField $extraField
+     *
      * @return ExtraFieldList
      */
     public function setExtraField(\AppBundle\Entity\ExtraField $extraField = null)
@@ -117,7 +118,7 @@ class ExtraFieldList
     }
 
     /**
-     * Get extraField
+     * Get extraField.
      *
      * @return \AppBundle\Entity\ExtraField
      */

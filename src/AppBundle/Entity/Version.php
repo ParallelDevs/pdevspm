@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Version
+ * Version.
  *
  * @ORM\Table(name="version", indexes={@ORM\Index(name="fk_version_version_status", columns={"version_status_id"}), @ORM\Index(name="fk_version_project", columns={"project_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Version
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -62,12 +62,10 @@ class Version
      */
     private $versionStatus;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -75,9 +73,10 @@ class Version
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Version
      */
     public function setName($name)
@@ -88,9 +87,9 @@ class Version
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -98,9 +97,10 @@ class Version
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Version
      */
     public function setDescription($description)
@@ -111,9 +111,9 @@ class Version
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -121,9 +121,10 @@ class Version
     }
 
     /**
-     * Set dueDate
+     * Set dueDate.
      *
      * @param \DateTime $dueDate
+     *
      * @return Version
      */
     public function setDueDate($dueDate)
@@ -134,9 +135,9 @@ class Version
     }
 
     /**
-     * Get dueDate
+     * Get dueDate.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDueDate()
     {
@@ -144,9 +145,10 @@ class Version
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return Version
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -156,20 +158,21 @@ class Version
         return $this;
     }
 
-    /**
-     * Get project
-     *
-     * @return \AppBundle\Entity\Project 
-     */
+        /**
+         * Get project.
+         *
+         * @return \AppBundle\Entity\Project
+         */
         public function getProject()
-    {
-        return $this->project;
-    }
+        {
+            return $this->project;
+        }
 
     /**
-     * Set versionStatus
+     * Set versionStatus.
      *
      * @param \AppBundle\Entity\VersionStatus $versionStatus
+     *
      * @return Version
      */
     public function setVersionStatus(\AppBundle\Entity\VersionStatus $versionStatus = null)
@@ -180,9 +183,9 @@ class Version
     }
 
     /**
-     * Get versionStatus
+     * Get versionStatus.
      *
-     * @return \AppBundle\Entity\VersionStatus 
+     * @return \AppBundle\Entity\VersionStatus
      */
     public function getVersionStatus()
     {

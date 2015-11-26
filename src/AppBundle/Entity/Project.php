@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Project
+ * Project.
  *
  * @ORM\Table(name="project", indexes={@ORM\Index(name="fk_project_project_status", columns={"project_status_id"}), @ORM\Index(name="fk_project_project_type", columns={"project_type_id"}), @ORM\Index(name="fk_project_user", columns={"created_by"})})
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Project
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -43,7 +43,7 @@ class Project
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
-    
+
     /**
      * @var \AppBundle\Entity\User
      *
@@ -105,9 +105,9 @@ class Project
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -141,6 +141,7 @@ class Project
      * Set name
      *
      * @param string $name
+     *
      * @return Project
      */
     public function setName($name)
@@ -151,9 +152,9 @@ class Project
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -161,9 +162,10 @@ class Project
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Project
      */
     public function setDescription($description)
@@ -174,9 +176,9 @@ class Project
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -184,9 +186,10 @@ class Project
     }
 
     /**
-     * Set team
+     * Set team.
      *
      * @param \Doctrine\Common\Collections\ArrayCollection $team
+     *
      * @return Project
      */
     public function setTeam(\Doctrine\Common\Collections\ArrayCollection $team)
@@ -197,7 +200,7 @@ class Project
     }
 
     /**
-     * Get team
+     * Get team.
      *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
@@ -207,9 +210,10 @@ class Project
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return Project
      */
     public function setCreatedAt($createdAt)
@@ -220,9 +224,9 @@ class Project
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -230,9 +234,10 @@ class Project
     }
 
     /**
-     * Set orderTaskBy
+     * Set orderTaskBy.
      *
      * @param string $orderTaskBy
+     *
      * @return Project
      */
     public function setOrderTaskBy($orderTaskBy)
@@ -243,9 +248,9 @@ class Project
     }
 
     /**
-     * Get orderTaskBy
+     * Get orderTaskBy.
      *
-     * @return string 
+     * @return string
      */
     public function getOrderTaskBy()
     {
@@ -253,9 +258,10 @@ class Project
     }
 
     /**
-     * Set projectStatus
+     * Set projectStatus.
      *
      * @param \AppBundle\Entity\ProjectStatus $projectStatus
+     *
      * @return Project
      */
     public function setProjectStatus(\AppBundle\Entity\ProjectStatus $projectStatus = null)
@@ -266,7 +272,7 @@ class Project
     }
 
     /**
-     * Get projectStatus
+     * Get projectStatus.
      *
      * @return \AppBundle\Entity\ProjectStatus
      */
@@ -276,9 +282,10 @@ class Project
     }
 
     /**
-     * Set projectType
+     * Set projectType.
      *
      * @param \AppBundle\Entity\ProjectType $projectType
+     *
      * @return Project
      */
     public function setProjectType(\AppBundle\Entity\ProjectType $projectType = null)
@@ -289,7 +296,7 @@ class Project
     }
 
     /**
-     * Get projectType
+     * Get projectType.
      *
      * @return \AppBundle\Entity\ProjectType
      */
@@ -299,9 +306,10 @@ class Project
     }
 
     /**
-     * Set createdBy
+     * Set createdBy.
      *
      * @param \AppBundle\Entity\User $createdBy
+     *
      * @return Project
      */
     public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
@@ -312,7 +320,7 @@ class Project
     }
 
     /**
-     * Get createdBy
+     * Get createdBy.
      *
      * @return \AppBundle\Entity\User
      */

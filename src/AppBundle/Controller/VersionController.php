@@ -16,13 +16,11 @@ use AppBundle\Form\Type\VersionType;
  */
 class VersionController extends Controller
 {
-
     /**
      * Lists all Version entities.
      *
      * @Route("/{project_id}/version", name="version")
      * @Method("GET")
-     *
      */
     public function indexAction($project_id)
     {
@@ -46,7 +44,7 @@ class VersionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $project= $em->getRepository('AppBundle:Project')->find($project_id);
+            $project = $em->getRepository('AppBundle:Project')->find($project_id);
             $entity->setProject($project);
 
             $em->persist($entity);
@@ -55,9 +53,9 @@ class VersionController extends Controller
             return $this->redirect($this->generateUrl('version_show', ['version_id' => $entity->getId(), 'project_id' => $project_id]));
         }
 
-        return $this->render('Version/new.html.twig',[
+        return $this->render('Version/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -77,7 +75,7 @@ class VersionController extends Controller
 
         $form->add('submit', 'submit', array('label' => 'Create'));
 
-       return $form;
+        return $form;
     }
 
     /**
@@ -85,21 +83,20 @@ class VersionController extends Controller
      *
      * @Route("/{project_id}/version/new", name="version_new")
      * @Method("GET")
-     * 
      */
     public function newAction($project_id)
     {
         $entity = new Version();
         $em = $this->getDoctrine()->getManager();
 
-        $project= $em->getRepository('AppBundle:Project')->find($project_id);
+        $project = $em->getRepository('AppBundle:Project')->find($project_id);
         $entity->setProject($project);
 
-        $form   = $this->createCreateForm($entity, $project_id);
+        $form = $this->createCreateForm($entity, $project_id);
 
         return $this->render('Version/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -113,18 +110,18 @@ class VersionController extends Controller
     {
         $entity = $this->getDoctrine()->getRepository('AppBundle:Version')
                         ->findBy(['project' => $project_id,
-                            'id' => $version_id
+                            'id' => $version_id,
                             ]);
-                        
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Version entity.');
         }
-        
+
         $deleteForm = $this->createDeleteForm($project_id);
 
         return $this->render('Version/show.html.twig', [
             'entity' => $entity,
-            'delete_form' => $deleteForm->createView()
+            'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -133,7 +130,6 @@ class VersionController extends Controller
      *
      * @Route("/{id}/version/edit", name="version_edit")
      * @Method("GET")
-     * 
      */
     public function editAction($id)
     {
@@ -149,19 +145,19 @@ class VersionController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('Version/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }
 
     /**
-    * Creates a form to edit a Version entity.
-    *
-    * @param Version $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Version entity.
+     *
+     * @param Version $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Version $entity)
     {
         $form = $this->createForm(new VersionType(), $entity, array(
@@ -178,7 +174,6 @@ class VersionController extends Controller
      *
      * @Route("/{id}", name="version_update")
      * @Method("PUT")
-     * 
      */
     public function updateAction(Request $request, $id)
     {
@@ -194,15 +189,15 @@ class VersionController extends Controller
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
-        if ($editForm->isValid()) { 
+        if ($editForm->isValid()) {
             $em->flush();
 
             return $this->redirect($this->generateUrl('version_edit', array('id' => $id)));
         }
 
         return $this->render('Version/edit.html.twig', [
-          'entity'      => $entity,
-          'edit_form'   => $editForm->createView(),
+          'entity' => $entity,
+          'edit_form' => $editForm->createView(),
           'delete_form' => $deleteForm->createView(),
         ]);
     }

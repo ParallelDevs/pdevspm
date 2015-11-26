@@ -16,7 +16,6 @@ use AppBundle\Form\Type\TaskLabelType;
  */
 class TaskLabelController extends Controller
 {
-
     /**
      * Lists all TaskLabel entities.
      *
@@ -53,7 +52,7 @@ class TaskLabelController extends Controller
 
         return $this->render('TaskLabel/new.html.twig', [
             'entity' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -85,11 +84,11 @@ class TaskLabelController extends Controller
     public function newAction()
     {
         $entity = new TaskLabel();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('TaskLabel/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -111,10 +110,10 @@ class TaskLabelController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('TaskLabel/show.html.twig',[
+        return $this->render('TaskLabel/show.html.twig', [
             'entity' => $entity,
-            'id'=>$entity->getId(),
-            'delete_form' => $deleteForm->createView()
+            'id' => $entity->getId(),
+            'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -137,19 +136,19 @@ class TaskLabelController extends Controller
         $editForm = $this->createEditForm($entity);
 
         return $this->render('TaskLabel/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
 
     /**
-    * Creates a form to edit a TaskLabel entity.
-    *
-    * @param TaskLabel $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TaskLabel entity.
+     *
+     * @param TaskLabel $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TaskLabel $entity)
     {
         $form = $this->createForm(new TaskLabelType(), $entity, array(
@@ -187,8 +186,8 @@ class TaskLabelController extends Controller
         }
 
         return $this->render('TaskType/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
         ]);
     }
     /**
@@ -202,12 +201,12 @@ class TaskLabelController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:TaskLabel')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TaskLabel entity.');
-            }
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find TaskLabel entity.');
+        }
 
-            $em->remove($entity);
-            $em->flush();
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('config_task_label'));
     }
@@ -228,5 +227,4 @@ class TaskLabelController extends Controller
             ->getForm()
             ;
     }
-
 }

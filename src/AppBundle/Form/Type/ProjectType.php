@@ -10,7 +10,7 @@ class ProjectType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -21,21 +21,21 @@ class ProjectType extends AbstractType
                 'class' => 'AppBundle\Entity\User',
                 'property' => 'username',
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
                 ])
             ->add('projectStatus', 'entity', ['class' => 'AppBundle\Entity\ProjectStatus', 'property' => 'name'])
             ->add('projectType', 'entity', ['class' => 'AppBundle\Entity\ProjectType', 'property' => 'name'])
             ->add('email', 'text')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Project'
+            'data_class' => 'AppBundle\Entity\Project',
         ));
     }
 

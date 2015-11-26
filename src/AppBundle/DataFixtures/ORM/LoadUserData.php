@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: danielnv18
  * Date: 10/2/15
- * Time: 11:18 PM
+ * Time: 11:18 PM.
  */
-
 namespace AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -23,7 +22,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     private $container;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -31,13 +30,12 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
         // Create an admin user for test only
-        if($this->container->getParameter("kernel.environment") == 'test')
-        {
+        if ($this->container->getParameter('kernel.environment') == 'test') {
             $adminUser = new User();
             $adminUser
                 ->addRole('ROLE_ADMIN')
@@ -56,7 +54,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getOrder()
     {

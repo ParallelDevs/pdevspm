@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Task
+ * Task.
  *
  * @ORM\Table(name="task", indexes={@ORM\Index(name="fk_task_project", columns={"project_id"}), @ORM\Index(name="fk_task_task_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_task_type", columns={"task_type_id"}), @ORM\Index(name="fk_task_task_label", columns={"task_label_id"}), @ORM\Index(name="fk_task_project_phase", columns={"project_phase_id"}), @ORM\Index(name="fk_task_created_by", columns={"created_by"}), @ORM\Index(name="fk_task_task_group", columns={"task_group_id"}), @ORM\Index(name="fk_task_versions", columns={"versions_id"}), @ORM\Index(name="fk_task_task_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_ticket", columns={"ticket_id"})})
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Task
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -36,7 +36,7 @@ class Task
      */
     private $description;
 
-     /**
+    /**
      * @var \AppBundle\Entity\User
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
@@ -76,7 +76,7 @@ class Task
     private $closedDate;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="discussion_id", type="integer", nullable=true)
      */
@@ -202,9 +202,9 @@ class Task
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -212,9 +212,10 @@ class Task
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Task
      */
     public function setName($name)
@@ -225,9 +226,9 @@ class Task
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -235,9 +236,10 @@ class Task
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Task
      */
     public function setDescription($description)
@@ -248,9 +250,9 @@ class Task
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -258,9 +260,10 @@ class Task
     }
 
     /**
-     * Set assignedTo
+     * Set assignedTo.
      *
      * @param \Doctrine\Common\Collections\ArrayCollection $assignedTo
+     *
      * @return Task
      */
     public function setAssignedTo(\Doctrine\Common\Collections\ArrayCollection $assignedTo)
@@ -271,7 +274,7 @@ class Task
     }
 
     /**
-     * Get assignedTo
+     * Get assignedTo.
      *
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
@@ -281,9 +284,10 @@ class Task
     }
 
     /**
-     * Set estimatedTime
+     * Set estimatedTime.
      *
      * @param float $estimatedTime
+     *
      * @return Task
      */
     public function setEstimatedTime($estimatedTime)
@@ -294,9 +298,9 @@ class Task
     }
 
     /**
-     * Get estimatedTime
+     * Get estimatedTime.
      *
-     * @return float 
+     * @return float
      */
     public function getEstimatedTime()
     {
@@ -304,9 +308,10 @@ class Task
     }
 
     /**
-     * Set dueDate
+     * Set dueDate.
      *
      * @param \DateTime $dueDate
+     *
      * @return Task
      */
     public function setDueDate($dueDate)
@@ -317,9 +322,9 @@ class Task
     }
 
     /**
-     * Get dueDate
+     * Get dueDate.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDueDate()
     {
@@ -327,9 +332,10 @@ class Task
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return Task
      */
     public function setCreatedAt($createdAt)
@@ -340,9 +346,9 @@ class Task
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -350,9 +356,10 @@ class Task
     }
 
     /**
-     * Set closedDate
+     * Set closedDate.
      *
      * @param \DateTime $closedDate
+     *
      * @return Task
      */
     public function setClosedDate($closedDate)
@@ -363,9 +370,9 @@ class Task
     }
 
     /**
-     * Get closedDate
+     * Get closedDate.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getClosedDate()
     {
@@ -373,9 +380,10 @@ class Task
     }
 
     /**
-     * Set discussionId
+     * Set discussionId.
      *
-     * @param integer $discussionId
+     * @param int $discussionId
+     *
      * @return Task
      */
     public function setDiscussionId($discussionId)
@@ -386,9 +394,9 @@ class Task
     }
 
     /**
-     * Get discussionId
+     * Get discussionId.
      *
-     * @return integer 
+     * @return int
      */
     public function getDiscussionId()
     {
@@ -396,9 +404,10 @@ class Task
     }
 
     /**
-     * Set startDate
+     * Set startDate.
      *
      * @param \DateTime $startDate
+     *
      * @return Task
      */
     public function setStartDate($startDate)
@@ -409,9 +418,9 @@ class Task
     }
 
     /**
-     * Get startDate
+     * Get startDate.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -419,9 +428,10 @@ class Task
     }
 
     /**
-     * Set progress
+     * Set progress.
      *
-     * @param integer $progress
+     * @param int $progress
+     *
      * @return Task
      */
     public function setProgress($progress)
@@ -432,9 +442,9 @@ class Task
     }
 
     /**
-     * Get progress
+     * Get progress.
      *
-     * @return integer 
+     * @return int
      */
     public function getProgress()
     {
@@ -442,9 +452,10 @@ class Task
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return Task
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -455,7 +466,7 @@ class Task
     }
 
     /**
-     * Get project
+     * Get project.
      *
      * @return \AppBundle\Entity\Project
      */
@@ -465,9 +476,10 @@ class Task
     }
 
     /**
-     * Set ticket
+     * Set ticket.
      *
      * @param \AppBundle\Entity\Ticket $ticket
+     *
      * @return Task
      */
     public function setTicket(\AppBundle\Entity\Ticket $ticket = null)
@@ -478,9 +490,9 @@ class Task
     }
 
     /**
-     * Get ticket
+     * Get ticket.
      *
-     * @return \AppBundle\Entity\Ticket 
+     * @return \AppBundle\Entity\Ticket
      */
     public function getTicket()
     {
@@ -488,9 +500,10 @@ class Task
     }
 
     /**
-     * Set taskStatus
+     * Set taskStatus.
      *
      * @param \AppBundle\Entity\TaskStatus $taskStatus
+     *
      * @return Task
      */
     public function setTaskStatus(\AppBundle\Entity\TaskStatus $taskStatus = null)
@@ -501,7 +514,7 @@ class Task
     }
 
     /**
-     * Get taskStatus
+     * Get taskStatus.
      *
      * @return \AppBundle\Entity\TaskStatus
      */
@@ -511,9 +524,10 @@ class Task
     }
 
     /**
-     * Set taskPriority
+     * Set taskPriority.
      *
      * @param \AppBundle\Entity\TaskPriority $taskPriority
+     *
      * @return Task
      */
     public function setTaskPriority(\AppBundle\Entity\TaskPriority $taskPriority = null)
@@ -524,7 +538,7 @@ class Task
     }
 
     /**
-     * Get taskPriority
+     * Get taskPriority.
      *
      * @return \AppBundle\Entity\TaskPriority
      */
@@ -534,9 +548,10 @@ class Task
     }
 
     /**
-     * Set taskType
+     * Set taskType.
      *
      * @param \AppBundle\Entity\TaskType $taskType
+     *
      * @return Task
      */
     public function setTaskType(\AppBundle\Entity\TaskType $taskType = null)
@@ -547,7 +562,7 @@ class Task
     }
 
     /**
-     * Get taskType
+     * Get taskType.
      *
      * @return \AppBundle\Entity\TaskType
      */
@@ -557,9 +572,10 @@ class Task
     }
 
     /**
-     * Set taskLabel
+     * Set taskLabel.
      *
      * @param \AppBundle\Entity\TaskLabel $taskLabel
+     *
      * @return Task
      */
     public function setTaskLabel(\AppBundle\Entity\TaskLabel $taskLabel = null)
@@ -570,7 +586,7 @@ class Task
     }
 
     /**
-     * Get taskLabel
+     * Get taskLabel.
      *
      * @return \AppBundle\Entity\TaskLabel
      */
@@ -580,9 +596,10 @@ class Task
     }
 
     /**
-     * Set taskGroup
+     * Set taskGroup.
      *
      * @param \AppBundle\Entity\TaskGroup $taskGroup
+     *
      * @return Task
      */
     public function setTaskGroup(\AppBundle\Entity\TaskGroup $taskGroup = null)
@@ -593,7 +610,7 @@ class Task
     }
 
     /**
-     * Get taskGroup
+     * Get taskGroup.
      *
      * @return \AppBundle\Entity\TaskGroup
      */
@@ -603,9 +620,10 @@ class Task
     }
 
     /**
-     * Set projectPhase
+     * Set projectPhase.
      *
      * @param \AppBundle\Entity\ProjectPhase $projectPhase
+     *
      * @return Task
      */
     public function setProjectPhase(\AppBundle\Entity\ProjectPhase $projectPhase = null)
@@ -616,7 +634,7 @@ class Task
     }
 
     /**
-     * Get projectPhase
+     * Get projectPhase.
      *
      * @return \AppBundle\Entity\ProjectPhase
      */
@@ -626,9 +644,10 @@ class Task
     }
 
     /**
-     * Set versions
+     * Set versions.
      *
      * @param \AppBundle\Entity\Version $versions
+     *
      * @return Task
      */
     public function setVersion(\AppBundle\Entity\Version $versions = null)
@@ -639,9 +658,9 @@ class Task
     }
 
     /**
-     * Get versions
+     * Get versions.
      *
-     * @return \AppBundle\Entity\Version 
+     * @return \AppBundle\Entity\Version
      */
     public function getVersion()
     {
@@ -649,9 +668,10 @@ class Task
     }
 
     /**
-     * Set createdBy
+     * Set createdBy.
      *
      * @param \AppBundle\Entity\User $createdBy
+     *
      * @return Task
      */
     public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
@@ -662,7 +682,7 @@ class Task
     }
 
     /**
-     * Get createdBy
+     * Get createdBy.
      *
      * @return \AppBundle\Entity\User
      */

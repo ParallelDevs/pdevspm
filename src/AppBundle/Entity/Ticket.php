@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ticket
+ * Ticket.
  *
  * @ORM\Table(name="ticket", indexes={@ORM\Index(name="fk_ticket_user", columns={"user_id"}), @ORM\Index(name="fk_ticket_ticket_status", columns={"ticket_status_id"}), @ORM\Index(name="fk_ticket_ticket_type", columns={"ticket_type_id"}), @ORM\Index(name="fk_ticket_project", columns={"project_id"}), @ORM\Index(name="fk_ticket_department", columns={"department_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Ticket
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -100,9 +100,9 @@ class Ticket
     private $department;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -136,6 +136,7 @@ class Ticket
      * Set name
      *
      * @param string $name
+     *
      * @return Ticket
      */
     public function setName($name)
@@ -146,9 +147,9 @@ class Ticket
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -156,9 +157,10 @@ class Ticket
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Ticket
      */
     public function setDescription($description)
@@ -169,9 +171,9 @@ class Ticket
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -179,9 +181,10 @@ class Ticket
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return Ticket
      */
     public function setCreatedAt($createdAt)
@@ -192,9 +195,9 @@ class Ticket
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -202,9 +205,10 @@ class Ticket
     }
 
     /**
-     * Set ticketStatus
+     * Set ticketStatus.
      *
      * @param \AppBundle\Entity\TicketStatus $ticketStatus
+     *
      * @return Ticket
      */
     public function setTicketStatus(\AppBundle\Entity\TicketStatus $ticketStatus = null)
@@ -215,9 +219,9 @@ class Ticket
     }
 
     /**
-     * Get ticketStatus
+     * Get ticketStatus.
      *
-     * @return \AppBundle\Entity\TicketStatus 
+     * @return \AppBundle\Entity\TicketStatus
      */
     public function getTicketStatus()
     {
@@ -225,9 +229,10 @@ class Ticket
     }
 
     /**
-     * Set ticketType
+     * Set ticketType.
      *
      * @param \AppBundle\Entity\TicketType $ticketType
+     *
      * @return Ticket
      */
     public function setTicketType(\AppBundle\Entity\TicketType $ticketType = null)
@@ -238,9 +243,9 @@ class Ticket
     }
 
     /**
-     * Get ticketType
+     * Get ticketType.
      *
-     * @return \AppBundle\Entity\TicketType 
+     * @return \AppBundle\Entity\TicketType
      */
     public function getTicketType()
     {
@@ -248,9 +253,10 @@ class Ticket
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return Ticket
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -261,9 +267,9 @@ class Ticket
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
@@ -271,9 +277,10 @@ class Ticket
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return Ticket
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -284,9 +291,9 @@ class Ticket
     }
 
     /**
-     * Get project
+     * Get project.
      *
-     * @return \AppBundle\Entity\Project 
+     * @return \AppBundle\Entity\Project
      */
     public function getProject()
     {
@@ -294,9 +301,10 @@ class Ticket
     }
 
     /**
-     * Set department
+     * Set department.
      *
      * @param \AppBundle\Entity\Department $department
+     *
      * @return Ticket
      */
     public function setDepartment(\AppBundle\Entity\Department $department = null)
@@ -307,9 +315,9 @@ class Ticket
     }
 
     /**
-     * Get department
+     * Get department.
      *
-     * @return \AppBundle\Entity\Department 
+     * @return \AppBundle\Entity\Department
      */
     public function getDepartment()
     {

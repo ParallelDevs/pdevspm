@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TicketStatus
+ * TicketStatus.
  *
  * @ORM\Table(name="ticket_status", indexes={@ORM\Index(name="fk_ticket_status_group", columns={"group_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TicketStatus
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -39,7 +39,7 @@ class TicketStatus
     private $group;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
@@ -59,12 +59,10 @@ class TicketStatus
      */
     private $active;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -72,9 +70,10 @@ class TicketStatus
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return TicketStatus
      */
     public function setName($name)
@@ -85,9 +84,9 @@ class TicketStatus
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -95,9 +94,10 @@ class TicketStatus
     }
 
     /**
-     * Set group
+     * Set group.
      *
      * @param string $group
+     *
      * @return TicketStatus
      */
     public function setGroup($group)
@@ -108,9 +108,9 @@ class TicketStatus
     }
 
     /**
-     * Get group
+     * Get group.
      *
-     * @return string 
+     * @return string
      */
     public function getGroup()
     {
@@ -118,9 +118,10 @@ class TicketStatus
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return TicketStatus
      */
     public function setSortOrder($sortOrder)
@@ -131,9 +132,9 @@ class TicketStatus
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -141,9 +142,10 @@ class TicketStatus
     }
 
     /**
-     * Set defaultValue
+     * Set defaultValue.
      *
-     * @param integer $defaultValue
+     * @param int $defaultValue
+     *
      * @return TicketStatus
      */
     public function setDefaultValue($defaultValue)
@@ -154,9 +156,9 @@ class TicketStatus
     }
 
     /**
-     * Get defaultValue
+     * Get defaultValue.
      *
-     * @return integer 
+     * @return int
      */
     public function getDefaultValue()
     {
@@ -164,9 +166,10 @@ class TicketStatus
     }
 
     /**
-     * Set active
+     * Set active.
      *
      * @param string $active
+     *
      * @return TicketStatus
      */
     public function setActive($active)
@@ -177,9 +180,9 @@ class TicketStatus
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return string 
+     * @return string
      */
     public function getActive()
     {

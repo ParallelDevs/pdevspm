@@ -4,6 +4,10 @@ namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Form\Type\TaskCommentType;
 use AppBundle\Entity\TaskComment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,7 +19,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class TaskCommentController extends Controller
 {
-
     /**
      * Lists all TaskComment entities.
      *
@@ -24,7 +27,6 @@ class TaskCommentController extends Controller
      */
     public function indexAction($task_id)
     {
-
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:TaskComment')->findByTask($task_id);
@@ -41,12 +43,11 @@ class TaskCommentController extends Controller
     {
         $taskComment = new TaskComment();
 
-
         $em = $this->getDoctrine()->getManager();
         $form = $this->createCreateForm($taskComment, $project_id, $task_id);
         $form->handleRequest($request)->getData();
 
-       if ($form->isValid()) {
+        if ($form->isValid()) {
             // Assign Current user
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $taskComment->setCreatedBy($user);
@@ -70,8 +71,7 @@ class TaskCommentController extends Controller
             $em->persist($taskComment);
             $em->flush();
 
-           return $this->redirect($this->generateUrl('task_comment_show', array('project_id' => $project_id, 'task_id' => $taskComment->getTask()->getId(), 'task_comment_id' => $taskComment->getId())));
-
+            return $this->redirect($this->generateUrl('task_comment_show', array('project_id' => $project_id, 'task_id' => $taskComment->getTask()->getId(), 'task_comment_id' => $taskComment->getId())));
         }
 
         return $this->render('TaskComment/new.html.twig', [
@@ -91,7 +91,7 @@ class TaskCommentController extends Controller
     private function createCreateForm(TaskComment $entity, $project_id, $task_id)
     {
         $form = $this->createForm(new TaskCommentType(), $entity, array(
-            'action' => $this->generateUrl('task_comment_create', ['project_id' => $task_id , 'task_id' => $project_id]),
+            'action' => $this->generateUrl('task_comment_create', ['project_id' => $task_id, 'task_id' => $project_id]),
             'method' => 'POST',
         ));
 
@@ -128,7 +128,7 @@ class TaskCommentController extends Controller
             'form' => $form->createView(),
             'task' => $task,
             'teamK' => $team,
-            'users' => $users
+            'users' => $users,
         ]);
     }
     /**
@@ -149,12 +149,12 @@ class TaskCommentController extends Controller
 
         $deleteForm = $this->createDeleteForm($project_id, $task_id, $task_comment_id);
 
-        return $this->render('TaskComment/show.html.twig',[
+        return $this->render('TaskComment/show.html.twig', [
             'entity' => $entity,
-            'id'=>$task_comment_id ,
-            'project' =>$project_id,
+            'id' => $task_comment_id,
+            'project' => $project_id,
             'task' => $task_id,
-            'delete_form' => $deleteForm->createView()]);
+            'delete_form' => $deleteForm->createView(), ]);
     }
 
     /**
@@ -169,8 +169,6 @@ class TaskCommentController extends Controller
 
         $entity = $em->getRepository('AppBundle:TaskComment')->find($task_comment_id);
 
-        $task = $em->getRepository('AppBundle:Task')->find($task_id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TaskComment entity.');
         }
@@ -182,18 +180,18 @@ class TaskCommentController extends Controller
         return $this->render('TaskComment/edit.html.twig', [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
-            'teamK' => $team
+            'teamK' => $team,
 
         ]);
     }
 
     /**
-    * Creates a form to edit a TaskComment entity.
-    *
-    * @param TaskComment $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TaskComment entity.
+     *
+     * @param TaskComment $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TaskComment $entity)
     {
         $form = $this->createForm(new TaskCommentType(), $entity, array(
@@ -236,7 +234,8 @@ class TaskCommentController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-            return $this->redirect($this->generateUrl('task_comment_edit', array('project_id' => $taskComment->getProject()->getId() ,'task_id' => $taskComment->getTask()->getId(), 'task_comment_id' => $taskComment->getId())));
+
+            return $this->redirect($this->generateUrl('task_comment_edit', array('project_id' => $taskComment->getProject()->getId(), 'task_id' => $taskComment->getTask()->getId(), 'task_comment_id' => $taskComment->getId())));
         }
 
         return $this->render('TaskComment/edit.html.twig', [
@@ -253,22 +252,22 @@ class TaskCommentController extends Controller
      */
     public function deleteAction(Request $request, $project_id, $task_id, $task_comment_id)
     {
-            $form = $this->createDeleteForm($project_id, $task_id, $task_comment_id);
-            $form->handleRequest($request);
+        $form = $this->createDeleteForm($project_id, $task_id, $task_comment_id);
+        $form->handleRequest($request);
 
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-            $entity = $em->getRepository('AppBundle:TaskComment')->findBy(['task' => $task_id, 'id' => $task_comment_id]);
+        $entity = $em->getRepository('AppBundle:TaskComment')->findBy(['task' => $task_id, 'id' => $task_comment_id]);
 
-            foreach ($entity as $task) {
-                $em->remove($task);
-            }
+        foreach ($entity as $task) {
+            $em->remove($task);
+        }
 
-            $em->flush();
+        $em->flush();
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TaskComment entity.');
-            }
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find TaskComment entity.');
+        }
 
         return $this->redirect($this->generateUrl('task_comment', array('project_id' => $project_id, 'task_id' => $task_id)));
     }
@@ -282,7 +281,7 @@ class TaskCommentController extends Controller
     private function createDeleteForm($project_id, $task_id, $task_comment_id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('task_comment_delete', ['project_id' => $project_id , 'task_id' => $task_id, 'task_comment_id' => $task_comment_id]))
+            ->setAction($this->generateUrl('task_comment_delete', ['project_id' => $project_id, 'task_id' => $task_id, 'task_comment_id' => $task_comment_id]))
             ->setMethod('DELETE')
             ->add('submit', 'submit', ['label' => 'Delete'])
             ->getForm()
