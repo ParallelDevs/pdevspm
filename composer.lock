@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "20286d47fff6dc60d2a99302d7fbbebc",
-    "content-hash": "7933bc8985be660c2636793c2f5223b7",
+    "hash": "0ef343280f56759eec1928f2208d7ffa",
+    "content-hash": "250bcbee0d5ddff80ba2bf0286be5ee1",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1151,6 +1151,18 @@
         },
         {
             "name": "kriswallsmith/assetic",
+<<<<<<< HEAD
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kriswallsmith/assetic.git",
+                "reference": "cb92b179dddfb8a3f341d53bd27e088f24d9c2e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/cb92b179dddfb8a3f341d53bd27e088f24d9c2e5",
+                "reference": "cb92b179dddfb8a3f341d53bd27e088f24d9c2e5",
+=======
             "version": "v1.3.2",
             "source": {
                 "type": "git",
@@ -1161,6 +1173,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/9928f7c4ad98b234e3559d1049abd13387f86db5",
                 "reference": "9928f7c4ad98b234e3559d1049abd13387f86db5",
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1224,7 +1237,11 @@
                 "compression",
                 "minification"
             ],
+<<<<<<< HEAD
+            "time": "2015-10-15 01:33:42"
+=======
             "time": "2015-11-12 13:51:40"
+>>>>>>> master
         },
         {
             "name": "monolog/monolog",
@@ -1302,6 +1319,52 @@
                 "psr-3"
             ],
             "time": "2015-10-14 12:51:02"
+<<<<<<< HEAD
+        },
+        {
+            "name": "php-imap/php-imap",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barbushin/php-imap.git",
+                "reference": "cc1a49a3f68090db182183c59ffbc09055d59f5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barbushin/php-imap/zipball/cc1a49a3f68090db182183c59ffbc09055d59f5b",
+                "reference": "cc1a49a3f68090db182183c59ffbc09055d59f5b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PhpImap": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Barbushin",
+                    "email": "barbushin@gmail.com",
+                    "homepage": "http://linkedin.com/in/barbushin"
+                }
+            ],
+            "description": "PHP class to access mailbox by POP3/IMAP/NNTP using IMAP extension",
+            "homepage": "https://github.com/barbushin/php-imap",
+            "keywords": [
+                "imap",
+                "mail",
+                "php"
+            ],
+            "time": "2015-09-16 07:40:39"
+=======
+>>>>>>> master
         },
         {
             "name": "psr/log",
@@ -1741,6 +1804,18 @@
         },
         {
             "name": "symfony/symfony",
+<<<<<<< HEAD
+            "version": "v2.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/symfony.git",
+                "reference": "66b2e9662c44d478b69e48278aa54079a006eb42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/66b2e9662c44d478b69e48278aa54079a006eb42",
+                "reference": "66b2e9662c44d478b69e48278aa54079a006eb42",
+=======
             "version": "v2.7.7",
             "source": {
                 "type": "git",
@@ -1751,6 +1826,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/symfony/zipball/cc69dbd24b4b2e6de60b2414ef95da2794f459a2",
                 "reference": "cc69dbd24b4b2e6de60b2414ef95da2794f459a2",
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1861,6 +1937,22 @@
             "keywords": [
                 "framework"
             ],
+<<<<<<< HEAD
+            "time": "2015-10-27 19:07:24"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.23.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "5868cd822fd6cf626d5f805439575f9c323cee2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5868cd822fd6cf626d5f805439575f9c323cee2a",
+                "reference": "5868cd822fd6cf626d5f805439575f9c323cee2a",
+=======
             "time": "2015-11-23 11:58:08"
         },
         {
@@ -1875,6 +1967,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/twigphp/Twig/zipball/d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
                 "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1922,7 +2015,11 @@
             "keywords": [
                 "templating"
             ],
+<<<<<<< HEAD
+            "time": "2015-10-29 23:29:01"
+=======
             "time": "2015-11-05 12:49:06"
+>>>>>>> master
         }
     ],
     "packages-dev": [

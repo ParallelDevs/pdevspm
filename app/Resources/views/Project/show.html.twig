@@ -6,14 +6,13 @@
    
    <table class="table table-hover">
         <tbody>
-            
             <tr>
                 <th>Id</th>
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>                    
                 <th>Name</th>
-                <a href="{{ path('project_show', { 'id': entity.id }) }}">
+                <a href="{{ path('project_show', { 'project_id': entity.id }) }}">
                     <td>{{ entity.name }}</td>
                 </a>
             </tr>
@@ -26,8 +25,8 @@
                 <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Ordertaskby</th>
-                <td>{{ entity.orderTaskBy }}</td>
+                <th>CreatedBy</th>
+                <td>{{ entity.createdBy }}</td>
             </tr>
                         
         </tbody>        
@@ -54,10 +53,15 @@
                 </a>
             </li>
             <li>
+                <a class="fa fa-edit" href="{{ path('ticket_new', { 'project_id': entity.id }) }}">
+                    Add Ticket </a>
+            </li>
+            <li>
                 <a class="fa fa-edit" href="{{ path('task_new', { 'project_id': entity.id }) }}">
                     Add Task
                 </a>
             </li>
-            <li>{{ form(delete_form) }}</li>
+
         </ul>
+
 {% endblock %}

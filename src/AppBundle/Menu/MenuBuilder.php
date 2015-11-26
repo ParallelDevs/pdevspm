@@ -97,7 +97,6 @@ class MenuBuilder
             'label' => '<span>Task Priority</span>',
             'extras' => ['safe_label' => true],
         ]);
-
         return $menu;
     }
 }

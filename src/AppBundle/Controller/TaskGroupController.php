@@ -130,6 +130,7 @@ class TaskGroupController extends Controller
      */
     public function editAction($project_id)
     {
+        $entity = new TaskGroup();
         $em = $this->getDoctrine()->getManager();
 
         $project = $em->getRepository('AppBundle:Project')->find($project_id);
@@ -140,7 +141,7 @@ class TaskGroupController extends Controller
         }
 
         $editForm = $this->createEditForm($entity, $project_id);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($project_id);
 
         return $this->render('TaskGroup/edit.html.twig', [
             'entity' => $entity,
