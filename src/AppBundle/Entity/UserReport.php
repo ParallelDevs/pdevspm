@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserReport
+ * UserReport.
  *
  * @ORM\Table(name="user_report", indexes={@ORM\Index(name="fk_user_report_user", columns={"user_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class UserReport
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,7 +29,7 @@ class UserReport
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="display_on_home", type="boolean", nullable=true)
      */
@@ -127,7 +127,7 @@ class UserReport
     private $closedTo;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="sort_order", type="integer", nullable=true)
      */
@@ -143,12 +143,10 @@ class UserReport
      */
     private $user;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -156,9 +154,10 @@ class UserReport
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return UserReport
      */
     public function setName($name)
@@ -169,9 +168,9 @@ class UserReport
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -179,9 +178,10 @@ class UserReport
     }
 
     /**
-     * Set displayOnHome
+     * Set displayOnHome.
      *
-     * @param boolean $displayOnHome
+     * @param bool $displayOnHome
+     *
      * @return UserReport
      */
     public function setDisplayOnHome($displayOnHome)
@@ -192,9 +192,9 @@ class UserReport
     }
 
     /**
-     * Get displayOnHome
+     * Get displayOnHome.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getDisplayOnHome()
     {
@@ -202,9 +202,10 @@ class UserReport
     }
 
     /**
-     * Set projectsId
+     * Set projectsId.
      *
      * @param string $projectsId
+     *
      * @return UserReport
      */
     public function setProjectsId($projectsId)
@@ -215,9 +216,9 @@ class UserReport
     }
 
     /**
-     * Get projectsId
+     * Get projectsId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectsId()
     {
@@ -225,9 +226,10 @@ class UserReport
     }
 
     /**
-     * Set projectsTypeId
+     * Set projectsTypeId.
      *
      * @param string $projectsTypeId
+     *
      * @return UserReport
      */
     public function setProjectsTypeId($projectsTypeId)
@@ -238,9 +240,9 @@ class UserReport
     }
 
     /**
-     * Get projectsTypeId
+     * Get projectsTypeId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectsTypeId()
     {
@@ -248,9 +250,10 @@ class UserReport
     }
 
     /**
-     * Set projectsStatusId
+     * Set projectsStatusId.
      *
      * @param string $projectsStatusId
+     *
      * @return UserReport
      */
     public function setProjectsStatusId($projectsStatusId)
@@ -261,9 +264,9 @@ class UserReport
     }
 
     /**
-     * Get projectsStatusId
+     * Get projectsStatusId.
      *
-     * @return string 
+     * @return string
      */
     public function getProjectsStatusId()
     {
@@ -271,9 +274,10 @@ class UserReport
     }
 
     /**
-     * Set assignedTo
+     * Set assignedTo.
      *
      * @param string $assignedTo
+     *
      * @return UserReport
      */
     public function setAssignedTo($assignedTo)
@@ -284,9 +288,9 @@ class UserReport
     }
 
     /**
-     * Get assignedTo
+     * Get assignedTo.
      *
-     * @return string 
+     * @return string
      */
     public function getAssignedTo()
     {
@@ -294,9 +298,10 @@ class UserReport
     }
 
     /**
-     * Set tasksStatusId
+     * Set tasksStatusId.
      *
      * @param string $tasksStatusId
+     *
      * @return UserReport
      */
     public function setTasksStatusId($tasksStatusId)
@@ -307,9 +312,9 @@ class UserReport
     }
 
     /**
-     * Get tasksStatusId
+     * Get tasksStatusId.
      *
-     * @return string 
+     * @return string
      */
     public function getTasksStatusId()
     {
@@ -317,9 +322,10 @@ class UserReport
     }
 
     /**
-     * Set tasksTypeId
+     * Set tasksTypeId.
      *
      * @param string $tasksTypeId
+     *
      * @return UserReport
      */
     public function setTasksTypeId($tasksTypeId)
@@ -330,9 +336,9 @@ class UserReport
     }
 
     /**
-     * Get tasksTypeId
+     * Get tasksTypeId.
      *
-     * @return string 
+     * @return string
      */
     public function getTasksTypeId()
     {
@@ -340,9 +346,10 @@ class UserReport
     }
 
     /**
-     * Set tasksLabelId
+     * Set tasksLabelId.
      *
      * @param string $tasksLabelId
+     *
      * @return UserReport
      */
     public function setTasksLabelId($tasksLabelId)
@@ -353,9 +360,9 @@ class UserReport
     }
 
     /**
-     * Get tasksLabelId
+     * Get tasksLabelId.
      *
-     * @return string 
+     * @return string
      */
     public function getTasksLabelId()
     {
@@ -363,9 +370,10 @@ class UserReport
     }
 
     /**
-     * Set dueDateFrom
+     * Set dueDateFrom.
      *
      * @param \DateTime $dueDateFrom
+     *
      * @return UserReport
      */
     public function setDueDateFrom($dueDateFrom)
@@ -376,9 +384,9 @@ class UserReport
     }
 
     /**
-     * Get dueDateFrom
+     * Get dueDateFrom.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDueDateFrom()
     {
@@ -386,9 +394,10 @@ class UserReport
     }
 
     /**
-     * Set dueDateTo
+     * Set dueDateTo.
      *
      * @param \DateTime $dueDateTo
+     *
      * @return UserReport
      */
     public function setDueDateTo($dueDateTo)
@@ -399,9 +408,9 @@ class UserReport
     }
 
     /**
-     * Get dueDateTo
+     * Get dueDateTo.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDueDateTo()
     {
@@ -409,9 +418,10 @@ class UserReport
     }
 
     /**
-     * Set createdFrom
+     * Set createdFrom.
      *
      * @param \DateTime $createdFrom
+     *
      * @return UserReport
      */
     public function setCreatedFrom($createdFrom)
@@ -422,9 +432,9 @@ class UserReport
     }
 
     /**
-     * Get createdFrom
+     * Get createdFrom.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedFrom()
     {
@@ -432,9 +442,10 @@ class UserReport
     }
 
     /**
-     * Set createdTo
+     * Set createdTo.
      *
      * @param \DateTime $createdTo
+     *
      * @return UserReport
      */
     public function setCreatedTo($createdTo)
@@ -445,9 +456,9 @@ class UserReport
     }
 
     /**
-     * Get createdTo
+     * Get createdTo.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedTo()
     {
@@ -455,9 +466,10 @@ class UserReport
     }
 
     /**
-     * Set closedFrom
+     * Set closedFrom.
      *
      * @param \DateTime $closedFrom
+     *
      * @return UserReport
      */
     public function setClosedFrom($closedFrom)
@@ -468,9 +480,9 @@ class UserReport
     }
 
     /**
-     * Get closedFrom
+     * Get closedFrom.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getClosedFrom()
     {
@@ -478,9 +490,10 @@ class UserReport
     }
 
     /**
-     * Set closedTo
+     * Set closedTo.
      *
      * @param \DateTime $closedTo
+     *
      * @return UserReport
      */
     public function setClosedTo($closedTo)
@@ -491,9 +504,9 @@ class UserReport
     }
 
     /**
-     * Get closedTo
+     * Get closedTo.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getClosedTo()
     {
@@ -501,9 +514,10 @@ class UserReport
     }
 
     /**
-     * Set sortOrder
+     * Set sortOrder.
      *
-     * @param integer $sortOrder
+     * @param int $sortOrder
+     *
      * @return UserReport
      */
     public function setSortOrder($sortOrder)
@@ -514,9 +528,9 @@ class UserReport
     }
 
     /**
-     * Get sortOrder
+     * Get sortOrder.
      *
-     * @return integer 
+     * @return int
      */
     public function getSortOrder()
     {
@@ -524,9 +538,10 @@ class UserReport
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return UserReport
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -537,9 +552,9 @@ class UserReport
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {

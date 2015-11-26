@@ -7,14 +7,13 @@ use AppBundle\Entity\User;
 
 class UserRepositoryFunctionalTest extends KernelTestCase
 {
-
     /**
      * @var \Doctrine\ORM\EntityManager
      */
     private $em;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setUp()
     {
@@ -100,7 +99,7 @@ class UserRepositoryFunctionalTest extends KernelTestCase
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function tearDown()
     {

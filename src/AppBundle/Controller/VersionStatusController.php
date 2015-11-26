@@ -16,13 +16,11 @@ use AppBundle\Form\Type\VersionStatusType;
  */
 class VersionStatusController extends Controller
 {
-
     /**
      * Lists all VersionStatus entities.
      *
      * @Route("/", name="versionstatus")
      * @Method("GET")
-     * 
      */
     public function indexAction()
     {
@@ -37,7 +35,6 @@ class VersionStatusController extends Controller
      *
      * @Route("/", name="versionstatus_create")
      * @Method("POST")
-     * 
      */
     public function createAction(Request $request)
     {
@@ -53,9 +50,9 @@ class VersionStatusController extends Controller
             return $this->redirect($this->generateUrl('versionstatus_show', ['id' => $entity->getId()]));
         }
 
-        return $this->render('VersionStatus/new.html.twig',[
+        return $this->render('VersionStatus/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -83,17 +80,16 @@ class VersionStatusController extends Controller
      *
      * @Route("/new", name="versionstatus_new")
      * @Method("GET")
-     * 
      */
     public function newAction()
     {
         $entity = new VersionStatus();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('VersionStatus/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        ]);  
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -101,7 +97,6 @@ class VersionStatusController extends Controller
      *
      * @Route("/{id}", name="versionstatus_show")
      * @Method("GET")
-     * 
      */
     public function showAction($id)
     {
@@ -115,10 +110,10 @@ class VersionStatusController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('VersionStatus/show.html.twig', 
-                 ['entity' => $entity, 
-                  'id'=>$entity->getId(), 
-                  'delete_form' => $deleteForm->createView()]);
+        return $this->render('VersionStatus/show.html.twig',
+                 ['entity' => $entity,
+                  'id' => $entity->getId(),
+                  'delete_form' => $deleteForm->createView(), ]);
     }
 
     /**
@@ -126,7 +121,6 @@ class VersionStatusController extends Controller
      *
      * @Route("/{id}/edit", name="versionstatus_edit")
      * @Method("GET")
-     * 
      */
     public function editAction($id)
     {
@@ -142,19 +136,19 @@ class VersionStatusController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('VersionStatus/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }
 
     /**
-    * Creates a form to edit a VersionStatus entity.
-    *
-    * @param VersionStatus $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a VersionStatus entity.
+     *
+     * @param VersionStatus $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(VersionStatus $entity)
     {
         $form = $this->createForm(new VersionStatusType(), $entity, array(
@@ -171,7 +165,6 @@ class VersionStatusController extends Controller
      *
      * @Route("/{id}", name="versionstatus_update")
      * @Method("PUT")
-     * 
      */
     public function updateAction(Request $request, $id)
     {
@@ -194,8 +187,8 @@ class VersionStatusController extends Controller
         }
 
         return $this->render('VersionStatus/edit.html.twig', [
-          'entity'      => $entity,
-          'edit_form'   => $editForm->createView(),
+          'entity' => $entity,
+          'edit_form' => $editForm->createView(),
           'delete_form' => $deleteForm->createView(),
         ]);
     }

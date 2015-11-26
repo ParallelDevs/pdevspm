@@ -57,9 +57,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return User
      */
     public function setName($name)
@@ -70,7 +71,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -80,9 +81,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set photo
+     * Set photo.
      *
      * @param string $photo
+     *
      * @return User
      */
     public function setPhoto($photo)
@@ -93,7 +95,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get photo
+     * Get photo.
      *
      * @return string
      */
@@ -173,5 +175,4 @@ class User extends BaseUser
         // clean up the file property as you won't need it anymore
         $this->file = null;
     }
-
 }

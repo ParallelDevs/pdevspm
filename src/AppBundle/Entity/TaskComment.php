@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * TaskComment
+ * TaskComment.
  *
  * @ORM\Table(name="task_comment", indexes={@ORM\Index(name="fk_task_comment_user", columns={"created_by"}), @ORM\Index(name="fk_task_comment_task", columns={"task_id"}), @ORM\Index(name="fk_task_comment_status", columns={"task_status_id"}), @ORM\Index(name="fk_task_comment_priority", columns={"task_priority_id"}), @ORM\Index(name="fk_task_comment_label", columns={"task_label_id"}), @ORM\Index(name="fk_project_task_comment", columns={"project_id"})})
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class TaskComment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -51,7 +51,7 @@ class TaskComment
     private $createdAt;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="progress", type="integer", nullable=true)
      */
@@ -127,18 +127,16 @@ class TaskComment
      */
     private $project;
 
-    public function addTeamTask(ArrayCollection $team){
-
-        foreach($team as $teamParallel){
-
+    public function addTeamTask(ArrayCollection $team)
+    {
+        foreach ($team as $teamParallel) {
             $this->task->setAssignedTo($teamParallel);
-
         }
     }
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -146,9 +144,10 @@ class TaskComment
     }
 
     /**
-     * Set dueDate
+     * Set dueDate.
      *
      * @param \DateTime $dueDate
+     *
      * @return TaskComment
      */
     public function setDueDate($dueDate)
@@ -159,9 +158,9 @@ class TaskComment
     }
 
     /**
-     * Get dueDate
+     * Get dueDate.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDueDate()
     {
@@ -169,9 +168,10 @@ class TaskComment
     }
 
     /**
-     * Set workedHours
+     * Set workedHours.
      *
      * @param float $workedHours
+     *
      * @return TaskComment
      */
     public function setWorkedHours($workedHours)
@@ -182,9 +182,9 @@ class TaskComment
     }
 
     /**
-     * Get workedHours
+     * Get workedHours.
      *
-     * @return float 
+     * @return float
      */
     public function getWorkedHours()
     {
@@ -192,9 +192,10 @@ class TaskComment
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return TaskComment
      */
     public function setDescription($description)
@@ -205,9 +206,9 @@ class TaskComment
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -215,9 +216,10 @@ class TaskComment
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return TaskComment
      */
     public function setCreatedAt($createdAt)
@@ -228,9 +230,9 @@ class TaskComment
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -238,9 +240,10 @@ class TaskComment
     }
 
     /**
-     * Set progress
+     * Set progress.
      *
-     * @param integer $progress
+     * @param int $progress
+     *
      * @return TaskComment
      */
     public function setProgress($progress)
@@ -251,9 +254,9 @@ class TaskComment
     }
 
     /**
-     * Get progress
+     * Get progress.
      *
-     * @return integer 
+     * @return int
      */
     public function getProgress()
     {
@@ -261,9 +264,10 @@ class TaskComment
     }
 
     /**
-     * Set task
+     * Set task.
      *
      * @param \AppBundle\Entity\Task $task
+     *
      * @return TaskComment
      */
     public function setTask(\AppBundle\Entity\Task $task = null)
@@ -274,7 +278,7 @@ class TaskComment
     }
 
     /**
-     * Get task
+     * Get task.
      *
      * @return \AppBundle\Entity\Task
      */
@@ -284,9 +288,10 @@ class TaskComment
     }
 
     /**
-     * Set createdBy
+     * Set createdBy.
      *
      * @param \AppBundle\Entity\User $createdBy
+     *
      * @return TaskComment
      */
     public function setCreatedBy(\AppBundle\Entity\User $createdBy = null)
@@ -297,7 +302,7 @@ class TaskComment
     }
 
     /**
-     * Get createdBy
+     * Get createdBy.
      *
      * @return \AppBundle\Entity\User
      */
@@ -307,9 +312,10 @@ class TaskComment
     }
 
     /**
-     * Set taskStatus
+     * Set taskStatus.
      *
      * @param \AppBundle\Entity\TaskStatus $taskStatus
+     *
      * @return TaskComment
      */
     public function setTaskStatus(\AppBundle\Entity\TaskStatus $taskStatus = null)
@@ -320,7 +326,7 @@ class TaskComment
     }
 
     /**
-     * Get taskStatus
+     * Get taskStatus.
      *
      * @return \AppBundle\Entity\TaskStatus
      */
@@ -330,9 +336,10 @@ class TaskComment
     }
 
     /**
-     * Set taskPriority
+     * Set taskPriority.
      *
      * @param \AppBundle\Entity\TaskPriority $taskPriority
+     *
      * @return TaskComment
      */
     public function setTaskPriority(\AppBundle\Entity\TaskPriority $taskPriority = null)
@@ -343,7 +350,7 @@ class TaskComment
     }
 
     /**
-     * Get taskPriority
+     * Get taskPriority.
      *
      * @return \AppBundle\Entity\TaskPriority
      */
@@ -353,9 +360,10 @@ class TaskComment
     }
 
     /**
-     * Set taskPriority
+     * Set taskPriority.
      *
      * @param \AppBundle\Entity\TaskLabel $taskLabel
+     *
      * @return TaskComment
      */
     public function setTaskLabel(\AppBundle\Entity\TaskLabel $taskLabel = null)
@@ -366,7 +374,7 @@ class TaskComment
     }
 
     /**
-     * Get taskPriority
+     * Get taskPriority.
      *
      * @return \AppBundle\Entity\TaskLabel
      */
@@ -376,9 +384,10 @@ class TaskComment
     }
 
     /**
-     * Set taskPriority
+     * Set taskPriority.
      *
      * @param \AppBundle\Entity\TaskType $taskType
+     *
      * @return TaskComment
      */
     public function setTaskType(\AppBundle\Entity\TaskType $taskType = null)
@@ -389,7 +398,7 @@ class TaskComment
     }
 
     /**
-     * Get taskPriority
+     * Get taskPriority.
      *
      * @return \AppBundle\Entity\TaskType
      */
@@ -399,9 +408,10 @@ class TaskComment
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return TaskComment
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -412,7 +422,7 @@ class TaskComment
     }
 
     /**
-     * Get taskPriority
+     * Get taskPriority.
      *
      * @return \AppBundle\Entity\Project
      */
@@ -420,5 +430,4 @@ class TaskComment
     {
         return $this->project;
     }
-
 }

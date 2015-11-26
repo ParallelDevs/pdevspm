@@ -16,13 +16,11 @@ use AppBundle\Form\Type\ProjectStatusType;
  */
 class ProjectStatusController extends Controller
 {
-
     /**
      * Lists all ProjectStatus entities.
      *
      * @Route("/", name="config_project_status")
      * @Method("GET")
-     * 
      */
     public function indexAction()
     {
@@ -37,7 +35,6 @@ class ProjectStatusController extends Controller
      *
      * @Route("/", name="config_project_status_create")
      * @Method("POST")
-     * 
      */
     public function createAction(Request $request)
     {
@@ -49,14 +46,14 @@ class ProjectStatusController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            
+
             return $this->redirect($this->generateUrl('config_project_status_show', ['id' => $entity->getId()]));
         }
 
-        return $this->render('ProjectStatus/new.html.twig',[
+        return $this->render('ProjectStatus/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        ]);        
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -81,17 +78,16 @@ class ProjectStatusController extends Controller
      *
      * @Route("/new", name="config_project_status_new")
      * @Method("GET")
-     * 
      */
     public function newAction()
     {
         $entity = new ProjectStatus();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('ProjectStatus/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        ]); 
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -99,24 +95,23 @@ class ProjectStatusController extends Controller
      *
      * @Route("/{id}", name="config_project_status_show")
      * @Method("GET")
-     * 
      */
     public function showAction($id)
     {
         $repository = $this->getDoctrine()
-                    ->getRepository('AppBundle:ProjectStatus');        
-        $entity = $repository->find($id);  
+                    ->getRepository('AppBundle:ProjectStatus');
+        $entity = $repository->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Projects entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        
-        return $this->render('ProjectStatus/show.html.twig', 
-                 ['entity' => $entity, 
-                  'id'=>$entity->getId(), 
-                  'delete_form' => $deleteForm->createView()]);
+
+        return $this->render('ProjectStatus/show.html.twig',
+                 ['entity' => $entity,
+                  'id' => $entity->getId(),
+                  'delete_form' => $deleteForm->createView(), ]);
     }
 
     /**
@@ -124,7 +119,6 @@ class ProjectStatusController extends Controller
      *
      * @Route("/{id}/edit", name="config_project_status_edit")
      * @Method("GET")
-     * 
      */
     public function editAction($id)
     {
@@ -140,19 +134,19 @@ class ProjectStatusController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('ProjectStatus/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }
 
     /**
-    * Creates a form to edit a ProjectStatus entity.
-    *
-    * @param ProjectStatus $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a ProjectStatus entity.
+     *
+     * @param ProjectStatus $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(ProjectStatus $entity)
     {
         $form = $this->createForm(new ProjectStatusType(), $entity, array(
@@ -167,7 +161,6 @@ class ProjectStatusController extends Controller
      *
      * @Route("/{id}", name="config_project_status_update")
      * @Method("PUT")
-     * 
      */
     public function updateAction(Request $request, $id)
     {
@@ -185,13 +178,13 @@ class ProjectStatusController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-            
+
             return $this->redirect($this->generateUrl('config_project_status_edit', ['id' => $id]));
         }
 
         return $this->render('ProjectStatus/edit.html.twig', [
-          'entity'      => $entity,
-          'edit_form'   => $editForm->createView(),
+          'entity' => $entity,
+          'edit_form' => $editForm->createView(),
           'delete_form' => $deleteForm->createView(),
         ]);
     }

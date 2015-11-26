@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Discussion
+ * Discussion.
  *
  * @ORM\Table(name="discussion", indexes={@ORM\Index(name="fk_discussion_project", columns={"project_id"}), @ORM\Index(name="fk_discussion_user", columns={"user_id"}), @ORM\Index(name="fk_discussion_discussion_status", columns={"discussion_status_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Discussion
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -72,12 +72,10 @@ class Discussion
      */
     private $discussionStatus;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -85,9 +83,10 @@ class Discussion
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Discussion
      */
     public function setName($name)
@@ -98,9 +97,9 @@ class Discussion
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -108,9 +107,10 @@ class Discussion
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Discussion
      */
     public function setDescription($description)
@@ -121,9 +121,9 @@ class Discussion
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -131,9 +131,10 @@ class Discussion
     }
 
     /**
-     * Set assignedTo
+     * Set assignedTo.
      *
      * @param string $assignedTo
+     *
      * @return Discussion
      */
     public function setAssignedTo($assignedTo)
@@ -144,9 +145,9 @@ class Discussion
     }
 
     /**
-     * Get assignedTo
+     * Get assignedTo.
      *
-     * @return string 
+     * @return string
      */
     public function getAssignedTo()
     {
@@ -154,9 +155,10 @@ class Discussion
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return Discussion
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -167,7 +169,7 @@ class Discussion
     }
 
     /**
-     * Get project
+     * Get project.
      *
      * @return \AppBundle\Entity\Project
      */
@@ -177,9 +179,10 @@ class Discussion
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return Discussion
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -190,9 +193,9 @@ class Discussion
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
@@ -200,9 +203,10 @@ class Discussion
     }
 
     /**
-     * Set discussionStatus
+     * Set discussionStatus.
      *
      * @param \AppBundle\Entity\DiscussionStatus $discussionStatus
+     *
      * @return Discussion
      */
     public function setDiscussionStatus(\AppBundle\Entity\DiscussionStatus $discussionStatus = null)
@@ -213,7 +217,7 @@ class Discussion
     }
 
     /**
-     * Get discussionStatus
+     * Get discussionStatus.
      *
      * @return \AppBundle\Entity\DiscussionStatus
      */

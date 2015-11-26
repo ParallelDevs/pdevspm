@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TaskGroup
+ * TaskGroup.
  *
  * @ORM\Table(name="task_group", indexes={@ORM\Index(name="fk_task_group_project", columns={"project_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TaskGroup
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -38,12 +38,10 @@ class TaskGroup
      */
     private $project;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -51,9 +49,10 @@ class TaskGroup
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return TaskGroup
      */
     public function setName($name)
@@ -64,9 +63,9 @@ class TaskGroup
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -74,9 +73,10 @@ class TaskGroup
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return TaskGroup
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -87,7 +87,7 @@ class TaskGroup
     }
 
     /**
-     * Get project
+     * Get project.
      *
      * @return \AppBundle\Entity\Project
      */

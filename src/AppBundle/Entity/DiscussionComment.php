@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DiscussionsComment
+ * DiscussionsComment.
  *
  * @ORM\Table(name="discussion_comment", indexes={@ORM\Index(name="fk_discussion_comment_discussion", columns={"discussion_id"}), @ORM\Index(name="fk_discussion_comment_user", columns={"user_id"}), @ORM\Index(name="fk_discussion_status_id", columns={"discussion_status_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class DiscussionComment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -65,12 +65,10 @@ class DiscussionComment
      */
     private $discussionStatus;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -78,9 +76,10 @@ class DiscussionComment
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return DiscussionComment
      */
     public function setDescription($description)
@@ -91,9 +90,9 @@ class DiscussionComment
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -101,9 +100,10 @@ class DiscussionComment
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
+     *
      * @return DiscussionComment
      */
     public function setCreatedAt($createdAt)
@@ -114,9 +114,9 @@ class DiscussionComment
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -124,9 +124,10 @@ class DiscussionComment
     }
 
     /**
-     * Set discussion
+     * Set discussion.
      *
      * @param \AppBundle\Entity\Discussion $discussion
+     *
      * @return DiscussionComment
      */
     public function setDiscussion(\AppBundle\Entity\Discussion $discussion = null)
@@ -137,7 +138,7 @@ class DiscussionComment
     }
 
     /**
-     * Get discussion
+     * Get discussion.
      *
      * @return \AppBundle\Entity\Discussion
      */
@@ -147,9 +148,10 @@ class DiscussionComment
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
+     *
      * @return DiscussionComment
      */
     public function setUser(\AppBundle\Entity\User $user = null)
@@ -160,9 +162,9 @@ class DiscussionComment
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
@@ -170,9 +172,10 @@ class DiscussionComment
     }
 
     /**
-     * Set discussionStatus
+     * Set discussionStatus.
      *
      * @param \AppBundle\Entity\DiscussionStatus $discussionStatus
+     *
      * @return DiscussionComment
      */
     public function setDiscussionStatus(\AppBundle\Entity\DiscussionStatus $discussionStatus = null)
@@ -183,7 +186,7 @@ class DiscussionComment
     }
 
     /**
-     * Get discussionStatus
+     * Get discussionStatus.
      *
      * @return \AppBundle\Entity\DiscussionStatus
      */

@@ -16,13 +16,11 @@ use AppBundle\Form\Type\TaskStatusType;
  */
 class TaskStatusController extends Controller
 {
-
     /**
      * Lists all TaskStatus entities.
      *
      * @Route("/", name="config_task_status")
      * @Method("GET")
-     *
      */
     public function indexAction()
     {
@@ -37,7 +35,6 @@ class TaskStatusController extends Controller
      *
      * @Route("/", name="config_task_status_create")
      * @Method("POST")
-     *
      */
     public function createAction(Request $request)
     {
@@ -53,9 +50,9 @@ class TaskStatusController extends Controller
             return $this->redirect($this->generateUrl('config_task_status_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('TaskStatus/new.html.twig',[
+        return $this->render('TaskStatus/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -81,16 +78,15 @@ class TaskStatusController extends Controller
      *
      * @Route("/new", name="config_task_status_new")
      * @Method("GET")
-     *
      */
     public function newAction()
     {
         $entity = new TaskStatus();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('TaskStatus/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -112,10 +108,10 @@ class TaskStatusController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('TaskStatus/show.html.twig',[
+        return $this->render('TaskStatus/show.html.twig', [
             'entity' => $entity,
-            'id'=>$entity->getId(),
-            'delete_form' => $deleteForm->createView()
+            'id' => $entity->getId(),
+            'delete_form' => $deleteForm->createView(),
             ]);
     }
 
@@ -138,19 +134,19 @@ class TaskStatusController extends Controller
         $editForm = $this->createEditForm($entity);
 
         return $this->render('TaskStatus/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
 
     /**
-    * Creates a form to edit a TaskStatus entity.
-    *
-    * @param TaskStatus $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TaskStatus entity.
+     *
+     * @param TaskStatus $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TaskStatus $entity)
     {
         $form = $this->createForm(new TaskStatusType(), $entity, array(
@@ -167,7 +163,6 @@ class TaskStatusController extends Controller
      *
      * @Route("/{id}", name="config_task_status_update")
      * @Method("PUT")
-     *
      */
     public function updateAction(Request $request, $id)
     {
@@ -189,8 +184,8 @@ class TaskStatusController extends Controller
         }
 
         return $this->render('TaskStatus/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
@@ -206,7 +201,7 @@ class TaskStatusController extends Controller
         $entity = $em->getRepository('AppBundle:TaskStatus')->find($id);
 
         if (!$entity) {
-           throw $this->createNotFoundException('Unable to find TaskStatus entity.');
+            throw $this->createNotFoundException('Unable to find TaskStatus entity.');
         }
 
         $em->remove($entity);

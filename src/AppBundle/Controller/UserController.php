@@ -16,7 +16,6 @@ use AppBundle\Form\Type\RegistrationType;
  */
 class UserController extends Controller
 {
-
     /**
      * Lists all User entities.
      *
@@ -54,13 +53,13 @@ class UserController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_user_show', [
-                'id' => $entity->getId()
+                'id' => $entity->getId(),
             ]));
         }
 
-        return $this->render('user/new.html.twig',[
+        return $this->render('user/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -90,11 +89,11 @@ class UserController extends Controller
     public function newAction()
     {
         $entity = new User();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('user/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -118,7 +117,7 @@ class UserController extends Controller
 
         return $this->render('user/show.html.twig', [
           'entity' => $entity,
-          'delete_form'   => $deleteForm->createView(),
+          'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -142,19 +141,19 @@ class UserController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('user/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }
 
     /**
-    * Creates a form to edit a User entity.
-    *
-    * @param User $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a User entity.
+     *
+     * @param User $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(User $entity)
     {
         $form = $this->createForm(new RegistrationType(), $entity, [
@@ -195,8 +194,8 @@ class UserController extends Controller
         }
 
         return $this->render('user/edit.html.twig', [
-          'entity'      => $entity,
-          'edit_form'   => $editForm->createView(),
+          'entity' => $entity,
+          'edit_form' => $editForm->createView(),
           'delete_form' => $deleteForm->createView(),
         ]);
     }

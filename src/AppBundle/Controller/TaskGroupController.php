@@ -16,13 +16,11 @@ use AppBundle\Form\Type\TaskGroupType;
  */
 class TaskGroupController extends Controller
 {
-
     /**
      * Lists all TaskGroup entities.
      *
      * @Route("/{project_id}/task-group", name="config_task_group")
      * @Method("GET")
-     *
      */
     public function indexAction($project_id)
     {
@@ -37,7 +35,6 @@ class TaskGroupController extends Controller
      *
      * @Route("/{project_id}/task-group", name="config_task_group_create")
      * @Method("POST")
-     *
      */
     public function createAction(Request $request, $project_id)
     {
@@ -47,7 +44,7 @@ class TaskGroupController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $project= $em->getRepository('AppBundle:Project')->find($project_id);
+            $project = $em->getRepository('AppBundle:Project')->find($project_id);
             $entity->setProject($project);
 
             $em->persist($entity);
@@ -56,9 +53,9 @@ class TaskGroupController extends Controller
             return $this->redirect($this->generateUrl('config_task_group_show', ['task_group_id' => $entity->getId(), 'project_id' => $project_id]));
         }
 
-        return $this->render('TaskGroup/new.html.twig',[
+        return $this->render('TaskGroup/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -84,21 +81,20 @@ class TaskGroupController extends Controller
      *
      * @Route("/{project_id}/task-group/new", name="config_task_group_new")
      * @Method("GET")
-     *
      */
     public function newAction($project_id)
     {
         $entity = new TaskGroup();
         $em = $this->getDoctrine()->getManager();
 
-        $project= $em->getRepository('AppBundle:Project')->find($project_id);
+        $project = $em->getRepository('AppBundle:Project')->find($project_id);
         $entity->setProject($project);
 
-        $form   = $this->createCreateForm($entity, $project_id);
+        $form = $this->createCreateForm($entity, $project_id);
 
         return $this->render('TaskGroup/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -107,13 +103,12 @@ class TaskGroupController extends Controller
      *
      * @Route("/{project_id}/task-group/{task_group_id}", name="config_task_group_show")
      * @Method("GET")
-     *
      */
     public function showAction($project_id, $task_group_id)
     {
         $entity = $this->getDoctrine()->getRepository('AppBundle:TaskGroup')
                         ->findBy(['project' => $project_id,
-                            'id' => $task_group_id
+                            'id' => $task_group_id,
                             ]);
 
         if (!$entity) {
@@ -122,9 +117,9 @@ class TaskGroupController extends Controller
 
         $deleteForm = $this->createDeleteForm($project_id);
 
-        return $this->render('TaskGroup/show.html.twig',[
+        return $this->render('TaskGroup/show.html.twig', [
             'entity' => $entity,
-            'delete_form' => $deleteForm->createView()]);
+            'delete_form' => $deleteForm->createView(), ]);
     }
 
     /**
@@ -132,13 +127,12 @@ class TaskGroupController extends Controller
      *
      * @Route("/{project_id}/task-group/edit", name="config_task_group_edit")
      * @Method("GET")
-     *
      */
     public function editAction($project_id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $project= $em->getRepository('AppBundle:Project')->find($project_id);
+        $project = $em->getRepository('AppBundle:Project')->find($project_id);
         $entity->setProject($project);
 
         if (!$entity) {
@@ -149,19 +143,19 @@ class TaskGroupController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('TaskGroup/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }
 
     /**
-    * Creates a form to edit a TaskGroup entity.
-    *
-    * @param TaskGroup $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TaskGroup entity.
+     *
+     * @param TaskGroup $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TaskGroup $entity, $project_id)
     {
         $form = $this->createForm(new TaskGroupType(), $entity, array(
@@ -178,7 +172,6 @@ class TaskGroupController extends Controller
      *
      * @Route("/{id}", name="config_task_group_update")
      * @Method("PUT")
-     *
      */
     public function updateAction(Request $request, $id)
     {
@@ -201,8 +194,8 @@ class TaskGroupController extends Controller
         }
 
         return $this->render('TaskGroup/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }
