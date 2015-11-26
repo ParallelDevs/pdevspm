@@ -330,6 +330,7 @@ class ProjectController extends Controller
         }
 
         $all_tiquets = $em->getRepository('AppBundle:Ticket')->findAll();
+
         return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $all_tiquets]);
 
     }

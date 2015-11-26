@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block page_title -%}Only for testing{% endblock %}
+{% block page_title -%}Projects{% endblock %}
 
 {% block content %}
     <div class="col-md-12">
@@ -22,43 +22,26 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th>Email</th>
                     <th>Description</th>
-                    <th>Created at</th>
-                    <th>Ticket Status</th>
-                    <th>Ticket Type</th>
-                    <th>User</th>
-                    <th>Project</th>
-                    <th>Email_Project</th>
-
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for entity in entity %}
                     <tr>
                         <td>{{ entity.id }}</td>
-                        <td>{{ entity.name }}</a></td>
-                        <td>{{ entity.description }}</a></td>
-                        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td><a href="{{ path('project_show', { 'project_id': entity.id }) }}">{{ entity.name }}</a></td>
+                        <td>{{ entity.email }}</a></td>
+                        <td>{{ entity.description }}</td>
                         <td>
-                            {% if entity.ticketStatus %}
-                                {{ entity.ticketStatus.name }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if entity.ticketType %}
-                                {{ entity.ticketType.name }}
-                            {% endif %}
-                        </td>
-                        <td>{{ entity.user }}</td>
-                        <td>
-                            {% if entity.project %}
-                                {{ entity.project.name }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if entity.project %}
-                                {{ entity.project.email }}
-                            {% endif %}
+                            <li>
+                                <a class="fa fa-trash"  href="{{ path('project_delete', { 'project_id': entity.id }) }}"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-edit" href="{{ path('project_edit', { 'id': entity.id }) }}"></a>
+
+                            </li>
                         </td>
                     </tr>
                 {% endfor %}
@@ -66,5 +49,4 @@
             </table>
         </div>
     </div>
-
 {% endblock %}

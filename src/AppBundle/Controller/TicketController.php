@@ -219,7 +219,6 @@ class TicketController extends Controller
 
         ]);
     }
-
     /**
      * Deletes a Ticket entity.
      *
