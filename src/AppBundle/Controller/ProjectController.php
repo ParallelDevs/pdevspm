@@ -214,7 +214,7 @@ class ProjectController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Project entity.');
             }
-
+    
             $em->remove($entity);
             $em->flush();
         }
