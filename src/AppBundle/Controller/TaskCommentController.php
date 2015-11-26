@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Form\Type\TaskCommentType;
 use AppBundle\Entity\TaskComment;
 
 /**
