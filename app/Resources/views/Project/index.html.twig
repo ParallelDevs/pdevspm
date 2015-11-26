@@ -24,8 +24,6 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Description</th>
-                    <th>Created at</th>
-                    <th>Create By</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -33,23 +31,18 @@
                 {% for entity in entities %}
                     <tr>
                         <td>{{ entity.id }}</td>
-                        <td>{{ entity.name }}</a></td>
+                        <td><a href="{{ path('project_show', { 'project_id': entity.id }) }}">{{ entity.name }}</a></td>
                         <td>{{ entity.email }}</a></td>
                         <td>{{ entity.description }}</td>
-                        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ entity.createdBy }}</td>
+                        <td>
+                            <li>
+                                <a class="fa fa-trash"  href="{{ path('project_delete', { 'project_id': entity.id }) }}"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-edit" href="{{ path('project_edit', { 'id': entity.id }) }}"></a>
 
-
-                        {#<td>#}
-                            {#<ul>#}
-                                {#<li>#}
-                                    {#<a class="fa fa-list"  href="{{ path('project_show', { 'id': entity.id }) }}"></a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a class="fa fa-edit" href="{{ path('project_edit', { 'id': entity.id }) }}"></a>#}
-                                {#</li>#}
-                            {#</ul>#}
-                        {#</td>#}
+                            </li>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -24,7 +24,7 @@ class Ticket
     /**
      * @var int
      *
-     * @ORM\Column(name="id_email_ticket", type="integer", length=255, nullable=false)
+     * @ORM\Column(name="id_email_ticket", type="integer", length=255, nullable=true)
      */
     private $idEmailTicket;
 

@@ -34,7 +34,8 @@
         <a href="{{ path('ticket', { 'project_id': entity.project.id }) }}">Back to the list</a>
     </li>
 
+    {% endfor %}
+
     <li>{{ form(delete_form) }}</li>
 
-    {% endfor %}
 {% endblock %}

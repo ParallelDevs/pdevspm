@@ -21,30 +21,50 @@
         <div class="box box-primary">
             <table class="table table-hover">
                 <thead>
-                   <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Createdat</th>
-                        <th>Actions</th>
-                   </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Ticket Status</th>
+                    <th>Ticket Type</th>
+                    <th>Project</th>
+                    <th>Email_Project</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {% for entity in entities %}
+                    {% for entity in entity %}
                         <tr>
                             <td>{{ entity.id }}</td>
                             <td><a href="{{ path('ticket_show', { 'ticket_id': entity.id, 'project_id': entity.project.id }) }}">{{ entity.name }}</a></td>
-                            <td>{{ entity.description }}</td>
-                            <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>{{ entity.description }}</a></td>
                             <td>
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('ticket_edit', { 'ticket_id': entity.id, 'project_id': entity.project.id }) }}"><i class="fa fa-pencil-square-o"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('ticket_delete', { 'ticket_id': entity.id , 'project_id': entity.project.id }) }}"><i class="fa fa-trash-o"></i></a>
-                                    </li>
-                                </ul>
+                                {% if entity.ticketStatus %}
+                                    {{ entity.ticketStatus.name }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if entity.ticketType %}
+                                    {{ entity.ticketType.name }}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% if entity.project %}
+                                    <a href="{{ path('project_show', { 'project_id': entity.project.id }) }}">{{ entity.project.name }}</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if entity.project %}
+                                    {{ entity.project.email }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="fa fa-pencil-square-o" href="{{ path('ticket_edit', { 'ticket_id': entity.id, 'project_id': entity.project.id }) }}"></a>
+                                <a class="fa fa-trash-o" href="{{ path('ticket_delete', { 'ticket_id': entity.id , 'project_id': entity.project.id }) }}"></a>
+
                             </td>
                         </tr>
                     {% endfor %}

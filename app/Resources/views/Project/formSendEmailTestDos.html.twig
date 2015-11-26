@@ -39,12 +39,27 @@
                         <td>{{ entity.name }}</a></td>
                         <td>{{ entity.description }}</a></td>
                         <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ entity.ticketStatus }}</td>
-                        <td>{{ entity.ticketType }}</td>
+                        <td>
+                            {% if entity.ticketStatus %}
+                                {{ entity.ticketStatus.name }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if entity.ticketType %}
+                                {{ entity.ticketType.name }}
+                            {% endif %}
+                        </td>
                         <td>{{ entity.user }}</td>
-                        <td>{{ entity.project.name }}</td>
-                        <td>{{ entity.project.email }}</td>
-
+                        <td>
+                            {% if entity.project %}
+                                {{ entity.project.name }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if entity.project %}
+                                {{ entity.project.email }}
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

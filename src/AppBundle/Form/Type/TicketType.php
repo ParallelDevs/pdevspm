@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,8 +15,8 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
+            ->add('name', 'text')
+            ->add('description', 'text')
             ->add('ticketStatus', 'entity', ['class' => 'AppBundle\Entity\TicketStatus', 'property' => 'name'])
             ->add('ticketType', 'entity', ['class' => 'AppBundle\Entity\TicketType', 'property' => 'name'])
             ->add('department', 'entity', ['class' => 'AppBundle\Entity\Department', 'property' => 'name'])

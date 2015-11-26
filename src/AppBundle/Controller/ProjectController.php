@@ -26,7 +26,7 @@ class ProjectController extends Controller
     /**
      * Lists all Project entities.
      *
-     * @Route("/all", name="project")
+     * @Route("/", name="project")
      * @Method("GET")
      */
     public function indexAction()
@@ -60,8 +60,7 @@ class ProjectController extends Controller
             $emailsTxt = $request->request->get('project')['email'];
             $stringEmail = str_replace(" ", ",", $emailsTxt);
 
-            var_dump($stringEmail);
-            exit();
+            $entity->setEmail($stringEmail);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -139,7 +138,7 @@ class ProjectController extends Controller
 
        return $this->render('Project/show.html.twig',
                  ['entity' => $entity,
-                 'id'=>$entity->getId(),
+                  'project_id' => $project_id,
                   'delete_form' => $deleteForm
                   ]);
     }
@@ -292,6 +291,10 @@ class ProjectController extends Controller
 
                 $project_type = $em->getRepository('AppBundle:ProjectType')->findBy(['name' => 'Support']);
 
+                $ticketTypeArray = $em->getRepository('AppBundle:TicketType')->findBy(['name' => 'Created by email']);
+
+                $ticketStatusArray = $em->getRepository('AppBundle:TicketStatus')->findBy(['name' => 'Open']);
+
                 $projects = $em->getRepository('AppBundle:Project')
                     ->findBy(['email' => $fromAddr,
                         'projectType' => $project_type
@@ -310,6 +313,12 @@ class ProjectController extends Controller
                     $ticket->setCreatedAt(new \DateTime('now'));
                     $ticket->setIdEmailTicket($imap_uid);
 
+                    foreach($ticketTypeArray as $ticketType){
+                        $ticket->setTicketType($ticketType);
+                    }
+                    foreach($ticketStatusArray as $ticketStatus){
+                        $ticket->setTicketStatus($ticketStatus);
+                    }
                     foreach ($projects as $project) {
                         $ticket->setProject($project);
                     }
@@ -333,7 +342,7 @@ class ProjectController extends Controller
      *
      */
 
-    public function deleteAction(){
+    public function deleteAllTicketsAction(){
 
         $em = $this->getDoctrine()->getManager();
 
@@ -362,41 +371,28 @@ class ProjectController extends Controller
      */
     public function newFormEmailAction()
     {
-       // $entity = new Project();
-
-        return $this->render('Project/formSendEmailTest.html.twig', [
-
-            ]);
+       return $this->render('Project/formSendEmailTest.html.twig');
     }
-
-
     /**
      * Deletes a Project entity.
      *
      * @Route("/{project_id}/delete", name="project_delete")
-     * @Method("DELETE")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, $project_id)
     {
-        $form = $this->createDeleteForm($project_id);
-        $form->handleRequest($request);
-
         $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:Project')->find($project_id);
 
-        $entity = $em->getRepository('AppBundle:Project')->findById($project_id);
-
-        foreach ($entity as $task) {
-            $em->remove($task);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find TicketType entity.');
         }
 
+        $em->remove($entity);
         $em->flush();
 
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Task entity.');
-        }
-
-        return $this->redirect($this->generateUrl('task', array('project_id' => $project_id)));
+       return $this->redirect($this->generateUrl('project'));
     }
     /**
      * Creates a form to delete a Project entity by id.
@@ -405,10 +401,10 @@ class ProjectController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function createDeleteForm($project_id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('project_delete', ['id' => $id]))
+            ->setAction($this->generateUrl('project_delete', ['project_id' => $project_id]))
             ->setMethod('DELETE')
             ->add('submit', 'submit', ['label' => 'Delete'])
             ->getForm()

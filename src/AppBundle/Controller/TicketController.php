@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Ticket;
-use AppBundle\Form\TicketType;
+use AppBundle\Form\Type\TicketType;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Ticket controller.
@@ -29,7 +30,7 @@ class TicketController extends Controller
 
         $entities = $em->getRepository('AppBundle:Ticket')->findByProject($project_id);
 
-        return $this->render('Ticket/index.html.twig', ['entities' => $entities]);
+        return $this->render('Ticket/index.html.twig', ['entity' => $entities]);
     }
 
     /**
@@ -142,22 +143,22 @@ class TicketController extends Controller
      */
     public function editAction($project_id, $ticket_id)
     {
-        $entity = new Ticket();
-
         $em = $this->getDoctrine()->getManager();
 
-        $project= $em->getRepository('AppBundle:Project')->find($project_id);
+        $ticket = $em->getRepository('AppBundle:Ticket')->find($ticket_id);
 
-        $entity->setProject($project);
+        $project = $em->getRepository('AppBundle:Project')->find($project_id);
 
-        if (!$entity) {
+        $ticket->setProject($project);
+
+        if (!$ticket) {
             throw $this->createNotFoundException('Unable to find Ticket entity.');
         }
 
-        $editForm = $this->createEditForm($entity, $project_id, $ticket_id);
+        $editForm = $this->createEditForm($ticket, $project_id, $ticket_id);
 
         return $this->render('Ticket/edit.html.twig', [
-            'entity'      => $entity,
+            'entity'      => $ticket,
             'edit_form'   => $editForm->createView(),
 
         ]);
@@ -214,6 +215,7 @@ class TicketController extends Controller
         return $this->render('Ticket/index.html.twig', [
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
+            'project_id' => $project_id,
 
         ]);
     }
