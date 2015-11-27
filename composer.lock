@@ -1151,18 +1151,6 @@
         },
         {
             "name": "kriswallsmith/assetic",
-<<<<<<< HEAD
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "cb92b179dddfb8a3f341d53bd27e088f24d9c2e5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/cb92b179dddfb8a3f341d53bd27e088f24d9c2e5",
-                "reference": "cb92b179dddfb8a3f341d53bd27e088f24d9c2e5",
-=======
             "version": "v1.3.2",
             "source": {
                 "type": "git",
@@ -1173,7 +1161,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/9928f7c4ad98b234e3559d1049abd13387f86db5",
                 "reference": "9928f7c4ad98b234e3559d1049abd13387f86db5",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1237,11 +1224,7 @@
                 "compression",
                 "minification"
             ],
-<<<<<<< HEAD
-            "time": "2015-10-15 01:33:42"
-=======
             "time": "2015-11-12 13:51:40"
->>>>>>> master
         },
         {
             "name": "monolog/monolog",
@@ -1319,23 +1302,23 @@
                 "psr-3"
             ],
             "time": "2015-10-14 12:51:02"
-<<<<<<< HEAD
         },
         {
             "name": "php-imap/php-imap",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barbushin/php-imap.git",
-                "reference": "cc1a49a3f68090db182183c59ffbc09055d59f5b"
+                "reference": "cfd8f0e7d272bdfd8ffe83d07f1cb0ec91f76770"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barbushin/php-imap/zipball/cc1a49a3f68090db182183c59ffbc09055d59f5b",
-                "reference": "cc1a49a3f68090db182183c59ffbc09055d59f5b",
+                "url": "https://api.github.com/repos/barbushin/php-imap/zipball/cfd8f0e7d272bdfd8ffe83d07f1cb0ec91f76770",
+                "reference": "cfd8f0e7d272bdfd8ffe83d07f1cb0ec91f76770",
                 "shasum": ""
             },
             "require": {
+                "ext-imap": "*",
                 "php": ">=5.3.0"
             },
             "type": "library",
@@ -1362,9 +1345,7 @@
                 "mail",
                 "php"
             ],
-            "time": "2015-09-16 07:40:39"
-=======
->>>>>>> master
+            "time": "2015-11-06 01:41:28"
         },
         {
             "name": "psr/log",
@@ -1406,17 +1387,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "2d061c01e708c83ede4720e2551d9449bf606c0a"
+                "reference": "cc0c9478da84f051da4465cf3a67f537ae758b13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/2d061c01e708c83ede4720e2551d9449bf606c0a",
-                "reference": "2d061c01e708c83ede4720e2551d9449bf606c0a",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/cc0c9478da84f051da4465cf3a67f537ae758b13",
+                "reference": "cc0c9478da84f051da4465cf3a67f537ae758b13",
                 "shasum": ""
             },
             "require": {
@@ -1462,7 +1443,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-10-27 18:48:08"
+            "time": "2015-11-26 18:10:31"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -1804,18 +1785,6 @@
         },
         {
             "name": "symfony/symfony",
-<<<<<<< HEAD
-            "version": "v2.7.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/symfony.git",
-                "reference": "66b2e9662c44d478b69e48278aa54079a006eb42"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/66b2e9662c44d478b69e48278aa54079a006eb42",
-                "reference": "66b2e9662c44d478b69e48278aa54079a006eb42",
-=======
             "version": "v2.7.7",
             "source": {
                 "type": "git",
@@ -1826,7 +1795,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/symfony/zipball/cc69dbd24b4b2e6de60b2414ef95da2794f459a2",
                 "reference": "cc69dbd24b4b2e6de60b2414ef95da2794f459a2",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -1937,22 +1905,6 @@
             "keywords": [
                 "framework"
             ],
-<<<<<<< HEAD
-            "time": "2015-10-27 19:07:24"
-        },
-        {
-            "name": "twig/twig",
-            "version": "v1.23.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
-                "reference": "5868cd822fd6cf626d5f805439575f9c323cee2a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5868cd822fd6cf626d5f805439575f9c323cee2a",
-                "reference": "5868cd822fd6cf626d5f805439575f9c323cee2a",
-=======
             "time": "2015-11-23 11:58:08"
         },
         {
@@ -1967,7 +1919,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/twigphp/Twig/zipball/d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
                 "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
->>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -2015,11 +1966,7 @@
             "keywords": [
                 "templating"
             ],
-<<<<<<< HEAD
-            "time": "2015-10-29 23:29:01"
-=======
             "time": "2015-11-05 12:49:06"
->>>>>>> master
         }
     ],
     "packages-dev": [
