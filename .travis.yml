@@ -21,7 +21,7 @@ before_script:
 
 script:
   - phpunit -c app
-  - vendor/bin/php-cs-fixer fix --cache-file "$HOME/.php-cs-fixer/.php_cs.cache" --dry-run --diff --verbose
+  - php vendor/bin/php-cs-fixer fix src/ --cache-file "$HOME/.php-cs-fixer/.php_cs.cache" --diff --dry-run -v fix
 
 notifications:
   email:
