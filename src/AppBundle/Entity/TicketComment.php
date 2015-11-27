@@ -94,8 +94,6 @@ class TicketComment
      */
     private $project;
 
-
-
     /**
      * Get id.
      *
@@ -227,9 +225,10 @@ class TicketComment
     }
 
     /**
-     * Set department
+     * Set department.
      *
      * @param \AppBundle\Entity\Department $department
+     *
      * @return TicketComment
      */
     public function setDepartment(\AppBundle\Entity\Department $department = null)
@@ -240,7 +239,7 @@ class TicketComment
     }
 
     /**
-     * Get ticketStatus
+     * Get ticketStatus.
      *
      * @return \AppBundle\Entity\Department
      */
@@ -250,9 +249,10 @@ class TicketComment
     }
 
     /**
-     * Set ticketType
+     * Set ticketType.
      *
      * @param \AppBundle\Entity\TicketType $ticketType
+     *
      * @return TicketComment
      */
     public function setTicketType(\AppBundle\Entity\TicketType $ticketType = null)
@@ -263,7 +263,7 @@ class TicketComment
     }
 
     /**
-     * Get ticketStatus
+     * Get ticketStatus.
      *
      * @return \AppBundle\Entity\TicketStatus
      */
@@ -273,9 +273,10 @@ class TicketComment
     }
 
     /**
-     * Set project
+     * Set project.
      *
      * @param \AppBundle\Entity\Project $project
+     *
      * @return TicketComment
      */
     public function setProject(\AppBundle\Entity\Project $project = null)
@@ -286,7 +287,7 @@ class TicketComment
     }
 
     /**
-     * Get ticketStatus
+     * Get ticketStatus.
      *
      * @return \AppBundle\Entity\Project
      */

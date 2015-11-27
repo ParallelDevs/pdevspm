@@ -110,9 +110,10 @@ class Ticket
     }
 
     /**
-     * Set setIdEmailTicket
+     * Set setIdEmailTicket.
      *
      * @param int $idEmailTicket
+     *
      * @return Ticket
      */
     public function setIdEmailTicket($idEmailTicket)
@@ -123,7 +124,7 @@ class Ticket
     }
 
     /**
-     * Get getIdEmailTicket
+     * Get getIdEmailTicket.
      *
      * @return int
      */
@@ -133,7 +134,7 @@ class Ticket
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *

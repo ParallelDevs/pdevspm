@@ -16,7 +16,6 @@ use AppBundle\Form\TicketStatusType;
  */
 class TicketStatusController extends Controller
 {
-
     /**
      * Lists all TicketStatus entities.
      *
@@ -51,9 +50,9 @@ class TicketStatusController extends Controller
             return $this->redirect($this->generateUrl('config_ticket_status_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('TicketStatus/new.html.twig',[
+        return $this->render('TicketStatus/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -85,11 +84,11 @@ class TicketStatusController extends Controller
     public function newAction()
     {
         $entity = new TicketStatus();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('TicketStatus/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -113,8 +112,8 @@ class TicketStatusController extends Controller
 
         return $this->render('TicketStatus/show.html.twig', [
             'entity' => $entity,
-            'id'=>$entity->getId(),
-            'delete_form' => $deleteForm->createView()
+            'id' => $entity->getId(),
+            'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -137,19 +136,19 @@ class TicketStatusController extends Controller
         $editForm = $this->createEditForm($entity);
 
         return $this->render('TicketStatus/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
 
     /**
-    * Creates a form to edit a TicketStatus entity.
-    *
-    * @param TicketStatus $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TicketStatus entity.
+     *
+     * @param TicketStatus $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TicketStatus $entity)
     {
         $form = $this->createForm(new TicketStatusType(), $entity, array(
@@ -187,8 +186,8 @@ class TicketStatusController extends Controller
         }
 
         return $this->render('TicketStatus/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
         ]);
     }
     /**
@@ -202,15 +201,14 @@ class TicketStatusController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:TicketStatus')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TicketStatus entity.');
-            }
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find TicketStatus entity.');
+        }
 
         $em->remove($entity);
         $em->flush();
 
         return $this->redirect($this->generateUrl('config_ticket_status'));
-
     }
     /**
      * Creates a form to delete a Project entity by id.

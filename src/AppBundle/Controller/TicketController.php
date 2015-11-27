@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Ticket;
 use AppBundle\Form\Type\TicketType;
-use Symfony\Component\Form\FormInterface;
 
 /**
  * Ticket controller.
@@ -17,7 +16,6 @@ use Symfony\Component\Form\FormInterface;
  */
 class TicketController extends Controller
 {
-
     /**
      * Lists all Ticket entities.
      *
@@ -118,7 +116,7 @@ class TicketController extends Controller
     {
         $entity = $this->getDoctrine()->getRepository('AppBundle:Ticket')
             ->findBy(['project' => $project_id,
-                'id' => $ticket_id
+                'id' => $ticket_id,
             ]);
 
         if (!$entity) {
@@ -131,7 +129,7 @@ class TicketController extends Controller
             'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
             'project_id' => $project_id,
-            'ticket_id' => $ticket_id
+            'ticket_id' => $ticket_id,
         ]);
     }
 
@@ -158,8 +156,8 @@ class TicketController extends Controller
         $editForm = $this->createEditForm($ticket, $project_id, $ticket_id);
 
         return $this->render('Ticket/edit.html.twig', [
-            'entity'      => $ticket,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $ticket,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
@@ -213,8 +211,8 @@ class TicketController extends Controller
         }
 
         return $this->render('Ticket/index.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'project_id' => $project_id,
 
         ]);
@@ -231,7 +229,7 @@ class TicketController extends Controller
 
         $entity = $this->getDoctrine()->getRepository('AppBundle:Ticket')
             ->findBy(['project' => $project_id,
-                'id' => $ticket_id
+                'id' => $ticket_id,
             ]);
 
         foreach ($entity as $ticket) {
@@ -256,7 +254,7 @@ class TicketController extends Controller
     private function createDeleteForm($project_id, $ticket_id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ticket_delete', ['project_id' => $project_id,'ticket_id' => $ticket_id]))
+            ->setAction($this->generateUrl('ticket_delete', ['project_id' => $project_id, 'ticket_id' => $ticket_id]))
             ->setMethod('DELETE')
             ->add('submit', 'submit', ['label' => 'Delete'])
             ->getForm()

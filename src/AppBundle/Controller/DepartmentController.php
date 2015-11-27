@@ -16,7 +16,6 @@ use AppBundle\Form\DepartmentType;
  */
 class DepartmentController extends Controller
 {
-
     /**
      * Lists all Department entities.
      *
@@ -56,9 +55,9 @@ class DepartmentController extends Controller
             return $this->redirect($this->generateUrl('config_department_show', ['id' => $entity->getId()]));
         }
 
-        return $this->render('Department/new.html.twig',[
+        return $this->render('Department/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -90,11 +89,11 @@ class DepartmentController extends Controller
     public function newAction()
     {
         $entity = new Department();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('Department/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -115,7 +114,7 @@ class DepartmentController extends Controller
         }
 
         return $this->render('Department/show.html.twig', [
-            'entity'      => $entity,
+            'entity' => $entity,
 
         ]);
     }
@@ -139,19 +138,19 @@ class DepartmentController extends Controller
         $editForm = $this->createEditForm($entity);
 
         return $this->render('Department/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
 
     /**
-    * Creates a form to edit a Department entity.
-    *
-    * @param Department $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Department entity.
+     *
+     * @param Department $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Department $entity)
     {
         $form = $this->createForm(new DepartmentType(), $entity, array(
@@ -168,7 +167,6 @@ class DepartmentController extends Controller
      *
      * @Route("/{id}", name="config_department_update")
      * @Method("PUT")
-
      */
     public function updateAction(Request $request, $id)
     {
@@ -190,8 +188,8 @@ class DepartmentController extends Controller
         }
 
         return $this->render('Department/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
         ]);
     }
     /**
@@ -205,14 +203,13 @@ class DepartmentController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:Department')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Department entity.');
-            }
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Department entity.');
+        }
 
-            $em->remove($entity);
-            $em->flush();
+        $em->remove($entity);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('config_department'));
     }
-
 }

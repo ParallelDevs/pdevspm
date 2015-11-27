@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Controller;
+
 use AppBundle\Entity\Ticket;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -8,12 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Project;
 use AppBundle\Form\Type\ProjectType;
-use PhpImap\IncomingMail;
-use PhpImap\IncomingMailAttachment;
 use PhpImap\Mailbox;
-
-
-
 
 /**
  * Project controller.
@@ -55,7 +51,7 @@ class ProjectController extends Controller
             $entity->setCreatedAt(new \DateTime('now'));
 
             $emailsTxt = $request->request->get('project')['email'];
-            $stringEmail = str_replace(" ", ",", $emailsTxt);
+            $stringEmail = str_replace(' ', ',', $emailsTxt);
 
             $entity->setEmail($stringEmail);
 
@@ -73,7 +69,7 @@ class ProjectController extends Controller
         ]);
     }
 
-     /**
+    /**
      * Creates a form to create a Project entity.
      *
      * @param Project $entity The entity
@@ -91,16 +87,15 @@ class ProjectController extends Controller
     }
 
     /**
-    * Displays a form to create a new Project entity.
-    *
-    * @Route("/new", name="project_new")
-    * @Method("GET")
-    *
-    */
+     * Displays a form to create a new Project entity.
+     *
+     * @Route("/new", name="project_new")
+     * @Method("GET")
+     */
     public function newAction()
     {
         $entity = new Project();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         $repository = $this->getDoctrine()
                 ->getRepository('AppBundle:User');
@@ -114,12 +109,11 @@ class ProjectController extends Controller
     }
 
     /**
-    * Finds and displays a Project entity.
-    *
-    * @Route("/{project_id}", name="project_show")
-    * @Method("GET")
-    *
-    */
+     * Finds and displays a Project entity.
+     *
+     * @Route("/{project_id}", name="project_show")
+     * @Method("GET")
+     */
     public function showAction($project_id)
     {
         $repository = $this->getDoctrine()
@@ -132,10 +126,10 @@ class ProjectController extends Controller
 
         $deleteForm = $this->createDeleteForm($project_id);
 
-       return $this->render('Project/show.html.twig',
+        return $this->render('Project/show.html.twig',
                  ['entity' => $entity,
                   'project_id' => $project_id,
-                  'delete_form' => $deleteForm
+                  'delete_form' => $deleteForm,
                   ]);
     }
 
@@ -144,12 +138,10 @@ class ProjectController extends Controller
      *
      * @Route("/send-email", name="send_email")
      * @Method("POST")
-     *
      */
     public function sendEmailAction(Request $request)
     {
-        if($request->getMethod() == "POST"){
-
+        if ($request->getMethod() == 'POST') {
             $to = $request->get('txt_to');
             $subject = $request->get('txt_subject');
             $body = $request->get('txt_body');
@@ -175,12 +167,11 @@ class ProjectController extends Controller
     }
 
     /**
-    * Displays a form to edit an existing Project entity.
-    *
-    * @Route("/{id}/edit", name="project_edit")
-    * @Method("GET")
-    *
-    */
+     * Displays a form to edit an existing Project entity.
+     *
+     * @Route("/{id}/edit", name="project_edit")
+     * @Method("GET")
+     */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -194,10 +185,9 @@ class ProjectController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-       return $this->render('Project/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView()]);
-
+        return $this->render('Project/edit.html.twig', [
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(), ]);
     }
 
     /**
@@ -220,12 +210,11 @@ class ProjectController extends Controller
     }
 
     /**
-    * Edits an existing Project entity.
-    *
-    * @Route("/{id}", name="project_update")
-    * @Method("PUT")
-    *
-    */
+     * Edits an existing Project entity.
+     *
+     * @Route("/{id}", name="project_update")
+     * @Method("PUT")
+     */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -243,13 +232,12 @@ class ProjectController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-           return $this->redirect($this->generateUrl('project_edit', ['id' => $id]));
+            return $this->redirect($this->generateUrl('project_edit', ['id' => $id]));
         }
 
-       return $this->render('Project/edit.html.twig', [
-          'entity'      => $entity,
-          'edit_form'   => $editForm->createView()]);
-
+        return $this->render('Project/edit.html.twig', [
+          'entity' => $entity,
+          'edit_form' => $editForm->createView(), ]);
     }
 
     /*---------------------------------------RETRIEVE EMAIL FUNTIONALLITY----------------------------------*/
@@ -258,16 +246,14 @@ class ProjectController extends Controller
      *
      * @Route("/retrieve-email", name="retrieve_email")
      * @Method("GET")
-     *
      */
-
     public function retrieveEmailAction()
     {
-        $imapFlags = "{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX";
+        $imapFlags = '{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX';
 
-        $emailUser = "i.delgado@paralleldevs.com";
+        $emailUser = 'i.delgado@paralleldevs.com';
 
-        $passEmail = "IADMa1992";
+        $passEmail = 'IADMa1992';
 
         $em = $this->getDoctrine()->getManager();
 
@@ -275,13 +261,11 @@ class ProjectController extends Controller
 
         $numMessages = imap_num_msg($mailbox);
 
-        for ($i = 1; $i <= $numMessages; $i++) {
-
+        for ($i = 1; $i <= $numMessages; ++$i) {
             $headers = imap_headerinfo($mailbox, $i);
 
-            if($headers->Unseen === 'U'){
-
-                $fromAddr = $headers->from[0]->mailbox . "@" . $headers->from[0]->host;
+            if ($headers->Unseen === 'U') {
+                $fromAddr = $headers->from[0]->mailbox.'@'.$headers->from[0]->host;
 
                 $project_type = $em->getRepository('AppBundle:ProjectType')->findBy(['name' => 'Support']);
 
@@ -291,7 +275,7 @@ class ProjectController extends Controller
 
                 $projects = $em->getRepository('AppBundle:Project')
                     ->findBy(['email' => $fromAddr,
-                        'projectType' => $project_type
+                        'projectType' => $project_type,
                     ]);
 
                 $imap_uid = imap_uid($mailbox, $i);
@@ -299,7 +283,6 @@ class ProjectController extends Controller
                 $ticket_DB = $em->getRepository('AppBundle:Ticket')->findByIdEmailTicket($imap_uid);
 
                 if (sizeof($ticket_DB) == 0) {
-
                     $ticket = new Ticket();
                     $ticket->setName($headers->subject);
                     $body_msg = imap_fetchbody($mailbox, $i, 1);
@@ -307,10 +290,10 @@ class ProjectController extends Controller
                     $ticket->setCreatedAt(new \DateTime('now'));
                     $ticket->setIdEmailTicket($imap_uid);
 
-                    foreach($ticketTypeArray as $ticketType){
+                    foreach ($ticketTypeArray as $ticketType) {
                         $ticket->setTicketType($ticketType);
                     }
-                    foreach($ticketStatusArray as $ticketStatus){
+                    foreach ($ticketStatusArray as $ticketStatus) {
                         $ticket->setTicketStatus($ticketStatus);
                     }
                     foreach ($projects as $project) {
@@ -321,7 +304,6 @@ class ProjectController extends Controller
                     $em->flush();
                 }
             }
-
         }
 
         $all_tiquets = $em->getRepository('AppBundle:Ticket')->findAll();
@@ -330,15 +312,13 @@ class ProjectController extends Controller
     }
 
     /**
-     * Delete all elements in the table
+     * Delete all elements in the table.
      *
      * @Route("/delete-all", name="delete_all_elements")
      * @Method("GET")
-     *
      */
-
-    public function deleteAllTicketsAction(){
-
+    public function deleteAllTicketsAction()
+    {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Ticket')->findAll();
@@ -357,7 +337,6 @@ class ProjectController extends Controller
         }
 
         return $this->render('Project/formSendEmailTestDos.html.twig', ['entity' => $entity]);
-
     }
         /*---------------------------------------RETRIEVE EMAIL FUNTIONALLITY----------------------------------*/
     /**
@@ -365,11 +344,10 @@ class ProjectController extends Controller
      *
      * @Route("/form-email", name="new_form_email")
      * @Method("GET")
-     *
      */
     public function newFormEmailAction()
     {
-       return $this->render('Project/formSendEmailTest.html.twig');
+        return $this->render('Project/formSendEmailTest.html.twig');
     }
     /**
      * Deletes a Project entity.
@@ -389,8 +367,7 @@ class ProjectController extends Controller
         $em->remove($entity);
         $em->flush();
 
-
-       return $this->redirect($this->generateUrl('project'));
+        return $this->redirect($this->generateUrl('project'));
     }
     /**
      * Creates a form to delete a Project entity by id.

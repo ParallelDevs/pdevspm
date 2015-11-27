@@ -16,7 +16,6 @@ use AppBundle\Form\TicketTypeType;
  */
 class TicketTypeController extends Controller
 {
-
     /**
      * Lists all TicketType entities.
      *
@@ -51,9 +50,9 @@ class TicketTypeController extends Controller
             return $this->redirect($this->generateUrl('config_ticket_type_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('TicketType/new.html.twig',[
+        return $this->render('TicketType/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -85,11 +84,11 @@ class TicketTypeController extends Controller
     public function newAction()
     {
         $entity = new TicketType();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('TicketType/new.html.twig', [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
@@ -113,8 +112,8 @@ class TicketTypeController extends Controller
 
         return $this->render('TicketType/show.html.twig', [
                 'entity' => $entity,
-                'id'=>$entity->getId(),
-                'delete_form' => $deleteForm->createView()
+                'id' => $entity->getId(),
+                'delete_form' => $deleteForm->createView(),
 
         ]);
     }
@@ -138,18 +137,18 @@ class TicketTypeController extends Controller
         $editForm = $this->createEditForm($entity);
 
         return $this->render('TicketType/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
         ]);
     }
 
     /**
-    * Creates a form to edit a TicketType entity.
-    *
-    * @param TicketType $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a TicketType entity.
+     *
+     * @param TicketType $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(TicketType $entity)
     {
         $form = $this->createForm(new TicketTypeType(), $entity, array(
@@ -187,8 +186,8 @@ class TicketTypeController extends Controller
         }
 
         return $this->render('TicketType/edit.html.twig', [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
 
         ]);
     }
@@ -200,12 +199,11 @@ class TicketTypeController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:TicketType')->find($id);
 
         if (!$entity) {
-              throw $this->createNotFoundException('Unable to find TicketType entity.');
+            throw $this->createNotFoundException('Unable to find TicketType entity.');
         }
 
         $em->remove($entity);

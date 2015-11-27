@@ -29,7 +29,6 @@ class Project
      */
     private $name;
 
-
     /**
      * @var email
      *
@@ -115,9 +114,10 @@ class Project
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
+     *
      * @return Project
      */
     public function setEmail($email)
@@ -128,7 +128,7 @@ class Project
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -138,7 +138,7 @@ class Project
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *

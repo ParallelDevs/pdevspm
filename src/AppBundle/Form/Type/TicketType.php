@@ -10,7 +10,7 @@ class TicketType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,14 +22,14 @@ class TicketType extends AbstractType
             ->add('department', 'entity', ['class' => 'AppBundle\Entity\Department', 'property' => 'name'])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Ticket'
+            'data_class' => 'AppBundle\Entity\Ticket',
         ));
     }
 
