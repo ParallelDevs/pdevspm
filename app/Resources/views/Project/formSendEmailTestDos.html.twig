@@ -28,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for entity in entities %}
+                {% for entity in entity %}
                     <tr>
                         <td>{{ entity.id }}</td>
                         <td><a href="{{ path('project_show', { 'project_id': entity.id }) }}">{{ entity.name }}</a></td>
@@ -49,4 +49,4 @@
             </table>
         </div>
     </div>
-    {% endblock %}
+{% endblock %}

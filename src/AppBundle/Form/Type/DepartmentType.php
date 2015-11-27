@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form\Type;
+namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProjectType extends AbstractType
+class DepartmentType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,16 +16,8 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
-            ->add('team', 'entity', [
-                'class' => 'AppBundle\Entity\User',
-                'property' => 'username',
-                'multiple' => true,
-                'expanded' => true,
-                ])
-            ->add('projectStatus', 'entity', ['class' => 'AppBundle\Entity\ProjectStatus', 'property' => 'name'])
-            ->add('projectType', 'entity', ['class' => 'AppBundle\Entity\ProjectType', 'property' => 'name'])
-            ->add('email', 'text')
+            ->add('sortOrder')
+            ->add('active')
         ;
     }
 
@@ -35,7 +27,7 @@ class ProjectType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Project',
+            'data_class' => 'AppBundle\Entity\Department',
         ));
     }
 
@@ -44,6 +36,6 @@ class ProjectType extends AbstractType
      */
     public function getName()
     {
-        return 'project';
+        return 'appbundle_department';
     }
 }

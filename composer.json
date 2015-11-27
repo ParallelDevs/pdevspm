@@ -24,10 +24,12 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "knplabs/knp-menu-bundle": "~2",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
-        "ircmaxell/password-compat": "^1.0"
+        "ircmaxell/password-compat": "^1.0",
+        "php-imap/php-imap": "^2.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "fabpot/php-cs-fixer": "^1.10"
     },
     "scripts": {
         "post-root-package-install": [

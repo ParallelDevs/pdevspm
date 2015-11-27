@@ -22,6 +22,13 @@ class Ticket
     private $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id_email_ticket", type="integer", length=255, nullable=true)
+     */
+    private $idEmailTicket;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
@@ -100,6 +107,30 @@ class Ticket
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set setIdEmailTicket.
+     *
+     * @param int $idEmailTicket
+     *
+     * @return Ticket
+     */
+    public function setIdEmailTicket($idEmailTicket)
+    {
+        $this->idEmailTicket = $idEmailTicket;
+
+        return $this;
+    }
+
+    /**
+     * Get getIdEmailTicket.
+     *
+     * @return int
+     */
+    public function getIdEmailTicket()
+    {
+        return $this->idEmailTicket;
     }
 
     /**
