@@ -12,16 +12,13 @@ class Retrive
      */
     private $em;
 
-    function __construct(\Doctrine\ORM\EntityManager $em)
+    public function __construct(\Doctrine\ORM\EntityManager $em)
     {
         $this->em = $em;
     }
 
     /**
      * Displays a form to testing send email with TEST email.
-     *
-     * @Route("/retrieve-email", name="retrieve_email")
-     * @Method("POST")
      */
     public function retrieveEmailAction()
     {
@@ -38,7 +35,6 @@ class Retrive
             $ticket_DB = $this->em->getRepository('AppBundle:Ticket')->findByIdEmailTicket($mail->messageId);
 
             if (sizeof($ticket_DB) == 0) {
-
                 $project_type = $this->em->getRepository('AppBundle:ProjectType')->findBy(['name' => 'Support']);
 
                 $project = $this->em->getRepository('AppBundle:Project')

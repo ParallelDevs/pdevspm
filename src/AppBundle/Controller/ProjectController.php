@@ -2,14 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Ticket;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Project;
 use AppBundle\Form\Type\ProjectType;
-use PhpImap\Mailbox;
 
 /**
  * Project controller.
@@ -134,39 +132,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Displays a form to testing send email with SWIFTMAILER.
-     *
-     * @Route("/send-email", name="send_email")
-     * @Method("POST")
-     */
-    public function sendEmailAction(Request $request)
-    {
-        if ($request->getMethod() == 'POST') {
-            $to = $request->get('txt_to');
-            $subject = $request->get('txt_subject');
-            $body = $request->get('txt_body');
-
-            $mailer = $this->container->get('mailer');
-
-            $transport = \Swift_SmtpTransport::newInstance('i.delgado@paralleldevs.com', 25)
-                ->setUsername('i.delgado@paralleldevs.com')
-                ->setPassword('IADMa1992');
-
-            $mailers = \Swift_Mailer::newInstance($transport);
-
-            $message = \Swift_Message::newInstance('test')
-                ->setSubject($subject)
-                ->setFrom('isaiasdelgado007@gmail.com')
-                ->setTo($to)
-                ->setBody($body);
-
-            $this->get('mailer')->send($message);
-        }
-
-        return $this->render('Project/formSendEmailTest.html.twig');
-    }
-
-    /**
      * Displays a form to edit an existing Project entity.
      *
      * @Route("/{id}/edit", name="project_edit")
@@ -225,7 +190,6 @@ class ProjectController extends Controller
             throw $this->createNotFoundException('Unable to find Project entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
@@ -244,7 +208,7 @@ class ProjectController extends Controller
      * Deletes a Project entity.
      *
      * @Route("/{project_id}/delete", name="project_delete")
-     * @Method("GET")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $project_id)
     {
