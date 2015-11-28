@@ -148,7 +148,6 @@ class ProjectController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('Project/edit.html.twig', [
             'entity' => $entity,
