@@ -196,7 +196,7 @@ class DepartmentController extends Controller
      * Deletes a Department entity.
      *
      * @Route("/{id}/delete", name="config_department_delete")
-     * @Method("GET")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
