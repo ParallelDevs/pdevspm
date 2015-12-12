@@ -1,6 +1,7 @@
 {
-    "name": "danielnv18/pdevspm",
-    "license": "proprietary",
+    "name": "paralleldevs/project",
+    "description": "PHP application for project management",
+    "license": "MIT",
     "type": "project",
     "autoload": {
         "psr-4": {
