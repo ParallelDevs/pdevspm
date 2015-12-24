@@ -27,6 +27,20 @@ class User extends BaseUser
      */
     protected $groups;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     */
+    protected $photo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="skin`", type="string", length=255, nullable=true)
+     */
+    protected $skin;
+
     public function __construct()
     {
         parent::__construct();
