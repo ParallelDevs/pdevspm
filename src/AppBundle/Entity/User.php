@@ -45,4 +45,52 @@ class User extends BaseUser
     {
         parent::__construct();
     }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     *
+     * @return User
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set skin
+     *
+     * @param string $skin
+     *
+     * @return User
+     */
+    public function setSkin($skin)
+    {
+        $this->skin = $skin;
+
+        return $this;
+    }
+
+    /**
+     * Get skin
+     *
+     * @return string
+     */
+    public function getSkin()
+    {
+        return $this->skin;
+    }
 }
