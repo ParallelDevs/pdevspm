@@ -4,9 +4,8 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class RegistrationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,18 +14,18 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('photo')
+            //->add('photo')
             ->add('skin')
         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function getParent()
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\User',
-        ));
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'app_user_registration';
     }
 }
