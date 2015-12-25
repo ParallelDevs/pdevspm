@@ -15,6 +15,7 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('enabled')
+            ->add('file')
         ;
     }
 
