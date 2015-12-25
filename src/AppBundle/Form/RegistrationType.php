@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RegistrationType extends AbstractType
 {
@@ -16,6 +17,10 @@ class RegistrationType extends AbstractType
         $builder
             ->add('enabled')
             ->add('file')
+            ->add('groups', EntityType::class, [
+                'class' => 'AppBundle:Group',
+                'choice_label' => 'name'
+            ])
         ;
     }
 
