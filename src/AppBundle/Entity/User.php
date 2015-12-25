@@ -47,7 +47,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set photo
+     * Set photo.
      *
      * @param string $photo
      *
@@ -61,7 +61,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get photo
+     * Get photo.
      *
      * @return string
      */
@@ -71,7 +71,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set skin
+     * Set skin.
      *
      * @param string $skin
      *
@@ -85,7 +85,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get skin
+     * Get skin.
      *
      * @return string
      */
