@@ -31,19 +31,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         // Create an admin user for test only
         if ($this->container->getParameter('kernel.environment') == 'test') {
-            $adminUser = new User();
-            $adminUser
-                ->addRole('ROLE_ADMIN')
-                ->setUsername('admin')
-                ->setUsernameCanonical('admin')
-                ->setEmail('admin@pdevspm.com')
-                ->setEmailCanonical('admin@pdevspm.com')
-                ->setEnabled(true)
-                ->setPlainPassword('admin')
-            ;
-
-            $manager->persist($adminUser);
-            $manager->flush();
+            $this->addAdminUser($manager);
         }
     }
 
@@ -52,6 +40,28 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function getOrder()
     {
-        return 1;
+        return 2;
+    }
+
+    /**
+     * @param ObjectManager $manager
+     */
+    private function addAdminUser(ObjectManager $manager)
+    {
+        $adminGroup = $manager->getRepository('AppBundle:Group')->findOneByName('Admin');
+
+        $adminUser = new User();
+        $adminUser->addGroup($adminGroup);
+        $adminUser
+            ->setUsername('admin')
+            ->setUsernameCanonical('admin')
+            ->setEmail('admin@pdevspm.com')
+            ->setEmailCanonical('admin@pdevspm.com')
+            ->setEnabled(true)
+            ->setPlainPassword('admin')
+        ;
+
+        $manager->persist($adminUser);
+        $manager->flush();
     }
 }

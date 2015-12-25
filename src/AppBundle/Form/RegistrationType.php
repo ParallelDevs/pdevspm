@@ -19,7 +19,7 @@ class RegistrationType extends AbstractType
             ->add('file')
             ->add('groups', EntityType::class, [
                 'class' => 'AppBundle:Group',
-                'choice_label' => 'name'
+                'choice_label' => 'name',
             ])
         ;
     }
