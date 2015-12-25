@@ -37,7 +37,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="skin`", type="string", length=255, nullable=true)
+     * @ORM\Column(name="skin", type="string", length=255, nullable=true)
      */
     protected $skin;
 
