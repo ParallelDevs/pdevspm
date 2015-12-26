@@ -75,8 +75,8 @@ class Group extends BaseGroup
 
     public function __construct($name, $roles = [])
     {
-        $this->roles[] = 'ROLE_USER';
         parent::__construct($name, $roles);
+        $this->addRole('ROLE_USER');
     }
 
     /**
