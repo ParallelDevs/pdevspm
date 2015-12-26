@@ -59,7 +59,8 @@ class UserRepositoryFunctionalTest extends KernelTestCase
             ->findOneByEmail('test@pdevspm.com')
         ;
 
-        $this->assertEquals('test@pdevspm.com', $user->getEmail());
+        $this->assertNotNull($user);
+        $this->assertInstanceOf('AppBundle\Entity\User', $user);
 
         // Update email
         $user->setEmail('test2@pdevspm.com');
@@ -83,7 +84,8 @@ class UserRepositoryFunctionalTest extends KernelTestCase
             ->findOneByEmail('test2@pdevspm.com')
         ;
 
-        $this->assertEquals('test2@pdevspm.com', $user->getEmail());
+        $this->assertNotNull($user);
+        $this->assertInstanceOf('AppBundle\Entity\User', $user);
 
         $this->em->remove($user);
         $this->em->flush();
