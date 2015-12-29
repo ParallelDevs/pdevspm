@@ -36,11 +36,11 @@ class GroupType extends AbstractType
             ])
             ->add('manage_user', CheckboxType::class, [
                 'label' => 'Users',
-                'required' => false
+                'required' => false,
             ])
             ->add('manage_configuration', CheckboxType::class, [
                 'label' => 'Configuration',
-                'required' => false
+                'required' => false,
             ])
         ;
     }
