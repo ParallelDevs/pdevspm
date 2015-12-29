@@ -8,3 +8,7 @@ services:
         class: AppBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
+    app.form.group:
+        class: AppBundle\Form\GroupType
+        tags:
+            - { name: form.type, alias: app_user_group }

@@ -57,9 +57,9 @@ class Group extends BaseGroup
     /**
      * @var bool
      *
-     * @ORM\Column(name="manage_tasks_viewonly", type="boolean", nullable=true)
+     * @ORM\Column(name="manage_tasks_view_only", type="boolean", nullable=true)
      */
-    protected $ManageTasksViewonly;
+    protected $ManageTasksViewOnly;
     /**
      * @var bool
      *
@@ -69,9 +69,9 @@ class Group extends BaseGroup
     /**
      * @var bool
      *
-     * @ORM\Column(name="manage_discussions_viewonly", type="boolean", nullable=true)
+     * @ORM\Column(name="manage_discussions_view_only", type="boolean", nullable=true)
      */
-    protected $ManageDiscussionsViewonly;
+    protected $ManageDiscussionsViewOnly;
 
     public function __construct($name, $roles = [])
     {
@@ -226,13 +226,13 @@ class Group extends BaseGroup
     /**
      * Set manageTasksViewonly.
      *
-     * @param bool $manageTasksViewonly
+     * @param bool $manageTasksViewOnly
      *
      * @return Group
      */
-    public function setManageTasksViewonly($manageTasksViewonly)
+    public function setManageTasksViewOnly($manageTasksViewOnly)
     {
-        $this->ManageTasksViewonly = $manageTasksViewonly;
+        $this->ManageTasksViewOnly = $manageTasksViewOnly;
 
         return $this;
     }
@@ -242,9 +242,9 @@ class Group extends BaseGroup
      *
      * @return bool
      */
-    public function getManageTasksViewonly()
+    public function getManageTasksViewOnly()
     {
-        return $this->ManageTasksViewonly;
+        return $this->ManageTasksViewOnly;
     }
 
     /**
@@ -272,26 +272,26 @@ class Group extends BaseGroup
     }
 
     /**
-     * Set manageDiscussionsViewonly.
+     * Set manageDiscussionsViewOnly.
      *
-     * @param bool $manageDiscussionsViewonly
+     * @param bool $manageDiscussionsViewOnly
      *
      * @return Group
      */
-    public function setManageDiscussionsViewonly($manageDiscussionsViewonly)
+    public function setManageDiscussionsViewOnly($manageDiscussionsViewOnly)
     {
-        $this->ManageDiscussionsViewonly = $manageDiscussionsViewonly;
+        $this->ManageDiscussionsViewOnly = $manageDiscussionsViewOnly;
 
         return $this;
     }
 
     /**
-     * Get manageDiscussionsViewonly.
+     * Get manageDiscussionsViewOnly.
      *
      * @return bool
      */
-    public function getManageDiscussionsViewonly()
+    public function getManageDiscussionsViewOnly()
     {
-        return $this->ManageDiscussionsViewonly;
+        return $this->ManageDiscussionsViewOnly;
     }
 }
