@@ -1,40 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Login {% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    <!-- iCheck -->
-    <link rel="stylesheet" href="{{ asset('plugins/iCheck/square/blue.css') }}" />
-{% endblock %}
-
 {% block body %}
-
-    <div class="login-box">
-        <div class="login-logo">
-            <b>Project</b> Management
-        </div><!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-
-        </div>
-    </div>
-
-
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
-    <script>
-        $(function () {
-            $('input').iCheck({
-                checkboxClass: 'icheckbox_square-blue',
-                radioClass: 'iradio_square-blue',
-                increaseArea: '20%' // optional
-            });
-        });
-    </script>
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
 {% endblock %}

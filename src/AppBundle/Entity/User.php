@@ -21,23 +21,31 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Group")
+     * @ORM\JoinTable(name="fos_user_user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
      */
-    private $name;
+    protected $groups;
 
     /**
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
-    private $photo;
+    protected $photo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="skin", type="string", length=255, nullable=true)
+     */
+    protected $skin;
 
     /**
      * @Assert\File(maxSize="2M")
      */
-
     /**
      * @Assert\Image(
      *     maxSize = "2M",
@@ -49,35 +57,11 @@ class User extends BaseUser
      *     allowPortrait = false
      * )
      */
-    private $file;
+    protected $file;
 
     public function __construct()
     {
         parent::__construct();
-    }
-
-    /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -104,34 +88,54 @@ class User extends BaseUser
         return $this->photo;
     }
 
+    /**
+     * Set skin.
+     *
+     * @param string $skin
+     *
+     * @return User
+     */
+    public function setSkin($skin)
+    {
+        $this->skin = $skin;
+
+        return $this;
+    }
+
+    /**
+     * Get skin.
+     *
+     * @return string
+     */
+    public function getSkin()
+    {
+        return $this->skin;
+    }
+
     public function getAbsolutePath()
     {
         return null === $this->photo
             ? null
             : $this->getUploadRootDir().'/'.$this->photo;
     }
-
     public function getWebPath()
     {
         return null === $this->photo
             ? null
             : $this->getUploadDir().'/'.$this->photo;
     }
-
     protected function getUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
         return '../../../web/'.$this->getUploadDir();
     }
-
     protected function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
         return 'uploads/photos';
     }
-
     /**
      * Sets file.
      *
@@ -141,7 +145,6 @@ class User extends BaseUser
     {
         $this->file = $file;
     }
-
     /**
      * Get file.
      *
@@ -151,27 +154,22 @@ class User extends BaseUser
     {
         return $this->file;
     }
-
     public function upload()
     {
         // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
             return;
         }
-
         // use the original file name here but you should
         // sanitize it at least to avoid any security issues
-
         // move takes the target directory and then the
         // target filename to move to
         $this->getFile()->move(
             $this->getUploadRootDir(),
             $this->getFile()->getClientOriginalName()
         );
-
         // set the path property to the filename where you've saved the file
         $this->photo = $this->getFile()->getClientOriginalName();
-
         // clean up the file property as you won't need it anymore
         $this->file = null;
     }

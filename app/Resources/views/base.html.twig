@@ -2,32 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <!-- Bootstrap 3.3.5 -->
-            <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
-            <!-- Font Awesome -->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-            <!-- Ionicons -->
-            <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-            <!-- Theme style -->
-            <link rel="stylesheet" href="{{ asset('dist/css/AdminLTE.min.css') }}" />
-            <!-- Skins style -->
-            <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}" />
-        {% endblock %}
+        {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
-            {% block body %}{% endblock %}
-        </div>
-        {% block javascripts %}
-            <script src="{{ asset('plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-            <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-            <script src="{{ asset('dist/js/app.min.js') }}"></script>
-        {% endblock %}
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
