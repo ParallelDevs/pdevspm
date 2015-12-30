@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ProjectType</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ projectType.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ projectType.name }}</td>
+            </tr>
+            <tr>
+                <th>Sortorder</th>
+                <td>{{ projectType.sortOrder }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{% if entity.active %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('projecttype_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('projecttype_edit', { 'id': projectType.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
