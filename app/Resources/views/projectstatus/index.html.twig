@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ProjectStatus list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Sortorder</th>
+                <th>Defaultvalue</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for projectStatus in projectStatuses %}
+            <tr>
+                <td><a href="{{ path('projectstatus_show', { 'id': projectStatus.id }) }}">{{ projectStatus.id }}</a></td>
+                <td>{{ projectStatus.name }}</td>
+                <td>{{ projectStatus.sortOrder }}</td>
+                <td>{% if entity.defaultValue %}Yes{% else %}No{% endif %}</td>
+                <td>{% if entity.active %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('projectstatus_show', { 'id': projectStatus.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('projectstatus_edit', { 'id': projectStatus.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('projectstatus_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
