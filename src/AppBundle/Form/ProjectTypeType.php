@@ -10,7 +10,7 @@ class ProjectTypeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,14 +20,14 @@ class ProjectTypeType extends AbstractType
             ->add('active')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ProjectType'
+            'data_class' => 'AppBundle\Entity\ProjectType',
         ));
     }
 }

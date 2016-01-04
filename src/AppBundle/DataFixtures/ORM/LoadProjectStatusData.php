@@ -17,7 +17,6 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
             ->setDefaultValue(true)
             ->setSortOrder(0)
             ->setActive(true);
-        ;
         $manager->persist($open);
         $manager->flush();
 
@@ -26,7 +25,6 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
             ->setName('On Hold')
             ->setSortOrder(1)
             ->setActive(true);
-        ;
         $manager->persist($onHold);
         $manager->flush();
 
@@ -36,7 +34,6 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
             ->setDefaultValue(true)
             ->setSortOrder(2)
             ->setActive(true);
-        ;
         $manager->persist($closed);
         $manager->flush();
 
@@ -46,7 +43,6 @@ class LoadProjectStatusData extends AbstractFixture implements OrderedFixtureInt
             ->setDefaultValue(true)
             ->setSortOrder(3)
             ->setActive(true);
-        ;
         $manager->persist($cancelled);
         $manager->flush();
     }

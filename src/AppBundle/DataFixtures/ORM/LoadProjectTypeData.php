@@ -16,7 +16,6 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
           ->setName('Support')
           ->setSortOrder(0)
           ->setActive(true);
-        ;
         $manager->persist($support);
         $manager->flush();
 
@@ -25,7 +24,6 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
           ->setName('New Site')
           ->setSortOrder(1)
           ->setActive(true);
-        ;
         $manager->persist($newSite);
         $manager->flush();
 
@@ -34,7 +32,6 @@ class LoadProjectTypeData extends AbstractFixture implements OrderedFixtureInter
           ->setName('Internal')
           ->setSortOrder(2)
           ->setActive(true);
-        ;
         $manager->persist($internal);
         $manager->flush();
     }
