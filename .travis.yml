@@ -23,7 +23,5 @@ script:
   - phpunit
 
 notifications:
-  email:
-    -  d.noyola@paralleldevs.com
   on_success: change
   on_failure: always
