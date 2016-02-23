@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ProjectPhase list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Duedate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for projectPhase in projectPhases %}
+            <tr>
+                <td><a href="{{ path('projectphase_show', { 'id': projectPhase.id }) }}">{{ projectPhase.id }}</a></td>
+                <td>{{ projectPhase.name }}</td>
+                <td>{% if projectPhase.dueDate %}{{ projectPhase.dueDate|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('projectphase_show', { 'id': projectPhase.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('projectphase_edit', { 'id': projectPhase.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('projectphase_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
