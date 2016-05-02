@@ -1,0 +1,47 @@
+AppBundle\Entity\ProjectStatus:
+    project_status0:
+        name: Open
+        sortOrder: 0
+        defaultValue: true
+        active: true
+    project_status1:
+        name: On Hold
+        sortOrder: 1
+        defaultValue: false
+        active: true
+    project_status2:
+        name: Closed
+        sortOrder: 2
+        defaultValue: false
+        active: true
+    project_status3:
+        name: 3
+        sortOrder: true
+        defaultValue: false
+        active: true
+
+AppBundle\Entity\ProjectType:
+    project_type0:
+        name: Support
+        sortOrder: 0
+        active: true
+    project_type1:
+        name: New Site
+        sortOrder: 1
+        active: true
+    project_type2:
+        name: Internal
+        sortOrder: 2
+        active: true
+
+AppBundle\Entity\UserGroup:
+    group0:
+        __construct: [Admin]
+    group1:
+        __construct: [Developer]
+    group2:
+        __construct: [Client]
+    group3:
+        __construct: [Manager]
+    group4:
+        __construct: [Designer]
