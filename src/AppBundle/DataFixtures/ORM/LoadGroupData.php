@@ -5,13 +5,13 @@ namespace AppBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\Group;
+use AppBundle\Entity\UserGroup;
 
-class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
+class LoadUserGroupData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $admin = new Group('Admin');
+        $admin = new UserGroup('Admin');
         $admin->addRole('ROLE_SUPER_ADMIN');
         $admin
             ->setViewAll(1)
@@ -25,7 +25,7 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($admin);
         $manager->flush();
 
-        $developer = new Group('Developer');
+        $developer = new UserGroup('Developer');
         $developer
             ->setManageProjects(1)
             ->setManageTasks(1)
@@ -33,14 +33,14 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($developer);
         $manager->flush();
 
-        $client = new Group('Client');
+        $client = new UserGroup('Client');
         $client
             ->setManageTickets(1)
         ;
         $manager->persist($client);
         $manager->flush();
 
-        $manager_group = new Group('Manager');
+        $manager_group = new UserGroup('Manager');
         $manager_group
             ->setViewAll(1)
             ->setManageProjects(1)
@@ -51,7 +51,7 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($manager_group);
         $manager->flush();
 
-        $designer = new Group('Designer');
+        $designer = new UserGroup('Designer');
         $designer
             ->setManageTasks(1)
         ;
