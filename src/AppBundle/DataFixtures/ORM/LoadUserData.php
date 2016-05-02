@@ -48,7 +48,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     private function addAdminUser(ObjectManager $manager)
     {
-        $adminGroup = $manager->getRepository('AppBundle:Group')->findOneByName('Admin');
+        $adminGroup = $manager->getRepository('AppBundle:UserGroup')->findOneByName('Admin');
 
         $adminUser = new User();
         $adminUser->addGroup($adminGroup);
