@@ -15,7 +15,7 @@ AppBundle\Entity\ProjectStatus:
         defaultValue: false
         active: true
     project_status3:
-        name: 3
+        name: Cancelled
         sortOrder: true
         defaultValue: false
         active: true
