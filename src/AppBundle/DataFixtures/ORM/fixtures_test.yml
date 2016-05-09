@@ -19,6 +19,7 @@ AppBundle\Entity\Project:
         name: <name()>
         email: <email()>
         description: <text()>
+        createdAt: <dateTimeThisYear()>
         projectStatus: '@project_status*'
         projectType: '@project_type*'
         createdBy: '@user*'
