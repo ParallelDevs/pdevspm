@@ -192,7 +192,7 @@ class Project
      *
      * @return Project
      */
-    public function setTeam(\Doctrine\Common\Collections\ArrayCollection $team)
+    public function setTeam(ArrayCollection $team)
     {
         $this->team = $team;
 
