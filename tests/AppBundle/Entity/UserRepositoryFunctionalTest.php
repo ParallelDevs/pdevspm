@@ -29,9 +29,7 @@ class UserRepositoryFunctionalTest extends KernelTestCase
         $testUser = new User();
         $testUser
             ->setUsername('test')
-            ->setUsernameCanonical('test')
             ->setEmail('test@pdevspm.com')
-            ->setEmailCanonical('test@pdevspm.com')
             ->setEnabled(true)
             ->setPlainPassword('test')
         ;
