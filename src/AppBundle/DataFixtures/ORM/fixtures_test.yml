@@ -1,0 +1,24 @@
+AppBundle\Entity\User:
+    user0:
+        username: admin
+        email: admin@pdevspm.com
+        enabled: true
+        plainPassword: admin
+        groups: ['@group0']
+    user{1..4}:
+        username: <username()>
+        email: <email()>
+        enabled: true
+        plainPassword: <password()>
+        groups: ['@group<current()>']
+
+AppBundle\Entity\Project:
+    project{1..10}:
+        name: <name()>
+        email: <email()>
+        description: <text()>
+        createdAt: <dateTimeThisYear()>
+        projectStatus: '@project_status*'
+        projectType: '@project_type*'
+        createdBy: '@user*'
+
