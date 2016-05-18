@@ -67,6 +67,8 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
+        $this->denyAccessUnlessGranted('view', $project);
+        
         $deleteForm = $this->createDeleteForm($project);
 
         return $this->render('project/show.html.twig', array(

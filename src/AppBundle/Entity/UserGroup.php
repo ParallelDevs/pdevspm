@@ -65,4 +65,12 @@ class UserGroup extends BaseGroup
         }
         $this->permissions->removeElement($permission);
     }
+
+    /**
+     * @return Permission[]
+     */
+    public function getPermissions()
+    {
+        return $this->permissions;
+    }
 }
