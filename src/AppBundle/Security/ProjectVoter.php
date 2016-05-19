@@ -2,6 +2,7 @@
 
 namespace AppBundle\Security;
 
+use AppBundle\Entity\Permission;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
@@ -10,8 +11,11 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class ProjectVoter extends Voter
 {
+    const CREATE = 'create';
     const VIEW = 'view';
     const EDIT = 'edit';
+    const DELETE = 'delete';
+
 
     protected function supports($attribute, $subject)
     {
@@ -43,32 +47,39 @@ class ProjectVoter extends Voter
 
         switch($attribute) {
             case self::VIEW:
-                 return $this->canView($project, $user);
+                 return $this->checkPermission(self::VIEW, $user);
             case self::EDIT:
-                return $this->canEdit($project, $user);
+                return $this->checkPermission(self::EDIT, $user);
+            case self::CREATE:
+                return $this->checkPermission(self::CREATE, $user);
+            case self::DELETE:
+                return $this->checkPermission(self::DELETE, $user);
         }
 
         throw new \LogicException('This code should not be reached!');
     }
 
-    private function canView(Project $project, User $user)
+    /**
+     * Check the user permission based on their roles
+     *
+     * @param string $action
+     * @param \AppBundle\Entity\User $user
+     * @return bool
+     */
+    private function checkPermission($action, User $user)
     {
-        // if they can edit, they can view
-        if ($this->canEdit($project, $user)) {
-            return true;
-        }
-
-        return true;
-    }
-
-    private function canEdit(Project $project, User $user)
-    {
-        foreach ($user->getGroups() as $group) {
-            if ($group->getPermissions()->contains('edit project'))
-            {
-                return true;
+        /** @var \Doctrine\Common\Collections\Collection $groups */
+        $groups = $user->getGroups();
+        foreach ($groups as $group) {
+            foreach ($group->getPermissions()->toArray() as $permission) {
+                if ($permission->getName() == $action . ' project')
+                {
+                    return true;
+                }
             }
         }
+
+        return false;
     }
 
 }
