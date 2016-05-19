@@ -45,3 +45,13 @@ AppBundle\Entity\UserGroup:
         __construct: [Manager]
     group4:
         __construct: [Designer]
+
+AppBundle\Entity\Permission:
+    permission0:
+        name: create project
+    permission1:
+        name: view project
+    permission2:
+        name: edit project
+    permission3:
+        name: delete project
