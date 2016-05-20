@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Project;
-use AppBundle\Form\ProjectType;
 
 /**
  * Project controller.
@@ -68,7 +67,7 @@ class ProjectController extends Controller
     public function showAction(Project $project)
     {
         $this->denyAccessUnlessGranted('view', $project);
-        
+
         $deleteForm = $this->createDeleteForm($project);
 
         return $this->render('project/show.html.twig', array(

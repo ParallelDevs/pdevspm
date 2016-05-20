@@ -45,6 +45,4 @@ class Permission
     {
         $this->name = $name;
     }
-
-
 }

@@ -2,10 +2,8 @@
 
 namespace AppBundle\Security;
 
-use AppBundle\Entity\Permission;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
@@ -15,7 +13,6 @@ class ProjectVoter extends Voter
     const VIEW = 'view';
     const EDIT = 'edit';
     const DELETE = 'delete';
-
 
     protected function supports($attribute, $subject)
     {
@@ -45,7 +42,7 @@ class ProjectVoter extends Voter
         /** @var Project $project */
         $project = $subject;
 
-        switch($attribute) {
+        switch ($attribute) {
             case self::VIEW:
                 return $this->canView($project, $user);
             case self::EDIT:
@@ -65,11 +62,10 @@ class ProjectVoter extends Voter
             return true;
         }
 
-        /** @var \Doctrine\Common\Collections\Collection $groups */
+        /* @var \Doctrine\Common\Collections\Collection $groups */
         $team = $project->getTeam();
         foreach ($team as $member) {
-            if ($user === $member)
-            {
+            if ($user === $member) {
                 return true;
             }
         }
@@ -78,10 +74,11 @@ class ProjectVoter extends Voter
     }
 
     /**
-     * Check the user permission based on their roles
+     * Check the user permission based on their roles.
      *
-     * @param string $action
+     * @param string                 $action
      * @param \AppBundle\Entity\User $user
+     *
      * @return bool
      */
     private function checkPermission($action, User $user)
@@ -90,8 +87,7 @@ class ProjectVoter extends Voter
         $groups = $user->getGroups();
         foreach ($groups as $group) {
             foreach ($group->getPermissions()->toArray() as $permission) {
-                if ($permission->getName() == $action . ' project')
-                {
+                if ($permission->getName() == $action.' project') {
                     return true;
                 }
             }
@@ -99,5 +95,4 @@ class ProjectVoter extends Voter
 
         return false;
     }
-
 }

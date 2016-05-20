@@ -19,8 +19,6 @@ class UserGroup extends BaseGroup
      */
     protected $id;
 
-
-
     /**
      * @var \Doctrine\Common\Collections\Collection|Permission[]
      *
