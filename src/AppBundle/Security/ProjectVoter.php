@@ -47,7 +47,7 @@ class ProjectVoter extends Voter
 
         switch($attribute) {
             case self::VIEW:
-                 return $this->checkPermission(self::VIEW, $user);
+                return $this->canView($project, $user);
             case self::EDIT:
                 return $this->checkPermission(self::EDIT, $user);
             case self::CREATE:
@@ -57,6 +57,24 @@ class ProjectVoter extends Voter
         }
 
         throw new \LogicException('This code should not be reached!');
+    }
+
+    private function canView(Project $project, User $user)
+    {
+        if ($user === $project->getCreatedBy()) {
+            return true;
+        }
+
+        /** @var \Doctrine\Common\Collections\Collection $groups */
+        $team = $project->getTeam();
+        foreach ($team as $member) {
+            if ($user === $member)
+            {
+                return true;
+            }
+        }
+
+        return $this->checkPermission(self::VIEW, $user);
     }
 
     /**
