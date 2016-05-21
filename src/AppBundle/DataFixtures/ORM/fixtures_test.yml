@@ -11,7 +11,7 @@ AppBundle\Entity\User:
         name: <name()>
         email: <email()>
         enabled: true
-        plainPassword: <password()>
+        plainPassword: password
         groups: ['@group<current()>']
 
 AppBundle\Entity\Project:
