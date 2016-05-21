@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
@@ -36,10 +35,41 @@ class User extends BaseUser
      */
     protected $groups;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="team")
+     */
+    private $projects;
+
     public function __construct()
     {
         parent::__construct();
         $this->groups = new ArrayCollection();
     }
 
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 }

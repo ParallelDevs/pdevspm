@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Project;
-use AppBundle\Form\ProjectType;
 
 /**
  * Project controller.
@@ -26,7 +25,17 @@ class ProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
+        // Check if the current user is able to see all the projects
+        if ($this->isGranted('view', new Project())) {
+            $projects = $em->getRepository('AppBundle:Project')->findAll();
+        } else {
+            // If the current user isn't able to see all the projects then show
+            // only the projects where the user belows or if the user created
+            // the project
+            $projects = $em->getRepository('AppBundle:Project')->findAllOwnProjects(
+              $this->getUser()
+            );
+        }
 
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
@@ -42,6 +51,9 @@ class ProjectController extends Controller
     public function newAction(Request $request)
     {
         $project = new Project();
+
+        $this->denyAccessUnlessGranted('create', $project);
+
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
 
@@ -67,6 +79,8 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
+        $this->denyAccessUnlessGranted('view', $project);
+
         $deleteForm = $this->createDeleteForm($project);
 
         return $this->render('project/show.html.twig', array(
@@ -83,6 +97,8 @@ class ProjectController extends Controller
      */
     public function editAction(Request $request, Project $project)
     {
+        $this->denyAccessUnlessGranted('edit', $project);
+
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
@@ -110,6 +126,8 @@ class ProjectController extends Controller
      */
     public function deleteAction(Request $request, Project $project)
     {
+        $this->denyAccessUnlessGranted('delete', $project);
+
         $form = $this->createDeleteForm($project);
         $form->handleRequest($request);
 

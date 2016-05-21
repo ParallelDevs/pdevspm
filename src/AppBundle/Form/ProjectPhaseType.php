@@ -10,7 +10,7 @@ class ProjectPhaseType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -21,14 +21,14 @@ class ProjectPhaseType extends AbstractType
             ->add('phaseStatus')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ProjectPhase'
+            'data_class' => 'AppBundle\Entity\ProjectPhase',
         ));
     }
 }

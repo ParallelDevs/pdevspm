@@ -19,8 +19,6 @@ class UserGroup extends BaseGroup
      */
     protected $id;
 
-
-
     /**
      * @var \Doctrine\Common\Collections\Collection|Permission[]
      *
@@ -64,5 +62,13 @@ class UserGroup extends BaseGroup
             return;
         }
         $this->permissions->removeElement($permission);
+    }
+
+    /**
+     * @return Permission[]
+     */
+    public function getPermissions()
+    {
+        return $this->permissions;
     }
 }

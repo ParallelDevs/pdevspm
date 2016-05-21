@@ -14,7 +14,6 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
-
         $fixtures = [__DIR__.'/fixtures.yml'];
 
         if ($this->container->getParameter('kernel.environment') == 'test') {
