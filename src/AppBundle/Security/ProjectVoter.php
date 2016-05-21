@@ -83,10 +83,8 @@ class ProjectVoter extends Voter
      */
     private function checkPermission($action, User $user)
     {
-        /** @var \Doctrine\Common\Collections\Collection $groups */
-        $groups = $user->getGroups();
-        foreach ($groups as $group) {
-            foreach ($group->getPermissions()->toArray() as $permission) {
+        foreach ($user->getGroups() as $group) {
+            foreach ($group->getPermissions() as $permission) {
                 if ($permission->getName() == $action.' project') {
                     return true;
                 }

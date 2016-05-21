@@ -11,7 +11,7 @@ use AppBundle\Entity\Project;
 /**
  * Project controller.
  *
- * @Route("/project")
+ * @Route("/app/project")
  */
 class ProjectController extends Controller
 {
