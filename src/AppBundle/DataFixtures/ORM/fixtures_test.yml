@@ -1,12 +1,14 @@
 AppBundle\Entity\User:
     user0:
         username: admin
+        name: Administrator
         email: admin@pdevspm.com
         enabled: true
         plainPassword: admin
         groups: ['@group0']
     user{1..4}:
         username: <username()>
+        name: <name()>
         email: <email()>
         enabled: true
         plainPassword: <password()>

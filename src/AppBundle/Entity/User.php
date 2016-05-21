@@ -35,9 +35,32 @@ class User extends BaseUser
      */
     protected $groups;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
     public function __construct()
     {
         parent::__construct();
         $this->groups = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }
