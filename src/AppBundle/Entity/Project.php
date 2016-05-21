@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Project.
  *
  * @ORM\Table(name="project", indexes={@ORM\Index(name="fk_project_project_status", columns={"project_status_id"}), @ORM\Index(name="fk_project_project_type", columns={"project_type_id"}), @ORM\Index(name="fk_project_user", columns={"created_by"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  */
 class Project
 {
@@ -46,7 +46,7 @@ class Project
     /**
      * @var \AppBundle\Entity\User
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="projects")
      * @ORM\JoinTable(name="project_team",
      *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}

@@ -25,7 +25,17 @@ class ProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
+        // Check if the current user is able to see all the projects
+        if ($this->isGranted('view', new Project())) {
+            $projects = $em->getRepository('AppBundle:Project')->findAll();
+        } else {
+            // If the current user isn't able to see all the projects then show
+            // only the projects where the user belows or if the user created
+            // the project
+            $projects = $em->getRepository('AppBundle:Project')->findAllOwnProjects(
+              $this->getUser()
+            );
+        }
 
         return $this->render('project/index.html.twig', array(
             'projects' => $projects,
@@ -87,6 +97,8 @@ class ProjectController extends Controller
      */
     public function editAction(Request $request, Project $project)
     {
+        $this->denyAccessUnlessGranted('edit', $project);
+
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
@@ -114,6 +126,8 @@ class ProjectController extends Controller
      */
     public function deleteAction(Request $request, Project $project)
     {
+        $this->denyAccessUnlessGranted('delete', $project);
+
         $form = $this->createDeleteForm($project);
         $form->handleRequest($request);
 

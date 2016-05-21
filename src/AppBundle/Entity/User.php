@@ -42,6 +42,11 @@ class User extends BaseUser
      */
     private $name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="team")
+     */
+    private $projects;
+
     public function __construct()
     {
         parent::__construct();
@@ -58,6 +63,8 @@ class User extends BaseUser
 
     /**
      * @param string $name
+     *
+     * @return $this
      */
     public function setName($name)
     {

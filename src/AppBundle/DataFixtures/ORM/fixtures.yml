@@ -40,16 +40,16 @@ AppBundle\Entity\UserGroup:
         permissions: ['@permission0', '@permission1', '@permission2', '@permission3']
     group1:
         __construct: [Developer]
-        permissions: ['@permission0', '@permission1', '@permission2', '@permission3']
+        permissions: ['@permission0', '@permission2', '@permission3']
     group2:
         __construct: [Client]
-        permissions: ['@permission0', '@permission1', '@permission2', '@permission3']
+        permissions: []
     group3:
         __construct: [Manager]
-        permissions: ['@permission0', '@permission1', '@permission2', '@permission3']
+        permissions: ['@permission0', '@permission1', '@permission2']
     group4:
         __construct: [Designer]
-        permissions: ['@permission0', '@permission1', '@permission2', '@permission3']
+        permissions: []
 
 AppBundle\Entity\Permission:
     permission0:
