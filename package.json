@@ -1,0 +1,26 @@
+{
+  "name": "pdevspm",
+  "version": "1.0.0",
+  "description": "Project Management",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielnv18/pdevspm.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielnv18/pdevspm/issues"
+  },
+  "homepage": "https://github.com/danielnv18/pdevspm",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1"
+  }
+}
