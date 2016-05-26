@@ -6,20 +6,22 @@ var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var cleanCSS = require('gulp-clean-css');
 var util = require('gulp-util');
+var gulpif = require('gulp-if');
 
 var config = {
     assetsDir: 'app/Resources/assets',
     sassPattern: 'sass/**/*.scss',
-    prod: !!util.env.prod
+    prod: !!util.env.prod,
+    sourceMaps: !util.env.prod
 };
 
 gulp.task('sass', function () {
     gulp.src(config.assetsDir+'/'+config.sassPattern)
-        .pipe(sourcemaps.init())
+        .pipe(gulpif(config.sourceMaps, sourcemaps.init()))
         .pipe(sass())
         .pipe(concat('main.css'))
         .pipe(config.prod ? cleanCSS() : util.noop())
-        .pipe(sourcemaps.write('.'))
+        .pipe(gulpif(config.sourceMaps, sourcemaps.write('.')))
         .pipe(gulp.dest('web/css'));
 });
 
