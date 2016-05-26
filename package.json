@@ -21,8 +21,10 @@
   "homepage": "https://github.com/danielnv18/pdevspm",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.8",
     "gulp-concat": "^2.6.0",
     "gulp-sass": "^2.3.1",
-    "gulp-sourcemaps": "^1.6.0"
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7"
   }
 }
