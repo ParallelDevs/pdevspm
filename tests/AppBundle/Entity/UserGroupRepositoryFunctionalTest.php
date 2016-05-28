@@ -5,7 +5,7 @@ namespace AppBundle\Tests\Entity;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use AppBundle\Entity\UserGroup;
 
-class GroupRepositoryFunctionalTest extends KernelTestCase
+class UserGroupRepositoryFunctionalTest extends KernelTestCase
 {
     /**
      * @var \Doctrine\ORM\EntityManager

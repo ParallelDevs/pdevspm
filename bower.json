@@ -1,0 +1,22 @@
+{
+  "name": "pdevspm",
+  "description": "Project Management",
+  "main": "index.js",
+  "authors": [
+    "danielnv18 <danielnv18@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/danielnv18/pdevspm",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.3"
+  }
+}
