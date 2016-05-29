@@ -16,7 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.6",
-    "font-awesome": "^4.6.3"
+    "AdminLTE": "admin-lte#^2.3.3"
   }
 }
