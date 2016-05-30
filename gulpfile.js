@@ -42,7 +42,8 @@ app.copy = function(srcFiles, outputDir) {
 gulp.task('styles', function () {
     app.addStyles([
         config.bowerDir + '/bootstrap/dist/css/bootstrap.css',
-        config.bowerDir + '/font-awesome/css/font-awesome.css',
+        config.bowerDir + '/font-awesome/scss/font-awesome.scss',
+        config.bowerDir + '/AdminLTE/dist/css/AdminLTE.css',
         config.assetsDir + '/'+config.sassPattern
     ], 'main.css');
 });
@@ -51,6 +52,7 @@ gulp.task('scripts', function () {
     app.addScripts([
         config.bowerDir+'/jquery/dist/jquery.js',
         config.bowerDir+'/bootstrap/dist/js/bootstrap.js',
+        config.bowerDir+'/AdminLTE/dist/js/app.js',
         config.assetsDir+'/js/main.js'
     ], 'app.js');
 });
@@ -58,6 +60,11 @@ gulp.task('scripts', function () {
 gulp.task('fonts', function() {
     app.copy(
         config.bowerDir+'/font-awesome/fonts/*',
+        'web/fonts'
+    );
+
+    app.copy(
+        config.bowerDir+'/bootstrap/fonts/*',
         'web/fonts'
     );
 });
