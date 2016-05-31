@@ -25,7 +25,7 @@ class ProjectStatusController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projectStatuses = $em->getRepository('AppBundle:ProjectStatus')->findAll();
+        $projectStatuses = $em->getRepository('AppBundle:ProjectStatus')->findAllProjectStatus();
 
         return $this->render('projectstatus/index.html.twig', array(
             'projectStatuses' => $projectStatuses,
