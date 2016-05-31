@@ -42,7 +42,7 @@ class ProjectStatusController extends Controller
     public function newAction(Request $request)
     {
         $projectStatus = new ProjectStatus();
-        $form = $this->createForm(new ProjectStatusType(), $projectStatus);
+        $form = $this->createForm('AppBundle\Form\ProjectStatusType', $projectStatus);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,7 +84,7 @@ class ProjectStatusController extends Controller
     public function editAction(Request $request, ProjectStatus $projectStatus)
     {
         $deleteForm = $this->createDeleteForm($projectStatus);
-        $editForm = $this->createForm(new ProjectStatusType(), $projectStatus);
+        $editForm = $this->createForm('AppBundle\Form\ProjectStatusType', $projectStatus);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
