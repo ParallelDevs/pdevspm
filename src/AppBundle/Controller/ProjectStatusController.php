@@ -23,6 +23,8 @@ class ProjectStatusController extends Controller
      */
     public function indexAction()
     {
+        $this->denyAccessUnlessGranted('manage', new ProjectStatus());
+
         $em = $this->getDoctrine()->getManager();
 
         $projectStatuses = $em->getRepository('AppBundle:ProjectStatus')->findAllProjectStatus();
@@ -41,6 +43,9 @@ class ProjectStatusController extends Controller
     public function newAction(Request $request)
     {
         $projectStatus = new ProjectStatus();
+
+        $this->denyAccessUnlessGranted('manage', $projectStatus);
+
         $form = $this->createForm('AppBundle\Form\ProjectStatusType', $projectStatus);
         $form->handleRequest($request);
 
@@ -66,6 +71,8 @@ class ProjectStatusController extends Controller
      */
     public function showAction(ProjectStatus $projectStatus)
     {
+        $this->denyAccessUnlessGranted('manage', $projectStatus);
+
         $deleteForm = $this->createDeleteForm($projectStatus);
 
         return $this->render('projectstatus/show.html.twig', array(
@@ -82,6 +89,8 @@ class ProjectStatusController extends Controller
      */
     public function editAction(Request $request, ProjectStatus $projectStatus)
     {
+        $this->denyAccessUnlessGranted('manage', $projectStatus);
+
         $deleteForm = $this->createDeleteForm($projectStatus);
         $editForm = $this->createForm('AppBundle\Form\ProjectStatusType', $projectStatus);
         $editForm->handleRequest($request);
@@ -109,6 +118,8 @@ class ProjectStatusController extends Controller
      */
     public function deleteAction(Request $request, ProjectStatus $projectStatus)
     {
+        $this->denyAccessUnlessGranted('manage', $projectStatus);
+
         $form = $this->createDeleteForm($projectStatus);
         $form->handleRequest($request);
 

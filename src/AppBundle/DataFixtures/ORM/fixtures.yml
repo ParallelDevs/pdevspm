@@ -37,7 +37,7 @@ AppBundle\Entity\ProjectType:
 AppBundle\Entity\UserGroup:
     group0:
         __construct: [Admin]
-        permissions: ['@permission0', '@permission1', '@permission2', '@permission3']
+        permissions: ['@permission0', '@permission1', '@permission2', '@permission3', '@permission4']
     group1:
         __construct: [Developer]
         permissions: ['@permission0', '@permission2', '@permission3']
@@ -60,3 +60,5 @@ AppBundle\Entity\Permission:
         name: edit project
     permission3:
         name: delete project
+    permission4:
+        name: manage configuration
