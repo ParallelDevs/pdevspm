@@ -24,7 +24,8 @@ class ConfigurationVoter extends Voter
         return true;
     }
 
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token) {
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    {
 
         /** @var User $user */
         $user = $token->getUser();
@@ -44,5 +45,4 @@ class ConfigurationVoter extends Voter
 
         return false;
     }
-
 }
