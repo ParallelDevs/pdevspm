@@ -3,6 +3,7 @@
 namespace AppBundle\Security;
 
 use AppBundle\Entity\ProjectStatus;
+use AppBundle\Entity\ProjectType;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -17,11 +18,11 @@ class ConfigurationVoter extends Voter
             return false;
         }
 
-        if (!$subject instanceof ProjectStatus) {
-            return false;
+        if ($subject instanceof ProjectStatus || $subject instanceof ProjectType) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
