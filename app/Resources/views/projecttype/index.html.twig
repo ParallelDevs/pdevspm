@@ -19,7 +19,7 @@
                 <td><a href="{{ path('projecttype_show', { 'id': projectType.id }) }}">{{ projectType.id }}</a></td>
                 <td>{{ projectType.name }}</td>
                 <td>{{ projectType.sortOrder }}</td>
-                <td>{% if entity.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if projectType.active %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul>
                         <li>

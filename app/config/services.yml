@@ -12,10 +12,15 @@ services:
         class: AppBundle\Form\GroupType
         tags:
             - { name: form.type, alias: app_user_group }
+
     # Voters
     app.post_voter:
         class: AppBundle\Security\ProjectVoter
         tags:
             - { name: security.voter }
         public: false
-
+    app.configuration:
+        class: AppBundle\Security\ConfigurationVoter
+        tags:
+            - { name: security.voter }
+        public: false

@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\ProjectStatus;
-use AppBundle\Form\ProjectStatusType;
 
 /**
  * ProjectStatus controller.
@@ -24,9 +23,11 @@ class ProjectStatusController extends Controller
      */
     public function indexAction()
     {
+        $this->denyAccessUnlessGranted('manage', new ProjectStatus());
+
         $em = $this->getDoctrine()->getManager();
 
-        $projectStatuses = $em->getRepository('AppBundle:ProjectStatus')->findAll();
+        $projectStatuses = $em->getRepository('AppBundle:ProjectStatus')->findAllProjectStatus();
 
         return $this->render('projectstatus/index.html.twig', array(
             'projectStatuses' => $projectStatuses,
@@ -42,7 +43,10 @@ class ProjectStatusController extends Controller
     public function newAction(Request $request)
     {
         $projectStatus = new ProjectStatus();
-        $form = $this->createForm(new ProjectStatusType(), $projectStatus);
+
+        $this->denyAccessUnlessGranted('manage', $projectStatus);
+
+        $form = $this->createForm('AppBundle\Form\ProjectStatusType', $projectStatus);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,6 +71,8 @@ class ProjectStatusController extends Controller
      */
     public function showAction(ProjectStatus $projectStatus)
     {
+        $this->denyAccessUnlessGranted('manage', $projectStatus);
+
         $deleteForm = $this->createDeleteForm($projectStatus);
 
         return $this->render('projectstatus/show.html.twig', array(
@@ -83,8 +89,10 @@ class ProjectStatusController extends Controller
      */
     public function editAction(Request $request, ProjectStatus $projectStatus)
     {
+        $this->denyAccessUnlessGranted('manage', $projectStatus);
+
         $deleteForm = $this->createDeleteForm($projectStatus);
-        $editForm = $this->createForm(new ProjectStatusType(), $projectStatus);
+        $editForm = $this->createForm('AppBundle\Form\ProjectStatusType', $projectStatus);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -110,6 +118,8 @@ class ProjectStatusController extends Controller
      */
     public function deleteAction(Request $request, ProjectStatus $projectStatus)
     {
+        $this->denyAccessUnlessGranted('manage', $projectStatus);
+
         $form = $this->createDeleteForm($projectStatus);
         $form->handleRequest($request);
 

@@ -49,7 +49,7 @@ class ProjectPhaseController extends Controller
             $em->persist($projectPhase);
             $em->flush();
 
-            return $this->redirectToRoute('projectphase_show', array('id' => $projectphase->getId()));
+            return $this->redirectToRoute('projectphase_show', array('id' => $projectPhase->getId()));
         }
 
         return $this->render('projectphase/new.html.twig', array(

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>ProjectType</h1>
+    <h1>Project Type</h1>
 
     <table>
         <tbody>
@@ -14,12 +14,12 @@
                 <td>{{ projectType.name }}</td>
             </tr>
             <tr>
-                <th>Sortorder</th>
+                <th>Sort Order</th>
                 <td>{{ projectType.sortOrder }}</td>
             </tr>
             <tr>
                 <th>Active</th>
-                <td>{% if entity.active %}Yes{% else %}No{% endif %}</td>
+                <td>{% if projectType.active %}Yes{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>

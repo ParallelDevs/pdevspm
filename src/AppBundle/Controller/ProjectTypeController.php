@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\ProjectType;
-use AppBundle\Form\ProjectTypeType;
 
 /**
  * ProjectType controller.
@@ -24,6 +23,8 @@ class ProjectTypeController extends Controller
      */
     public function indexAction()
     {
+        $this->denyAccessUnlessGranted('manage', new ProjectType());
+
         $em = $this->getDoctrine()->getManager();
 
         $projectTypes = $em->getRepository('AppBundle:ProjectType')->findAll();
@@ -42,7 +43,10 @@ class ProjectTypeController extends Controller
     public function newAction(Request $request)
     {
         $projectType = new ProjectType();
-        $form = $this->createForm(new ProjectTypeType(), $projectType);
+
+        $this->denyAccessUnlessGranted('manage', $projectType);
+
+        $form = $this->createForm('AppBundle\Form\ProjectTypeType', $projectType);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,7 +54,7 @@ class ProjectTypeController extends Controller
             $em->persist($projectType);
             $em->flush();
 
-            return $this->redirectToRoute('projecttype_show', array('id' => $projecttype->getId()));
+            return $this->redirectToRoute('projecttype_show', array('id' => $projectType->getId()));
         }
 
         return $this->render('projecttype/new.html.twig', array(
@@ -67,6 +71,8 @@ class ProjectTypeController extends Controller
      */
     public function showAction(ProjectType $projectType)
     {
+        $this->denyAccessUnlessGranted('manage', $projectType);
+
         $deleteForm = $this->createDeleteForm($projectType);
 
         return $this->render('projecttype/show.html.twig', array(
@@ -83,8 +89,10 @@ class ProjectTypeController extends Controller
      */
     public function editAction(Request $request, ProjectType $projectType)
     {
+        $this->denyAccessUnlessGranted('manage', $projectType);
+
         $deleteForm = $this->createDeleteForm($projectType);
-        $editForm = $this->createForm(new ProjectTypeType(), $projectType);
+        $editForm = $this->createForm('AppBundle\Form\ProjectTypeType', $projectType);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -110,6 +118,8 @@ class ProjectTypeController extends Controller
      */
     public function deleteAction(Request $request, ProjectType $projectType)
     {
+        $this->denyAccessUnlessGranted('manage', $projectType);
+
         $form = $this->createDeleteForm($projectType);
         $form->handleRequest($request);
 
