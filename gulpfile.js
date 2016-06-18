@@ -44,6 +44,7 @@ gulp.task('styles', function () {
         config.bowerDir + '/bootstrap/dist/css/bootstrap.css',
         config.bowerDir + '/font-awesome/scss/font-awesome.scss',
         config.bowerDir + '/AdminLTE/dist/css/AdminLTE.css',
+        config.bowerDir + '/AdminLTE/dist/css/skins/_all-skins.css',
         config.assetsDir + '/'+config.sassPattern
     ], 'main.css');
 });
