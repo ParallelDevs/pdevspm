@@ -3,6 +3,7 @@
 namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
+use Knp\Menu\ItemInterface;
 
 class MenuBuilder
 {
@@ -21,15 +22,33 @@ class MenuBuilder
         $menu = $this->factory->createItem('root');
 
         $menu->setChildrenAttribute('class', 'sidebar-menu');
+
         // Header
         $menu->addChild('MAIN NAVIGATION');
         $menu['MAIN NAVIGATION']->setAttribute('class', 'header');
 
         // Project
+        $menu = $this->projectMenu($menu);
+
+        return $menu;
+    }
+
+    /**
+     * Creates Project menu items.
+     *
+     * @param \Knp\Menu\ItemInterface $menu
+     *
+     * @return \Knp\Menu\ItemInterface
+     */
+    private function projectMenu(ItemInterface $menu)
+    {
+        // Project
         $menu->addChild('project', [
-            'label' => '<i class="fa fa-sitemap"></i> <span>Projects</span> <i class="fa fa-angle-left pull-right"></i>',
-            'uri' => '#',
-            'extras' => ['safe_label' => true],
+          'label' => '<i class="fa fa-sitemap"></i> 
+                        <span>Projects</span> 
+                        <i class="fa fa-angle-left pull-right"></i>',
+          'uri' => '#',
+          'extras' => ['safe_label' => true],
         ]);
         $menu['project']->setAttribute('class', 'treeview');
         $menu['project']->setChildrenAttribute('class', 'treeview-menu');
