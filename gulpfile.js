@@ -44,6 +44,7 @@ gulp.task('styles', function () {
         config.bowerDir + '/bootstrap/dist/css/bootstrap.css',
         config.bowerDir + '/font-awesome/scss/font-awesome.scss',
         config.bowerDir + '/AdminLTE/dist/css/AdminLTE.css',
+        config.bowerDir + '/AdminLTE/dist/css/skins/skin-blue.css',
         config.assetsDir + '/'+config.sassPattern
     ], 'main.css');
 });
@@ -69,9 +70,16 @@ gulp.task('fonts', function() {
     );
 });
 
+gulp.task('img', function() {
+    app.copy(
+        config.bowerDir+'/AdminLTE/dist/img/*',
+        'web/img'
+    );
+});
+
 gulp.task('watch', function () {
     gulp.watch(config.assetsDir+'/'+config.sassPattern, ['styles']);
     gulp.watch(config.assetsDir+'/js/**/*.js', ['scripts']);
 });
 
-gulp.task('default', ['styles', 'scripts', 'fonts', 'watch']);
+gulp.task('default', ['styles', 'scripts', 'img', 'fonts', 'watch']);

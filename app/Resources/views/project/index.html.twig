@@ -1,47 +1,57 @@
-{% extends 'base.html.twig' %}
+{% extends 'app/base.html.twig' %}
 
-{% block body %}
-    <h1>Project list</h1>
+{% block title %} Project list {% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Description</th>
-                <th>Createdat</th>
-                <th>Ordertaskby</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for project in projects %}
-            <tr>
-                <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
-                <td>{{ project.name }}</td>
-                <td>{{ project.email }}</td>
-                <td>{{ project.description }}</td>
-                <td>{% if project.createdAt %}{{ project.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ project.orderTaskBy }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('project_show', { 'id': project.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('project_edit', { 'id': project.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Description</th>
+                            <th>Createdat</th>
+                            <th>Ordertaskby</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for project in projects %}
+                            <tr>
+                                <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+                                <td>{{ project.name }}</td>
+                                <td>{{ project.email }}</td>
+                                <td>{{ project.description }}</td>
+                                <td>{% if project.createdAt %}{{ project.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{{ project.orderTaskBy }}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('project_show', { 'id': project.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('project_edit', { 'id': project.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('project_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
+            <ul>
+                <li>
+                    <a href="{{ path('project_new') }}">Create a new entry</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 {% endblock %}
